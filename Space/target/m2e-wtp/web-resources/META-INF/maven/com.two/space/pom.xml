@@ -15,6 +15,10 @@
 	</properties>
 	
 	<repositories>
+	<repository>
+		    <id>mesir-repo</id>
+		    <url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
+		</repository>
 		<repository>
 			<id>mvn2</id>
 			<url>http://repo1.maven.org/maven2/</url>
@@ -26,23 +30,14 @@
 			</snapshots>
 		</repository>
 		
-		<repository>
-
-<id>mesir-repo</id>
-
-<url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
-
-</repository>
-		
-		
 	</repositories>
 	
-	<dependencies> 
+	<dependencies>
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4.0</version>
-		</dependency>  
+		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
