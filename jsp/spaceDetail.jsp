@@ -513,6 +513,22 @@ pageEncoding="euc-kr"%>
 </div>
 </div>
 </div>
+
+<title>시간 선택</title>
+<input type="button" value="10:00" />
+<input type="button" value="11:00" />
+<input type="button" value="12:00" />
+<input type="button" value="13:00" />
+<input type="button" value="14:00" />
+<input type="button" value="15:00" />
+<input type="button" value="16:00" />
+<input type="button" value="17:00" />
+<input type="button" value="18:00" />
+<input type="button" value="19:00" />
+<input type="button" value="20:00" />
+<input type="button" value="21:00" />
+<input type="button" value="예약하기" onclick='alert("예약하시겠습니까?")'/>
+
 <div id="detailoption"> <!-- 기본적인 옵션 -->
 <div class="spacedescription" width="100px"> 
 <div width="95px" style="padding: 3rem 0px;">
