@@ -29,7 +29,7 @@
 				</li>
 				<li><input type="password" name="pw" id="pw" placeholder="비밀번호">
 				</li>
-				<li><a href="/login/findIdPwd">아이디/비밀번호찾기</a><br></li>
+				<li><a href="/two/login/findIdPwd">아이디/비밀번호찾기</a><br></li>
 				<li>
 					<button type="submit" id="submit">로그인</button>
 
@@ -38,7 +38,7 @@
 
 			</ul>
 			<p>
-				아직 회원이 아니신가요? <a href="/join/joinForm">회원가입하기</a>
+				아직 회원이 아니신가요? <a href="/two/join/joinForm">회원가입하기</a>
 
 			</p>
 		</div>

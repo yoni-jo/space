@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SampleController {
 	Logger log = Logger.getLogger(this.getClass());
 //메인
-	@RequestMapping(value = "/testmain")
+	@RequestMapping(value = "/main")
 	public ModelAndView openSampleList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("main");
 		log.debug("오류");

@@ -18,11 +18,11 @@ i{border: 1px solid;}
 
  <div id="top">
         <div id="menu">
-            <div class="logo"><a href="/testmain">공간</a></div>
+            <div class="logo"><a href="/two/main">공간</a></div>
             <ul class="nav">
                 <li><a href="#">예약확인</a></li>
-                <li><a href="/member/MemberPwdCheck">마이페이지</a></li>
-                <li><a href="/login/loginForm">로그인</a></li>
+                <li><a href="/two/member/MemberPwdCheck">마이페이지</a></li>
+                <li><a href="/two/login/loginForm">로그인</a></li>
                 <li class="bar">
                 
                 <div>메뉴</div>

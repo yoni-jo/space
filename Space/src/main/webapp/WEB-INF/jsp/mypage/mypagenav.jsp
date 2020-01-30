@@ -61,7 +61,7 @@ position:fixed;
 
 						<li><a href="">내가 찜한 공간</a></li>
 						<li><a href="">1:1문의</a></li>
-						<li><a href="/member/MemberPwdCheck">개인정보 변경</a></li>
+						<li><a href="/two/member/MemberPwdCheck">개인정보 변경</a></li>
 						<li><a href=""></a></li>
 						<li><a href="">내 공간 관리</a></li>
 					</ul>
