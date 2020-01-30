@@ -11,14 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class SampleController {
 	Logger log = Logger.getLogger(this.getClass());
 //메인
-	@RequestMapping(value = "/main")
+	@RequestMapping(value = "/two/main")
 	public ModelAndView openSampleList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("main");
 		log.debug("오류");
 		return mv;
 	}
 //	로그인
-	@RequestMapping(value = "/login/loginForm")
+	@RequestMapping(value = "/two/login/loginForm")
 	public ModelAndView openSampleList2(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("loginForm");
 
@@ -27,7 +27,7 @@ public class SampleController {
 	}
 	
 //	아이디/비밀번호찾기
-	@RequestMapping(value = "/login/findIdPwd")
+	@RequestMapping(value = "/two/login/findIdPwd")
 	public ModelAndView openSampleList4(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("findIdPwd");
 
@@ -35,7 +35,7 @@ public class SampleController {
 		return mv;
 	}
 	//회원가입
-	@RequestMapping(value = "/join/joinForm")
+	@RequestMapping(value = "/two/join/joinForm")
 	public ModelAndView openSampleList3(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("joinForm");
 
