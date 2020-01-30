@@ -40,4 +40,25 @@
     	p:viewClass="org.springframework.web.servlet.view.JstlView" 
     	p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
    	</bean>
+   	
+   	
+   	<!-- Tiles -->
+
+<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" id="tilesConfigurer">
+
+<property name="definitions">
+
+<list>
+<value>/WEB-INF/tiles/tiles.xml</value>
+</list>
+</property>
+</bean>
+<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
+<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+
+<property name="order" value="0"/>
+
+</bean>
+
+<!-- tiles 끝 -->
 </beans>
