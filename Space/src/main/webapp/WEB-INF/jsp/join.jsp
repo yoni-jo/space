@@ -14,7 +14,7 @@
 	textarea{width:100%; height:80px;resize: none;}
     p>button{width: 100%;background-color: #ffd014;}
     </style>
-<form action="" method="POST">
+<form action="/two/main" method="POST">
       <div id="member">
         <h1>회원가입</h1>
 

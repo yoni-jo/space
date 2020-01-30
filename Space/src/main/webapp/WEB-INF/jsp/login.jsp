@@ -38,7 +38,7 @@
 
 			</ul>
 			<p>
-				아직 회원이 아니신가요? <a href="/join/joinForm">회원가입하기</a>
+				아직 회원이 아니신가요? <a href="/two/join/joinForm">회원가입하기</a>
 
 			</p>
 		</div>
