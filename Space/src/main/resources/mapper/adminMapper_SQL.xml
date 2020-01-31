@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<select id="adminLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				USER_ID, 
+				USER_PASSWORD
+			FROM
+				USER_LIST
+		]]>
+	</select>
+	
+	<!-- 회원 목록  -->
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    USER_ID,
+			    USER_NAME,
+			    USER_PHONE,
+			    USER_EMAIL,
+			    USER_DATE 
+			FROM
+			    USER_LIST
+			WHERE
+				USER_VISIBLE='N'    
+		]]>
+	</select>
+	
+	<!-- 공지사항 관련 -->
+	
+	<select id="selectAdminNoticeList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				NTC_NUM,  
+				NTC_TITLE, 
+				NTC_DATE, 
+				NTC_HIT   
+			FROM
+				ADMIN_NOTICE_LIST 
+			order by NTC_NUM desc
+		]]>
+	</select>
+	
+	<!-- 공지사항 글작성 -->
+	<insert id="insertNotice" parameterType="hashMap">
+		<![CDATA[ 
+			INSERT INTO 
+			ADMIN_NOTICE_LIST ( 
+				NTC_NUM, 
+				NTC_TITLE, 
+				NTC_CONTENT, 
+				NTC_DATE, 
+				NTC_HIT 
+			) VALUES (
+				NTC_NUM_SEQ.NEXTVAL, 
+				#{NTC_TITLE}, 
+				#{NTC_CONTENT}, 
+				SYSDATE, 
+				'0' 
+			) 
+		]]>
+	</insert>
+	
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="selectAdminNoticeDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				NTC_NUM, 
+				NTC_TITLE, 
+				NTC_CONTENT, 
+				NTC_DATE, 
+				NTC_HIT   
+			FROM 
+				ADMIN_NOTICE_LIST 
+			WHERE 
+				NTC_NUM = #{NTC_NUM} 
+		]]>	
+	</select>
+	
+	<!-- 공지사항 상세보기 카운트 -->
+	<update id="updateNoticeHitCnt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE ADMIN_NOTICE_LIST 
+			SET
+				NTC_HIT = NVL(NTC_HIT, 0) + 1
+			WHERE
+				NTC_NUM = #{NTC_NUM}	
+		]]>
+	</update>
+	
+	<!--공지사항 글 삭제 -->
+	<delete id="deleteNotice" parameterType="hashmap">
+		<![CDATA[ 
+			DELETE FROM ADMIN_NOTICE_LIST WHERE NTC_NUM = #{NTC_NUM}	
+		]]>
+	</delete>
+	
+	<!-- 공지사항 글 수정 -->
+	<update id="modifyNotice" parameterType="hashMap">
+		<![CDATA[
+			UPDATE ADMIN_NOTICE_LIST 
+			SET 
+				NTC_TITLE = #{NTC_TITLE},
+ 		      	NTC_CONTENT = #{NTC_CONTENT},
+  		      	NTC_DATE = SYSDATE 
+			WHERE 
+				NTC_NUM = #{NTC_NUM}
+		]]>
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 밑에는 우선 샘플 -->
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				IDX, 
+				TITLE, 
+				HIT_CNT, 
+				CREA_DTM 
+			FROM 
+				TB_BOARD 
+			WHERE 
+				DEL_GB = 'N' 
+			ORDER BY IDX DESC 
+		]]>
+	</select>
+	
+	<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" 
+	keyProperty="IDX">
+		<selectKey keyProperty="IDX" resultType="string" order="BEFORE">
+			SELECT SEQ_TB_BOARD_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[ 
+			INSERT INTO TB_BOARD 
+			( 
+				IDX, 
+				TITLE, 
+				CONTENTS, 
+				HIT_CNT, 
+				DEL_GB, 
+				CREA_DTM, 
+				CREA_ID 
+			) 
+			VALUES 
+			( 
+				#{IDX}, 
+				#{TITLE}, 
+				#{CONTENTS}, 
+				0, 
+				'N', 
+				SYSDATE, 
+				'Admin' 
+			)
+		]]>
+	</insert>
+	
+	<update id="updateHitCnt" parameterType="hashmap">
+		<![CDATA[ 
+			UPDATE TB_BOARD 
+			SET 
+				HIT_CNT = NVL(HIT_CNT, 0) + 1 
+			WHERE 
+				IDX = #{IDX} 
+		]]>
+	</update>
+	
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[ 
+			SELECT 
+				IDX, 
+				HIT_CNT, 
+				CREA_ID, 
+				CREA_DTM, 
+				TITLE, 
+				CONTENTS 
+			FROM 
+				TB_BOARD 
+			WHERE 
+				IDX = #{IDX} 
+		]]>
+	</select>
+	
+	<update id="updateBoard" parameterType="hashmap">
+		<![CDATA[ 
+			UPDATE TB_BOARD 
+			SET 
+				TITLE = #{TITLE}, 
+				CONTENTS = #{CONTENTS} 
+			WHERE 
+				IDX = #{IDX} 
+		]]>
+	</update>
+	
+	<update id="deleteBoard" parameterType="hashmap">
+		<![CDATA[ 
+			UPDATE TB_BOARD 
+			SET 
+				DEL_GB = 'Y' 
+			WHERE 
+				IDX = #{IDX} 
+		]]>
+	</update>
+	
+	<insert id="insertFile" parameterType="hashmap">
+		<![CDATA[ 
+			INSERT INTO TB_FILE 
+			( 
+				IDX, 
+				BOARD_IDX, 
+				ORIGINAL_FILE_NAME, 
+				STORED_FILE_NAME, 
+				FILE_SIZE, 
+				CREA_ID 
+			)
+			VALUES 
+			( 
+				SEQ_TB_FILE_IDX.NEXTVAL, 
+				#{BOARD_IDX}, 
+				#{ORIGINAL_FILE_NAME}, 
+				#{STORED_FILE_NAME}, 
+				#{FILE_SIZE}, 
+				'Admin' 
+			)
+		]]>
+	</insert>
+	
+	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[ 
+			SELECT 
+				IDX, 
+				ORIGINAL_FILE_NAME, 
+				ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE 
+			FROM 
+				TB_FILE 
+			WHERE 
+				BOARD_IDX = #{IDX} 
+				AND DEL_GB = 'N' 
+		]]>
+	</select>
+	
+	<update id="deleteFileList" parameterType="hashmap"> 
+		<![CDATA[ 
+			UPDATE TB_FILE SET 
+				DEL_GB = 'Y' 
+			WHERE 
+				BOARD_IDX = #{IDX} 
+		]]> 
+	</update> 
+	
+	<update id="updateFile" parameterType="hashmap"> 
+		<![CDATA[ 
+			UPDATE TB_FILE SET 
+				DEL_GB = 'N' 
+			WHERE 
+				IDX = #{FILE_IDX} 
+		]]> 
+	</update>
+
+</mapper>
