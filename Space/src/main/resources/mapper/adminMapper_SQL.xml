@@ -3,16 +3,6 @@
 
 <mapper namespace="admin">
 
-	<select id="adminLogin" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-				USER_ID, 
-				USER_PASSWORD
-			FROM
-				USER_LIST
-		]]>
-	</select>
-	
 	<!-- 회원 목록  -->
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
