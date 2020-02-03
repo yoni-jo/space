@@ -57,4 +57,5 @@
   <value>/WEB-INF/tiles/tiles.xml</value>
   </list>
   </property>
+  </bean>
 </beans>
