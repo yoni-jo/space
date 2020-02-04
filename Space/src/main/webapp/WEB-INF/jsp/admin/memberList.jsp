@@ -1,90 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html lang="ko">
+
 <head>
+<%@ include file="/WEB-INF/include/include-adminHeader.jspf" %>
+<meta charset="EUC-KR">
+<title>È¸¿ø ¸ñ·Ï ¸®½ºÆ®</title>
 </head>
-
-    
-
 <body>
-<script type="text/javascript">
-function memberList(){
-	location.href="memberList"
-}
-function reqList(){
-	location.href="reqList"
-}
-function spaceList(){
-	location.href="spaceList"
-}
-function memberResList(){
-	location.href="memberResList"
-}
-function QNAList(){
-	location.href="QNAList"
-}
-function noticeList(){
-	location.href="noticeList"
-}
-</script>
-
-<h1 align="center">ê´€ë¦¬ì í™”ë©´</h1>
-<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
-<tr>
-<td align="center"><a href="javascript:memberList()">íšŒì› ëª©ë¡</td>
-<td align="center"><a href="javascript:reqList()">ê³µê°„ ì‹ ì²­ ê´€ë¦¬</td>
-<td align="center"><a href="javascript:spaceList()">ë“±ë¡ëœ ê³µê°„ ê²Œì‹œíŒ</td>
-<td align="center"><a href="javascript:memberResList()">ì˜ˆì•½ ê´€ë¦¬</td>
-<td align="center"><a href="javascript:QNAList()">1:1ë¬¸ì˜ ê²Œì‹œíŒ</td>
-<td align="center"><a href="javascript:noticeList()">ê³µì§€ì‚¬í•­ ê´€ë¦¬</td>
-</tr>
-</table>
-<br/>
-<br/>
-<br/>
-<br/>
-    <h2>íšŒì› ëª©ë¡</h2>
-    <table class="user_list">
-        <colgroup>
-            <col width="10%"/>
-            <col width="10%"/>
-            <col width="15%"/>
-            <col width="20%"/>
-            <col width="20%"/>
-        </colgroup>
-      
-        <thead>
-            <tr>
-                <th scope="col">ì•„ì´ë””</th>
-                <th scope="col">ì´ë¦„</th>
-                <th scope="col">ì „í™”ë²ˆí˜¸</th>
-                <th scope="col">ì´ë©”ì¼</th>
-                <th scope="col">ê°€ì…ì¼</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:choose>
-			<c:when test="${fn:length(list) > 0}">
-				<c:forEach items="${list }" var="row">
+	<h2 align="center">È¸¿ø ¸ñ·Ï ¸®½ºÆ®</h2>
+	<table class="member_list" align="center" width="80%">
+		<colgroup>
+			<col width="20%"/>
+			<col width="15%"/>
+			<col width="20%"/>
+			<col width="30%"/>
+			<col width="15%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">¾ÆÀÌµğ</th>
+				<th scope="col">ÀÌ¸§</th>
+				<th scope="col">ÀüÈ­¹øÈ£</th>
+				<th scope="col">ÀÌ¸ŞÀÏ</th>
+				<th scope="col">°¡ÀÔÀÏ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="">
+					<c:forEach items="${list }" var="row">
+						<tr>
+							<td>${row.IDX }</td>
+							<td class="title">
+								<a href="#this" name="title">${row.TITLE }</a>
+								<input type="hidden" id="IDX" value="${row.IDX}">
+							</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
 					<tr>
-                            <td>${row.USER_ID }</td>
-                            <td>${row.USER_NAME }</td>
-                            <td>${row.USER_PHONE }</td>
-                            <td>${row.USER_EMAIL }</td>
-                            <td>${row.USER_DATE }</td>
-                        </tr>
-                    </c:forEach>
-                </c:when>
-               <c:otherwise>
-                    <tr>
-                        <td colspan="5">ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
-                    </tr>
-                </c:otherwise>
-            </c:choose>
-        </tbody>
-    </table>
-
+						<td colspan="80%">Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</tbody>
+	</table>
+	<br/>
+	
 </body>
 </html>

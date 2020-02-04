@@ -4,9 +4,9 @@
  
  <mapper namespace="login">
  <!-- 로그인 -->
-<select id="selectLogin" parameterType="hashMap" resultType="hashMap">
+<select id="selectLogin" parameterType="hashMap" resultType="String">
 <![CDATA[
-        select USER_ID from USER_LIST where USER_ID=#{user_id} and USER_PASSWORD=#{user_password}
+        select USER_ID from USER_LIST where USER_ID=#{USER_ID} and USER_PASSWORD=#{USER_PASSWORD}
 ]]>
 </select>
 

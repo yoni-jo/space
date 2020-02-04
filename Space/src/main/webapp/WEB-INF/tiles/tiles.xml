@@ -23,9 +23,15 @@
 	<!-- mypage 들어왔을때 passwordcheck -->
 	 <definition name="pwdcheck" extends="modifyform">
  	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/pwdcheck.jsp"></put-attribute>
+ 	
  
  </definition>
-	
+	<!-- mypage 들어왔을때 패스워드 일치할경우  -->
+	 <definition name="modify" extends="modifyform">
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/modify.jsp"></put-attribute>
+ 	
+ 
+ </definition>
  <!-- 로그인페이지 -->
  <definition name="loginForm" extends="main">
  	<put-attribute name="contents" value="/WEB-INF/jsp/login.jsp"></put-attribute>
@@ -42,9 +48,5 @@
  	<put-attribute name="contents" value="/WEB-INF/jsp/findIdPwd.jsp"></put-attribute>
  
  </definition>
- 
-
- 
- 
 
 </tiles-definitions>

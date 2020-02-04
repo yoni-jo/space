@@ -12,9 +12,9 @@
 		}, function() {
 			$(this).removeClass('hover');
 
-		})
+		});
 
-	})
+	});
 </script>
 <style type="text/css">
 /* ¸Þ´º¹Ù */

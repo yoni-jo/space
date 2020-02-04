@@ -10,22 +10,33 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script src="http://code.jquery.com/jquery-1.7.js"></script>
 <title>welcome space</title>
+
 <style type="text/css">
    /* 공통적용사항 */
    *{margin:0}
    html,body{height: 100%;}
    h1{padding-top: 30px;text-align: center}
-#mypagemenubar{float:left}   
-
-    li{list-style: none;cursor: pointer;text-align: center;}
-    a{text-decoration: none;color:black}
-    #wrap{border: 1px soild}
-
-
+   li{list-style: none;cursor: pointer;text-align: center;}
+   a{text-decoration: none;color:black}
+   #wrap{border: 1px soild}
 /*contents  */
 #contents{width: 100%;height:100%;}
+/*footer  */
+#footer { border-top: 1px solid;text-align: center;bottom:0;position:fixed;width: 100%;font: 20px;background: white;}
 
 </style>
+
+<script>
+/* 메뉴 토글 */
+	$(document).ready(function() {
+		$('.bar>div').click(function() {
+		
+			$('.hide').toggle({
+			});
+		});
+	});
+</script>
+</head>
 <body>
 <div id="wrap">
 			<div id="header">

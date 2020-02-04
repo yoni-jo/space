@@ -2,12 +2,12 @@
     pageEncoding="EUC-KR"%>
 <style>
 
-#loginform{width:648px; margin:0 auto;text-align:center;margin-bottom:100px}
-.logintable{padding-top: 50px;padding-left: 0;}
-.logintable>li{list-style: none;text-align: center;}
-.logintable>li>a{float:right;}
-.logintable>li>p{padding-right: 0;}
- .logintable>li>input{width: 100%;height: 50px; border:1px solid #e0e0e0;margin-bottom:20px} 
+#findMemform{width:648px; margin:0 auto;text-align:center;margin-bottom:100px}
+.findidtable{padding-top: 50px;padding-left: 0;}
+.findidtable>li{list-style: none;text-align: center;}
+.findidtable>li>a{float:right;}
+.findidtable>li>p{padding-right: 0;}
+ .findidtable>li>input{width: 100%;height: 50px; border:1px solid #e0e0e0;margin-bottom:20px} 
  h6{font-color:#65656;}
  p>a{color:blue}
  
@@ -21,12 +21,12 @@
 
 </script>
 	<form action="#">
-		<div id="loginform">
+		<div id="findMemform">
 			<h1>아이디/비밀번호찾기</h1>
-			<ul class="logintable">
-				<li><input type="text" name="id" id="id" placeholder="아이디">
+			<ul class="findidtable">
+				<li><input type="text" name="USER_ID" id="USER_ID" placeholder="아이디">
 				</li>
-				<li><input type="email" name="email" id="email" placeholder="이메일주소">
+				<li><input type="email" name="USER" id="email" placeholder="이메일주소">
 				</li>
 				
 			<h6>가입시 사용한 이메일 주소를 입력해주세요</h6>
