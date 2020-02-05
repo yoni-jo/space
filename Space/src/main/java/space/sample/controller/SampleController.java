@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
-import space.login.DAO.LoginDAO;
 import space.modify.DAO.ModifyDAO;
+import space.user.login.LoginDAO;
 
 @Controller
 public class SampleController {

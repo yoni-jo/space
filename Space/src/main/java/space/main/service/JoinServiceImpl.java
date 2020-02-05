@@ -11,8 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-
-import space.main.dao.JoinDAO;
+import space.user.join.JoinDAO;
 
 @Service("JoinService")
 public class JoinServiceImpl implements JoinService{
@@ -50,7 +49,7 @@ public class JoinServiceImpl implements JoinService{
             helper.setFrom(from);
             helper.setTo(to);
  
-            // Ã·ºÎ ÆÄÀÏ Ã³¸®
+            // Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             if (filePath != null) {
                 File file = new File(filePath);
                 if (file.exists()) {
