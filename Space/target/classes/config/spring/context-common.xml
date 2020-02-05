@@ -20,5 +20,23 @@
 		<property name="maxUploadSize" value="1000000000"></property>
 		<property name="maxInMemorySize" value="1000000000"></property>
 	</bean>
+	
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="webProjectTeam2@gmail.com" />
+    <property name="password" value="project123!" />
+    <property name="javaMailProperties">
+        <props>
+            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtp.auth">true</prop>
+        </props>
+    </property>
+	</bean>
+	<bean id="joinService" class="space.main.service.JoinServiceImpl">
+    	<property name="javaMailSender" ref="javaMailSender" />	
+	</bean>
+	
 
 </beans>

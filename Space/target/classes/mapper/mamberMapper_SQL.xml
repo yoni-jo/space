@@ -4,7 +4,8 @@
  
  <mapper namespace="memberMapper_test">
  <!-- 회원가입 -->
- <insert id="insertUser_List" parameterType="hashMap">
+ <insert id="insertUserData" parameterType="hashMap">
+ 
 <![CDATA[
 INSERT INTO USER_LIST(
         USER_ID,
@@ -24,7 +25,17 @@ INSERT INTO USER_LIST(
         'N'
 )
 ]]>
+
 </insert>
 
+<select id="selectUserID" parameterType="HashMap" resultType="HashMap">
+  <![CDATA[
+   SELECT
+    COUNT(USER_ID) AS RESULT 
+   FROM USER_LIST 
+   WHERE 
+    USER_ID = #{ID} 
+  ]]>
+ </select>
 
  </mapper>
