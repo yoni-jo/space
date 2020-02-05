@@ -27,7 +27,7 @@ public class SampleController {
 		ModelAndView mv = new ModelAndView("main");
 		return mv;
 	}
-//	로그인 폼
+//	로그인폼
 
 	@RequestMapping(value = "/login/loginForm", method = RequestMethod.GET)
 
@@ -39,26 +39,26 @@ public class SampleController {
 
 	}
 
-	// 로그인 성공 or 실패시
+	// 濡쒓렇�씤 �꽦怨� or �떎�뙣�떆
 	@Resource
 	private LoginDAO LoginDAO;
 
 	@RequestMapping(value = "/login/login", method = RequestMethod.POST)
 	public ModelAndView LoginProc(CommandMap commandMap, HttpSession session) throws Exception {
-		// 로그인했을때 전달받을 주소값
+		// 濡쒓렇�씤�뻽�쓣�븣 �쟾�떖諛쏆쓣 二쇱냼媛�
 		ModelAndView mv = new ModelAndView();
 		String id = (String) commandMap.get("USER_ID");
 		String db = LoginDAO.findMember(commandMap.getMap());
-		// 로그인 실패
+		// 濡쒓렇�씤 �떎�뙣
 		if (db == null) {
 
-			String alert = "로그인에 실패하였습니다.";
+			String alert = "濡쒓렇�씤�뿉 �떎�뙣�븯���뒿�땲�떎.";
 			mv.addObject("alert", alert);
 			mv.setViewName("loginForm");
 
-			// 로그인 성공
+			// 濡쒓렇�씤 �꽦怨�
 		} else {
-			String alert = "로그인에 성공하였습니다.";
+			String alert = "濡쒓렇�씤�뿉 �꽦怨듯븯���뒿�땲�떎.";
 			mv.addObject("alert", alert);
 			mv.setViewName("main");
 			session.setAttribute("USER_ID", id);
@@ -71,67 +71,67 @@ public class SampleController {
 
 	}
 
-	// 로그아웃
+	// 濡쒓렇�븘�썐
 	@RequestMapping(value = "/login/logout")
 
 	public ModelAndView Logout(HttpSession session) throws Exception {
-		// 로그인뷰화면
+		// 濡쒓렇�씤酉고솕硫�
 		ModelAndView mv = new ModelAndView("main");
 
-		// 로그인세션삭제
+		// 濡쒓렇�씤�꽭�뀡�궘�젣
 
 		session.invalidate();
 
 		return mv;
 
 	}
-	// 로그인끝
+	// 濡쒓렇�씤�걹
 
-//	아이디/비밀번호찾기
+//	�븘�씠�뵒/鍮꾨�踰덊샇李얘린
 	@RequestMapping(value = "/login/findIdPwd")
 	public ModelAndView openSampleList4(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("findIdPwd");
 
-		log.debug("오류");
+		log.debug("�삤瑜�");
 		return mv;
 	}
 
-	// 회원가입
+	// �쉶�썝媛��엯
 	@RequestMapping(value = "/join/joinForm")
 	public ModelAndView openSampleList3(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("joinForm");
 
-		log.debug("오류");
+		log.debug("�삤瑜�");
 		return mv;
 	}
 
-	// 정보수정 폼
+	// �젙蹂댁닔�젙 �뤌
 
 	@RequestMapping(value = "/member/MemberModifyForm", method = RequestMethod.GET)
 	public ModelAndView pwdCheck(CommandMap commandMap) throws Exception {
-		// 보여지는 화면;
+		// 蹂댁뿬吏��뒗 �솕硫�;
 		ModelAndView mv = new ModelAndView("pwdcheck");
 		return mv;
 
 	}
 
-	// 정보수정 폼에서 패스워드가 맞을경우 or 틀릴경우
+	// �젙蹂댁닔�젙 �뤌�뿉�꽌 �뙣�뒪�썙�뱶媛� 留욎쓣寃쎌슦 or ��由닿꼍�슦
 	@Resource
 	private ModifyCheckDAO modifyDAO;
 
 	@RequestMapping(value = "/member/MemberModifyForm", method = RequestMethod.POST)
 	public ModelAndView select(CommandMap commandMap,HttpSession session) throws Exception {
 		
-		//보여질페이지
+		//蹂댁뿬吏덊럹�씠吏�
 		ModelAndView mv = new ModelAndView();
 		String alert="";
-		String id = (String) session.getAttribute("USER_ID");//세션에 저장된 ID값
+		String id = (String) session.getAttribute("USER_ID");//�꽭�뀡�뿉 ���옣�맂 ID媛�
 		commandMap.put("USER_ID", id);
-		//입력한 비번과 세션에 아이디값 을 이용해서 DB에 id값찾기
+		//�엯�젰�븳 鍮꾨쾲怨� �꽭�뀡�뿉 �븘�씠�뵒媛� �쓣 �씠�슜�빐�꽌 DB�뿉 id媛믪갼湲�
 		String pw =(String)modifyDAO.pwdcheck(commandMap.getMap(),"USER_ID");
-		Map<String, Object> MemberInfo;//고객정보불러오기
+		Map<String, Object> MemberInfo;//怨좉컼�젙蹂대텋�윭�삤湲�
 		
-		//비번이 일치할경우 ->정보수정으로
+		//鍮꾨쾲�씠 �씪移섑븷寃쎌슦 ->�젙蹂댁닔�젙�쑝濡�
 		if(id.equals(pw)) {
 			
 			mv.setViewName("modify");
@@ -140,36 +140,36 @@ public class SampleController {
 					
 			
 			
-			//일치하지않을경우->페이지유지
+			//�씪移섑븯吏��븡�쓣寃쎌슦->�럹�씠吏��쑀吏�
 		}else{
-			alert="패스워드를 잘못입력하였습니다.";
+			alert="�뙣�뒪�썙�뱶瑜� �옒紐살엯�젰�븯���뒿�땲�떎.";
 			mv.addObject("alert",alert);
 			mv.setViewName("pwdcheck");
 		}
 		return mv;
 	}
 		
-	//정보수정
+	//�젙蹂댁닔�젙
 	@Resource
 	private MemberDAO memberDAO;
 	@RequestMapping(value = "/member/memberModify", method = RequestMethod.POST)
 	public ModelAndView modify(CommandMap commandMap,HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		//패스워드체크 삭제
+		//�뙣�뒪�썙�뱶泥댄겕 �궘�젣
 	commandMap.remove("pwdcheck");
 	
-	//회원아이디정보 등록
+	//�쉶�썝�븘�씠�뵒�젙蹂� �벑濡�
 	commandMap.put("USER_ID",session.getAttribute("USER_ID"));
 		/*
 		 * System.out.println(commandMap.get("USER_PASSWORD"));
 		 */
 	
-		//수정할 값
+		//�닔�젙�븷 媛�
 		memberDAO.updateDB(commandMap.getMap());
 		
 		
 		mv.setViewName("main");
-		// 보여지는 화면;
+		// 蹂댁뿬吏��뒗 �솕硫�;
 		
 		return mv;
 				
