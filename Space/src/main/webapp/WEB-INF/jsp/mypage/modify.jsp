@@ -16,18 +16,45 @@
 ::placeholder{color:black; font-size:20px}
 
 </style>
-<form action="" method="POST">
+
+<script>
+//비밀번호 확인
+function check(){
+	
+	if($("#USER_PASSWORD").val()=='${MemberInfo.USER_PASSWORD}'){
+		 
+		 alert("현재 비밀번호가 같습니다. 다른 비밀번호를 입력해주세요");
+		 $("USER_PASSWORD").focus();
+		 return false;
+	 }
+	else if($('#USER_PASSWORD').val()!=$('#pwdcheck').val()){
+		
+		alert("비밀번호가 일치하지않습니다.");
+		$("pwdcheck").focus();
+		return false;
+	}
+	else{
+		alert("수정되었습니다.");
+		return true;
+	}
+	
+}
+ 
+	
+
+
+</script>
+<form action="/two/member/memberModify" method="POST" onsubmit="return check();">
 	<div id="memberchange">
 		<h1>회원정보변경</h1>
 
 		<ul>
 			<li>아이디 : ${USER_ID}</li>
-			<li><input type="password" name="pw" id="" placeholder="변경할 비밀번호를 입력해주세요"></li>
-			<li><input type="password" name="pwcheck" id=""
-				placeholder="비밀번호확인"></li>
+			<li><input type="password" name="USER_PASSWORD" id="USER_PASSWORD" placeholder="변경할 비밀번호를 입력해주세요" ></li>
+			<li><input type="password" name="pwdcheck" id="pwdcheck"placeholder="비밀번호확인"></li>
 			<li>이름: ${MemberInfo.USER_NAME}</li>
-			<li><input type="tel" name="" id="" placeholder=${MemberInfo.USER_PHONE}></li>
-			<li><input class="size" type="email" name="" id=""placeholder=${MemberInfo.USER_EMAIL}>
+			<li><input type="tel" name="USER_PHONE" id="USER_PHONE" value="${MemberInfo.USER_PHONE}"></li>
+			<li><input class="size" type="email" name="USER_EMAIL" id="USER_EMAIL" value="${MemberInfo.USER_EMAIL}">
 			<button type="submit">인증메일받기</button></li>
 			<li>
 				<ul class="button">
