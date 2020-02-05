@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
-import space.login.DAO.LoginDAO;
-import space.member.DAO.MemberDAO;
-import space.modifyCheck.DAO.ModifyCheckDAO;
+import space.user.login.LoginDAO;
+import space.user.member.MemberDAO;
+import space.user.member.ModifyCheckDAO;
 
 @Controller
 public class SampleController {
