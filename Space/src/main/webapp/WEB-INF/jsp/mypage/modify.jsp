@@ -51,6 +51,7 @@ function outcheck() {
 	if(confirm("탈퇴하시겠습니까?")==true){
 		
 		alert("탈퇴성공");
+		
 	}else{
 		alert("탈퇴취소");
 		return false;
@@ -72,7 +73,7 @@ function outcheck() {
 			<li>이름: ${MemberInfo.USER_NAME}</li>
 			<li><input type="tel" name="USER_PHONE" id="USER_PHONE" value="${MemberInfo.USER_PHONE}"></li>
 			<li><input class="size" type="email" name="USER_EMAIL" id="USER_EMAIL" value="${MemberInfo.USER_EMAIL}">
-			<button type="submit">인증메일받기</button></li>
+			
 			<li>
 				<ul class="button">
 					<li><button type="submit">수정</button></li>
@@ -82,6 +83,6 @@ function outcheck() {
 			</li>
 
 		</ul>
-			<a class="out" href="/two/main" onclick="return outcheck();" id="delect">탈퇴하기</a>
+			<a class="out" href="/two/member/memberDelete" onclick="return outcheck();" id="delect">서비스 탈퇴하기</a>
 	</div>
 </form>

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import space.common.common.CommandMap;
 import space.user.login.LoginDAO;
 import space.user.member.MemberDAO;
+import space.user.member.MemberDeleteDAO;
 import space.user.member.ModifyCheckDAO;
 
 @Controller
@@ -179,5 +180,20 @@ public class SampleController {
 		}
 
 	
+	//탈퇴하기
+	@Resource
+	private MemberDeleteDAO memberDeleteDAO;
 	
+	@RequestMapping(value = "/member/memberDelete")
+	public ModelAndView delete(CommandMap commandMap,HttpSession session) throws Exception {
+		commandMap.put("USER_ID", session.getAttribute("USER_ID"));
+
+		memberDeleteDAO.memberDelete(commandMap.getMap());
+		// 보여지는 화면;
+		ModelAndView mv = new ModelAndView("main");
+		//세션 아이디랑 비번 삭제 
+		session.invalidate();
+		return mv;
+
+	}
 }

@@ -49,8 +49,20 @@ SET]]>
 <![CDATA[
             USER_EMAIL = #{USER_EMAIL},
             USER_PHONE = #{USER_PHONE} 
-       	WHERE USER_ID = #{USER_ID} 
+       		WHERE USER_ID = #{USER_ID} 
 ]]>
+</update>
+
+
+<!-- 탈퇴하기 눌렀을때  -->
+
+<update id="deleteUser_Id" parameterType="hashmap">
+<![CDATA[
+	UPDATE USER_LIST 
+	SET 
+	USER_VISIBLE='Y'
+	WHERE USER_ID=#{USER_ID}
+ ]]>
 </update>
 
 </mapper>
