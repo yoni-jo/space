@@ -10,4 +10,22 @@
 ]]>
 </select>
 
+<select id="findId" parameterType="hashmap" resultType="string">
+<![CDATA[
+	select USER_ID from USER_LIST where USER_EMAIL = #{user_email}      
+]]>
+</select>
+<select id="findPwd" parameterType="hashmap" resultType="string">
+<![CDATA[
+select USER_ID from USER_LIST where USER_EMAIL = #{user_email} and USER_ID = #{user_id}
+]]>
+</select>
+<update id="updatePwd" parameterType="hashmap">
+<![CDATA[				
+		UPDATE USER_LIST SET USER_PASSWORD = #{password} where USER_ID = #{user_id}	
+		 	
+]]>
+</update>
+
+
 </mapper>
