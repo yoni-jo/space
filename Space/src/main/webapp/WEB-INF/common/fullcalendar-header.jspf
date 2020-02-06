@@ -1,0 +1,13 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<style>
+<%@ include file="/js/fullcalendar/core/main.css"%>
+<%@ include file="/js/fullcalendar/daygrid/main.css"%>
+</style>
+
+<script src="<c:url value='/js/fullcalendar/core/main.js'/>"></script>
+<script src="<c:url value='/js/fullcalendar/interaction/main.js'/>"></script>
+<script src="<c:url value='/js/fullcalendar/core/locales/ko.js'/>"></script>
+<script src="<c:url value='/js/fullcalendar/daygrid/main.js'/>"></script>
