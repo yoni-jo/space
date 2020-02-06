@@ -16,7 +16,7 @@
 </select>
 
 
-<!-- 정보수정페이지 -->
+<!-- 정보수정페이지에서 회원정보값 불러오기 --> 
 
 <select id="selectMyInfo" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
@@ -33,5 +33,24 @@ WHERE
 	USER_ID = #{USER_ID}
 ]]>
 </select>
+
+<!--정보수정눌렀을때 정보수정  -->
+
+<update id="updateMyInfo" parameterType="hashmap" >
+<![CDATA[
+UPDATE 
+	USER_LIST 
+SET]]>
+<choose>
+<when test = 'USER_PASSWORD != "" '>
+            USER_PASSWORD  = #{USER_PASSWORD},
+</when>
+</choose>
+<![CDATA[
+            USER_EMAIL = #{USER_EMAIL},
+            USER_PHONE = #{USER_PHONE} 
+       	WHERE USER_ID = #{USER_ID} 
+]]>
+</update>
 
 </mapper>

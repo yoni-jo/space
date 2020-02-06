@@ -7,14 +7,21 @@
 #memberchange{width:400px;margin:0 auto;text-align:center; margin-bottom:100px;}
 #memberchange>ul{padding-top:50;width:auto;padding:0}
 #memberchange>ul>li{padding-top:20px;cursor:auto;font-size:20px; color:#9c27b0}
+
 #memberchange>ul>li>input{width:100%;height:50px;margin-right:5px}
 .size{width:80%}
 #memberchange>li>p{text-align:left}
-#memberchange>li>button{border:none;height:55px;vertical-align:middle}
-.button>li{display:inline-block}
-.button>li>button{width:100%;background-color:#ffd014;}
+#memberchange>li button{border:none;height:55px;vertical-align:middle}
+.button{width: 100%;left:0;padding: 0;float:left}
+.button>li{display:inline-block;width: calc(90%/2);height: 50px}
+.button>li>button{width:100%;background-color:#ffd014; border: none;height:100%}
 ::placeholder{color:black; font-size:20px}
 
+
+.out{margin-top:10px}
+.out:hover {
+	color: red;
+}
 </style>
 
 <script>
@@ -40,7 +47,17 @@ function check(){
 	
 }
  
+function outcheck() {
+	if(confirm("Å»ÅðÇÏ½Ã°Ú½À´Ï±î?")==true){
+		
+		alert("Å»Åð¼º°ø");
+	}else{
+		alert("Å»ÅðÃë¼Ò");
+		return false;
+		
+	}
 	
+}	
 
 
 </script>
@@ -62,12 +79,9 @@ function check(){
 					<li><button type="reset">Ãë¼Ò</button></li>
 				</ul>
 
-
-
-
 			</li>
 
 		</ul>
-
+			<a class="out" href="/two/main" onclick="return outcheck();" id="delect">Å»ÅðÇÏ±â</a>
 	</div>
 </form>

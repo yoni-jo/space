@@ -30,7 +30,16 @@ i{border: 1px solid;}
 
 
    </style>
+<script>
+function logout() {
+	if(confirm("로그아웃하시겠습니까?")==true){
+		alert("로그아웃되었습니다.");
+	}else{
+		return false;
+	}
+}
 
+</script>
  <div id="top" >
         <div id="menu">
             <div class="logo"><a href="/two/main">공간</a></div>
@@ -52,7 +61,7 @@ i{border: 1px solid;}
                 	
                 <!-- 로그인했을경우 로그아웃버튼으로 변경-->
                 <%}else{%>
-                	<li><a href="/two/login/logout"><%=log%></a></li>
+                	<li><a href="/two/login/logout" onclick="return logout();"><%=log%></a></li>
                 	
                 <%} %>
                 	

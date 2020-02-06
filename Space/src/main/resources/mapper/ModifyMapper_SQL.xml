@@ -16,7 +16,7 @@
 </select>
 
 
-<!-- 정보수정페이지에서 회원정보값 불러오기 -->
+<!-- 정보수정페이지에서 회원정보값 불러오기 --> 
 
 <select id="selectMyInfo" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
