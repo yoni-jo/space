@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import space.common.common.CommandMap;
 import space.main.service.JoinService;
 
+
 @Controller
 public class loginController {
 
