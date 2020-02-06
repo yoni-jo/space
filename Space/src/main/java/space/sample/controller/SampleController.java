@@ -88,14 +88,15 @@ public class SampleController {
 	}
 	// 로그인끝
 
-//	아이디/비밀번호찾기
-	@RequestMapping(value = "/login/findIdPwd")
-	public ModelAndView openSampleList4(Map<String, Object> commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("findIdPwd");
-
-		log.debug("오류");
-		return mv;
-	}
+	/*
+	 * // 아이디/비밀번호찾기
+	 * 
+	 * @RequestMapping(value = "/login/findIdPwd") public ModelAndView
+	 * openSampleList4(Map<String, Object> commandMap) throws Exception {
+	 * ModelAndView mv = new ModelAndView("findIdPwd");
+	 * 
+	 * log.debug("오류"); return mv; }
+	 */
 
 	/*
 	 * // 회원가입
