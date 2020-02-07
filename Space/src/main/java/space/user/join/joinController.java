@@ -30,10 +30,10 @@ public class joinController {
 	private JoinService joinService;
 	
 	
-
-	@RequestMapping(value="/join/joinForm")
+//회원가입페이지
+	@RequestMapping(value="/join/joinForm",method=RequestMethod.GET)
 	public ModelAndView joinForm(CommandMap commandMap) throws Exception {
-		ModelAndView mav = new ModelAndView("/join/joinForm");
+		ModelAndView mav = new ModelAndView("joinForm");
 		return mav;
 	}
 	

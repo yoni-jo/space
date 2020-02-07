@@ -3,6 +3,7 @@ package space.user.search;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -69,7 +70,9 @@ public class SpaceController {
 		Map<String,Object> tempMap = spaceService.selectSearchList(map.getMap());
 		List<Map<String,Object>> list=(List<Map<String,Object>>)tempMap.get("SPACE_LIST");
 		List<String> favList = (List<String>)tempMap.get("FAVORI_LIST");
-		
+		if(favList == null) {
+			favList = Collections.emptyList();
+		}
 		/*
 		 * for(String str : favList) { log.debug("-------------------favList > " +
 		 * str+"-------------------");

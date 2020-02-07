@@ -5,10 +5,16 @@
 <tiles-definitions>
  
  <!-- 메인기본 -->
-    <definition name="main" template="/WEB-INF/jsp/layout/layout.jsp">
+    <definition name="mainlayout" template="/WEB-INF/jsp/layout/layout.jsp">
         <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"/>
  		<put-attribute name="contents" value="/WEB-INF/jsp/layout/body.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"/>
+	</definition>
+	
+	
+	<!-- 메인페이지 content화면 -->
+	<definition name="main" extends="mainlayout" >
+	<put-attribute name="contents" value="/WEB-INF/jsp/main/main.jsp"></put-attribute>
 	</definition>
 	
 	 <!--mypage-->
@@ -19,7 +25,7 @@
         <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"/>
         
  </definition>
-	
+
 	<!-- mypage 들어왔을때 passwordcheck -->
 	 <definition name="pwdcheck" extends="modifyform">
  	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/pwdcheck.jsp"></put-attribute>
@@ -33,18 +39,18 @@
  
  </definition>
  <!-- 로그인페이지 -->
- <definition name="loginForm" extends="main">
+ <definition name="loginForm" extends="mainlayout">
  	<put-attribute name="contents" value="/WEB-INF/jsp/login.jsp"></put-attribute>
  
  </definition>
 
  <!-- 회원가입페이지 -->
- <definition name="joinForm" extends="main">
- 	<put-attribute name="contents" value="/WEB-INF/jsp/joinForm.jsp"></put-attribute>
+ <definition name="joinForm" extends="mainlayout">
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/join.jsp"></put-attribute>
  
  </definition>
  <!--아이디/비밀번호찾기-->
- <definition name="findIdPwd" extends="main">
+ <definition name="findIdPwd" extends="mainlayout">
  	<put-attribute name="contents" value="/WEB-INF/jsp/findIdPwd.jsp"></put-attribute>
  
  </definition>

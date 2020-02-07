@@ -3,7 +3,6 @@ pageEncoding="euc-kr"%>
 <%@ page session = "true" %>
 <% 
 String userId;
-session.setAttribute("USER_ID", "admin");
 if(session.getAttribute("USER_ID") != null){
 	userId = (String)session.getAttribute("USER_ID");
 	request.setAttribute("USER_ID", userId);
@@ -11,21 +10,21 @@ if(session.getAttribute("USER_ID") != null){
 
 %>
 <%@ include file="/WEB-INF/common/calendar-header.jspf" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
 <style>
 	.infoImage:hover{cursor: pointer; outline: black;}
 	.favBtn:hover{cursor: pointer; outline: black;}
+	#mainform{position: fixed;}
+	#t{margin-left:calc(50% - 250px);margin-top:30px}
 </style>
 </head>
-<body>
-<div style="text-align:center; width: 100%">
+
+<div id="mainform" style="text-align:center; width: 100%;" >
 <c:if test="${!empty USER_ID}">
 	<input id="userId" type="hidden" value="${USER_ID}">
 </c:if>
-<table width="500px" height ="200px" align="center" 
-	style="border-style:solid; border-spacing: 2px; border-collapse: separate;">
+<table id="t" width="500px" height ="200px" 
+	style=" border-style:solid; border-spacing: 2px; border-collapse: separate;">
 <tr>
 <td>
 <div style="float:left;  width: 50%;">
@@ -52,7 +51,7 @@ if(session.getAttribute("USER_ID") != null){
 <tr>
 <td>
 
-<div style="float:left;  width: 50% ;">
+<div id="maincontent" style="width: 50%;">
 <label style="font-weight: bold;">기간</label><br>
 <input type="text" id="startDate" 
 readonly="readonly" value="${START_DATE}" size="10">
@@ -85,7 +84,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 </td>
 </tr>
 </table>
-		<div style="width: 700px; display: inline-block">
+		<div style="width: 700px; display: inline-block;">
 			<form id="radioForm" style="text-align: right;">
 				<input type="radio" name="SEARCH_TYPE" value="read">인기순 <input
 					type="radio" name="SEARCH_TYPE" value="new" checked="checked">최신순
@@ -151,6 +150,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 		fn_updateFavSpace();
 		fn_setradioButton('${SEARCH_TYPE}');
 		$("#searchBtn").on("click",function(e){
+			console.log("확인");
 			e.preventDefault();
 			fn_searchSpaceList($(this));
 		});
@@ -229,5 +229,3 @@ readonly="readonly" value="${END_DATE}" size="10">
 		}
 	</script>
 <!-- include file -->
-</body>
-</html>
