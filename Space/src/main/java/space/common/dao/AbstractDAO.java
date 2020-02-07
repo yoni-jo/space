@@ -1,11 +1,13 @@
 package space.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 public class AbstractDAO {
 	protected Log log = LogFactory.getLog(AbstractDAO.class);
