@@ -25,6 +25,65 @@ public class loginController {
 	private JoinService joinService;
 	@Resource(name = "loginService")
 	private LoginService loginService;
+	
+//	로그인 폼
+
+	@RequestMapping(value = "/login/loginForm", method = RequestMethod.GET)
+
+	public ModelAndView Login(CommandMap commandMap) throws Exception {
+		// 로그인뷰화면
+		ModelAndView mv = new ModelAndView("loginForm");
+
+		return mv;
+
+	}
+
+	// 로그인 성공 or 실패시
+	@Resource
+	private LoginDAO LoginDAO;
+
+	@RequestMapping(value = "/login/login", method = RequestMethod.POST)
+	public ModelAndView LoginProc(CommandMap commandMap, HttpSession session) throws Exception {
+		// 로그인했을때 전달받을 주소값
+		ModelAndView mv = new ModelAndView();
+		String id = (String) commandMap.get("USER_ID");
+		String db = LoginDAO.findMember(commandMap.getMap());
+		// 로그인 실패
+		if (db == null) {
+
+			String alert = "로그인에 실패하였습니다.";
+			mv.addObject("alert", alert);
+			mv.setViewName("loginForm");
+
+			// 로그인 성공
+		} else {
+			String alert = "로그인에 성공하였습니다.";
+			mv.addObject("alert", alert);
+			mv.setViewName("main");
+			session.setAttribute("USER_ID", id);
+
+		}
+
+		log.debug(commandMap);
+
+		return mv;
+
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "/login/logout")
+
+	public ModelAndView Logout(HttpSession session) throws Exception {
+		// 로그인뷰화면
+		ModelAndView mv = new ModelAndView("main");
+
+		// 로그인세션삭제
+
+		session.invalidate();
+
+		return mv;
+
+	}
 
   // 아이디 비번찾기 페이지
 	@RequestMapping(value = "/login/findIdPwd")
