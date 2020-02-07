@@ -54,5 +54,11 @@
  	<put-attribute name="contents" value="/WEB-INF/jsp/findIdPwd.jsp"></put-attribute>
  
  </definition>
+<!--메인 list화면에서 검색버튼 눌렀을때 보여지는 화면  -->
+ <definition name="spaceList" extends="mainlayout">
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/main/spaceList.jsp"></put-attribute>
+ 
+ </definition>
+
 
 </tiles-definitions>
