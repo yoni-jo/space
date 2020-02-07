@@ -59,7 +59,7 @@ public class loginController {
 		} else {
 			String alert = "로그인에 성공하였습니다.";
 			mv.addObject("alert", alert);
-			mv.setViewName("main");
+			mv.setViewName("redirect:/main");
 			session.setAttribute("USER_ID", id);
 
 		}
@@ -75,7 +75,7 @@ public class loginController {
 
 	public ModelAndView Logout(HttpSession session) throws Exception {
 		// 로그인뷰화면
-		ModelAndView mv = new ModelAndView("main");
+		ModelAndView mv = new ModelAndView("redirect:/main");
 
 		// 로그인세션삭제
 
