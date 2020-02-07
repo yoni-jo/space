@@ -20,7 +20,7 @@
    a{text-decoration: none;color:black}
    #wrap{border: 1px soild}
 /*contents  */
-#contents{width: 100%;height:100%;}
+#contents{width: 100%;height:100%;margin-bottom:100px}
 /*footer  */
 #footer { border-top: 1px solid;text-align: center;bottom:0;position:fixed;width: 100%;font: 20px;background: white;}
 
