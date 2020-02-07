@@ -215,9 +215,9 @@ readonly="readonly" value="${END_DATE}" size="10">
 			var info;
 			var list;
 			if(data == null){
-				if(${!empty FAVORI_LIST}){
+				/* if(${!empty FAVORI_LIST}){
 					data = {favList : ${FAVORI_LIST}};
-				}
+				} */
 			}
 			if(data != null && !gfn_isNull($("#userId").val())){
 				list=data.favList;

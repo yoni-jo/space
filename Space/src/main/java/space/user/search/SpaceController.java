@@ -64,7 +64,6 @@ public class SpaceController {
 		/*
 		 * map.put("TITLE","1"); map.put("POS", "����3��");
 		 */
-		map.put("USER_ID", "admin");
 		map.put("DAY_LIST", dowList);
 		
 		Map<String,Object> tempMap = spaceService.selectSearchList(map.getMap());

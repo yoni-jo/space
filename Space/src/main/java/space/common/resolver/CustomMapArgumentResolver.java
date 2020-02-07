@@ -23,7 +23,9 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 		CommandMap commandMap = new CommandMap();
 		log.debug("=============================CommandMap Data========================");
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
+		request.setCharacterEncoding("EUC-KR");
 		Enumeration<?> enumeration = request.getParameterNames();
+		
 		
 		String key=null;
 		String[] values=null;
