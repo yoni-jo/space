@@ -48,10 +48,8 @@ position:fixed;
 /* ¿Ã∫•∆Æ */
 .hover {
 	background-color: blueviolet;
-	color: white;
+	color:white;
 }
-
-
 
 </style>
 			
