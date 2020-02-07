@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="mySpace">
+ <!-- =======================공간 관리 전체 리스트======================== -->
+	<select id="selectMySpaceList" parameterType="hashmap"
+		resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			SPACE_ID,
+			SPACE_TITLE,
+			SPACE_SIZE,
+			SPACE_PRI,
+			SPACE_HOLD
+		FROM
+			SPACE_LIST
+		WHERE
+			SPACE_HOST = #{USER_ID}
+	]]>
+	</select>
+
+	<select id="selectMyApplyList" parameterType="hashmap"
+		resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			APPLY_NUM,
+			APPLY_TITLE,
+			APPLY_SIZE,
+			APPLY_PRI
+		FROM
+			SPACE_APPLY_LIST
+		WHERE
+			APPLY_ID = #{USER_ID}
+	]]>
+	</select>
+
+	<select id="spaceQNAList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			S.SPACE_ID,
+			SPACE_TITLE,
+			QNA_NUM,
+			QNA_TITLE,
+			QNA_CNT,
+			QNA_ANS
+		FROM 
+			SPACE_LIST S 
+		INNER JOIN 
+			SPACE_QNA_LIST Q
+		ON 
+			S.SPACE_ID = Q.SPACE_ID
+		WHERE 
+			SPACE_HOST = #{USER_ID} AND QNA_ANS = 'N'
+	]]>
+	</select>
+	
+	<select id="spaceQNACompList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			S.SPACE_ID,
+			SPACE_TITLE,
+			QNA_NUM,
+			QNA_TITLE,
+			QNA_CNT,
+			QNA_ANS
+		FROM 
+			SPACE_LIST S 
+		INNER JOIN 
+			SPACE_QNA_LIST Q
+		ON 
+			S.SPACE_ID = Q.SPACE_ID
+		WHERE 
+			SPACE_HOST = #{USER_ID} AND QNA_ANS = 'Y'
+	]]>
+	</select>
+	<!-- ===================공간글 수정, 삭제 ,보류==================== -->
+<!-- 	==================공간 등록 글 불러오기(수정) ================= -->
+	<select id="callSpaceBoard" parameterType="hashmap"
+		resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			*
+		FROM
+			SPACE_LIST
+		WHERE
+			SPACE_ID = #{SPACE_ID}
+	]]>
+	</select>
+
+	<!-- =================공간 신청 글 불러오기(수정) =================== -->
+
+	<select id="callApplyBoard" parameterType="hashmap"
+		resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			*
+		FROM
+			SPACE_APPLY_LIST
+		WHERE
+			APPLY_NUM = #{SPACE_ID}
+
+	]]>
+	</select>
+
+	<!-- =================게시물 보류 =================== -->
+	<update id="holdSpaceBoard" parameterType="hashmap">
+	<![CDATA[
+		UPDATE
+			SPACE_LIST
+		SET
+		]]>
+		<choose>
+		<when test = "HOLD.equals('N')">
+			SPACE_HOLD = 'Y'
+		</when>
+		<otherwise>
+			SPACE_HOLD = 'N'
+		</otherwise>
+		</choose>
+		
+		<![CDATA[
+		WHERE
+			SPACE_ID = #{SPACE_ID}
+
+	]]>
+	</update>
+
+	<!-- =================게시물 보류 취소 =================== -->
+	<update id="cancleHoldSpaceBoard" parameterType="hashmap">
+	<![CDATA[
+		UPDATE
+			SPACE_LIST
+		SET
+			SPACE_HOLD = 'N'
+		WHERE
+			SPACE_ID = #{SPACE_ID}
+
+	]]>
+	</update>
+	<!-- =================================END================================= -->
+ </mapper>

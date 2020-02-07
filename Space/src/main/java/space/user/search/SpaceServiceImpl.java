@@ -1,4 +1,4 @@
-package space.main.service;
+package space.user.search;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,6 +1,5 @@
-package space.main.controller;
+package space.user.res;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,10 +12,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import space.common.common.CommandMap;
-import space.main.service.ReserveService;
 
 @Controller
 public class ReserveController {
@@ -92,7 +89,7 @@ Logger log = Logger.getLogger(this.getClass());
 		return resNum;
 	}
 	private String formatDate(String str) throws Exception {
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyyï¿½ï¿½ MMï¿½ï¿½ ddï¿½ï¿½");
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date date = format1.parse(str);

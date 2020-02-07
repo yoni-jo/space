@@ -1,4 +1,4 @@
-package space.main.controller;
+package space.user.search;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
-import space.main.service.SpaceService;
 
 @Controller
 @SessionAttributes
@@ -62,7 +61,7 @@ public class SpaceController {
 		String end =(String)map.get("END_DATE");
 		List<String> dowList = toDAY_OF_WEEK(start,end);
 		/*
-		 * map.put("TITLE","1"); map.put("POS", "Á¾·Î3°¡");
+		 * map.put("TITLE","1"); map.put("POS", "ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½");
 		 */
 		map.put("USER_ID", "admin");
 		map.put("DAY_LIST", dowList);
@@ -188,7 +187,7 @@ public class SpaceController {
 	private List<String> divisionString(String div,String str){
 		String[] strArr = str.split(div);
 		List<String> arrList = new ArrayList<String>();
-		log.debug("[ ¹®ÀÚ¿­ ]" +str+" [ ±¸ºÐÀÚ ] "+div);
+		log.debug("[ ï¿½ï¿½ï¿½Ú¿ï¿½ ]" +str+" [ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ] "+div);
 		for(String s:strArr) {
 			log.debug(">>>>>>>>>>>>>>>>  "+s);
 			arrList.add(s);

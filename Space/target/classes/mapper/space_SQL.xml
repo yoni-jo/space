@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="space">
+<select id="selectDefaultList" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		ROW_NUMBER()OVER(
+]]>
+<choose>
+	<when test="SEARCH_TYPE==null">
+		ORDER BY SPACE_ID DESC
+	</when>
+	<when test="SEARCH_TYPE.equals('read')">
+		ORDER BY SPACE_READ DESC
+	</when>
+	<when test="SEARCH_TYPE.equals('pri')">
+		ORDER BY SPACE_PRI
+	</when>
+	<otherwise>
+		ORDER BY SPACE_ID DESC
+	</otherwise>
+</choose>
+<![CDATA[
+		) AS RNUM,	
+		AA.* 
+	FROM(
+		SELECT
+			SPACE_ID,
+			SPACE_TITLE,
+			SPACE_USE,
+			SPACE_IMG,
+			SPACE_POS,
+			SPACE_SIZE,
+			SPACE_PRI,
+			SPACE_READ
+		FROM SPACE_LIST
+	)AA
+]]>
+</select>
+
+<select id="selectSearchList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT ROW_NUMBER()OVER(
+]]>
+<choose>
+	<when test="SEARCH_TYPE==null">
+		ORDER BY SPACE_ID DESC
+	</when>
+	<when test="SEARCH_TYPE.equals('read')">
+		ORDER BY SPACE_READ DESC
+	</when>
+	<when test="SEARCH_TYPE.equals('pri')">
+		ORDER BY SPACE_PRI DESC
+	</when>
+	<otherwise>
+		ORDER BY SPACE_ID DESC
+	</otherwise>
+</choose>
+<![CDATA[
+) AS RNUM, AA.* FROM(
+
+	SELECT 
+	SPACE_ID,
+	SPACE_TITLE,
+	SPACE_USE,
+	SPACE_IMG,
+	SPACE_POS,
+	SPACE_SIZE,
+	SPACE_PRI,
+	SPACE_READ
+FROM (
+	SELECT S.* FROM (
+		SELECT 
+			SPACE_ID 
+		FROM 
+			SRES_DATE S 
+		WHERE 
+			S.SRES_DATE BETWEEN #{START_DATE} AND #{END_DATE}) D
+   		LEFT JOIN 
+			SPACE_LIST S 
+		ON 
+			S.SPACE_ID = D.SPACE_ID
+	)
+   UNION
+	SELECT 
+		SPACE_ID,
+		SPACE_TITLE,
+		SPACE_USE,
+		SPACE_IMG,
+		SPACE_POS,
+		SPACE_SIZE,
+		SPACE_PRI,
+		SPACE_READ
+	FROM (
+		SELECT 
+			SL.* FROM (
+		SELECT 
+			SPACE_ID
+		FROM 
+			SRES_DAY 
+		UNPIVOT (
+			PRI FOR DAY 
+		IN (SRES_MON,SRES_TUE,SRES_WED,SRES_THU,SRES_FRI,SRES_SAT,SRES_SUN)
+		)
+		WHERE PRI > 0 ]]>
+		<choose>
+			<when test="DAY_LIST.size != 0">
+			AND DAY
+			IN
+				<foreach collection="DAY_LIST" item="item" separator=","
+					open="(" close=")">
+					#{item}
+				</foreach>
+			</when>
+		</choose>
+		
+		<![CDATA[
+		) SDAY
+   INNER JOIN
+		SPACE_LIST SL 
+   ON 
+		SL.SPACE_ID = SDAY.SPACE_ID
+	)
+)AA
+]]>
+<where>
+	<if test="USE != null">
+	<![CDATA[
+	AND SPACE_USE LIKE '%${USE}%'
+	]]>
+	</if>
+	<if test="POS != null">
+		<![CDATA[
+	AND SPACE_POS LIKE '%${POS}%'
+	]]>
+	</if>
+	<if test="SIZE != null">
+	<![CDATA[
+	AND SPACE_SIZE <= TO_NUMBER(${SIZE})
+	]]>
+	</if>
+	<if test='TITLE != null'>
+	<![CDATA[
+	AND SPACE_TITLE LIKE '%${TITLE}%'
+	]]>
+	</if>
+</where>
+</select>
+
+<select id="favoriList" parameterType="hashmap" resultType="string">
+<![CDATA[
+	SELECT SPACE_ID FROM LIKE_LIST 
+	WHERE USER_ID = #{USER_ID}
+]]>
+</select>
+
+<!-- ===============상세 페이지 보기===================== -->
+<select id="detailSpace" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT * FROM SPACE_LIST WHERE SPACE_ID = ${SPACE_ID}
+]]>
+</select>
+<update id="spaceReadCount" parameterType="hashmap">
+<![CDATA[
+	UPDATE SPACE_LIST SET SPACE_READ = SPACE_READ + 1 WHERE SPACE_ID = ${SPACE_ID}
+]]>
+</update>
+
+<select id="selectQNAList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"></include>
+<![CDATA[
+	SELECT 
+	ROW_NUMBER() OVER(ORDER BY QNA_NUM DESC) RNUM,
+	S.* 
+	FROM SPACE_QNA_LIST S
+	WHERE
+		SPACE_ID = #{SPACE_ID}
+	AND
+		QNA_DEL = 'N'
+]]>
+<include refid="common.pagingPost"></include>
+</select>
+<select id="selectReplyList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"></include>
+<![CDATA[
+SELECT 
+	ROW_NUMBER() OVER(ORDER BY REPLY_NUM DESC) RNUM,
+	USER_ID,
+	REPLY_NUM,
+	REPLY_CNT,
+	REPLY_CMT,
+	REPLY_IMG,
+	REPLY_DATE
+FROM 
+	REPLY_LIST 
+WHERE 
+	SPACE_ID=#{SPACE_ID} 
+AND 
+	REPLY_DEL = 'N'
+]]>
+<include refid="common.pagingPost"></include>
+</select>
+
+<select id="selectResType" parameterType="hashmap" resultType="string">
+		SELECT SPACE_RES_TYPE FROM SPACE_LIST WHERE SPACE_ID = #{SPACE_ID}
+</select>
+
+<select id="selectResDate" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+		TO_DATE(TO_CHAR(SRES_DATE,'YYYYMMDD'),'YYYY/MM/DD') as SDATE,
+		SRES_PRI as PRI 
+	FROM
+		SRES_DATE
+	WHERE
+		SPACE_ID = #{SPACE_ID}
+	
+</select>
+<select id="selectResDay" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+		SRES_SUN AS SUN,
+		SRES_MON AS MON,
+		SRES_TUE AS TUE,
+		SRES_WED AS WED,
+		SRES_THU AS THU,
+		SRES_FRI AS FRI,
+		SRES_SAT AS SAT
+	FROM
+		SRES_DAY
+	WHERE
+		SPACE_ID = #{SPACE_ID}
+	
+</select>
+	
+
+<update id="updateFavoriSpace" parameterType="hashmap">
+	<![CDATA[
+		MERGE INTO 
+			LIKE_LIST L 
+		USING DUAL
+       	ON (L.SPACE_ID = ${SPACE_ID} AND L.USER_ID = #{USER_ID})
+   		WHEN MATCHED THEN
+        	UPDATE ]]>
+        	<set>
+        	<![CDATA[L.DUMMY='X']]>
+        	</set>
+        	DELETE 
+        	<where>
+        	<![CDATA[L.SPACE_ID = ${SPACE_ID}]]>
+        	</where>
+        <![CDATA[
+    	WHEN NOT MATCHED THEN
+        INSERT 
+        	(L.USER_ID, L.SPACE_ID)
+        VALUES 
+        	(#{USER_ID},${SPACE_ID})
+	]]>
+</update>
+
+<insert id="insertQnAWrite" parameterType="hashmap">
+	<![CDATA[
+	insert into 
+		SPACE_QNA_LIST(
+			QNA_NUM,
+			SPACE_ID,
+			USER_ID,
+			QNA_TITLE,
+			QNA_CNT,
+			QNA_ANS,
+			QNA_DEL,
+			QNA_SCR,
+			QNA_DATE
+		)
+	values(
+		QNA_NUM_SEQ.NEXTVAL,
+		#{SPACE_ID},
+		#{USER_ID},
+		#{TITLE},
+		#{CNT},
+		'N',
+		'N',
+		#{SCR},
+		SYSDATE
+	)
+	]]>
+</insert>
+</mapper>

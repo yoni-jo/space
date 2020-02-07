@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="res">
+<select id="getSpaceInfo" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT
+	SPACE_ID,
+	SPACE_IMG,
+	SPACE_TITLE,
+	SPACE_SIZE,
+	SPACE_PERSON,
+	SPACE_POS
+FROM
+	SPACE_LIST
+WHERE SPACE_ID = #{SPACE_ID}
+	
+]]>
+</select>
+<select id="getUserInfo" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT
+	USER_ID,
+	USER_NAME,
+	USER_EMAIL,
+	USER_PHONE
+FROM
+	USER_LIST
+WHERE USER_DEL ='N'
+AND USER_ID = #{USER_ID}
+	
+]]>
+</select>
+
+
+
+
+<!-- =======================================결제하기 예약정보입력 -->
+<insert id="insertResInfo" parameterType="hashmap">
+<![CDATA[
+INSERT INTO RES_LIST(
+	USER_ID,
+	USER_PHONE,
+	RES_EMAIL,
+	RES_NAME,
+	RES_SPACE_ID,
+	RES_NUM,
+	RES_APPLY_DATE,
+	RES_CONTENT,
+	RES_REQ,
+	RES_PRI
+	)
+VALUES(
+	#{USER_ID},
+	#{PHONE},
+	#{EMAIL},
+	#{NAME},
+	#{SPACE_ID},
+	#{RES_NUM},
+	#{RES_APPLY_DATE},
+	'',
+	#{RES_REQ},
+	#{RES_PRI}
+)
+]]>
+</insert>
+
+</mapper>

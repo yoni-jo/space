@@ -1,4 +1,4 @@
-package space.main.dao;
+package space.user.search;
 
 import java.util.List;
 import java.util.Map;
