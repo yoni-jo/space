@@ -1,23 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<% 
-	pageContext.setAttribute("br", "<br/>");
-	pageContext.setAttribute("cn", "\n");
-%> 
-<style type="text/css">
- a { text-decoration:none } 
- </style>
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/adminUi.css'/>" />
-
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
 
 <html>
 <script type="text/javascript">
@@ -41,21 +24,22 @@ function noticeList(){
 }
 </script>
 <head>
-<title>ê´€ë¦¬ìž ë©”ì¸ í—¤ë”</title>
+<meta charset="EUC-KR">
+<title>°ü¸®ÀÚ ¸ÞÀÎ Çì´õ</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body >
-<h1 align="center">ê´€ë¦¬ìž í™”ë©´</h1>
-<table class="adminMain" align="center" width="900" height="40" >
-<tbody>
+<h1 align="center">°ü¸®ÀÚ È­¸é</h1>
+<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
 <tr>
-<td align="center"><a href="javascript:memberList()" style="color:purple;">íšŒì› ëª©ë¡</td>
-<td align="center"><a href="javascript:reqList()" style="color:purple;">ê³µê°„ ì‹ ì²­ ê´€ë¦¬</td>
-<td align="center"><a href="javascript:spaceList()" style="color:purple;">ë“±ë¡ëœ ê³µê°„ ê²Œì‹œíŒ</td>
-<td align="center"><a href="javascript:memberResList()" style="color:purple;">ì˜ˆì•½ ê´€ë¦¬</td>
-<td align="center"><a href="javascript:QNAList()"  style="color:purple;">1:1ë¬¸ì˜ ê²Œì‹œíŒ</td>
-<td align="center"><a href="javascript:noticeList()"  style="color:purple;">ê³µì§€ì‚¬í•­ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:memberList()">È¸¿ø ¸ñ·Ï</td>
+<td align="center"><a href="javascript:reqList()">°ø°£ ½ÅÃ» °ü¸®</td>
+<td align="center"><a href="javascript:spaceList()">µî·ÏµÈ °ø°£ °Ô½ÃÆÇ</td>
+<td align="center"><a href="javascript:memberResList()">¿¹¾à °ü¸®</td>
+<td align="center"><a href="javascript:QNAList()">1:1¹®ÀÇ °Ô½ÃÆÇ</td>
+<td align="center"><a href="javascript:noticeList()">°øÁö»çÇ× °ü¸®</td>
 </tr>
-</tbody>
 </table>
 
 </body>

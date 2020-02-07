@@ -7,8 +7,8 @@
 <title>공지 사항 작성</title>
 </head>
 <body>
-	<form id="frm" var="row">
-		<table class="notice_write" align="center" width="800">
+	<form id="frm">
+		<table class="notice_write" border="1" align="center" width="800">
 			<colgroup>
 				<col width="15%"/>
 				<col width="85%"/>
@@ -17,9 +17,7 @@
 			<tbody>
 				<tr>
 					<th scope="row">제목</th>
-					<td><input type="text" id="NTC_TITLE" name="NTC_TITLE" class="wdp_90" size="70"></input>
-					<input type="hidden" id="NTC_NUM" name="NTC_NUM" value="${row.NTC_NUM}">
-					</td>
+					<td><input type="text" id="NTC_TITLE" name="NTC_TITLE" class="wdp_90" size="70"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="view_text">
@@ -54,14 +52,9 @@
 		}
 		
 		function fn_insertNotice(){
-			if($("#NTC_TITLE").val() == "" || $("#NTC_CONTENT").val() == ""){
-				alert("제목과 내용을 입력해주세요");
-			}else{
-			alert("새 공지사항이 작성되었습니다.")
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/admin/noticeWrite' />");
 			comSubmit.submit();
-			}
 		}
 	</script>
 </body>

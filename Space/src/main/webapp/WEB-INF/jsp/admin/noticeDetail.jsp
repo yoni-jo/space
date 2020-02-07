@@ -10,7 +10,7 @@
 <body>
 <br/> 
 	<form id="frm">
-	<table class="notice_detail" align="center" width="800" >
+	<table class="notice_detailForm" border="1" align="center" width="800" >
 		<colgroup>
 			<col width="7%" />
 			<col width="70%" />
@@ -35,12 +35,12 @@
 		</tbody>
 		<tbody>
 			<tr>
-				<p><td colspan="4" height="200" style="padding-left:50px;">${fn:replace(map.NTC_CONTENT, cn, br)}</td></p>
+				<td colspan="4">${fn:replace(map.NTC_CONTENT, cn, br)}</td>
 			</tr>
 		</tbody>
 	</table>
 	</form>
-	<br/>
+	
 	<center>
 	<a href="#this" class="btn" id="modify">수정하기</a>
 	<a href="#this" class="btn" id="list">목록으로</a>

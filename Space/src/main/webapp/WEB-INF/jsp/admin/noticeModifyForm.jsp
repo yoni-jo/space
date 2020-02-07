@@ -7,7 +7,7 @@
 <body>
 		
 	<form id="frm">
-		<table class="notice_ModifyForm" align="center" width="800">
+		<table class="notice_ModifyForm" border="1" align="center" width="800">
 			<colgroup>
 				<col width="20%"/>
 				<col width="30%"/>
@@ -48,7 +48,7 @@
 	
 	<center>
 	<a href="#this" class="btn" id="list">목록으로</a>
-	<a href="#this" class="btn" id="modify">수정하기</a>
+	<a href="#this" class="btn" id="modify">저장하기</a>
 	<a href="#this" class="btn" id="delete">삭제하기</a>
 	</center>
 	
@@ -77,22 +77,17 @@
 			comSubmit.submit();
 		}
 		
-		function fn_modifyNotice(obj){
+		function fn_modifyNotice(){
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/admin/modifyNotice' />");
 			comSubmit.submit();
 		}
 		
 		function fn_deleteNotice(){
-			if(confirm("삭제하시겠습니까?") == true){
-				alert("삭제되었습니다.");
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/admin/deleteNotice' />");
 			comSubmit.addParam("NTC_NUM", $("#NTC_NUM").val());
 			comSubmit.submit();
-			}else{
-				return;
-			}
 		}
 
 	</script>
