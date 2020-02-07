@@ -13,13 +13,14 @@ public class MainController {
 
 	Logger log = Logger.getLogger(this.getClass());
 
-//메인폼
-	@RequestMapping(value = "/main")
-	public ModelAndView openSampleList(Map<String, Object> commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("main");
-		
-		return mv;
-	}
+	/*
+	 * 
+	 * @RequestMapping(value = "/main") public ModelAndView
+	 * openSampleList(Map<String, Object> commandMap) throws Exception {
+	 * ModelAndView mv = new ModelAndView("main");
+	 * 
+	 * return mv; }
+	 */
 	
 	
 }
