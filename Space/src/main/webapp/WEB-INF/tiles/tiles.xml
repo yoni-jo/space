@@ -46,7 +46,7 @@
 
  <!-- 회원가입페이지 -->
  <definition name="joinForm" extends="mainlayout">
- 	<put-attribute name="contents" value="/WEB-INF/jsp/join.jsp"></put-attribute>
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/join/join.jsp"></put-attribute>
  
  </definition>
  <!--아이디/비밀번호찾기-->

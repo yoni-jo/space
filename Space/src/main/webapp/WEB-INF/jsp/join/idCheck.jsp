@@ -33,7 +33,7 @@ function fn_userIDCheck() {
  {
   $.ajax({
    type : "POST", 
-   url : "/first/join/idCheck", 
+   url : "/two/join/idCheck", 
    data : userData,
    dataType : "json",
    error : function(error) {
