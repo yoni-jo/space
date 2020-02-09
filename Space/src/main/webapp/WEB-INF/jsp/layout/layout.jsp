@@ -19,11 +19,11 @@
    /*font설정  */
 
    /* 공통적용사항 */
-   *{margin:0;/* font-family: 'Jeju Gothic', sans-serif;font-family: 'Nanum Gothic', sans-serif;
+   *{margin:0;font-family: 'Jeju Gothic', sans-serif;font-family: 'Nanum Gothic', sans-serif;
 font-family: 'Open Sans', sans-serif;
 font-family: 'Lato', sans-serif;
 font-family: 'Noto Sans', sans-serif;
-font-family: 'Noto Sans KR', sans-serif; */}
+font-family: 'Noto Sans KR', sans-serif;}
    html,body{height: 100%;}
    h1{padding-top: 30px;text-align: center}
    li{list-style: none;cursor: pointer;text-align: center;}

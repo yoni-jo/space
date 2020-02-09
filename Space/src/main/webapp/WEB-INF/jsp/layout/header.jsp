@@ -24,15 +24,16 @@ if(session.getAttribute("USER_ID")!=null){
 #top{border-bottom:1px solid;width: 100%;height: 100%;height: 80px;margin-top:15px}
 #menu{width: 70%;margin-left: 15%;}
 .logo{width: 10%;float:left;font-size: 20px;}
-.nav{border:1px solid;text-align:center; margin:0px;float: right; position: relative;bord;}
-.nav>li{width:150px;height:50px;border:1px solid;float:left;display:inline-block;margin-left:5px} 
-.nav>li>a{display:block;} 
+.nav{talign-items: center;ext-align:center; margin:0px;float: right; position: relative;}
+.nav>li{width:150px;height:50px;float:left;display:flex ;align-items:center;} 
+.nav>li>a{width: 100%;text-align: center;} 
 
 /*메뉴 토글 */
-.bar{position:absolute;}
-.hide{margin-right:10px;padding-left:0;margin:0 auto;position: fixed;}
-.hide>li{height:50px; display:none;top:100px;box-sizing: border-box;border:1px solid;border-radius: 8px}
-.hide>li>a{display:block;width: 100%;}
+.bar{text-align: center;}
+.hide{position: fixed;top:calc(10%);left: calc(100% - 380px);display: none;padding: 0; }
+.hide>li{cursor: pointer; height:50px;top:100px;border-radius: 8px;border:1px solid gray;display:flex; align-items: center;background-color: white;}
+.hide>li>a{ cursor: pointer;display:block;width: 100%;text-align: center;}
+
    </style>
 <script type="text/javascript">
 function logout() {
@@ -44,11 +45,15 @@ function logout() {
 }
 $(document).on('click','.bar',function(){
 	
-	$('.hide>li').toggle(200);
+	$('.hide').slideToggle(1000);
 	
 	
-});
+}); 
 
+$(document).on('hover','.hide>li',function(){
+	
+	$('this>li>a').css("color","blue")
+})
 </script>
  <div id="top" >
         <div id="menu">
