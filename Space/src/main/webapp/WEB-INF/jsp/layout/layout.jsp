@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script src="http://code.jquery.com/jquery-1.7.js"></script>
+
 <!--폰트설정  -->
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic|Noto+Sans|Noto+Sans+KR|Open+Sans&display=swap" rel="stylesheet">

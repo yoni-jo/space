@@ -24,13 +24,15 @@ if(session.getAttribute("USER_ID")!=null){
 #top{border-bottom:1px solid;width: 100%;height: 100%;height: 80px;margin-top:15px}
 #menu{width: 70%;margin-left: 15%;}
 .logo{width: 10%;float:left;font-size: 20px;}
-.nav{margin:0px;float: right;margin-left: auto; position: relative;bord;}
-.nav>li{float:left;display:inline-block;} 
-.nav>li:not(:last-child){ margin-left:30px;}
+.nav{border:1px solid;text-align:center; margin:0px;float: right; position: relative;bord;}
+.nav>li{width:150px;height:50px;border:1px solid;float:left;display:inline-block;margin-left:5px} 
+.nav>li>a{display:block;} 
+
 /*메뉴 토글 */
-.hide{padding-left:0;right: 20px;position:absolute;margin:0 auto;}
-.hide>li{border:1px solid;width:150xp; height:80px;box-sizing: border-box;border:1px solid}
-.hide>li>a{display: block;width: 100%;text-align: center
+.bar{position:absolute;}
+.hide{margin-right:10px;padding-left:0;margin:0 auto;position: fixed;}
+.hide>li{height:50px; display:none;top:100px;box-sizing: border-box;border:1px solid;border-radius: 8px}
+.hide>li>a{display:block;width: 100%;}
    </style>
 <script type="text/javascript">
 function logout() {
@@ -40,6 +42,12 @@ function logout() {
 		return false;
 	}
 }
+$(document).on('click','.bar',function(){
+	
+	$('.hide>li').toggle(200);
+	
+	
+});
 
 </script>
  <div id="top" >
