@@ -62,3 +62,20 @@ ul.tabs li.current{
 .tab-content.current{
 	display: inherit;
 }
+.reply_list > ul > li{
+	text-align: left;
+	font-size: 12px;
+}
+.last_child{
+	height :2px;
+	background: #bbbbbb;
+}
+.label_bold{
+	font-weight: bold;
+}
+.imgView{
+	cursor: pointer;
+	width: 200px;
+	height: auto;
+	padding-right: 5px;
+}

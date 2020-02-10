@@ -34,17 +34,17 @@
 .modal_inner {
   transition: top .25s ease;
   position: absolute;
-  top: -20%;
+  top: 0%;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 500px;
+  width: 50%;
   margin: auto;
   overflow: auto;
   background: #fff;
   border-radius: 5px;
   padding: 1em 2em;
-  height: 50%;
+  height: 550px;
 }
 
 .modal_close {
@@ -78,6 +78,14 @@
 .modal_close:before {
   transform: rotate(-45deg);
 }
+
+@media screen and (min-width: 768px) {
+	
+  .modal_inner {
+  	width: 550px;
+    box-sizing: border-box;
+  }
+}
 input.title, textarea.content {
 	width: 470px;
 	height: 15px;
@@ -100,7 +108,7 @@ textarea.content {
 	resize: none;
 }
 
-.writeBtn {
+.sendBtn {
   cursor: pointer;
   background: #27ae60;
   display: inline-block;
@@ -109,8 +117,11 @@ textarea.content {
   border-radius: 3px;
 }
 
-.writeBtn:hover,
-.writeBtn:focus {
+.sendBtn:hover,
+.sendBtn:focus {
   background: #2ecc71;
 }
 
+input[type="file"]{
+	height: 2em;
+}

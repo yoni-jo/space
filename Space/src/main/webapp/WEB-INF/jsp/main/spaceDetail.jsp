@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
 <% 
 String userId;
-session.setAttribute("USER_ID", "admin");
 if(session.getAttribute("USER_ID") != null){
 	userId = (String)session.getAttribute("USER_ID");
 	request.setAttribute("USER_ID", userId);
@@ -26,7 +25,7 @@ if(session.getAttribute("USER_ID") != null){
 	.caption{text-align: left;}
 	
 	#option > label > input{margin-left: 20px}
-	.fc-sat > .fc-day-number { color:#0000FF; }     /* 토요일 */
+	.fc-sat > .fc-day-number { color:#0000FF; }
 	.fc-sun > .fc-day-number { color:#FF0000; }
 	.fc-title { font-size: 10px; text-align: center;}
 	.fc-title:after {content: "원";}
@@ -39,9 +38,6 @@ if(session.getAttribute("USER_ID") != null){
 </head>
 <body>
 <%@ include file="/WEB-INF/common/include-body.jspf" %>
-<c:if test="${!empty USER_ID}">
-	<input id="userId" type="hidden" value="${USER_ID}">
-</c:if>
 <input id="spaceId" type="hidden" value="${DETAIL.SPACE_ID}">
 <input id="res_type" type="hidden" value="${DETAIL.SPACE_RES_TYPE}">
 <c:if test="${!empty RES_LIST}">
@@ -63,7 +59,11 @@ if(session.getAttribute("USER_ID") != null){
 	</c:forEach>
 	</c:if>
 </c:if>
-
+<c:if test="${!empty COMP_LIST}">
+	<c:forEach var="resDate" items="${COMP_LIST}">
+		<input name="compRes" type="hidden" value="${resDate}">
+	</c:forEach>
+</c:if>
 <form id="activeRes" method="post"></form>
 
 <div style="width:100%; height: 100%; display: inline-block; text-align: center">
@@ -94,10 +94,7 @@ if(session.getAttribute("USER_ID") != null){
 		</div>
 		
 		<div id="resInfo" style="width: 50%; height: 100%;float: right; text-align: center;">
-			<div id="calendar" style="width: 100%; height: 100%;">
-				<%-- <img src="<c:url value='/image/calendar.png'/>" 
-				style="max-width: 200px; max-height:300px;"/> --%>
-			</div>
+			<div id="calendar" style="width: 100%; height: 100%;"></div>
 			<p class="line"></p>
 			<div id="resCalendarBtn" style="width: 100%; height: 100%;">
 				<label id="resultPri">0</label>
@@ -189,7 +186,9 @@ if(session.getAttribute("USER_ID") != null){
 								</ul>
 							</div>
 							<div id="QNA_LIST" class="tab-content current"></div>
-							<div id="REPLY_LIST" class="tab-content"></div>
+							<div id="REPLY_LIST" class="tab-content">
+								
+							</div>
 							<div style="text-align: right;">
 							<c:if test="${!empty USER_ID}">
 								<label id="writeBtn" class="writeBtn" for="open-pop">질문 작성</label>
@@ -200,8 +199,12 @@ if(session.getAttribute("USER_ID") != null){
 					</div>
 
 				</div>
-				<input type="hidden" id="QNA_PAGE_INDEX" name="PAGE_INDEX" /> <input
-					type="hidden" id="REPLY_PAGE_INDEX" name="PAGE_INDEX" />
+				
+				<div>
+								
+								</div>
+				<input type="hidden" id="QNA_PAGE_INDEX" name="PAGE_INDEX" /> 
+				<input type="hidden" id="REPLY_PAGE_INDEX" name="PAGE_INDEX" />
 
 				<p class="line"></p>
 				<p class="line"></p>
@@ -280,13 +283,9 @@ if(session.getAttribute("USER_ID") != null){
 		
 		$("#sendBtn").click(function(){
 			var comSubmit = new ComSubmit();
-			if($("li.current").attr('date-tab') == 'QNA_LIST'){
-				comSubmit.setUrl("<c:url value='/space/writeQnA'/>");
-			}else{
-				comSubmit.setUrl("<c:url value='/space/writeReply'/>");
-			}
+			
+			comSubmit.setUrl("<c:url value='/space/writeQnA'/>");
 			comSubmit.addParam("SPACE_ID",$("#spaceId").val());
-			comSubmit.addParam("USER_ID",$("#userId").val());
 			comSubmit.addParam("TITLE",$("#popTitle").val());
 			comSubmit.addParam("CNT",$("#popCnt").val());
 			if($("input[name=hiddenPost]").prop("checked")){
@@ -306,11 +305,13 @@ if(session.getAttribute("USER_ID") != null){
 			$("#"+tab_id).addClass('current');
 			if(tab_id == 'QNA_LIST'){
 				fn_selectPostList($("#QNA_PAGE_INDEX").val(),"QNA_LIST");
-				$("#writeBtn").text("질문 작성");
+				$("#writeBtn").css("display","");
+				$("#listTitle").css("display","");
 				
 			}else{
 				fn_selectPostList($("#REPLY_PAGE_INDEX").val(),"REPLY_LIST");
-				$("#writeBtn").text("후기 작성");
+				$("#writeBtn").css("display","none");
+				$("#listTitle").css("display","none");
 			}
 		});
 		$("#writeBtn").click(function(){
@@ -320,17 +321,12 @@ if(session.getAttribute("USER_ID") != null){
 			$("#divPopBtn").css("display","");
 			$("input.title, textarea.content").attr("disabled",false);
 			$(".txt").val("");
-			if($(this).text() == "질문 작성"){
-				
-			}else{
-				
-			}
 		});
 	});
 	function setDetailOpt(){
 		$(".optItem").get().forEach(function(item,index,arr){
 			$("label:contains('"+$(item).val()+"') > input:checkbox").attr("checked",true);
-		})
+		});
 		
 		$("#option > label > input:checkbox").each(function(){
 			$(this).attr("disabled",true);
@@ -386,6 +382,8 @@ if(session.getAttribute("USER_ID") != null){
 			gfn_renderPaging(params);
 			
 			var str = "";
+			var date;
+			var imageStr = "";
 			$.each(data.list, function(key,value){
 				if(data.TYPE == 'QNA_LIST'){
 				str += "<ul>"+
@@ -393,27 +391,38 @@ if(session.getAttribute("USER_ID") != null){
 							"<li class='col_title'>";
 							if(value.QNA_SCR == 'Y'){
 								str+="<label>"+value.QNA_TITLE+"[비밀글]</label>"
-							}else{
-								str+="<a href='#this' name='title'>"+value.QNA_TITLE+"</a>"
-							}
-								str+="<input type='hidden' name='QNA_CNT' value="+value.QNA_CNT+">"+
+								str+="<input type='hidden' name='QNA_CNT' value=''>"+
 								
+								"<input type='hidden' name='QNA_ANS' value=''>"+
+								"<input type='hidden' name='QNA_CMT' value=''>";
+							}else{
+								str+="<a href='#this' name='title'>"+value.QNA_TITLE+"</a>"+
+								"<input type='hidden' name='QNA_CNT' value='"+value.QNA_CNT+"'>"+
 								"<input type='hidden' name='QNA_ANS' value="+value.QNA_ANS+">"+
-								"<input type='hidden' name='QNA_CMT' value="+value.QNA_CMT+">"+
-							"</li>"+
+								"<input type='hidden' name='QNA_CMT' value="+value.QNA_CMT+">";
+							}
+							str+="</li>"+
 							"<li class='col_writer'>"+value.USER_ID+"</li>"+
 							"<li class='col_writeDate'>"+getFormatDate(value.QNA_DATE)+"</li>"+
 						"</ul>";
 				}else{
-					str += "<ul>"+
-					"<li class='col_ans'>"+value.REPLY_NUM+"</li>"+
-					"<li class='col_title'>"+
-						"<a href='#this' name='title'>"+value.REPLY_CNT+"</a>"+
-						"<input type='hidden' class='REPLY_CMT' value="+value.REPLY_CMT+">"+
-					"</li>"+
-					"<li class='col_writer'>"+value.USER_ID+"</li>"+
-					"<li class='col_writeDate'>"+getFormatDate(value.REPLY_DATE)+"</li>"+
-				"</ul>";	
+					date=$.datepicker.formatDate('yy-mm-dd', new Date(value.REPLY_DATE));
+					imageStr = (value.REPLY_IMG+"").split(",");
+					str += "<div class='reply_list'><ul>"+
+						"<li><label class='label_bold'>"+value.REPLY_TITLE+"</label><label>["+value.USER_ID+"]</label></li>"+
+						"</ul>"+
+						"<ul>"+
+							"<li><label>"+value.REPLY_CNT+"</label></li>"+
+						"</ul>"+
+						"<ul><li>";
+						if(!gfn_isNull(imageStr)){
+							for(var s in imageStr){
+								str+="<img class='imgView' src='<c:url value='/image/"+imageStr[s]+"'/>'/>";
+							}
+						}
+						str+="</li></ul>"+
+						"<ul><li>작성일 : "+date+"</li></ul></div>"+
+						"<div class='last_child'></div>";
 				}
 			});
 			body.append(str);
@@ -437,6 +446,17 @@ if(session.getAttribute("USER_ID") != null){
 					cmt.val(obj.find("input[name=QNA_CMT]").val());
 				}
 		    });
+			$(".imgView").click(function(){
+				var img=new Image();
+				var url=$(this).attr("src");
+				img.src=url;
+				var img_width=img.width;
+				var win_width=img.width+25;
+				var img_height=img.height;
+				var win=img.height+30;
+				var OpenWindow=window.open('','_blank', 'width='+img_width+', height='+img_height+', menubars=no, scrollbars=auto');
+				OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
+			});
 		}
 	}
 	function readPostOpen(){
@@ -531,7 +551,7 @@ if(session.getAttribute("USER_ID") != null){
 				eventRender: function(info) {
 					var date = new Date(info.event.start);
 					var time = getFormatDate(info.event.start);
-					if(!comparisonDate(date)){
+					if(!comparisonDate(date)||!compResCheck(time)){
 						info.el.style.backgroundColor= '#aaaaaa';
 					    info.el.style.borderColor = '#999999';
 					    $(info.el).css("color","#ffffff");
@@ -548,7 +568,7 @@ if(session.getAttribute("USER_ID") != null){
 					var className = info.el.className;
 					
 					var date = new Date(info.event.start);
-					if(comparisonDate(date)){
+					if(comparisonDate(date)&&compResCheck(date)){
 					    var result = parseInt($("#resultPri").text());
 						var pri = info.event.title;
 						var time = getFormatDate(info.event.start);
@@ -615,7 +635,7 @@ if(session.getAttribute("USER_ID") != null){
 				      backgroundColor: '#f7e600',
 				      borderColor:'#e6d500',
 				      textColor:'#c56a00',
-					  className : 'INACTIVE',
+					  className : 'INACTIVE'
 				});
 			}
 		});
@@ -642,6 +662,12 @@ if(session.getAttribute("USER_ID") != null){
 			return true;
 		}
 		return false;
+	}
+	function compResCheck(time){
+		if($("input[value*='"+time+"'][name='compRes']").length>0){
+			return false;
+		}
+		return true;
 	}
 	function check(info){
 		$(info).css("backgroundColor", '#f89b00');
