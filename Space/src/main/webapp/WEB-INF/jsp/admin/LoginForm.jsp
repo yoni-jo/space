@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
 <center>
 <h2>관리자 로그인</h2>
 </center>
-<form action="/first/admin/LoginCheck" name="form1" method="post" >
+<form action="/space/admin/LoginCheck" name="form1" method="post" >
 <table border="3" width="400px" align="center">
 <tr>
 <td>ID</td>
