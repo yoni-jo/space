@@ -107,6 +107,4 @@ public class adminNoticeController {
 		return mv;
 		
 	}
-	
-
 }
