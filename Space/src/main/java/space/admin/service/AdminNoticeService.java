@@ -14,5 +14,5 @@ public interface AdminNoticeService {
 	void modifyNotice(Map<String, Object> map) throws Exception;
 	
 	void deleteNotice(Map<String, Object> map) throws Exception;
-
+	
 }

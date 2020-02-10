@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-adminHeader.jspf" %>
+<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <title>공지 사항 뷰</title>
 </head>
 <body>
@@ -53,11 +53,13 @@
 		<br/>
 		<center><a href="#this" class="btn" id="write" >글쓰기</a></center>
 
-		<%@ include file="/WEB-INF/include/include-adminBody.jspf" %>		
+		<%@ include file="/WEB-INF/common/include-adminBody.jspf" %>		
 		<script type="text/javascript">
+		
        		$(document).ready(function(){
-       			/* 페이징 관련 */
-       			fn_noticeList(1);
+       			
+       		 /* 페이징 관련 */
+       			fn_noticeList(1)
        			
        			$("#write").on("click", function(e){ 
                     e.preventDefault();
@@ -69,7 +71,6 @@
        		/* 검색칸에서 엔터키 누르면 실행 */
 			function enterkey() {
 		        if (window.event.keyCode == 13) {
-		        	
 		        	fn_noticeList(1);
 		        }
 			}

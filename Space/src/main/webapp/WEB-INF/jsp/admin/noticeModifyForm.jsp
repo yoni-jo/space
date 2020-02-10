@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-adminHeader.jspf" %>
+<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 </head>
 <body>
 		
@@ -52,7 +52,7 @@
 	<a href="#this" class="btn" id="delete">삭제하기</a>
 	</center>
 	
-	<%@ include file="/WEB-INF/include/include-adminBody.jspf" %>
+	<%@ include file="/WEB-INF/common/include-adminBody.jspf" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#list").on("click", function(e){ 

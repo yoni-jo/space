@@ -112,5 +112,4 @@ ModelAndView mv = new ModelAndView("redirect:/admin/QNADetail");
 		return mv;
 		
 	}
-
 }
