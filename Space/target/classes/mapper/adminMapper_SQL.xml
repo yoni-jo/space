@@ -3,8 +3,19 @@
 
 <mapper namespace="admin">
 
-	<!-- 회원 목록  -->
+	<select id="adminLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				USER_ID, 
+				USER_PASSWORD
+			FROM
+				USER_LIST
+		]]>
+	</select>
+	
+	<!-- 회원목록 -->
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		
 		<![CDATA[
 			SELECT
 			    USER_ID,
@@ -17,8 +28,28 @@
 			WHERE
 				USER_VISIBLE='N'    
 		]]>
+		
 	</select>
 	
+	<!-- 회원목록페이징(미완성) -->
+	<select id="memberPageList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+			<![CDATA[
+				SELECT
+				    USER_ID,
+				    USER_NAME,
+				    USER_PHONE,
+				    USER_EMAIL,
+				    USER_DATE 
+				FROM
+				    USER_LIST
+				WHERE
+					USER_VISIBLE='N'    
+			]]>
+		<include refid="common.pagingPost"/>
+	</select>
+	
+	<!-- 예약목록리스트 -->
 	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT 
@@ -46,6 +77,7 @@
 		]]>
 	</select>
 	
+	<!-- 등록된공간리스트 -->
 	<select id="selectspaceList" parameterType="hashMap" resultType="hashMap">
 <![CDATA[ 
 	SELECT 
@@ -68,6 +100,7 @@
 ]]>
 </select>
 
+<!-- 공간신청리스트 -->
 <select id="selectreqList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT 
@@ -92,22 +125,27 @@
 		ORDER BY APPLY_NUM DESC
 	]]>
 </select>
-
-	<!-- 공지사항 관련 -->
 	
+	<!-- 공지사항 관련 -->
+	<!-- 공지사항 리스트 -->
 	<select id="selectAdminNoticeList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
 		<![CDATA[
 			SELECT 
+				ROW_NUMBER() OVER (ORDER BY NTC_NUM DESC) RNUM,
 				NTC_NUM,  
 				NTC_TITLE, 
-				NTC_DATE, 
+				TO_CHAR(NTC_DATE, 'YYYY-MM-DD HH24:MI') AS NTC_DATE, 
 				NTC_HIT   
 			FROM
 				ADMIN_NOTICE_LIST 
+		]]>		
+	<include refid="search.notice" />	
+		<![CDATA[
 			order by NTC_NUM desc
 		]]>
+	<include refid="common.pagingPost"/>
 	</select>
-	
 	<!-- 공지사항 글작성 -->
 	<insert id="insertNotice" parameterType="hashMap">
 		<![CDATA[ 
@@ -176,160 +214,97 @@
 		]]>
 	</update>
 	
+	<!-- **** 이곳부터 1:1 문의관리**** -->
 	
-	
-	
-	
-	
-	
-	
-	
-	
-<!-- 밑에는 우선 샘플 -->
-	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
+	<!-- 1:1문의 리스트 -->
+	<select id="selectAdminQNAList" parameterType="hashMap" resultType="hashMap">
+	<include refid="common.pagingPre"/>	
+		<![CDATA[ 
 			SELECT 
-				IDX, 
-				TITLE, 
-				HIT_CNT, 
-				CREA_DTM 
+				ROW_NUMBER() OVER (ORDER BY ADQNA_NUM DESC) RNUM, 
+				USER_ID, 
+				ADQNA_NUM,  
+				ADQNA_TITLE, 
+				TO_CHAR(ADQNA_DATE, 'YYYY-MM-DD HH24:MI') AS ADQNA_DATE,   
+				QA_ANS 
 			FROM 
-				TB_BOARD 
+				ADMIN_QNA_LIST 
+		]]>
+	<include refid="search.ADQNA" />
+		<![CDATA[		 
+			order by ADQNA_NUM desc   
+		]]>
+	<include refid="common.pagingPost"/>
+	</select>
+	
+	<!-- 1:1문의 상세보기 페이지 -->
+	<select id="selectAdminQNADetail" resultType="hashMap" parameterType="hashMap" >
+		<![CDATA[ 
+			SELECT 
+				C.USER_ID AS ADMIN_ID, 
+				C.CMT_CMT, 
+				C.CMT_DATE, 
+				C.CMT_NUM, 
+                L.USER_ID, 
+				L.ADQNA_NUM, 
+				L.ADQNA_TITLE, 
+				L.ADQNA_CNT, 
+				L.QA_ANS, 
+				L.ADQNA_DATE 
+			FROM 
+				ADMIN_QNA_COMMENTS C, ADMIN_QNA_LIST L  
 			WHERE 
-				DEL_GB = 'N' 
-			ORDER BY IDX DESC 
+				L.ADQNA_NUM = C.ADQNA_NUM (+) 
+			AND L.ADQNA_NUM = #{ADQNA_NUM}
 		]]>
 	</select>
 	
-	<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" 
-	keyProperty="IDX">
-		<selectKey keyProperty="IDX" resultType="string" order="BEFORE">
-			SELECT SEQ_TB_BOARD_IDX.NEXTVAL FROM DUAL
-		</selectKey>
+	<!-- 1:1문의 삭제하기 -->
+	<delete id="deleteQNA" parameterType="hashmap">
 		<![CDATA[ 
-			INSERT INTO TB_BOARD 
-			( 
-				IDX, 
-				TITLE, 
-				CONTENTS, 
-				HIT_CNT, 
-				DEL_GB, 
-				CREA_DTM, 
-				CREA_ID 
+			DELETE FROM ADMIN_QNA_LIST WHERE ADQNA_NUM = #{ADQNA_NUM} 
+		]]>
+	</delete>
+	
+	<!--  1:1문의하기 댓글(답글) 달기 -->
+	<insert id="insertComment" parameterType="hashMap" >
+		<![CDATA[ 
+			INSERT INTO 
+				ADMIN_QNA_COMMENTS ( 
+				USER_ID, 
+                ADQNA_NUM, 
+				CMT_NUM, 
+				CMT_CMT, 
+				CMT_DATE
+			) VALUES (
+				'admin', 
+                #{ADQNA_NUM}, 
+				CMT_NUM_SEQ.NEXTVAL, 
+				#{CMT_CMT}, 
+				SYSDATE 
 			) 
-			VALUES 
-			( 
-				#{IDX}, 
-				#{TITLE}, 
-				#{CONTENTS}, 
-				0, 
-				'N', 
-				SYSDATE, 
-				'Admin' 
-			)
 		]]>
 	</insert>
 	
-	<update id="updateHitCnt" parameterType="hashmap">
+	<!--  1:1문의하기 댓글(답글) 삭제 하기 -->
+	<delete id="deleteComment" parameterType="hashMap" >
 		<![CDATA[ 
-			UPDATE TB_BOARD 
-			SET 
-				HIT_CNT = NVL(HIT_CNT, 0) + 1 
-			WHERE 
-				IDX = #{IDX} 
+			DELETE FROM ADMIN_QNA_COMMENTS WHERE CMT_NUM = #{CMT_NUM} 
 		]]>
-	</update>
+	</delete>
 	
-	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[ 
-			SELECT 
-				IDX, 
-				HIT_CNT, 
-				CREA_ID, 
-				CREA_DTM, 
-				TITLE, 
-				CONTENTS 
-			FROM 
-				TB_BOARD 
-			WHERE 
-				IDX = #{IDX} 
-		]]>
-	</select>
 	
-	<update id="updateBoard" parameterType="hashmap">
-		<![CDATA[ 
-			UPDATE TB_BOARD 
-			SET 
-				TITLE = #{TITLE}, 
-				CONTENTS = #{CONTENTS} 
-			WHERE 
-				IDX = #{IDX} 
-		]]>
-	</update>
 	
-	<update id="deleteBoard" parameterType="hashmap">
-		<![CDATA[ 
-			UPDATE TB_BOARD 
-			SET 
-				DEL_GB = 'Y' 
-			WHERE 
-				IDX = #{IDX} 
-		]]>
-	</update>
 	
-	<insert id="insertFile" parameterType="hashmap">
-		<![CDATA[ 
-			INSERT INTO TB_FILE 
-			( 
-				IDX, 
-				BOARD_IDX, 
-				ORIGINAL_FILE_NAME, 
-				STORED_FILE_NAME, 
-				FILE_SIZE, 
-				CREA_ID 
-			)
-			VALUES 
-			( 
-				SEQ_TB_FILE_IDX.NEXTVAL, 
-				#{BOARD_IDX}, 
-				#{ORIGINAL_FILE_NAME}, 
-				#{STORED_FILE_NAME}, 
-				#{FILE_SIZE}, 
-				'Admin' 
-			)
-		]]>
-	</insert>
 	
-	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[ 
-			SELECT 
-				IDX, 
-				ORIGINAL_FILE_NAME, 
-				ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE 
-			FROM 
-				TB_FILE 
-			WHERE 
-				BOARD_IDX = #{IDX} 
-				AND DEL_GB = 'N' 
-		]]>
-	</select>
 	
-	<update id="deleteFileList" parameterType="hashmap"> 
-		<![CDATA[ 
-			UPDATE TB_FILE SET 
-				DEL_GB = 'Y' 
-			WHERE 
-				BOARD_IDX = #{IDX} 
-		]]> 
-	</update> 
 	
-	<update id="updateFile" parameterType="hashmap"> 
-		<![CDATA[ 
-			UPDATE TB_FILE SET 
-				DEL_GB = 'N' 
-			WHERE 
-				IDX = #{FILE_IDX} 
-		]]> 
-	</update>
+	
+	
+	
+	
+	
+	
+
 
 </mapper>
