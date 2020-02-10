@@ -15,13 +15,13 @@ if(session.getAttribute("USER_ID") != null){
 	.infoImage:hover{cursor: pointer; outline: black;}
 	.favBtn:hover{cursor: pointer; outline: black;}
 	/*º±≈√√¢  */
-	#t{margin-left:calc(50% - 250px);margin-top:30px;border-radius: 10px;background-color:#bdbdbd4f}
+	#t{margin-left:calc(50% - 250px);margin-top:30px;border-radius: 10px;background-color:#bdbdbd1c}
 
 select {
-	 height:30px ;border:1px solid maroon;
+	 height:30px ;border:0
 }
-input{height: 30px;border:1px solid maroon;}
-#searchBtn{background-color: purple;border:0;color:white}
+input{height: 30px;border:0}
+#searchBtn{background-color:#F44336;border:0;color:white}
 </style>
 </head>
 

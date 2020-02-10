@@ -31,13 +31,13 @@ if(session.getAttribute("USER_ID")!=null){
 
 /*메뉴 토글 */
 .bar{text-align: center;}
-.hide{position: fixed;top:calc(10%);left: calc(100% - 380px);display: none;padding: 0; background-color: white;border:1px solid gray;border-radius: 10px}
+.hide{position: fixed;top:calc(10%);left: calc(100% - 380px);display: none;padding: 0; background-color: white;border-radius: 10px}
 .hide>li{ cursor:pointer; height:50px;display:flex; align-items: center;position: relative;}
 
-.hide>li:hover{transition:all 0.4s ease-in;border-bottom:10px solid #9400d3;}
+.hide>li:hover{transition:all 0.4s ease-in;border-bottom:10px solid #9400d3;background-color:50%}
 .hide>li:hover:last-child{border-radius: 10px;}
 .hide>li>a{display:block;width: 100%; text-align: center;line-height: 50px;}
-.hide>li>a:hover{transition:all 0.4s ease-in; border:1px solid gray}
+.hide>li>a:hover{transition:all 0.4s ease-in;}
  /*메뉴 삼색바 디자인  */
  #x{display: inline-block;width: 100%}
 .bar1, .bar2, .bar3 {
@@ -85,7 +85,7 @@ $(document).on('click','.bar',function(){
                 	
                 <!-- 로그인했을경우 로그아웃버튼으로 변경-->
                 <%}else{%>
-                	<li><a href="/two/login/logout" onclick="return logout();"><%=log%></a></li>
+                	<a href="/two/login/logout" onclick="return logout();"><%=log%></a></li>
                 	
                 <%} %>
                 	

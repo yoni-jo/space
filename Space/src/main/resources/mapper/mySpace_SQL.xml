@@ -3,6 +3,63 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="mySpace">
+ 
+ <!-- 찜목록 -->
+ <insert id="myFav" parameterType="hashMap">
+<![CDATA[ 
+INSERT INTO 
+LIKE_LIST(
+        USER_ID, 
+        SPACE_ID 
+)VALUES(
+        #{user_id}, 
+        #{space_id} 
+);
+]]>
+</insert>
+
+<!-- 찜목록 리스트 -->
+
+<select id="myFavList" parameterType="hashMap" resultType="hashMap">
+<![CDATA[ 
+	SELECT
+  		S.SPACE_ID,
+  		SPACE_IMG,
+  		SPACE_USE,
+  		SPACE_TITLE,
+  		SPACE_PRI,
+ 		 SPACE_POS 
+	FROM
+SPACE_LIST S 
+INNER JOIN 
+LIKE_LIST L
+ON 
+S.SPACE_ID = L.SPACE_ID 
+WHERE
+USER_ID = #{USER_ID};
+]]>
+</select>
+
+<!-- 찜목록 삭제 --> 
+<delete id="" parameterType="hashmap">
+<![CDATA[ 
+	DELETE FROM LIKE_LIST WHERE SPACE_ID = #{space_id} 
+]]>
+</delete>
+
+<!-- 찜목록 수 -->
+<select id="countFavList" parameterType="hashmap" resultType="integer">
+<![CDATA[
+SELECT count(*)
+FROM
+	SPACE_LIST S
+WHERE
+	DEL_GB='N' and
+	S.USER_ID in
+]]> 
+</select> 
+ 
+ 
  <!-- =======================공간 관리 전체 리스트======================== -->
 	<select id="selectMySpaceList" parameterType="hashmap"
 		resultType="hashmap">
