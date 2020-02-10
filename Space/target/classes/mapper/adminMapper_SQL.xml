@@ -3,17 +3,20 @@
 
 <mapper namespace="admin">
 
-	<select id="adminLogin" parameterType="hashmap" resultType="hashmap">
+	<select id="selectAdminLogin" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				USER_ID, 
 				USER_PASSWORD
 			FROM
 				USER_LIST
+			WHERE USER_ID = #{USER_ID}
+			AND USER_PASSWORD = #{USER_PASSWORD}
+			AND ADMIN = 'Y'
 		]]>
 	</select>
 	
-	<!-- 회원목록 -->
+<!-- 회원목록 -->
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 		
 		<![CDATA[
@@ -30,7 +33,6 @@
 		]]>
 		
 	</select>
-	
 	
 	<!-- 예약목록리스트 -->
 	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
