@@ -85,7 +85,7 @@ $(document).on('click','.bar',function(){
                 	
                 <!-- 로그인했을경우 로그아웃버튼으로 변경-->
                 <%}else{%>
-                	<li><a href="/two/login/logout" onclick="return logout();"><%=log%></a></li>
+                	<a href="/two/login/logout" onclick="return logout();"><%=log%></a></li>
                 	
                 <%} %>
                 	
