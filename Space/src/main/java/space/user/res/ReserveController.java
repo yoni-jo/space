@@ -1,19 +1,29 @@
-package space.user.res;
+package space.main.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
+import space.main.service.ReserveService;
 
 @Controller
 public class ReserveController {
@@ -21,6 +31,9 @@ Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource
 	private ReserveService reserveService;
+	
+	@Resource(name="uploadPath")
+	String path;
 	
 	@RequestMapping("/res/resPay")
 	private ModelAndView getPayInfo(CommandMap map,HttpSession session) throws Exception{
@@ -68,7 +81,82 @@ Logger log = Logger.getLogger(this.getClass());
 		mav.addObject("PAY_DATE",map.get("PAY_DATE"));
 		return mav;
 	}
+	@RequestMapping("/res/resInfo")
+	private ModelAndView myResList(CommandMap map,HttpSession session) {
+		ModelAndView mav = new ModelAndView("res/myResList");
+		String userId=(String)session.getAttribute("USER_ID");
+		if(userId == null) {
+			return new ModelAndView("redirect:/space/SpaceList");
+		}
+		
+		map.put("USER_ID", userId);
+		map.put("PAGE_ROW", "3");
+		
+		List<Map<String,Object>> list = reserveService.getResList(map.getMap());
+		if(list.size()>0) {
+			mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		}else {
+			mav.addObject("TOTAL", 0);
+		}
+		
+		if(map.get("PAGE_INDEX") == null) {
+			mav.addObject("PAGE_INDEX", 1);
+		}else {
+			mav.addObject("PAGE_INDEX", map.get("PAGE_INDEX"));
+		}
+		
+		mav.addObject("RES_LIST", list);
+		mav.addObject("TYPE", map.get("TYPE"));
+		
+		return mav;
+	}
 	
+	@RequestMapping("res/resModify")
+	private ModelAndView resInfoModify(CommandMap map) {
+		ModelAndView mav = new ModelAndView("redirect:/res/resInfo");
+		
+		reserveService.modifyResInfo(map.getMap());
+		
+		return mav;
+	}
+	
+	@RequestMapping("res/addReply")
+	private ModelAndView addReply(HttpServletRequest request,CommandMap map,HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView("redirect:/res/resInfo");
+		
+		String userId = (String)session.getAttribute("USER_ID");
+		
+		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
+		String savedName = null;
+		String allSaveName="";
+		Iterator<String> iter = multiRequest.getFileNames();
+		log.debug("files :"+ multiRequest.getFileNames());
+		MultipartFile files=null;
+		while(iter.hasNext()) {
+			files = multiRequest.getFile(iter.next());
+			if(files.isEmpty()==false) {
+				savedName = createFileName(files.getOriginalFilename());
+
+		        File target = new File(path, savedName);
+		        FileCopyUtils.copy(files.getBytes(),target);
+		        
+		        allSaveName+=savedName;
+		        if(iter.hasNext()) {
+		        	allSaveName+=",";
+		        }
+			}else {
+				if(allSaveName.lastIndexOf(",")>0) {
+					allSaveName = allSaveName.substring(0,allSaveName.lastIndexOf(","));
+				}
+			}
+		}
+		map.put("FILE_NAME", allSaveName);
+		map.put("USER_ID", userId);
+		
+		reserveService.insertReply(map.getMap());
+		
+		return mav;
+	}
 	
 	private String createResNum(CommandMap map) throws Exception{
 		String[] time = ((String)map.get("RES_TIME")).split("-");
@@ -89,7 +177,7 @@ Logger log = Logger.getLogger(this.getClass());
 		return resNum;
 	}
 	private String formatDate(String str) throws Exception {
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyyï¿½ï¿½ MMï¿½ï¿½ ddï¿½ï¿½");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ");
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date date = format1.parse(str);
@@ -100,5 +188,15 @@ Logger log = Logger.getLogger(this.getClass());
 		cal.setTime(new Date());
 		cal.add(Calendar.DATE, 1);
 		return cal.getTime();
+	}
+	private String createFileName(String filename) throws Exception{
+		UUID uuid = UUID.randomUUID();
+		String originalFileExtension =null;
+		String savedName;
+		
+		originalFileExtension = filename.substring(filename.lastIndexOf("."));
+		savedName = uuid+originalFileExtension;
+        
+        return savedName;
 	}
 }

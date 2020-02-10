@@ -1,10 +1,11 @@
-package space.user.search;
+package space.main.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
+import space.main.service.SpaceService;
 
 @Controller
 @SessionAttributes
@@ -28,9 +30,9 @@ public class SpaceController {
 	@Resource
 	private SpaceService spaceService;
 	
-	@RequestMapping(value = "/main")
+	@RequestMapping("/space/SpaceList")
 	private ModelAndView selectSpaceList(CommandMap map, HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView("main");
+		ModelAndView mav = new ModelAndView("main/main");
 		
 		if(session.getAttribute("USER_ID") != null) 
 			map.put("USER_ID", session.getAttribute("USER_ID"));
@@ -48,7 +50,7 @@ public class SpaceController {
 	
 	@RequestMapping("/space/SearchList")
 	private ModelAndView selectSearchList(CommandMap map, HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView("spaceList");
+		ModelAndView mav = new ModelAndView("main/spaceList");
 		
 		if(session.getAttribute("USER_ID") != null) 
 			map.put("USER_ID", session.getAttribute("USER_ID"));
@@ -60,17 +62,12 @@ public class SpaceController {
 		String start = (String)map.get("START_DATE");
 		String end =(String)map.get("END_DATE");
 		List<String> dowList = toDAY_OF_WEEK(start,end);
-		/*
-		 * map.put("TITLE","1"); map.put("POS", "ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½");
-		 */
 		map.put("DAY_LIST", dowList);
 		
 		Map<String,Object> tempMap = spaceService.selectSearchList(map.getMap());
 		List<Map<String,Object>> list=(List<Map<String,Object>>)tempMap.get("SPACE_LIST");
 		List<String> favList = (List<String>)tempMap.get("FAVORI_LIST");
-		if(favList == null) {
-			favList = Collections.emptyList();
-		}
+		
 		/*
 		 * for(String str : favList) { log.debug("-------------------favList > " +
 		 * str+"-------------------");
@@ -119,7 +116,9 @@ public class SpaceController {
 			mav.addObject("DETAIL",temp);
 		}
 		List<Map<String, Object>> list = (List<Map<String, Object>>) spaceMap.get("RES_LIST");
+		List<String> compList = spaceService.selectCompResDate(map.getMap());
 		mav.addObject("RES_LIST",list);
+		mav.addObject("COMP_LIST", compList);
 		return mav;
 		
 	}
@@ -144,11 +143,14 @@ public class SpaceController {
 		ModelAndView mav=new ModelAndView("jsonView");
 		String type=(String)map.get("TYPE");
 		List<Map<String,Object>> list;
+		String cntType="";
 		
 		if(type.equals("QNA_LIST")) {
 			list = spaceService.selectQnAList(map.getMap());
+			cntType="QNA_CNT";
 		}else if(type.equals("REPLY_LIST")){
 			list = spaceService.selectReplyList(map.getMap());
+			cntType="REPLY_CNT";
 		}else list = Collections.emptyList();
 		
 		log.debug(type);
@@ -156,24 +158,23 @@ public class SpaceController {
 		if(list.size()>0) {mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));}
 		else {mav.addObject("TOTAL", 0);}
 		
+		list = textReplace(list,cntType);
+		
 		mav.addObject("TYPE",type);
 		mav.addObject("list", list);
 		return mav;
 	}
 	
 	@RequestMapping("/space/writeQnA")
-	private ModelAndView writeQnAPost(CommandMap map) throws Exception{
+	private ModelAndView writeQnAPost(CommandMap map,HttpSession session) throws Exception{
 		ModelAndView mav= new ModelAndView("redirect:/space/detailSpace");
-		spaceService.writeQnAPost(map.getMap());
 		
-		mav.addObject("SPACE_ID",map.get("SPACE_ID"));
-		return mav;
-	}
-	
-	@RequestMapping("/space/writeReply")
-	private ModelAndView writeReplyPost(CommandMap map) throws Exception{
-		ModelAndView mav= new ModelAndView("redirect:/space/detailSpace");
-		spaceService.writeReplyPost(map.getMap());
+		if(session.getAttribute("USER_ID")==null) {
+			log.info("USER_ID MISSING");
+			return mav;
+		}
+		map.put("USER_ID", session.getAttribute("USER_ID"));
+		spaceService.writeQnAPost(map.getMap());
 		
 		mav.addObject("SPACE_ID",map.get("SPACE_ID"));
 		return mav;
@@ -188,7 +189,7 @@ public class SpaceController {
 	private List<String> divisionString(String div,String str){
 		String[] strArr = str.split(div);
 		List<String> arrList = new ArrayList<String>();
-		log.debug("[ ï¿½ï¿½ï¿½Ú¿ï¿½ ]" +str+" [ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ] "+div);
+		log.debug("[ ¹®ÀÚ¿­ ]" +str+" [ ±¸ºÐÀÚ ] "+div);
 		for(String s:strArr) {
 			log.debug(">>>>>>>>>>>>>>>>  "+s);
 			arrList.add(s);
@@ -248,10 +249,18 @@ public class SpaceController {
 		}
 		return day;
 	}
-
-	@RequestMapping(value = "/space/Myspace_list")
-	private ModelAndView test(CommandMap map) throws Exception{
-		ModelAndView mav = new ModelAndView("form");
-		return mav;
-	}	
+	private List<Map<String,Object>> textReplace(List<Map<String,Object>> list,String type) {
+		String temp;
+		
+		for(int i = 0;i<list.size();i++) {
+			temp = (String)list.get(i).get(type);
+			temp = temp.replace("\r\n", "<br>");
+			list.get(i).put("type", temp);
+			log.debug(temp);
+			log.debug((String)list.get(i).get(type));
+		}
+		
+		return list;
+		
+	}
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import space.common.dao.AbstractDAO;
 @Repository
 public class MySpaceDao extends AbstractDAO{
-	
+	public final static int ERR_RES_LIST = -1;
 	
 	@SuppressWarnings("unchecked")	
 	public List<Map<String, Object>> selectFav(Map<String, Object> map) throws Exception{
@@ -90,6 +90,66 @@ public class MySpaceDao extends AbstractDAO{
 			return (List<Map<String,Object>>)selectList("space.selectResDay",map);
 		else 
 			return (List<Map<String,Object>>)selectList("space.selectResDate",map);		
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectMySpaceList(Map<String,Object> map){
+		return (List<Map<String, Object>>) selectPagingList("mySpace.selectMySpaceList", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectApplySpaceList(Map<String,Object> map){
+		return (List<Map<String, Object>>) selectPagingList("mySpace.selectMyApplyList", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectQnACompList(Map<String,Object> map){
+		return (List<Map<String, Object>>) selectPagingList("mySpace.spaceQNACompList", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectQnAWaitList(Map<String,Object> map){
+		return (List<Map<String, Object>>) selectPagingList("mySpace.spaceQNAList", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectReplyList(Map<String,Object> map){
+		return (List<Map<String, Object>>) selectPagingList("mySpace.spaceReplyList", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectResDate(Map<String,Object> map){
+		return selectList("mySpace.selectResDate",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> searchResList(Map<String,Object> map){
+		return selectList("mySpace.searchResList",map);
+	}
+	public int deleteSpaceBoard(Map<String,Object> map) {
+		try {
+			if(!selectList("mySpace.selectMyResList",map).isEmpty()) {
+				throw new Exception("ResListError");
+			}
+			delete("mySpace.deleteSpaceBoard", map);
+			return 0;
+		}catch(Exception e) {
+			return ERR_RES_LIST;
+		}
+	}
+	public int deleteApplyBoard(Map<String,Object> map) {
+		delete("mySpace.deleteApplyBoard", map);
+		delete("mySpace.deleteResDay",map);
+		delete("mySpace.deleteResDate",map);
+		
+		return 0;
+	}
+	public void holdSpaceBoard(Map<String,Object> map) {
+		update("mySpace.holdSpaceBoard",map);
+	}
+	
+	public void deleteQNAComment(Map<String,Object> map) {
+		update("mySpace.deleteQNAComment", map);
+	}
+	public void spaceQNAComment(Map<String,Object> map) {
+		update("mySpace.spaceQNAComment",map);
+	}
+	public void deleteReply(Map<String,Object> map) {
+		update("mySpace.deleteReply",map);
 	}
 
 	

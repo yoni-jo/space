@@ -99,6 +99,78 @@ public class MySpaceServiceImpl implements MySpaceService{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public List<Map<String, Object>> selectMySpaceList(Map<String, Object> map) {
+		String type=(String)map.get("TYPE");
+		if(type.equals("COMP")) {
+			return mySpaceDao.selectMySpaceList(map);
+		}else if(type.equals("WAIT")) {
+			return mySpaceDao.selectApplySpaceList(map);
+		}else {
+			return Collections.emptyList();
+		}
+	}
+	@Override
+	public List<Map<String, Object>> selectMyQnAList(Map<String, Object> map) {
+		String type=(String)map.get("QnATYPE");
+		if(type.equals("QnACOMP")) {
+			return mySpaceDao.selectQnACompList(map);
+		}else if(type.equals("QnAWAIT")) {
+			return mySpaceDao.selectQnAWaitList(map);
+		}else {
+			return Collections.emptyList();
+		}
+	}
+	@Override
+	public List<Map<String, Object>> selectMyReplyList(Map<String, Object> map) {
+		return mySpaceDao.selectReplyList(map);
+	}
+	@Override
+	public int deleteSpaceBoard(Map<String, Object> map) {
+		int result=0;
+		String type=(String)map.get("TYPE");
+		if(type.equals("COMP")) {
+			result=mySpaceDao.deleteSpaceBoard(map);
+		}else if(type.equals("WAIT")) {
+			result=mySpaceDao.deleteApplyBoard(map);
+		}
+		return result;
+	}
+
+	@Override
+	public void holdSpaceBoard(Map<String, Object> map) {
+		mySpaceDao.holdSpaceBoard(map);
+	}
+
+	@Override
+	public void modifySpaceBoard(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Map<String, Object>> selectResDateList(Map<String, Object> map) {
+		return mySpaceDao.selectResDate(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> searchResSpaceList(Map<String, Object> map) {
+		return mySpaceDao.searchResList(map);
+	}
+	@Override
+	public void deleteQNAComment(Map<String, Object> map) {
+		mySpaceDao.deleteQNAComment(map);
+		
+	}
+	@Override
+	public void spaceQNAComment(Map<String, Object> map) {
+		mySpaceDao.spaceQNAComment(map);
+		
+	}
+	@Override
+	public void deleteReply(Map<String, Object> map) {
+		mySpaceDao.deleteReply(map);
+	}
 
 	
 	

@@ -1,4 +1,4 @@
-package space.user.search;
+package space.main.service;
 
 import java.util.List;
 import java.util.Map;
@@ -10,6 +10,7 @@ public interface SpaceService {
 	List<String> updateFavoriSpace(Map<String,Object> map) throws Exception;
 	List<Map<String,Object>> selectQnAList(Map<String,Object> map) throws Exception;
 	List<Map<String,Object>> selectReplyList(Map<String,Object> map) throws Exception;
+	List<String> selectCompResDate(Map<String,Object> map) throws Exception;
 	void writeQnAPost(Map<String,Object> map) throws Exception;
 	void writeReplyPost(Map<String,Object> map) throws Exception;
 }

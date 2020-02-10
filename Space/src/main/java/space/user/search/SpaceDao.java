@@ -1,4 +1,4 @@
-package space.user.search;
+package space.main.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -44,6 +44,10 @@ public class SpaceDao extends AbstractDAO{
 		else 
 			return (List<Map<String,Object>>)selectList("space.selectResDate",map);
 		
+	}
+	@SuppressWarnings("unchecked")
+	public List<String> selectCompResDate(Map<String,Object> map){
+		return selectList("space.selectCompResDate",map);
 	}
 	public void updateFovoriSpace(Map<String,Object> map)throws Exception{
 		update("updateFavoriSpace",map);

@@ -1,10 +1,13 @@
-package space.user.res;
+package space.main.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+
+import space.main.dao.ReserveDao;
 
 
 
@@ -30,4 +33,19 @@ public class ReserveServiceImpl implements ReserveService{
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> getResList(Map<String, Object> map) {
+		return reserveDao.selectMyResList(map);
+	}
+
+	@Override
+	public void modifyResInfo(Map<String, Object> map) {
+		reserveDao.updateResInfo(map);
+	}
+	@Override
+	public void insertReply(Map<String, Object> map) {
+		reserveDao.insertReply(map);
+		
+	}
+	
 }

@@ -1,5 +1,6 @@
-package space.user.res;
+package space.main.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -18,5 +19,15 @@ public class ReserveDao extends AbstractDAO{
 	}
 	public void insertResInfo(Map<String,Object> map){
 		insert("res.insertResInfo",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectMyResList(Map<String,Object> map){
+		return (List<Map<String, Object>>) selectPagingList("selectMyResList", map);
+	}
+	public void updateResInfo(Map<String,Object> map) {
+		update("res.updateResInfo", map);
+	}
+	public void insertReply(Map<String,Object> map) {
+		insert("res.insertReply", map);
 	}
 }

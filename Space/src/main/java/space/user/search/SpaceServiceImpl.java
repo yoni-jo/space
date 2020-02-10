@@ -1,4 +1,4 @@
-package space.user.search;
+package space.main.service;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+
+import space.main.dao.SpaceDao;
 
 @Service("SpaceService")
 public class SpaceServiceImpl implements SpaceService{
@@ -34,7 +36,11 @@ public class SpaceServiceImpl implements SpaceService{
 	public Map<String,Object> selectSearchList(Map<String, Object> map) throws Exception{
 		Map<String,Object> tempMap = new HashMap<String, Object>();
 		List<Map<String,Object>> list = spaceDao.selectSearchList(map);
-		List<String> favList = spaceDao.selectFavoriList(map);
+		List<String> favList;
+		
+		if (map.get("USER_ID") != null) {
+			favList = spaceDao.selectFavoriList(map);
+		}else favList = Collections.emptyList();
 		
 		tempMap.put("SPACE_LIST", list);
 		tempMap.put("FAVORI_LIST",favList);
@@ -72,6 +78,10 @@ public class SpaceServiceImpl implements SpaceService{
 	@Override
 	public void writeReplyPost(Map<String, Object> map) throws Exception {
 		spaceDao.insertReplyPost(map);
+	}
+	@Override
+	public List<String> selectCompResDate(Map<String, Object> map) throws Exception {
+		return spaceDao.selectCompResDate(map);
 	}
 	
 }
