@@ -26,7 +26,7 @@
 			    USER_NAME,
 			    USER_PHONE,
 			    USER_EMAIL,
-			    USER_DATE 
+			    TO_CHAR(USER_DATE, 'YYYY-MM-DD HH24:MI') AS USER_DATE  
 			FROM 
 			    USER_LIST 
 			WHERE 
