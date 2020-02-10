@@ -9,7 +9,7 @@
 <body>
 	<center><h2>회원 관리</h2></center>
 	
-    <table name = "memberList" class="user_list" align="center">
+    <table name = "memberList" class="user_list" align="center" width="900">
         <colgroup>
             <col width="10%"/>
             <col width="10%"/>
@@ -101,9 +101,10 @@ function fn_memberListCallback(data){
 		gfn_renderPaging(params);
 		var str = "";
 		$.each(data.list, function(key, value){
-			str += "<tr>" + "<td>" + value.USER_ID + "</td>" + "<td>" 
+			str += "<tr>" + "<td>" + "<a href='#this' name='title'>" 
+			+ value.USER_ID + "</a>" + "</td>" + "<td>" 
 		    + value.USER_NAME + "</td>" + "<td>"
-			+ "<input type='hidden' name='title' value=" + value.USER_PHONE + ">" 
+			+  value.USER_PHONE  
 			+ "</td>" + "<td>" + value.USER_EMAIL + "</td>" + "<td>" 
 			+ value.USER_DATE + "</td>" + "</tr>";
 		}); 
