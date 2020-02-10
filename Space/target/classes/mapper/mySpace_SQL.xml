@@ -1,43 +1,190 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="mySpace">
- <!-- =======================공간 관리 전체 리스트======================== -->
+ 
+ <!-- 찜목록 -->
+ <insert id="myFav" parameterType="hashMap">
+<![CDATA[ 
+INSERT INTO 
+LIKE_LIST(
+        USER_ID, 
+        SPACE_ID 
+)VALUES(
+        #{user_id}, 
+        #{space_id} 
+);
+]]>
+</insert>
+
+<!-- 찜목록 리스트 -->
+
+<select id="myFavList" parameterType="hashMap" resultType="hashMap">
+<![CDATA[ 
+	SELECT
+  		S.SPACE_ID,
+  		SPACE_IMG,
+  		SPACE_USE,
+  		SPACE_TITLE,
+  		SPACE_PRI,
+ 		 SPACE_POS 
+	FROM
+SPACE_LIST S 
+INNER JOIN 
+LIKE_LIST L
+ON 
+S.SPACE_ID = L.SPACE_ID 
+WHERE
+USER_ID = #{USER_ID};
+]]>
+</select>
+
+<!-- 찜목록 삭제 --> 
+<delete id="" parameterType="hashmap">
+<![CDATA[ 
+	DELETE FROM LIKE_LIST WHERE SPACE_ID = #{space_id} 
+]]>
+</delete>
+
+<!-- 찜목록 수 -->
+<select id="countFavList" parameterType="hashmap" resultType="integer">
+<![CDATA[
+SELECT count(*)
+FROM
+	SPACE_LIST S
+WHERE
+	DEL_GB='N' and
+	S.USER_ID in
+]]> 
+</select> 
+ 
+ 
+<!-- =======================공간 관리 전체 리스트======================== -->
 	<select id="selectMySpaceList" parameterType="hashmap"
 		resultType="hashmap">
+	<include refid="common.pagingPre"></include>
 	<![CDATA[
 		SELECT 
+			ROW_NUMBER() OVER(ORDER BY SPACE_ID DESC) RNUM,
 			SPACE_ID,
 			SPACE_TITLE,
 			SPACE_SIZE,
 			SPACE_PRI,
-			SPACE_HOLD
+			SPACE_HOLD,
+			SPACE_IMG
 		FROM
 			SPACE_LIST
 		WHERE
 			SPACE_HOST = #{USER_ID}
 	]]>
+	<include refid="common.pagingPost"></include>
 	</select>
+<!-- =======================================공간 등록 글 삭제 -->
+	<update id="deleteSpaceBoard" parameterType="hashmap">
+	<![CDATA[
+		DELETE
+		FROM 
+			SPACE_LIST 
+		WHERE 
+			SPACE_ID = #{SPACE_ID}
+
+	]]>
+	</update>
+<!-- =======================================공간 신청 글 삭제 -->
+<update id="deleteApplyBoard" parameterType="hashmap">
+	<![CDATA[
+		DELETE
+		FROM 
+			SPACE_APPLY_LIST 
+		WHERE 
+			APPLY_NUM = #{SPACE_ID}
+
+	]]>
+</update>
+
+<!-- ==================================공간 신청 글 예약(요일) 삭제          [ 등록글 수정글 공통 부분 ] --> 
+<!-- <update id="deleteResDay" parameterType="hashmap">
+	<![CDATA[
+		DELETE
+		FROM 
+			SRES_DAY
+		WHERE
+			SPACE_ID = #{SPACE_ID}
+	]]>
+</update> -->
+
+<!-- ==================================공간 신청 글 예약(날짜)삭제  		[ 등록글 수정글 공통 부분 ] -->
+<!-- <update id="deleteResDate" parameterType="hashmap">
+	<![CDATA[
+		DELETE
+		FROM 
+			SRES_DATE 
+		WHERE 
+			SPACE_ID = #{SPACE_ID}
+	]]>
+</update>
+ <update id="deleteFav" parameterType="hashmap">
+ <![CDATA[
+		DELETE
+		FROM 
+			LIKE_LIST 
+		WHERE 
+			SPACE_ID = #{SPACE_ID}
+	]]>
+ </update>
+  <update id="deleteResList" parameterType="hashmap">
+ <![CDATA[
+		DELETE
+		FROM 
+			RES_LIST 
+		WHERE 
+			RES_SPACE_ID = #{SPACE_ID}
+	]]>
+ </update>
+   <update id="deleteReplyList" parameterType="hashmap">
+ <![CDATA[
+		DELETE
+		FROM 
+			RES_LIST 
+		WHERE 
+			RES_SPACE_ID = #{SPACE_ID}
+	]]>
+ </update>
+   <update id="deleteQnAList" parameterType="hashmap">
+ <![CDATA[
+		DELETE
+		FROM 
+			RES_LIST 
+		WHERE 
+			RES_SPACE_ID = #{SPACE_ID}
+	]]>
+ </update> -->
 
 	<select id="selectMyApplyList" parameterType="hashmap"
 		resultType="hashmap">
+	<include refid="common.pagingPre"></include>
 	<![CDATA[
 		SELECT 
+			ROW_NUMBER() OVER(ORDER BY APPLY_NUM DESC) RNUM,
 			APPLY_NUM,
 			APPLY_TITLE,
 			APPLY_SIZE,
-			APPLY_PRI
+			APPLY_PRI,
+			APPLY_IMG
 		FROM
 			SPACE_APPLY_LIST
 		WHERE
 			APPLY_ID = #{USER_ID}
 	]]>
+	<include refid="common.pagingPost"></include>
 	</select>
-
+	
 	<select id="spaceQNAList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"></include>
 	<![CDATA[
 		SELECT 
+			ROW_NUMBER() OVER(ORDER BY QNA_NUM DESC) RNUM,
 			S.SPACE_ID,
 			SPACE_TITLE,
 			QNA_NUM,
@@ -51,18 +198,22 @@
 		ON 
 			S.SPACE_ID = Q.SPACE_ID
 		WHERE 
-			SPACE_HOST = #{USER_ID} AND QNA_ANS = 'N'
+			SPACE_HOST = #{USER_ID} AND QNA_ANS = 'N' AND QNA_DEL = 'N'
 	]]>
+	<include refid="common.pagingPost"></include>
 	</select>
 	
 	<select id="spaceQNACompList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"></include>
 	<![CDATA[
 		SELECT 
+			ROW_NUMBER() OVER(ORDER BY QNA_NUM DESC) RNUM,
 			S.SPACE_ID,
 			SPACE_TITLE,
 			QNA_NUM,
 			QNA_TITLE,
 			QNA_CNT,
+			QNA_CMT,
 			QNA_ANS
 		FROM 
 			SPACE_LIST S 
@@ -71,8 +222,9 @@
 		ON 
 			S.SPACE_ID = Q.SPACE_ID
 		WHERE 
-			SPACE_HOST = #{USER_ID} AND QNA_ANS = 'Y'
+			SPACE_HOST = #{USER_ID} AND QNA_ANS = 'Y' AND QNA_DEL = 'N'
 	]]>
+	<include refid="common.pagingPost"></include>
 	</select>
 	<!-- ===================공간글 수정, 삭제 ,보류==================== -->
 <!-- 	==================공간 등록 글 불러오기(수정) ================= -->
@@ -110,14 +262,12 @@
 			SPACE_LIST
 		SET
 		]]>
-		<choose>
-		<when test = "HOLD.equals('N')">
+		<if test = 'HOLD.equals("N")'>
 			SPACE_HOLD = 'Y'
-		</when>
-		<otherwise>
+		</if>
+		<if test = 'HOLD.equals("Y")'>
 			SPACE_HOLD = 'N'
-		</otherwise>
-		</choose>
+		</if>
 		
 		<![CDATA[
 		WHERE
@@ -139,4 +289,123 @@
 	]]>
 	</update>
 	<!-- =================================END================================= -->
+ <select id="selectResDate" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			RES_APPLY_DATE as RDATE 
+		FROM 
+			RES_LIST 
+		WHERE 
+			RES_SPACE_ID 
+		IN (
+			SELECT
+		 		SPACE_ID 
+		 	FROM 
+		 		SPACE_LIST
+		 	WHERE 
+		 		SPACE_HOST = #{USER_ID}
+		 	)
+	]]>
+</select>
+
+ <select id="searchResList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			SPACE_ID,
+			SPACE_TITLE,
+			SPACE_IMG,
+			RES_APPLY_DATE,
+			RES_CONTENT,
+			RES_REQ,
+			RES_NAME,
+			USER_PHONE,
+			RES_EMAIL
+		FROM 
+			RES_LIST R 
+		JOIN 
+			SPACE_LIST S 
+		ON 
+			R.RES_SPACE_ID = S.SPACE_ID
+		WHERE 
+			S.SPACE_HOST = #{USER_ID} 
+		AND 
+			RES_APPLY_DATE BETWEEN #{START} AND #{END}
+	]]>
+</select>
+ 
+ <update id="spaceQNAComment" parameterType="hashmap">
+	<![CDATA[
+		UPDATE 
+			SPACE_QNA_LIST
+		SET 
+			QNA_CMT = #{QNA_CMT},
+			QNA_ANS = 'Y'
+		WHERE 
+			QNA_NUM = #{QNA_NUMBER}
+	]]>
+</update>
+ 
+<update id="deleteQNAComment" parameterType="hashmap">
+	<![CDATA[
+		UPDATE 
+			SPACE_QNA_LIST
+		SET
+			QNA_DEL = 'Y'
+		WHERE 
+			QNA_NUM = #{QNA_NUM}
+	]]>
+</update>
+ 
+ <select id="spaceReplyList" parameterType="hashmap" resultType="hashmap">
+ <include refid="common.pagingPre"></include>
+	<![CDATA[
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY REPLY_NUM DESC) RNUM, 
+			S.SPACE_ID,
+			SPACE_TITLE,
+			REPLY_TITLE,
+			USER_ID,
+			REPLY_NUM,
+			REPLY_DATE,
+			REPLY_CNT,
+			REPLY_IMG
+		FROM 
+			SPACE_LIST S 
+		INNER JOIN 
+			REPLY_LIST R
+		ON 
+			S.SPACE_ID = R.SPACE_ID
+		WHERE 
+			SPACE_HOST = #{USER_ID} AND REPLY_DEL = 'N'
+	]]>
+	<include refid="common.pagingPost"></include>
+</select>
+ 
+ <update id="deleteReply" parameterType="hashmap">
+	<![CDATA[
+		UPDATE 
+			REPLY_LIST
+		SET 
+			REPLY_DEL = 'Y'
+		WHERE 
+			REPLY_NUM = #{REPLY_NUM}
+	]]>
+</update>
+
+ 
+<select id="selectMyResList" parameterType="hashmap" resultType="string">
+<![CDATA[
+	SELECT
+		S.SPACE_ID
+	FROM
+		SPACE_LIST S
+	INNER JOIN
+		RES_LIST R
+	ON
+		S.SPACE_ID = R.RES_SPACE_ID
+	WHERE
+		SPACE_ID = #{SPACE_ID} 
+	AND RES_APPLY_DATE >= SYSDATE
+]]>
+</select>
  </mapper>

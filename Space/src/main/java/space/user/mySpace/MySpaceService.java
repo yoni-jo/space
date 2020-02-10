@@ -5,7 +5,6 @@ import java.util.Map;
 
 interface MySpaceService {
 	List<Map<String,Object>> selectMySpaceList(Map<String,Object> map);
-	List<Map<String,Object>> selectMySpaceList(Map<String,Object> map);
 	List<Map<String,Object>> selectMyQnAList(Map<String,Object> map);
 	List<Map<String,Object>> selectMyReplyList(Map<String,Object> map);
 	int deleteSpaceBoard(Map<String,Object> map);

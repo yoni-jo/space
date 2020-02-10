@@ -18,20 +18,22 @@
 	
 <!-- 회원목록 -->
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
-		
+	<include refid="common.pagingPre"/>	
 		<![CDATA[
-			SELECT
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY USER_ID DESC) RNUM, 
 			    USER_ID,
 			    USER_NAME,
 			    USER_PHONE,
 			    USER_EMAIL,
-			    USER_DATE 
-			FROM
-			    USER_LIST
-			WHERE
+			    TO_CHAR(USER_DATE, 'YYYY-MM-DD HH24:MI') AS USER_DATE  
+			FROM 
+			    USER_LIST 
+			WHERE 
 				USER_VISIBLE='N'    
 		]]>
-		
+	<include refid="search.member" />
+	<include refid="common.pagingPost"/>	
 	</select>
 	
 	<!-- 예약목록리스트 -->

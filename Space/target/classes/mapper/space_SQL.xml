@@ -35,6 +35,7 @@
 			SPACE_PRI,
 			SPACE_READ
 		FROM SPACE_LIST
+		WHERE SPACE_HOLD = 'N'
 	)AA
 ]]>
 </select>
@@ -81,6 +82,7 @@ FROM (
 			SPACE_LIST S 
 		ON 
 			S.SPACE_ID = D.SPACE_ID
+		WHERE S.SPACE_HOLD = 'N'
 	)
    UNION
 	SELECT 
@@ -188,6 +190,7 @@ SELECT
 	ROW_NUMBER() OVER(ORDER BY REPLY_NUM DESC) RNUM,
 	USER_ID,
 	REPLY_NUM,
+	REPLY_TITLE,
 	REPLY_CNT,
 	REPLY_CMT,
 	REPLY_IMG,
@@ -232,6 +235,15 @@ AND
 	
 </select>
 	
+<select id="selectCompResDate" parameterType="hashmap" resultType="string">
+	SELECT
+		RES_APPLY_DATE 
+	FROM 
+		RES_LIST
+	WHERE
+		RES_SPACE_ID = #{SPACE_ID}
+	
+</select>	
 
 <update id="updateFavoriSpace" parameterType="hashmap">
 	<![CDATA[
