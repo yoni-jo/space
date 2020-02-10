@@ -42,6 +42,27 @@
 		</choose>
 	
 	</sql>
+	
+	<sql id="member">
+	
+		<choose>
+			<when test="searchOption == 'USER_ID'">
+				AND USER_ID LIKE '%${keyword}%' 
+			</when>
+			<when test="searchOption == 'USER_NAME'">
+				AND USER_NAME LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'USER_EMAIL'">
+				AND USER_EMAIL LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'ALL'">
+				AND (USER_ID || USER_NAME || USER_EMAIL) LIKE '%${keyword}%' 
+			</when>	
+			<otherwise>
+			</otherwise>
+		</choose>
+	
+	</sql>
 
 </mapper>
 

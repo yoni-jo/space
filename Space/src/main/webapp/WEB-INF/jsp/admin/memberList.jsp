@@ -2,30 +2,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
+<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 </head>
 
 
 <body>
-
-
-<h1 align="center">관리자 화면</h1>
-<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
-<tr>
-<td align="center"><a href="javascript:memberList()">회원 목록</td>
-<td align="center"><a href="javascript:reqList()">공간 신청 관리</td>
-<td align="center"><a href="javascript:spaceList()">등록된 공간 게시판</td>
-<td align="center"><a href="javascript:memberResList()">예약 관리</td>
-<td align="center"><a href="javascript:QNAList()">1:1문의 게시판</td>
-<td align="center"><a href="javascript:noticeList()">공지사항 관리</td>
-</tr>
-</table>
-<br/>
-<br/>
-<br/>
-<br/>
-    <h2>회원 목록</h2>
-    <table name = "memberList" class="user_list">
+	<center><h2>회원 관리</h2></center>
+	
+    <table name = "memberList" class="user_list" align="center">
         <colgroup>
             <col width="10%"/>
             <col width="10%"/>
@@ -43,20 +27,30 @@
                 <th scope="col">가입일</th>
             </tr>
         </thead>
-        <tbody>
-           
-        </tbody>
-        
+      
         <tbody>
         
         
         </tbody>
     </table>
     
-    <center>
+  		  <center>
 				<div id="PAGE_NAVI"></div>
 				<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
 			</center>
+			
+			<form  id="search" align="right" style="padding-right:23%" method="post" >
+            <select id="searchOption" size="1">
+                <option id="USER_ID" value="USER_ID" selected="selected">아이디</option>
+                <option id="USER_NAME" value="USER_NAME" >이  름</option>
+                <option id="USER_EMAIL" value="USER_EMAIL" >E-mail</option>
+                <option id="ALL" value="ALL" >아이디+이름+E-mail</option>
+            </select>
+                 <input type="text" size="16" name="keyword" value="${keyword}" placeholder="검색어 입력" onkeyup="enterkey();">
+                 <input type="text" style="display: none;" />
+                 <input type="button" value="검 색" onClick="fn_memberList(1)">
+                
+   		</form> 		
 			
 	<br/>
     <%@ include file="/WEB-INF/common/include-body.jspf" %>
@@ -65,22 +59,31 @@
     
     <script type="text/javascript">
 $(document).ready(function(){
-	fn_memberPageList(1);
+	
+	fn_memberList(1);
+	
 });
 
-function fn_memberPageList(pageNo){
+/* 검색칸에서 엔터키 누르면 실행 */
+function enterkey() {
+    if (window.event.keyCode == 13) {
+    	fn_memberList(1);
+    }
+}
+
+function fn_memberList(pageNo){
 	var comAjax = new ComAjax();
-	comAjax.setUrl("<c:url value='/admin/memberPageList' />");
-	comAjax.setCallback("fn_memberPageListCallback");
+	comAjax.setUrl("<c:url value='/admin/selectmemberList' />");
+	comAjax.setCallback("fn_memberListCallback");
 	comAjax.addParam("PAGE_INDEX", pageNo);
 	comAjax.addParam("PAGE_ROW", 10);
-	/* comAjax.addParam("keyField", $("#keyField > option:selected").val());
+	comAjax.addParam("searchOption", $("#searchOption > option:selected").val());
 	comAjax.addParam("keyword", $("input[name='keyword']").val());
-	 */
+	 
 	comAjax.ajax();
 }
 
-function fn_memberPageListCallback(data){
+function fn_memberListCallback(data){
 	var total = data.TOTAL;
 	var body = $("table[name='memberList'] > tbody");
 	body.empty();
@@ -92,7 +95,7 @@ function fn_memberPageListCallback(data){
 			divId : "PAGE_NAVI",
 			pageIndex : "PAGE_INDEX",
 			totalCount : total,
-			eventName : "fn_memberPageList",
+			eventName : "fn_memberList",
 			recordCount : 10
 		};
 		gfn_renderPaging(params);
@@ -105,10 +108,10 @@ function fn_memberPageListCallback(data){
 			+ value.USER_DATE + "</td>" + "</tr>";
 		}); 
 		body.append(str);
-		/*  $("a[name='title']").on("click", function(e){
+		$("a[name='title']").on("click", function(e){
 			e.preventDefault();
 			fn_noticeDetail($(this));
-		});  */
+		});
 	}
 } 
 </script>
