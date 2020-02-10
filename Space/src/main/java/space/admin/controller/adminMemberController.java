@@ -25,23 +25,8 @@ public class adminMemberController {
     public ModelAndView memberList(CommandMap commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/admin/memberList");
     	
-    	return mv;
-    }
-	
-	@RequestMapping(value="/admin/memberpageList")
-    public ModelAndView memberPageList(CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	
-    	List<Map<String,Object>> list = adminMemberService.memberPageList(commandMap.getMap()); 
-    	mv.addObject("list", list); 
-    	if(list.size() > 0){ 
-    		mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT")); 
-    		} 
-    	else{ 
-    		mv.addObject("TOTAL", 0); 
-    		}
-
-    	
+    	List<Map<String,Object>> list = adminMemberService.selectMemberList(commandMap.getMap());
+    	mv.addObject("list", list);
     	
     	return mv;
     }

@@ -31,23 +31,6 @@
 		
 	</select>
 	
-	<!-- 회원목록페이징(미완성) -->
-	<select id="memberPageList" parameterType="hashmap" resultType="hashmap">
-		<include refid="common.pagingPre"/> 
-			<![CDATA[
-				SELECT
-				    USER_ID,
-				    USER_NAME,
-				    USER_PHONE,
-				    USER_EMAIL,
-				    USER_DATE 
-				FROM
-				    USER_LIST
-				WHERE
-					USER_VISIBLE='N'    
-			]]>
-		<include refid="common.pagingPost"/>
-	</select>
 	
 	<!-- 예약목록리스트 -->
 	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
