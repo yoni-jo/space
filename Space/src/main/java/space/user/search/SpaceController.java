@@ -3,7 +3,6 @@ package space.user.search;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -249,4 +248,10 @@ public class SpaceController {
 		}
 		return day;
 	}
+
+	@RequestMapping(value = "/space/Myspace_list")
+	private ModelAndView test(CommandMap map) throws Exception{
+		ModelAndView mav = new ModelAndView("form");
+		return mav;
+	}	
 }

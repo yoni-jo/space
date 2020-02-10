@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 
+<script src="http://code.jquery.com/jquery-1.7.js"></script>
 <%
 
 String id="";
@@ -22,15 +23,32 @@ if(session.getAttribute("USER_ID")!=null){
     
 #top{border-bottom:1px solid;width: 100%;height: 100%;height: 80px;margin-top:15px}
 #menu{width: 70%;margin-left: 15%;}
-.logo{width: 10%;float:left;font-size: 20px;}
-.nav{margin:0px;float: right;margin-left: auto; position: relative;}
-.nav>li{float:left;margin-left:10px} 
-.hide{position:absolute;   margin-top: 36px; right: 0; display: none;}
-i{border: 1px solid;}
+.logo{width: 10%;float:left;font-size: 20px;margin-top:20px}
+.nav{talign-items: center;ext-align:center; margin:0px;float: right; position: relative;}
+.nav>li{width:150px;height:50px;float:left;display:flex ;align-items:center;} 
+.nav>li>a{width: 100%;text-align: center;} 
+.nav>li>a:hover{transition:all 0.3s ease-in;border-left:8px solid #ffaa28; }
 
+/*메뉴 토글 */
+.bar{text-align: center;}
+.hide{position: fixed;top:calc(10%);left: calc(100% - 380px);display: none;padding: 0; background-color: white;border:1px solid gray;border-radius: 10px}
+.hide>li{ cursor:pointer; height:50px;display:flex; align-items: center;position: relative;}
 
+.hide>li:hover{transition:all 0.4s ease-in;border-bottom:10px solid #9400d3;}
+.hide>li:hover:last-child{border-radius: 10px;}
+.hide>li>a{display:block;width: 100%; text-align: center;line-height: 50px;}
+.hide>li>a:hover{transition:all 0.4s ease-in; border:1px solid gray}
+ /*메뉴 삼색바 디자인  */
+ #x{display: inline-block;width: 100%}
+.bar1, .bar2, .bar3 {
+  width:calc(50%/3);
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+
+} 
    </style>
-<script>
+<script type="text/javascript">
 function logout() {
 	if(confirm("로그아웃하시겠습니까?")==true){
 		alert("로그아웃되었습니다.");
@@ -38,6 +56,12 @@ function logout() {
 		return false;
 	}
 }
+$(document).on('click','.bar',function(){
+	
+	$('.hide').slideToggle();
+
+}); 
+
 
 </script>
  <div id="top" >
@@ -65,16 +89,15 @@ function logout() {
                 	
                 <%} %>
                 	
-                <li class="bar">
-                
-                <div>메뉴</div>
-                   
-                </li>
-                <li class="hide">
-                    <div>
-                        <ul>
-                            <li>${USER_ID}님 </li>
-                                          <%if(id != ""){%> <li><a href="/two/member/MemberModifyForm">개인정보변경</a></li> <%} %>
+                <li class="bar" onclick="">
+                <div id="x">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div></div>
+                	<ul class="hide">
+                            <li>${USER_ID}님<span></span> </li>
+                             <%if(id != ""){%> 
+                             <li><a href="/two/member/MemberModifyForm">개인정보변경</a></li> <%} %>
                             <li><a href="#">전체 공간 리스트 보기</a></li>
                             <li><a href="#">예약공간보기</a></li>
                             <li><a href="#">찜한공간보기</a></li>
@@ -82,8 +105,8 @@ function logout() {
                             <li><a href="#">공지사항</a></li>
                            
                         </ul> 
-                    </div>
                 </li>
+                
             </ul>
             
         </div>

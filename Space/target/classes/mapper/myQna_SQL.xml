@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myqna">
+
+<insert id="insertUserAdQNAWrite" parameterType="hashmap" >
+<![CDATA[
+INSERT INTO 
+ADMIN_QNA_LIST(
+USER_ID,
+ADQNA_NUM,
+ADQNA_TITLE,
+ADQNA_CNT,
+ADQNA_ANS,
+ADQNA_DATE 
+) 
+VALUES
+(
+'q',
+ADQNA_NUM_SEQ.NEXTVAL,
+#{ADQNA_TITLE},
+#{ADQNA_CNT},
+'N',
+SYSDATE 
+)
+]]>
+</insert>
+
+<select id="selectUserAdQNAList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT 
+ADQNA_NUM,
+ADQNA_TITLE,
+ADQNA_CNT,
+ADQNA_CMT,
+ADQNA_ANS,
+ADQNA_DATE 
+FROM 
+ADMIN_QNA_LIST     
+ORDER BY ADQNA_NUM DESC  
+]]>
+</select>
+
+<select id="selectAdminQNADetail" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+SELECT 
+USER_ID,
+ADQNA_NUM,
+ADQNA_TITLE,
+ADQNA_CNT,
+ADQNA_CMT,
+ADQNA_ANS,
+ADQNA_DATE 
+FROM 
+ADMIN_QNA_LIST
+WHERE 
+ADQNA_NUM = #{ADQNA_NUM} 
+]]>
+</select>
+
+<update id="updateAdQNA" parameterType="hashMap">
+<![CDATA[
+UPDATE ADMIN_QNA_LIST 
+SET
+ADQNA_TITLE = #{ADQNA_TITLE},
+ADQNA_CNT = #{ADQNA_CNT}
+WHERE
+ADQNA_NUM = #{ADQNA_NUM}
+]]>
+</update>
+
+<delete id="deleteQNA" parameterType="hashmap">
+<![CDATA[
+DELETE FROM ADMIN_QNA_LIST WHERE ADQNA_NUM = #{ADQNA_NUM}
+]]>
+</delete>
+
+</mapper>

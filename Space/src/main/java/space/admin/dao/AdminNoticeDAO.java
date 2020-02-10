@@ -1,5 +1,6 @@
 package space.admin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +14,11 @@ public class AdminNoticeDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectNoticeList(Map<String, Object> map) 
 		throws Exception{
-		return (List<Map<String, Object>>) selectList("admin.selectAdminNoticeList", map);
+		return (List<Map<String, Object>>) selectPagingList("admin.selectAdminNoticeList", map);
 	}
 	
 	public void insertNotice(Map<String, Object> map) throws Exception{
+		
 		insert("admin.insertNotice", map);
 	}
 	
@@ -37,6 +39,6 @@ public class AdminNoticeDAO extends AbstractDAO{
 	public void deleteNotice(Map<String, Object> map) throws Exception{
 		delete("admin.deleteNotice", map);
 	}
-
-
+	
+	
 }

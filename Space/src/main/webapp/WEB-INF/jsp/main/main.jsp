@@ -14,8 +14,14 @@ if(session.getAttribute("USER_ID") != null){
 <style>
 	.infoImage:hover{cursor: pointer; outline: black;}
 	.favBtn:hover{cursor: pointer; outline: black;}
-	#mainform{position: fixed;}
-	#t{margin-left:calc(50% - 250px);margin-top:30px}
+	/*선택창  */
+	#t{margin-left:calc(50% - 250px);margin-top:30px;border-radius: 10px;background-color:#bdbdbd4f}
+
+select {
+	 height:30px ;border:1px solid maroon;
+}
+input{height: 30px;border:1px solid maroon;}
+#searchBtn{background-color: purple;border:0;color:white}
 </style>
 </head>
 
@@ -24,7 +30,7 @@ if(session.getAttribute("USER_ID") != null){
 	<input id="userId" type="hidden" value="${USER_ID}">
 </c:if>
 <table id="t" width="500px" height ="200px" 
-	style=" border-style:solid; border-spacing: 2px; border-collapse: separate;">
+	style=" border-spacing: 2px; border-collapse: separate;">
 <tr>
 <td>
 <div style="float:left;  width: 50%;">
@@ -51,7 +57,7 @@ if(session.getAttribute("USER_ID") != null){
 <tr>
 <td>
 
-<div id="maincontent" style="width: 50%;">
+<div id="maincontent" style="width: 50%; float:left;">
 <label style="font-weight: bold;">기간</label><br>
 <input type="text" id="startDate" 
 readonly="readonly" value="${START_DATE}" size="10">

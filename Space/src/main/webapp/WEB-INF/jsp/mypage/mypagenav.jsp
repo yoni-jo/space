@@ -48,10 +48,8 @@ position:fixed;
 /* 이벤트 */
 .hover {
 	background-color: blueviolet;
-	color: white;
+	color:white;
 }
-
-
 
 </style>
 			
@@ -63,7 +61,7 @@ position:fixed;
 						<li><a href="">1:1문의</a></li>
 						<li><a href="/two/member/MemberModifyForm">개인정보 변경</a></li>
 						<li><a href=""></a></li>
-						<li><a href="">내 공간 관리</a></li>
+						<li><a href="/two/space/Myspace_list"">내 공간 관리</a></li>
 					</ul>
 
 				</nav>

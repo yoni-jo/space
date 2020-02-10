@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-</head>
+<style>
+.add-table{margin-left: calc((100%/2) - 400px);border:1px solid; width:800px}
+.title{width:800px;}
+
+</style>
+
+
 <body>
-<div style="text-align:right">
+<div class="title" style="text-align:right">
 <font color=red>*</font>는 필수 입력사항입니다<br/><br/>
 </div>
 <br /><br />
@@ -192,7 +193,3 @@
 				</tr>				
 				
 	</table>
-
-
-</body>
-</html>

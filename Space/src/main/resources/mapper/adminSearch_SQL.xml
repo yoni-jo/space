@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="search">
+
+	
+	<sql id="notice">
+	
+		<choose>
+			<when test="searchOption == 'NTC_TITLE'">
+				WHERE NTC_TITLE LIKE '%${keyword}%' 
+			</when>
+			<when test="searchOption == 'NTC_CONTENT'">
+				WHERE NTC_CONTENT LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'ALL'">
+				WHERE (NTC_TITLE || NTC_CONTENT) LIKE '%${keyword}%' 
+			</when>	
+			<otherwise>
+			</otherwise>
+		</choose>
+	
+	</sql>
+	
+	<sql id="ADQNA">
+	
+		<choose>
+			<when test="searchOption == 'ADQNA_TITLE'">
+				WHERE ADQNA_TITLE LIKE '%${keyword}%' 
+			</when>
+			<when test="searchOption == 'USER_ID'">
+				WHERE USER_ID LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'ADQNA_CNT'">
+				WHERE ADQNA_CNT LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'ALL'">
+				WHERE (ADQNA_TITLE || USER_ID || ADQNA_CNT) LIKE '%${keyword}%' 
+			</when>	
+			<otherwise>
+			</otherwise>
+		</choose>
+	
+	</sql>
+
+</mapper>
+
+
+
