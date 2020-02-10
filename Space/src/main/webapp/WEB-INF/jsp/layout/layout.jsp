@@ -27,7 +27,7 @@ font-family: 'Noto Sans KR', sans-serif;}
    html,body{height: 100%;}
    h1{padding-top: 30px;text-align: center}
    li{list-style: none;cursor: pointer;text-align: center;}
-   a{text-decoration: none;color:black}
+   a{text-decoration: none;color:black;cursor: pointer;}
    #wrap{border: 1px soild}
    
    
@@ -39,9 +39,6 @@ font-family: 'Noto Sans KR', sans-serif;}
 </style>
 <script type="text/javascript">
 /* 메뉴 토글 */
-$('.bar').click(function(){
-	console.log("ㅇㅇ");
-});
 
 
 </script>
