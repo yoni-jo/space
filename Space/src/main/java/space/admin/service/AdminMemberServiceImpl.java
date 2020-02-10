@@ -17,10 +17,19 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	
 	@Resource(name="AdminMemberDAO")
 	private AdminMemberDAO adminMemberDAO;
+	
+		
+	@Override
+	public List<Map<String, Object>> memberPageList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminMemberDAO.memberPageList(map);
+	}
+
 
 	@Override
 	public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return adminMemberDAO.selectMemberList(map);
+		return null;
 	}
+	
 }

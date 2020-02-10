@@ -19,6 +19,80 @@
 		]]>
 	</select>
 	
+	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				ROW_NUMBER()OVER(ORDER BY SPACE_ID DESC) RNUM,
+				RST.* FROM(
+				SELECT 
+					SPACE_ID,
+					SPACE_TITLE,
+					SPACE_USE,
+					SPACE_IMG,
+					SPACE_POS,
+					SPACE_PRI,
+					RES_APPLY_DATE,
+					USER_ID,
+					USER_PHONE,
+					RES_EMAIL,
+					RES_NAME,
+					RES_NUM 
+				FROM 
+					RES_LIST R 
+				INNER JOIN 
+					SPACE_LIST 
+				ON R.RES_SPACE_ID = SPACE_ID
+			)RST
+		]]>
+	</select>
+	
+	<select id="selectspaceList" parameterType="hashMap" resultType="hashMap">
+<![CDATA[ 
+	SELECT 
+		S.SPACE_ID, 
+		S.SPACE_TITLE, 
+		S.SPACE_USE, 
+		S.SPACE_POS, 
+		S.SPACE_PRI, 
+		S.SPACE_IMG, 
+		S.SPACE_HOST,
+		U.USER_NAME,
+		U.USER_PHONE, 
+		U.USER_EMAIL 
+	FROM
+		SPACE_LIST S, 
+		USER_LIST U 
+	WHERE 
+		SPACE_HOLD = 'N' AND SPACE_DEL_GB = 'N'
+    ORDER BY SPACE_ID DESC
+]]>
+</select>
+
+<select id="selectreqList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			APPLY_NUM, 
+			APPLY_MODIFY,
+			APPLY_IMG,
+			APPLY_TITLE,
+			APPLY_POS,
+			APPLY_PRI,
+			APPLY_USE,
+  			APPLY_ID,
+			USER_ID,
+			USER_NAME,
+			USER_PHONE,
+			USER_EMAIL
+		FROM 
+			SPACE_APPLY_LIST
+		INNER JOIN 
+			USER_LIST
+		ON 
+			APPLY_ID=USER_ID
+		ORDER BY APPLY_NUM DESC
+	]]>
+</select>
+
 	<!-- 공지사항 관련 -->
 	
 	<select id="selectAdminNoticeList" parameterType="hashmap" resultType="hashmap">

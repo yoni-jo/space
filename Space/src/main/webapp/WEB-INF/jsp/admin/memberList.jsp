@@ -1,53 +1,118 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-adminHeader.jspf" %>
-<meta charset="EUC-KR">
-<title>È¸¿ø ¸ñ·Ï ¸®½ºÆ®</title>
+
 </head>
+
+
 <body>
-	<h2 align="center">È¸¿ø ¸ñ·Ï ¸®½ºÆ®</h2>
-	<table class="member_list" align="center" width="80%">
-		<colgroup>
-			<col width="20%"/>
-			<col width="15%"/>
-			<col width="20%"/>
-			<col width="30%"/>
-			<col width="15%"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th scope="col">¾ÆÀÌµğ</th>
-				<th scope="col">ÀÌ¸§</th>
-				<th scope="col">ÀüÈ­¹øÈ£</th>
-				<th scope="col">ÀÌ¸ŞÀÏ</th>
-				<th scope="col">°¡ÀÔÀÏ</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:choose>
-				<c:when test="">
-					<c:forEach items="${list }" var="row">
-						<tr>
-							<td>${row.IDX }</td>
-							<td class="title">
-								<a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="IDX" value="${row.IDX}">
-							</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="80%">Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</tbody>
-	</table>
+
+
+<h1 align="center">ê´€ë¦¬ì í™”ë©´</h1>
+<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
+<tr>
+<td align="center"><a href="javascript:memberList()">íšŒì› ëª©ë¡</td>
+<td align="center"><a href="javascript:reqList()">ê³µê°„ ì‹ ì²­ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:spaceList()">ë“±ë¡ëœ ê³µê°„ ê²Œì‹œíŒ</td>
+<td align="center"><a href="javascript:memberResList()">ì˜ˆì•½ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:QNAList()">1:1ë¬¸ì˜ ê²Œì‹œíŒ</td>
+<td align="center"><a href="javascript:noticeList()">ê³µì§€ì‚¬í•­ ê´€ë¦¬</td>
+</tr>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+    <h2>íšŒì› ëª©ë¡</h2>
+    <table name = "memberList" class="user_list">
+        <colgroup>
+            <col width="10%"/>
+            <col width="10%"/>
+            <col width="15%"/>
+            <col width="20%"/>
+            <col width="20%"/>
+        </colgroup>
+      
+        <thead>
+            <tr>
+                <th scope="col">ì•„ì´ë””</th>
+                <th scope="col">ì´ë¦„</th>
+                <th scope="col">ì „í™”ë²ˆí˜¸</th>
+                <th scope="col">ì´ë©”ì¼</th>
+                <th scope="col">ê°€ì…ì¼</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+        
+        <tbody>
+        
+        
+        </tbody>
+    </table>
+    
+    <center>
+				<div id="PAGE_NAVI"></div>
+				<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+			</center>
+			
 	<br/>
-	
+    <%@ include file="/WEB-INF/common/include-body.jspf" %>
+    
+    
+    
+    <script type="text/javascript">
+$(document).ready(function(){
+	fn_memberPageList(1);
+});
+
+function fn_memberPageList(pageNo){
+	var comAjax = new ComAjax();
+	comAjax.setUrl("<c:url value='/admin/memberPageList' />");
+	comAjax.setCallback("fn_memberPageListCallback");
+	comAjax.addParam("PAGE_INDEX", pageNo);
+	comAjax.addParam("PAGE_ROW", 10);
+	/* comAjax.addParam("keyField", $("#keyField > option:selected").val());
+	comAjax.addParam("keyword", $("input[name='keyword']").val());
+	 */
+	comAjax.ajax();
+}
+
+function fn_memberPageListCallback(data){
+	var total = data.TOTAL;
+	var body = $("table[name='memberList'] > tbody");
+	body.empty();
+	if(total == 0){
+		var str = "<tr><td colspan='4'>ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td></tr>"; 
+		body.append(str);
+	}else{
+		var params = {
+			divId : "PAGE_NAVI",
+			pageIndex : "PAGE_INDEX",
+			totalCount : total,
+			eventName : "fn_memberPageList",
+			recordCount : 10
+		};
+		gfn_renderPaging(params);
+		var str = "";
+		$.each(data.list, function(key, value){
+			str += "<tr>" + "<td>" + value.USER_ID + "</td>" + "<td>" 
+		    + value.USER_NAME + "</td>" + "<td>"
+			+ "<input type='hidden' name='title' value=" + value.USER_PHONE + ">" 
+			+ "</td>" + "<td>" + value.USER_EMAIL + "</td>" + "<td>" 
+			+ value.USER_DATE + "</td>" + "</tr>";
+		}); 
+		body.append(str);
+		/*  $("a[name='title']").on("click", function(e){
+			e.preventDefault();
+			fn_noticeDetail($(this));
+		});  */
+	}
+} 
+</script>
+    
+
 </body>
 </html>

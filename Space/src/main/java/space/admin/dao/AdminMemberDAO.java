@@ -10,8 +10,9 @@ import space.common.dao.AbstractDAO;
 @Repository("AdminMemberDAO")
 public class AdminMemberDAO extends AbstractDAO{
 
+
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception{
-		return (List<Map<String, Object>>)selectList("admin.selectMemberList", map);
+	public List<Map<String, Object>> memberPageList(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectPagingList("admin.memberPageList", map);
 	}
 }
