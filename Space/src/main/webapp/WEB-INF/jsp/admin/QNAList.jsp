@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-adminHeader.jspf" %>
+<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <title>공지 사항 뷰</title>
 </head>
 <body>
@@ -55,7 +55,7 @@
 		
 		<br/>
 
-		<%@ include file="/WEB-INF/include/include-adminBody.jspf" %>		
+		<%@ include file="/WEB-INF/common/include-adminBody.jspf" %>		
 		<script type="text/javascript">
        		$(document).ready(function(){
        			/* 페이징 관련 */
