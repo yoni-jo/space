@@ -22,6 +22,12 @@ if(session.getAttribute("USER_ID") != null){
 	.opt>a:hover{font-weight: bold;}
 	.infoImage:hover{cursor: pointer; outline: black;}
 	.favBtn:hover{cursor: pointer; outline: black;}
+	#t2{margin-left:calc(50% - 350px);margin-top:20px; border-radius: 10px;border:0}
+	th{font-style: white}
+	th,tr,td{background: #bdbdbd1c; border:1px solid white}
+	.opt_date>input{border:0}
+	#searchTitle{height: 30px;}
+	#searchBtn{background-color:#F44336;border:0;color:white;height:100%;vertical-align: sub }
 </style>
 </head>
 <body>
@@ -30,13 +36,13 @@ if(session.getAttribute("USER_ID") != null){
 		<c:if test="${!empty USER_ID}">
 			<input id="userId" type="hidden" value="${USER_ID}">
 		</c:if>
-		<div style="display: inline-block; align-self: center">
-		<input type="text" id="searchTitle" placeholder="검색어 입력" style="width: 400px; height: 22px">
+		<div style="display: inline-block; align-self: center; margin-top:10px">
+		<input type="text" id="searchTitle" placeholder="검색어 입력" style="width: 400px;">
 		<button id="searchBtn" style="font-size: 22px;" >검색</button>
 		</div>
 		<p>
 		<div class="option">
-		<table border="1" cellpadding="10" cellspacing="0" align="center" 
+		<table border="1" cellpadding="10" cellspacing="0" align="center" id="t2"
 			style="width: 700px; table-layout: fixed;" >
 			<colgroup>
 				<col width="15%">
@@ -93,7 +99,7 @@ if(session.getAttribute("USER_ID") != null){
 		</div>
 		<p>
 		<div style="width: 800px; display: inline-block;">
-			<table style="width: 800px;">
+			<table style="width: 800px;" >
 			<colgroup>
 				<col width="35%">
 				<col width="35%">
