@@ -28,9 +28,9 @@ public class SpaceController {
 	@Resource
 	private SpaceService spaceService;
 	
-	@RequestMapping("/space/SpaceList")
+	@RequestMapping("/main")
 	private ModelAndView selectSpaceList(CommandMap map, HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView("main/main");
+		ModelAndView mav = new ModelAndView("main");
 		
 		if(session.getAttribute("USER_ID") != null) 
 			map.put("USER_ID", session.getAttribute("USER_ID"));
