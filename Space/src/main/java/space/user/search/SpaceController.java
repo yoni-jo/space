@@ -1,11 +1,10 @@
-package space.main.controller;
+package space.user.search;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
-import space.main.service.SpaceService;
 
 @Controller
 @SessionAttributes

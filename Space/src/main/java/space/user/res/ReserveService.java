@@ -1,4 +1,4 @@
-package space.main.service;
+package space.user.res;
 
 import java.util.List;
 import java.util.Map;

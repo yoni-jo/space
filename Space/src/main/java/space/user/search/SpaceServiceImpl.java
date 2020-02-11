@@ -1,4 +1,4 @@
-package space.main.service;
+package space.user.search;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,8 +9,6 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-
-import space.main.dao.SpaceDao;
 
 @Service("SpaceService")
 public class SpaceServiceImpl implements SpaceService{

@@ -1,7 +1,6 @@
-package space.main.controller;
+package space.user.res;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
-import space.main.service.ReserveService;
 
 @Controller
 public class ReserveController {
