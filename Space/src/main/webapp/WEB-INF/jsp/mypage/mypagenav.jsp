@@ -26,21 +26,21 @@
 
 </script>
 <style type="text/css">
-/* ¸Ş´º¹Ù */
+/* ë©”ë‰´ë°” */
 #mypagemenubar {position:fixed;	float: left;	margin-left: 5%;	margin-top:50px;width: 150px;}
 #mypagemenu>ul>li>a {display: block;}
 #mypagemenu>ul {padding-left: 0;height: 300px;}
 #mypagemenu>ul>li {	border: 1px solid #ccc;	width: 150px;height: 50px;text-align: center;line-height: 50px;}
 
 
-/*°¨ÃçÁø¸Ş´º ¸¶¿ì½º ¿À¹öÀÌº¥Æ®  */
+/*ê°ì¶°ì§„ë©”ë‰´ ë§ˆìš°ìŠ¤ ì˜¤ë²„ì´ë²¤íŠ¸  */
 .mypagehide{padding:0}
 .mypagehide>li{display: none;}
 .mypagehide>li>a{text-align: center;}
 .mypagehide>li>a span{height: 5px;width:0%;background: #e91e63;display:block; transition:all 0.4s ease-in;}
 .mypagehide li a:hover span{font-weight: bold;width: 100%}
 
-/* ¸¶¿ì½º¿À¹öÀÌº¥Æ® */
+/* ë§ˆìš°ìŠ¤ì˜¤ë²„ì´ë²¤íŠ¸ */
 .myhover {background:gray; opacity:50%;transition:all 0.2s ease-in;
 /* 	color:white;
 	font-weight: bold
@@ -51,17 +51,17 @@
 			
 				<nav id="mypagemenu">
 					<ul>
-						<li><a href="">³»°¡ ¿¹¾àÇÑ °ø°£</a></li>
+						<li><a href="">ë‚´ê°€ ì˜ˆì•½í•œ ê³µê°„</a></li>
 
-						<li><a href="">³»°¡ ÂòÇÑ °ø°£</a></li>
-						<li><a href="">1:1¹®ÀÇ</a></li>
-						<li><a href="/two/member/MemberModifyForm">°³ÀÎÁ¤º¸ º¯°æ</a></li>
-						<li><a href="">¾Æ¹«°ÍµÎ À¾´Ù¾Æ¾Æ¾Æ</a></li>
-						<li class="mypagebar">³» °ø°£ °ü¸®
+						<li><a href="/two/mypage/myFavList">ë‚´ê°€ ì°œí•œ ê³µê°„</a></li>
+						<li><a href="">1:1ë¬¸ì˜</a></li>
+						<li><a href="/two/member/MemberModifyForm">ê°œì¸ì •ë³´ ë³€ê²½</a></li>
+						<li><a href="">ì•„ë¬´ê²ƒë‘ ìë‹¤ì•„ì•„ì•„</a></li>
+						<li class="mypagebar">ë‚´ ê³µê°„ ê´€ë¦¬
 			<ul class="mypagehide">
-				<li><a href="/two/space/Myspace_list">³» °ø°£ µî·ÏÇÏ±â</a></li>
-				<li><a href="/two/space/Myspace_list">³» °ø°£ °ü¸®ÇÏ±â</a></li>
-				<li><a href="/two/space/Myspace_list">³» °ø°£ ¿¹¾à»óÈ²</a></li>
+				<li><a href="/two/space/Myspace_list">ë‚´ ê³µê°„ ë“±ë¡í•˜ê¸°</a></li>
+				<li><a href="/two/space/Myspace_list">ë‚´ ê³µê°„ ê´€ë¦¬í•˜ê¸°</a></li>
+				<li><a href="/two/space/Myspace_list">ë‚´ ê³µê°„ ì˜ˆì•½ìƒí™©</a></li>
 			</ul>
 		</li>
 					</ul>
