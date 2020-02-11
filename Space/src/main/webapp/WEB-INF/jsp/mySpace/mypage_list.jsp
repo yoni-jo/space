@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div class="myPageList_top">
 	<h1 style="width:400px;">		
 		<p>내 공간 관리</p>

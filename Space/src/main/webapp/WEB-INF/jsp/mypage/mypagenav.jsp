@@ -41,11 +41,8 @@
 .mypagehide li a:hover span{font-weight: bold;width: 100%}
 
 /* 마우스오버이벤트 */
-.myhover {background:gray; opacity:50%;transition:all 0.2s ease-in;
-/* 	color:white;
-	font-weight: bold
-}
-.myhover>a:hover{color:white;} */
+.myhover {background:gray; opacity:50%;transition:all 0.2s ease-in;}
+
 
 </style>
 			
@@ -59,7 +56,7 @@
 						<li><a href="">아무것두 읍다아아아</a></li>
 						<li class="mypagebar">내 공간 관리
 			<ul class="mypagehide">
-				<li><a href="/two/space/Myspace_list">내 공간 등록하기</a></li>
+				<li><a href="/two/space/Form">내 공간 등록하기</a></li>
 				<li><a href="/two/space/Myspace_list">내 공간 관리하기</a></li>
 				<li><a href="/two/space/Myspace_list">내 공간 예약상황</a></li>
 			</ul>

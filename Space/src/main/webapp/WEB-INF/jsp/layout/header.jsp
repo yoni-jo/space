@@ -58,7 +58,8 @@ function logout() {
 }
 $(document).on('click','.bar',function(){
 	
-	$('.hide').slideToggle();
+	$('.hide').slideDown();
+	console.log("click");
 
 }); 
 

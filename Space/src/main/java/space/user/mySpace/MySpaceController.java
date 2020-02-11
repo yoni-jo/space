@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -193,6 +194,17 @@ public class MySpaceController {
 		return list;
 		
 	}
-
-
+//내공간등록하기
+	@RequestMapping(value="/space/Form")
+	public ModelAndView myspacelist(CommandMap map) {
+		ModelAndView mv = new ModelAndView("form");
+		
+		return mv;
+	}
+	@RequestMapping(value="/space/Myspace_list")
+	public ModelAndView myspacelist2(CommandMap map) {
+		ModelAndView mv = new ModelAndView("mypage_list");
+		
+		return mv;
+	}
 }
