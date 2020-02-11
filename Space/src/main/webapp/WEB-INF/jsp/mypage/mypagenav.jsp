@@ -48,7 +48,7 @@
 			
 				<nav id="mypagemenu">
 					<ul>
-						<li><a href="">내가 예약한 공간</a></li>
+						<li><a href="/two/res/resInfo">내가 예약한 공간</a></li>
 
 						<li><a href="">내가 찜한 공간</a></li>
 						<li><a href="">1:1문의</a></li>
