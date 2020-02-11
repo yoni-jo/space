@@ -1,4 +1,4 @@
-package space.main.service;
+package space.user.join;
 
 import java.util.Map;
 import java.io.File;
@@ -10,8 +10,6 @@ import javax.annotation.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
-import space.user.join.JoinDAO;
 
 @Service("JoinService")
 public class JoinServiceImpl implements JoinService{

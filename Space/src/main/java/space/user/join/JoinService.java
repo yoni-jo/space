@@ -1,4 +1,4 @@
-package space.main.service;
+package space.user.join;
 
 import java.util.Map;
 
