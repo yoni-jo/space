@@ -80,7 +80,7 @@ h2 {font-family:궁서;color:#800080;}
 .user_list tbody td.title {text-align:left; padding-left:20px}
 .user_list tbody td a {display:inline-block}
 
-
+.spacebox {border-top:2px solid #0615C0;border-bottom:2px groove #0615C0;border-right:2px groove #0615C0;border-left:2px groove #0615C0;border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;}
 
 
 
