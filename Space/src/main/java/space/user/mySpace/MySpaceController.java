@@ -45,6 +45,8 @@ public class MySpaceController {
 
 			return mav;
 		}
+		
+		//예약상황
 	@RequestMapping("/mySpace/ResPage")
 	public ModelAndView mySpaceResPage(CommandMap map,HttpSession session) {
 		ModelAndView mv = new ModelAndView("mySpaceResList");

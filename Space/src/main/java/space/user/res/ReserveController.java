@@ -32,7 +32,7 @@ Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="uploadPath")
 	String path;
-	
+	//결제화면
 	@RequestMapping("/res/resPay")
 	private ModelAndView getPayInfo(CommandMap map,HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView("res/resPayPage");
@@ -54,7 +54,7 @@ Logger log = Logger.getLogger(this.getClass());
 		mav.addObject("RES_PRI",map.get("RES_PRI"));
 		return mav;
 	}
-	
+	//예약 결제정보창
 	@RequestMapping("/res/insertresInfo")
 	private ModelAndView resfinish(CommandMap map, HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView("res/next");
@@ -70,6 +70,7 @@ Logger log = Logger.getLogger(this.getClass());
 		mav.addObject("PAY_DATE",nextDate());
 		return mav;
 	}
+	//결제내역창
 	@RequestMapping("/res/resPayInfo")
 	private ModelAndView payInfoView(CommandMap map) {
 		ModelAndView mav = new ModelAndView("res/resFinish");
@@ -79,9 +80,10 @@ Logger log = Logger.getLogger(this.getClass());
 		mav.addObject("PAY_DATE",map.get("PAY_DATE"));
 		return mav;
 	}
+	//내가 예약한 공간 첫페이지
 	@RequestMapping("/res/resInfo")
 	private ModelAndView myResList(CommandMap map,HttpSession session) {
-		ModelAndView mav = new ModelAndView("res/myResList");
+		ModelAndView mav = new ModelAndView("myResList");
 		String userId=(String)session.getAttribute("USER_ID");
 		if(userId == null) {
 			return new ModelAndView("redirect:/space/SpaceList");

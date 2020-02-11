@@ -72,4 +72,10 @@
 <definition name="mySpaceResList" extends="modifyform">
 	<put-attribute name="contents" value="/WEB-INF/jsp/mySpace/mySpaceResList.jsp"/>
 </definition>
+
+<!-- 내가 예약한 공간 -->
+<definition name="myResList" extends="modifyform">
+	<put-attribute name="contents" value="/WEB-INF/jsp/res/myResList.jsp"/>
+</definition>
+
 </tiles-definitions>

@@ -22,7 +22,7 @@ public class ReserveDao extends AbstractDAO{
 	}
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectMyResList(Map<String,Object> map){
-		return (List<Map<String, Object>>) selectPagingList("selectMyResList", map);
+		return (List<Map<String, Object>>) selectPagingList("res.selectMyResList", map);
 	}
 	public void updateResInfo(Map<String,Object> map) {
 		update("res.updateResInfo", map);
