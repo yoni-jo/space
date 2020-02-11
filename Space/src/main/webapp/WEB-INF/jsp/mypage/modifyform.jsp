@@ -36,16 +36,6 @@ font-family: 'Noto Sans KR', sans-serif;}
 
 </style>
 
-<script>
-/* 메뉴 토글 */
-	$(document).ready(function() {
-		$('.bar>div').click(function() {
-		
-			$('.hide').toggle({
-			});
-		});
-	});
-</script>
 </head>
 <body>
 <div id="wrap">

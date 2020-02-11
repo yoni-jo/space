@@ -171,7 +171,12 @@ if(session.getAttribute("USER_ID") != null){
 			if($(this).attr("name")==null){
 				$(this).parent().find(".opt_val").val($(this).html());
 			}else{
-				$(this).parent().find(".opt_val").val('');
+				if($(this).parent().find(".opt_val").attr("id")=="size"){
+					$(this).parent().find(".opt_val").val(999999);
+				}else{
+					$(this).parent().find(".opt_val").val('');
+				}
+				
 			}
 			
 			fn_searchSpaceList();
