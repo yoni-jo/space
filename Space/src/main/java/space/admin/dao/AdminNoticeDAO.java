@@ -12,8 +12,7 @@ import space.common.dao.AbstractDAO;
 public class AdminNoticeDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectNoticeList(Map<String, Object> map) 
-		throws Exception{
+	public List<Map<String, Object>> selectNoticeList(Map<String, Object> map) throws Exception{
 		return (List<Map<String, Object>>) selectPagingList("admin.selectAdminNoticeList", map);
 	}
 	

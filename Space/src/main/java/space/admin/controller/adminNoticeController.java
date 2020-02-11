@@ -30,6 +30,7 @@ public class adminNoticeController {
 		
 		return mv;
 	}
+	
 	@RequestMapping(value="admin/selectnoticeList")
 	public ModelAndView AdminSelectNoticeList(CommandMap commandMap)throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");

@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface AdminSpaceService {
 	
-	List<Map<String, Object>> selectspaceList (Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> selectSpaceList (Map<String, Object> map) throws Exception;
 
 }

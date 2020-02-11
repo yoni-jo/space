@@ -18,8 +18,8 @@ import space.admin.dao.AdminSpaceDAO;
 		private AdminSpaceDAO adminSpaceDAO;
 
 		@Override
-		public List<Map<String, Object>> selectspaceList(Map<String, Object> map) throws Exception {
+		public List<Map<String, Object>> selectSpaceList(Map<String, Object> map) throws Exception {
 		
-			return adminSpaceDAO.selectspaceList(map);
+			return adminSpaceDAO.selectSpaceList(map);
 		}
 	}

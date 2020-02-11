@@ -1,117 +1,120 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 
-<html>
+<html lang="ko">
 <head>
+<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
 <style type="text/css">
 	a:link { color: #414958; }
 	a:visited { color: #4E5869; }
 	a:hover, a:active, a:focus { text-decoration: none; }
 	
-	.content{position:absolute; left:50%; top:50%;}
-	.box1 {float:left;width:250px;}
-	.box2 {float:left;width:45%;} 
-	.box3 {float:left;width:35%;}
+	.box1 {float:left;width:200px;}
+	.box2 {float:left;width:500px;} 
+	.box3 {display:inline-block;width:194px;}
 	  
 </style>
 <meta charset="EUC-KR">
-<title>¿¹¾à°ü¸®</title>
+<title>ë“±ë¡ëœ ê³µê°„ ê²Œì‹œíŒ</title>
+</head>
+
+<body>
+<center><h2>ë“±ë¡ëœ ê³µê°„ ê´€ë¦¬ê²Œì‹œíŒ</h2></center>
+<center>
+<div style="width:900px; left:50%; top:50%; border:1px solid red;" >
+<div class="space-list"style="width:900px;">
+	
+		<div class="tbody">
+			
+			
+		</div>
+	</div>
+   <br/>
+   </div>
+   </center>
+   <div>
+		<center>
+			<div id="PAGE_NAVI"></div>
+			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+		</center>
+  <div>
+   		
 
 
-<script type="text/javascript"> 
-function memberList(){
-	location.href="memberList"
-}
-function reqList(){
-	location.href="reqList"
-}46260204194303
-function spaceList(){
-	location.href="spaceList"
-}
-function memberResList(){
-	location.href="memberResList"
-}
-function QNAList(){
-	location.href="QNAList"
-}
-function noticeList(){
-	location.href="noticeList"
-}
+	<%@ include file="/WEB-INF/common/include-adminBody.jspf" %>
+
+	<script type="text/javascript">
+		
+	$(document).ready(function(){
+			
+  			fn_spaceList(1);
+			
+		});
+	
+	function fn_spaceList(pageNo){
+		var comAjax = new ComAjax();
+		comAjax.setUrl("<c:url value='/admin/selectspaceList' />");
+		comAjax.setCallback("fn_spaceListCallback");
+		comAjax.addParam("PAGE_INDEX", pageNo);
+		comAjax.addParam("PAGE_ROW", 10);
+		
+		comAjax.ajax();
+	}
+	
+	function fn_spaceListCallback(data){
+		var total = data.TOTAL; 
+		var body = $(".space-list > .tbody");
+		body.empty();
+		if(total == 0){
+			var str = "ë“±ë¡ëœ ê³µê°„ì´ ì—†ìŠµë‹ˆë‹¤."; 
+			body.append(str);
+		}else{
+			var params = {
+				divId : "PAGE_NAVI",
+				pageIndex : "PAGE_INDEX",
+				totalCount : total,
+				eventName : "fn_spaceList",
+				recordCount : 10
+			};
+			gfn_renderPaging(params);
+			var str = "";
+			$.each(data.list, function(key, value){
+				str += "<div class='box1' style='height:120px;border:1px solid red;'>"  
+					+ "<img src=" + value.SPACE_IMG + "style = 'height:120px;'>" 
+					+ "</div>" 
+					+ "<div class='box2' align='left' style='height:120px;border:1px solid red;' >" 
+					+ "<a href = 'pensionDetail.do?idx=" + value.SPACE_TITLE + "><b style = 'font-size:16px; color:black;'>"  
+					+ value.SPACE_TITLE + "/"  
+					+ "</b></a>"  
+					+ "<sapn class ='user' >"  
+					+ value.SPACE_HOST + "/" + value.USER_NAME + "/" + value.USER_PHONE + "/" + value.USER_EMAIL 
+					+ "<br/><br/>"  
+					+	"ê³µê°„íŠ¹ì§• : " + value.SPACE_USE +"<br>" 
+					+	"ì£¼ì†Œ : " + value.SPACE_POS + "<br>"  
+					+	"ê°€ê²© : " + value.SPACE_PRI 
+					+ "</span>"   
+					+ "<br/><br/>"  
+					+ "</div>"  
+					+ "<div class='box3' style='height:120px;border:1px solid red;'>" + "<br/>"  
+					+ "<input type='button' name='delete' value='ì‚­ì œ' style='width:70px;height25px'>" 
+					+ "<br><br>" 
+					+ "<input type='button' name='wait' value='ë³´ë¥˜' style='width:70px;height:25px'>" 
+					+ "</div>" 
+					+ "</div><br/>"
+					
+			});
+			body.append(str);
+			
+		}
+		
+	}
 
 </script>
 
-   </head>
-
-<body>
-
-
-<div class="main">
-	<h1 align="center">°ü¸®ÀÚ È­¸é</h1>
-<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
-<tr>
-<td align="center"><a href="javascript:memberList()">È¸¿ø ¸ñ·Ï</td>
-<td align="center"><a href="javascript:reqList()">°ø°£ ½ÅÃ» °ü¸®</td>
-<td align="center"><a href="javascript:spaceList()">µî·ÏµÈ °ø°£ °ü¸®°Ô½ÃÆÇ</td>
-<td align="center"><a href="javascript:memberResList()">¿¹¾à °ü¸®</td>
-<td align="center"><a href="javascript:QNAList()">1:1¹®ÀÇ °Ô½ÃÆÇ</td>
-<td align="center"><a href="javascript:noticeList()">°øÁö»çÇ× °ü¸®</td>
-</tr>
-</table>
-<br/>
-<br/><br/>
-
-<div class="container">
-		<div class = "col-md-3"></div>
-	
-		<div class="page-header">
-			<h2><b>µî·ÏµÈ °ø°£ °ü¸®°Ô½ÃÆÇ</b><br/></h2><hr/><br/>
-		</div>
-			<c:choose>  
-				<c:when test = "${fn:length(list) > 0}"> 
-					<c:forEach var = "row" items = "${list}"> 
-						<div class="box1">  
-							<img src = "${row.SPACE_IMG}" style = "width:200px; height:120px;" onerror = "this.src='http://placehold.it/200x120';">
-						</div>
-						<div class="box2" style = "line-height:140%; "> 
-							<a href = "pensionDetail.do?idx=${row.SPACE_TITLE}"><b style = "font-size:16px; color:black;">${row.SPACE_TITLE}</b></a>
-							<sapn class ="user">
-								<span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${row.SPACE_HOST} / ${row.USER_NAME} / ${row.USER_PHONE} / ${row.USER_EMAIL}
-							<br><br/>
-							<span class = "space"> 
-								<span></span>°ø°£Æ¯Â¡ : ${row.SPACE_USE}<br>
-							<span class = "address">
-								<span></span>ÁÖ¼Ò : ${row.SPACE_POS}<br>
-							<span class = "price"> 
-								<span></span> °¡°İ : ${row.SPACE_PRI}
-							</span> 
-								<br/><br/> 
-							</div>
-							<div class="box3" style = "line-height:140%; ">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							<input type="button" name="delete" value="»èÁ¦" style="width:50pt;height:20pt">
-							<br><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" name="wait" value="º¸·ù" style="width:50pt;height:20pt">
-							<br><br/><br/><br> 
-							</div>
-							<br/><br/><br>
-						</div>
-						 
-					</c:forEach> 
-				</c:when> 
-				<c:otherwise>
-					¿¹¾àµÈ °ø°£ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-				</c:otherwise>
-			</c:choose>
-	</div>
-	<br/>
-   <br/>
-   <br/>
 </body>
 </html>

@@ -59,7 +59,7 @@
        		$(document).ready(function(){
        			
        		 /* 페이징 관련 */
-       			fn_noticeList(1)
+       			fn_noticeList(1);
        			
        			$("#write").on("click", function(e){ 
                     e.preventDefault();

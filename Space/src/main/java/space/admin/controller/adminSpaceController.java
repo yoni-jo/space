@@ -21,12 +21,29 @@ public class adminSpaceController {
 	@Resource(name="AdminSpaceService")
 	private AdminSpaceService adminSpaceService;
 	
-	@RequestMapping(value="/admin/spaceList")
+	@RequestMapping(value="admin/spaceList")
     public ModelAndView spaceList(CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("/admin/spaceList");
+    	ModelAndView mv = new ModelAndView("admin/spaceList");
     	
-    	List<Map<String,Object>> list = adminSpaceService.selectspaceList(commandMap.getMap());
-    	mv.addObject("list", list);
     	return mv;
     }
+	
+	@RequestMapping(value="admin/selectspaceList")
+	public ModelAndView AdminSelectSpaceList(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		List<Map<String,Object>> list = adminSpaceService.selectSpaceList(commandMap.getMap());
+		
+    	mv.addObject("list", list);
+    	
+    	if(list.size()>0) {
+    		mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+    	}else {
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+	}
+	
+	
 }
