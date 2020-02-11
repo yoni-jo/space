@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%session.setAttribute("joinCode", ""); %>
 <!DOCTYPE html>
-
 <head><title>회원가입</title>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
 <style>
@@ -16,7 +15,7 @@
 
 </style>  
 </head>
-
+<body>
 <form id="frm">
  <table class="board_list">
   <caption>회원가입</caption>
@@ -55,9 +54,8 @@
    </tr>
    
 
-   <tr><th scope="row">이용약관</th>
-   
-    <td colspan="3" class="signUp_agree_textarea"><textarea cols="70" rows="10" readonly="readonly">
+   <tr><th scope="row">이용약관</th>   
+   <td colspan="3" class="signUp_agree_textarea"><textarea cols="70" rows="10" readonly="readonly">
 제1장 총칙
    
 제1조 (목적)
@@ -261,3 +259,5 @@ $(function(){
 });
    
 </script>
+<body>
+</html>
