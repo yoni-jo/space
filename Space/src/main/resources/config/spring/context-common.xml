@@ -38,5 +38,7 @@
     	<property name="javaMailSender" ref="javaMailSender" />	
 	</bean>
 	
-
+<bean id="idloadPath" class="java.lang.String">
+<constructor-arg value="C:/test/"></constructor-arg>
+</bean>
 </beans>
