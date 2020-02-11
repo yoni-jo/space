@@ -53,12 +53,12 @@
 						<li><a href="">내가 찜한 공간</a></li>
 						<li><a href="">1:1문의</a></li>
 						<li><a href="/two/member/MemberModifyForm">개인정보 변경</a></li>
-						<li><a href="">아무것두 읍다아아아</a></li>
+						<li><a href="">-</a></li>
 						<li class="mypagebar">내 공간 관리
 			<ul class="mypagehide">
 				<li><a href="/two/space/Form">내 공간 등록하기</a></li>
 				<li><a href="/two/space/Myspace_list">내 공간 관리하기</a></li>
-				<li><a href="/two/space/Myspace_list">내 공간 예약상황</a></li>
+				<li><a href="/two/mySpace/ResPage">내 공간 예약상황</a></li>
 			</ul>
 		</li>
 					</ul>

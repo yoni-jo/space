@@ -47,7 +47,7 @@ public class MySpaceController {
 		}
 	@RequestMapping("/mySpace/ResPage")
 	public ModelAndView mySpaceResPage(CommandMap map,HttpSession session) {
-		ModelAndView mv = new ModelAndView("mySpace/mySpaceResList");
+		ModelAndView mv = new ModelAndView("mySpaceResList");
 		map.put("USER_ID", session.getAttribute("USER_ID"));
 		List<Map<String,Object>> list = mySpaceService.selectResDateList(map.getMap());
 		
