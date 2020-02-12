@@ -25,25 +25,10 @@ public class adminResController {
 	@RequestMapping(value="/admin/memberResList")
     public ModelAndView memberResList(CommandMap commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/admin/memberResList");
-    	List<Map<String,Object>> list = adminResService.selectAdminResList(commandMap.getMap());
-    	mv.addObject("list", list);
-    	
-    	
-    	return mv; 
-    }
-	@RequestMapping(value="/admin/selectAdminResList")
-    public ModelAndView selectAdminResList(CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("jsonView");
     	
     	List<Map<String,Object>> list = adminResService.selectAdminResList(commandMap.getMap());
-    
     	mv.addObject("list", list);
-    	
-    	if(list.size()>0) {
-			mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-		}else {
-			mv.addObject("TOTAL", 0);
-		}
+    	log.debug(list.get(0).get("USER_ID"));
     	return mv;
     }
 }

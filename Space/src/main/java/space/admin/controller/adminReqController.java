@@ -25,21 +25,8 @@ public class adminReqController {
     public ModelAndView reqList(CommandMap commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/admin/reqList");
     	
-    	return mv;
-    }
-	@RequestMapping(value="/admin/selectreqList")
-    public ModelAndView selectreqList(CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	
     	List<Map<String,Object>> list = adminReqService.selectreqList(commandMap.getMap());
     	mv.addObject("list", list);
-
-    	if(list.size()>0) {
-			mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-		}else {
-			mv.addObject("TOTAL", 0);
-		}
-		
-		return mv;
+    	return mv;
     }
 }

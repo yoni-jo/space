@@ -45,5 +45,31 @@ public class adminSpaceController {
     	return mv;
 	}
 	
+	@RequestMapping(value="admin/selectwaitspaceList")
+	public ModelAndView AdminWaitSelectSpaceList(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		List<Map<String,Object>> list = adminSpaceService.selectWaitSpaceList(commandMap.getMap());
+		
+    	mv.addObject("list", list);
+    	
+    	if(list.size()>0) {
+    		mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+    	}else {
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+	}
+	
+	@RequestMapping(value="admin/deleteSpace")
+	public ModelAndView DeleteSpace(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/spaceList");
+		
+		adminSpaceService.deleteSpace(commandMap.getMap());
+		
+		return mv;
+	}
+	
 	
 }

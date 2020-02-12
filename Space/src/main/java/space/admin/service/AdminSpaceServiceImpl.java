@@ -22,4 +22,15 @@ import space.admin.dao.AdminSpaceDAO;
 		
 			return adminSpaceDAO.selectSpaceList(map);
 		}
+		
+		@Override
+		public List<Map<String, Object>> selectWaitSpaceList(Map<String, Object> map) throws Exception {
+		
+			return adminSpaceDAO.selectWaitSpaceList(map);
+		}
+		
+		@Override
+		public void deleteSpace(Map<String, Object> map) throws Exception{
+			adminSpaceDAO.deleteSpace(map);
+		}
 	}

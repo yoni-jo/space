@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>°ü¸®ÀÚ ·Î±×ÀÎ ±â´É¼öÇà</title>
+<title>ê´€ë¦¬ì ë¡œê·¸ì¸ ê¸°ëŠ¥ìˆ˜í–‰</title>
 <script>
 $(document).ready(function(){
 	$("#login_btn").unbind("click").click(function(e){
@@ -15,9 +15,9 @@ $(document).ready(function(){
 
 function admin_login(){
 	if($("#USER_ID").val().length < 1){
-		alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+		alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 	}else if($("#USER_PASSWORD").val().length <1 ){
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 	}else {
 		var comSubmit = new ComSubmit("adminLogin");
 		comSubmit.setUrl("<c:url value='admin/LoginTry' />");

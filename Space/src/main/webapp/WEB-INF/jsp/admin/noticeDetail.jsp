@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <meta charset="EUC-KR">
-<title>°ü¸®ÀÚ °øÁö»çÇ× »ó¼¼º¸±â</title>
+<title>ê´€ë¦¬ìž ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°</title>
 </head>
 <body>
 <br/> 
@@ -19,10 +19,10 @@
 		</colgroup>
 		<thead>
 				<tr>
-					<th scope="col">±Û¹øÈ£</th>
-					<th scope="col">Á¦  ¸ñ</th>
-					<th scope="col">Á¶È¸¼ö</th>
-					<th scope="col">ÀÛ¼ºÀÏ</th>
+					<th scope="col">ê¸€ë²ˆí˜¸</th>
+					<th scope="col">ì œ  ëª©</th>
+					<th scope="col">ì¡°íšŒìˆ˜</th>
+					<th scope="col">ìž‘ì„±ì¼</th>
 				</tr>
 			</thead>
 		<tbody>
@@ -42,8 +42,8 @@
 	</form>
 	<br/>
 	<center>
-	<a href="#this" class="btn" id="modify">¼öÁ¤ÇÏ±â</a>
-	<a href="#this" class="btn" id="list">¸ñ·ÏÀ¸·Î</a>
+	<a href="#this" class="btn" id="modify">ìˆ˜ì •í•˜ê¸°</a>
+	<a href="#this" class="btn" id="list">ëª©ë¡ìœ¼ë¡œ</a>
 	</center>
 	
 	<%@ include file="/WEB-INF/common/include-adminBody.jspf" %>
