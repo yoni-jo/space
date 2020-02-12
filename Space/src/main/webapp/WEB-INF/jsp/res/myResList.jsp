@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
 	.subView{height: inherit;float: left;}
 	.textView.active{display: inherit;}
 	.textView{display:none;}
-	.price:after{content: " ¿ø"}
+	.price:after{content: " ì›"}
 	.cellView{text-align: left; vertical-align: middle; display: table-cell;}
 	.btn{
 		cursor: pointer;
@@ -37,7 +37,7 @@
 </style>
 
 <meta charset="EUC-KR">
-<title>°áÁ¦ ÇÏ±â</title>
+<title>ê²°ì œ í•˜ê¸°</title>
 </head>
 <body>
 <input type="hidden" id="spaceId" value="${SPACE_INFO.SPACE_ID}">
@@ -45,14 +45,14 @@
 	<p class="line"></p>
 
 	<div id="resTitle" class="view" style="width: 700px; background: #FE9A2E; font-weight: bold;">
-		<label id="resTitle">¿¹¾à Á¤º¸</label>
+		<label id="resTitle">ì˜ˆì•½ ì •ë³´</label>
 	</div>
 	
 	<p></p>
 	<div style="width: 700px;text-align: right; font-size: 11px;display: inline-block;">
 		<form>
-			<input id="1" type="radio" name="TYPE" value="NOW"><label for="1">ÇöÀç ¿¹¾à</label>
-			<input id="2" type="radio" name="TYPE" value="OLD"><label for="2">Áö³­ ¿¹¾à</label>
+			<input id="1" type="radio" name="TYPE" value="NOW"><label for="1">í˜„ì¬ ì˜ˆì•½</label>
+			<input id="2" type="radio" name="TYPE" value="OLD"><label for="2">ì§€ë‚œ ì˜ˆì•½</label>
 		</form>
 	</div>
 	<p></p>
@@ -64,7 +64,7 @@
 	<div id="resInfoView" class="view" style="width: 700px">
 	
 		<div id="resNumber" style="font-size: 8px;text-align: left; margin-bottom: 5px;">
-		¿¹¾à¹øÈ£ : <label class="resNum">${map.RES_NUM}</label><label class="resType" style="float: right;">¿¹¾à ¿Ï·á</label>
+		ì˜ˆì•½ë²ˆí˜¸ : <label class="resNum">${map.RES_NUM}</label><label class="resType" style="float: right;">ì˜ˆì•½ ì™„ë£Œ</label>
 		</div>
 		<input type="hidden" name="SPACE_ID" value="${map.SPACE_ID}">
 		<div name="resInfo" style="height: 150px">
@@ -78,9 +78,9 @@
 				<c:set var="time" value="${fn:split(date,'-')}"/>
 				<label class="tag">${map.SPACE_TITLE}</label><label>(${map.SPACE_POS})</label>
 				<p></p>
-				<label id="resDate">${time[0]}³â ${time[1]}¿ù ${time[2]}ÀÏ</label>
+				<label id="resDate">${time[0]}ë…„ ${time[1]}ì›” ${time[2]}ì¼</label>
 				<p></p>
-				<label>${map.SPACE_SIZE }§³ / ${map.SPACE_PERSON }¸í</label>
+				<label>${map.SPACE_SIZE }ã¡ / ${map.SPACE_PERSON }ëª…</label>
 				<p></p>
 				<div style="text-align: right;">
 				<label class="price"><fmt:formatNumber value="${map.RES_PRI}" pattern="#,###"/></label>
@@ -95,21 +95,21 @@
 					<div class="cellView" style="font-size: 11px; height: inherit;">
 						<input type="hidden" name="count" value="${s.count}">
 						<c:if test="${TYPE ne 'OLD' }">
-						<label>¿¹¾àÀÚ Á¤º¸</label>
+						<label>ì˜ˆì•½ì ì •ë³´</label>
 						<p></p>
-						<label for="inputName${s.count}" style="margin-bottom: 2px">ÀÌ¸§ :</label><label class="inText">${map.RES_NAME}</label>
+						<label for="inputName${s.count}" style="margin-bottom: 2px">ì´ë¦„ :</label><label class="inText">${map.RES_NAME}</label>
 							<input id="inputName${s.count}" class="textView" type="text" size="8"/><br>
-						<label for="inputTel${s.count}" style="margin-bottom: 2px">¿¬¶ôÃ³ :</label><label class="inText">${map.USER_PHONE}</label>
+						<label for="inputTel${s.count}" style="margin-bottom: 2px">ì—°ë½ì²˜ :</label><label class="inText">${map.USER_PHONE}</label>
 							<input id="inputTel${s.count}" class="textView" type="text" size="12"/><br>
-						<label for="inputEmail${s.count}" style="margin-bottom: 2px">ÀÌ¸ŞÀÏ :</label><label class="inText">${map.RES_EMAIL}</label>
+						<label for="inputEmail${s.count}" style="margin-bottom: 2px">ì´ë©”ì¼ :</label><label class="inText">${map.RES_EMAIL}</label>
 							<input id="inputEmail${s.count}" class="textView" type="text" size="12"/><br>
 						<p></p>
-						<label class="btn cancel" style="display: none;">Ãë¼Ò</label>
-						<label class="btn modify_Btn" name="modify" style="bottom: 2em; right: 2em;float: right;">¿¹¾àÀÚ Á¤º¸ ¼öÁ¤</label>
+						<label class="btn cancel" style="display: none;">ì·¨ì†Œ</label>
+						<label class="btn modify_Btn" name="modify" style="bottom: 2em; right: 2em;float: right;">ì˜ˆì•½ì ì •ë³´ ìˆ˜ì •</label>
 						</c:if>
 						<c:if test="${TYPE eq 'OLD' }">
 							<div style="text-align: right;">
-							<label class="btn addReply" for="open-pop">ÈÄ±â ³²±â±â</label>
+							<label class="btn addReply" for="open-pop">í›„ê¸° ë‚¨ê¸°ê¸°</label>
 							</div>
 						</c:if>
 					</div>
@@ -123,7 +123,7 @@
 	</c:forEach>
 	</c:if>
 	<c:if test="${TOTAL == 0}">
-		È®ÀÎµÇ´Â ³»¿ªÀÌ ¾ø½À´Ï´Ù
+		í™•ì¸ë˜ëŠ” ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤
 	</c:if>
 	<div id="PAGING">test</div>
 	<input type="hidden" id="INDEX" value="${PAGE_INDEX}">
@@ -138,16 +138,16 @@
 	<label class="modal_bg" for="open-pop"></label>
 	<div class="modal_inner">
 		<label class="modal_close" for="open-pop"></label>
-		<h2 id="write" class="popup_title">ÈÄ±â</h2>
+		<h2 id="write" class="popup_title">í›„ê¸°</h2>
 		<p class="popup_content" style="text-align: left;"></p>
 		<form id="replyForm" action="<c:url value="/res/addReply"/>" method="post" enctype="multipart/form-data">
-		<div id="divPopTitle"><label>Á¦¸ñ </label><br>
+		<div id="divPopTitle"><label>ì œëª© </label><br>
 		<input type="text" id="popTitle" name="TITLE" class="title txt"></div>
 		<input type="hidden" id="targetId" name="SPACE_ID">				
 		<p class="subline"></p>
 							
 		<div id="divPopCnt">
-			<label>³»¿ë </label><br>
+			<label>ë‚´ìš© </label><br>
 			<textarea id="popCnt" name="CONTENT" rows="2" cols="10" class="content txt"></textarea>
 		</div>
 							
@@ -160,8 +160,8 @@
 		<p class="subline"></p>
 							
 		<div id="divPopBtn">
-			<label id="addBtn" class="sendBtn" style="right:8em; bottom: 2em; position: absolute;">Ãß°¡</label>
-			<label id="sendBtn" class="sendBtn" style="right:2em; bottom: 2em; position: absolute;">È®ÀÎ</label>
+			<label id="addBtn" class="sendBtn" style="right:8em; bottom: 2em; position: absolute;">ì¶”ê°€</label>
+			<label id="sendBtn" class="sendBtn" style="right:2em; bottom: 2em; position: absolute;">í™•ì¸</label>
 		</div>
 	</div>
 </div>
@@ -182,7 +182,7 @@ $(document).ready(function(){
 	$(".modify_Btn").click(function(){
 		if($(this).attr("name") == 'modify'){
 			$(this).attr("name","send");
-			$(this).text("º¯°æ");
+			$(this).text("ë³€ê²½");
 			$(this).parent().find(".textView").addClass("active");
 			$(this).parent().find(".inText").css("display","none");
 			$(this).parent().find(".cancel").css("display","");
@@ -191,9 +191,9 @@ $(document).ready(function(){
 			var count = $(this).parent().find("input[name='count']").val();
 			
 			if(!isNullCheck(count)){
-				alert("ÀÔ·ÂµÇÁö ¾ÊÀº Á¤º¸°¡ ÀÖ½À´Ï´Ù.");
+				alert("ì…ë ¥ë˜ì§€ ì•Šì€ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤.");
 			}else{
-				alert("¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+				alert("ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
 				com.setUrl("<c:url value='/res/resModify'/>");
 				com.addParam("NAME",$("#inputName"+count).val());
 				com.addParam("TEL",$("#inputTel"+count).val());
@@ -208,7 +208,7 @@ $(document).ready(function(){
 		$(this).parent().find(".textView").removeClass("active");
 		$(this).parent().find(".inText").css("display","");
 		$(this).parent().find(".modify_Btn").attr("name","modify");
-		$(this).parent().find(".modify_Btn").text("¿¹¾àÀÚ Á¤º¸ ¼öÁ¤");
+		$(this).parent().find(".modify_Btn").text("ì˜ˆì•½ì ì •ë³´ ìˆ˜ì •");
 	});
 	$("#popCnt").keyup(function(){
 		if($(this).val().length > 1000){
@@ -221,13 +221,13 @@ $(document).ready(function(){
 					"&nbsp;&nbsp;<label onclick='inputDelete(this)'>X</label></p>");
 			fileCount++;
 		}else{
-			alert("´õ ÀÌ»ó Ãß°¡ÇÒ ¼ö ¾ø½À´Ï´Ù");
+			alert("ë” ì´ìƒ ì¶”ê°€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 		}
 		
 	});
 	$(".addReply").click(function(){
 		var title = $(this).parents(".view").find(".tag").text();
-		$("#write").text(title+"¿¡ ÈÄ±â ´Ş±â");
+		$("#write").text(title+"ì— í›„ê¸° ë‹¬ê¸°");
 		$("#popTitle").val("");
 		$("#popCnt").val("");
 		$("#divFile").empty();
@@ -238,7 +238,7 @@ $(document).ready(function(){
 		if(isReplyCheck()){
 			$("#replyForm").submit();
 		}else{
-			alert("ÀÔ·ÂµÇÁö ¾ÊÀº Á¤º¸°¡ ÀÖ½À´Ï´Ù");
+			alert("ì…ë ¥ë˜ì§€ ì•Šì€ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤");
 		}
 	});
 });
@@ -249,12 +249,12 @@ function setRadioCheck(){
 	$("input[value='"+type+"']").attr("checked",true);
 	
 	if(type == "NOW"){
-		$("#resTitle").text("¿¹¾à Á¤º¸");
-		$(".resType").text("¿¹¾à ¿Ï·á");
+		$("#resTitle").text("ì˜ˆì•½ ì •ë³´");
+		$(".resType").text("ì˜ˆì•½ ì™„ë£Œ");
 	}
 	else {
-		$("#resTitle").text("Áö³­ ¿¹¾à Á¤º¸");
-		$(".resType").text("ÀÌ¿ë ¿Ï·á");
+		$("#resTitle").text("ì§€ë‚œ ì˜ˆì•½ ì •ë³´");
+		$(".resType").text("ì´ìš© ì™„ë£Œ");
 	}
 }
 function setPaging(){

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -17,13 +17,13 @@
 	.subView{height: inherit;float: left;}
 	.textView.active{display: inherit;}
 	.textView{display:none;}
-	.price:after{content: " ¿ø"}
+	.price:after{content: " ì›"}
 	input{font-size: 11px; height: 1em}
 	
 </style>
 
 <meta charset="EUC-KR">
-<title>°áÁ¦ ÇÏ±â</title>
+<title>ê²°ì œ í•˜ê¸°</title>
 </head>
 <body>
 <input type="hidden" id="spaceId" value="${SPACE_INFO.SPACE_ID}">
@@ -31,13 +31,13 @@
 	<p class="line"></p>
 
 	<div id="resTitle" class="view" style="width: 700px; background: #FE9A2E; font-weight: bold;">
-		<label >¿¹¾à Á¤º¸</label>
+		<label >ì˜ˆì•½ ì •ë³´</label>
 	</div>
 	
 	<p class="line"></p>
 	
 	<div id="resInfoView" class="view" style="width: 700px">
-		<div id="resNumber" style="font-size: 8px;text-align: left; margin-bottom: 5px;">¿¹¾à¹øÈ£ : <label id="resNum">${RES_NUM}</label></div>
+		<div id="resNumber" style="font-size: 8px;text-align: left; margin-bottom: 5px;">ì˜ˆì•½ë²ˆí˜¸ : <label id="resNum">${RES_NUM}</label></div>
 		<div id="resInfo" style="height: 150px">
 			<c:set var="image" value="${fn:split(SPACE_INFO.SPACE_IMG,',')[0]}"/>
 			<div id="infoImage" class="subView">
@@ -48,22 +48,22 @@
 				<c:set var="time" value="${fn:split(RES_TIME,'-')}"/>
 				<label>${SPACE_INFO.SPACE_TITLE}(${SPACE_INFO.SPACE_POS})</label>
 				<p></p>
-				<label id="resDate">${time[0]}³â ${time[1]}¿ù ${time[2]}ÀÏ</label>
+				<label id="resDate">${time[0]}ë…„ ${time[1]}ì›” ${time[2]}ì¼</label>
 				<p></p>
-				<label>${SPACE_INFO.SPACE_SIZE }§³ / ${SPACE_INFO.SPACE_PERSON }¸í</label>
+				<label>${SPACE_INFO.SPACE_SIZE }ã¡ / ${SPACE_INFO.SPACE_PERSON }ëª…</label>
 				</div>
 			</div>
 			<div id="userText" class="subView" style="padding-left:20px; width : 25%; float: right; 
 			border-left: 1px solid #999999; height: 150px">
 				<div class="subView" style="width:100%; display: table;  vertical-align: middle;">
 					<div style="text-align: left; vertical-align: middle; display: table-cell; font-size: 11px; height: inherit;">
-						<label>¿¹¾àÀÚ Á¤º¸</label>
+						<label>ì˜ˆì•½ì ì •ë³´</label>
 						<p></p>
-						<label style="margin-bottom: 2px">ÀÌ¸§ :</label><label class="inText" for="inputName">${USER_INFO.USER_NAME}</label><input id="inputName" class="textView" type="text" size="8"/><br>
-						<label style="margin-bottom: 2px">¿¬¶ôÃ³ :</label><label class="inText" for="inputTel">${USER_INFO.USER_PHONE}</label><input id="inputTel" class="textView" type="text" size="12"/><br>
-						<label style="margin-bottom: 2px">ÀÌ¸ŞÀÏ :</label><label class="inText" for="inputEmail">${USER_INFO.USER_EMAIL}</label><input id="inputEmail" class="textView" type="text" size="12"/><br>
+						<label style="margin-bottom: 2px">ì´ë¦„ :</label><label class="inText" for="inputName">${USER_INFO.USER_NAME}</label><input id="inputName" class="textView" type="text" size="8"/><br>
+						<label style="margin-bottom: 2px">ì—°ë½ì²˜ :</label><label class="inText" for="inputTel">${USER_INFO.USER_PHONE}</label><input id="inputTel" class="textView" type="text" size="12"/><br>
+						<label style="margin-bottom: 2px">ì´ë©”ì¼ :</label><label class="inText" for="inputEmail">${USER_INFO.USER_EMAIL}</label><input id="inputEmail" class="textView" type="text" size="12"/><br>
 						<p></p>
-						<button id="modify_Btn" name="modify" style="bottom: 2em; right: 2em;float: right;">¿¹¾àÀÚ Á¤º¸ ¼öÁ¤</button>
+						<button id="modify_Btn" name="modify" style="bottom: 2em; right: 2em;float: right;">ì˜ˆì•½ì ì •ë³´ ìˆ˜ì •</button>
 					</div>
 				</div>
 				<div>
@@ -74,7 +74,7 @@
 	<p class="subline"></p>
 	<div id="priView" class="view" style="width: 700px;">
 		<div style="width: 10%;text-align: center; border-right: 1px solid #999999;float: left;">
-			<label>°¡°İ</label>
+			<label>ê°€ê²©</label>
 		</div>
 		<div style="width: 70%; text-align: right; float: right; padding-right: 20px">
 			<label class="price"><fmt:formatNumber value="${RES_PRI}" pattern="#,###"/></label>
@@ -83,27 +83,27 @@
 	</div>
 	<p></p>
 	<div id="otherView" style="width: 700px; display: inline-block; font-size: 12px">
-		<div><input id="confirm" type="checkbox"><label for="confirm">À§ °ø°£ÀÇ ¿¹¾àÁ¤º¸ È®ÀÎ ¹× °áÁ¦ÁøÇà µ¿ÀÇ</label></div>
+		<div><input id="confirm" type="checkbox"><label for="confirm">ìœ„ ê³µê°„ì˜ ì˜ˆì•½ì •ë³´ í™•ì¸ ë° ê²°ì œì§„í–‰ ë™ì˜</label></div>
 		
 		<p class="line"></p>
 		
 		<div style="text-align: left">
-			<label>°áÁ¦ Á¤º¸</label><br>
+			<label>ê²°ì œ ì •ë³´</label><br>
 			<p></p>
 			<form>
-				<input id="0001"type="radio" name="PAY_TYPE" value="card" checked="checked"><label for="0001" style="margin-right: 10px">½Å¿ëÄ«µå</label>
-				<input id="0002"type="radio" name="PAY_TYPE" value="none"><label for="0002">¹«ÅëÀåÀÔ±İ</label><br>
+				<input id="0001"type="radio" name="PAY_TYPE" value="card" checked="checked"><label for="0001" style="margin-right: 10px">ì‹ ìš©ì¹´ë“œ</label>
+				<input id="0002"type="radio" name="PAY_TYPE" value="none"><label for="0002">ë¬´í†µì¥ì…ê¸ˆ</label><br>
 			</form>
 			<p></p>
 			<div id="cardView" style="display: inline-block;">
-				<label class="writeBtn" for="open-pop">Ä«µå Á¤º¸ ÀÔ·Â</label>
+				<label class="writeBtn" for="open-pop">ì¹´ë“œ ì •ë³´ ì…ë ¥</label>
 			</div>
 			<div id="cashView" style="display: none; ">
-				<label>¹«ÅëÀå ÀÔ±İÀº ±âÇÑ³»¿¡ ÀÌ·ïÁöÁö ¾ÊÀ¸¸é Ãë¼ÒµË´Ï´Ù</label>
+				<label>ë¬´í†µì¥ ì…ê¸ˆì€ ê¸°í•œë‚´ì— ì´ë¤„ì§€ì§€ ì•Šìœ¼ë©´ ì·¨ì†Œë©ë‹ˆë‹¤</label>
 			</div>
 		</div>
 		<p class="line"></p>
-		<div><button id="result" style="width: 200px; bottom: 0em">°áÁ¦ÇÏ±â</button></div>
+		<div><button id="result" style="width: 200px; bottom: 0em">ê²°ì œí•˜ê¸°</button></div>
 	</div>
 	
 	
@@ -113,7 +113,7 @@
 		<div class="modal_inner">
 			<label class="modal_close" for="open-pop"></label>
 			<div id="payTitle" style="text-align: center;">
-				<label style="font-size: 30px; font-weight: bold;">Ä«µå Á¤º¸</label>
+				<label style="font-size: 30px; font-weight: bold;">ì¹´ë“œ ì •ë³´</label>
 			</div>
 			<div class="cardView" style="text-align: left;">
 				<div style="background: #aaa; padding-bottom: 1em">
@@ -124,19 +124,19 @@
 				
 				<div>
 				<select id="selCard" style="width: 160px;">
-						<option value="1">Çö´ëÄ«µå</option>
-						<option value="2">»ï¼ºÄ«µå</option>
-						<option value="3">·Ôµ¥Ä«µå</option>
-						<option value="4">½ÅÇÑÄ«µå</option>
-						<option value="5">±¹¹ÎÄ«µå</option>
-						<option value="6">ÇÏ³ªÄ«µå</option>
-						<option value="7">¿ì¸®Ä«µå</option>
-						<option value="8">³óÇùÄ«µå</option>
+						<option value="1">í˜„ëŒ€ì¹´ë“œ</option>
+						<option value="2">ì‚¼ì„±ì¹´ë“œ</option>
+						<option value="3">ë¡¯ë°ì¹´ë“œ</option>
+						<option value="4">ì‹ í•œì¹´ë“œ</option>
+						<option value="5">êµ­ë¯¼ì¹´ë“œ</option>
+						<option value="6">í•˜ë‚˜ì¹´ë“œ</option>
+						<option value="7">ìš°ë¦¬ì¹´ë“œ</option>
+						<option value="8">ë†í˜‘ì¹´ë“œ</option>
 				</select>
 				</div>
 				
 				<div style="text-align: left; max-width: initial;">
-					<label style="font-size: 12px; font-weight: bold;">Ä«µå ¹øÈ£</label><br>
+					<label style="font-size: 12px; font-weight: bold;">ì¹´ë“œ ë²ˆí˜¸</label><br>
 					<input type="text" class="cardNumber" onkeyup="inputNum(this);"maxlength="4"> 
 					<input type="password" class="cardNumber" onkeyup="inputNum(this);" maxlength="4"> 
 					<input type="password" class="cardNumber" onkeyup="inputNum(this);" maxlength="4"> 
@@ -146,8 +146,8 @@
 				
 			</div>
 			<div class="btnView">
-				<label class="ok" style="margin-right: 2em">È®ÀÎ</label>
-				<label class="cancel" for="open-pop">Ãë¼Ò</label>
+				<label class="ok" style="margin-right: 2em">í™•ì¸</label>
+				<label class="cancel" for="open-pop">ì·¨ì†Œ</label>
 			</div>
 		</div>
 	</div>
@@ -177,23 +177,23 @@ $(document).ready(function(){
 		});
 		if(buttonName == "modify"){
 			$(this).attr("name","submit");
-			$(this).text("È®ÀÎ");
+			$(this).text("í™•ì¸");
 		}
 		else if(buttonName == "submit"){
 			$(this).attr("name","modify");
-			$(this).text("¿¹¾àÀÚ Á¤º¸ ¼öÁ¤");
+			$(this).text("ì˜ˆì•½ì ì •ë³´ ìˆ˜ì •");
 		}
 	});
 	$("#result").click(function(){
 		if($("#confirm:checked").length==0){
-			alert("µ¿ÀÇ Ã¼Å© ÈÄ ´Ù½Ã ½Ãµµ ÇÏ¼¼¿ä");
+			alert("ë™ì˜ ì²´í¬ í›„ ë‹¤ì‹œ ì‹œë„ í•˜ì„¸ìš”");
 			return;
 		}
 		if(!isTextCheck($(".inText"))){
 			return;
 		}
 		else if(!sendCheckNumber() && $("#0001").is(":checked")){ 
-			alert("Ä«µåÁ¤º¸°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù");
+			alert("ì¹´ë“œì •ë³´ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤");
 			return;
 		}
 		var payType;
@@ -228,7 +228,7 @@ $(document).ready(function(){
 		if(sendCheckNumber()){
 			$("#open-pop").attr("checked",false);
 		}else{
-			alert("Ä«µåÁ¤º¸°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù");
+			alert("ì¹´ë“œì •ë³´ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤");
 		}
 	});
 });
@@ -236,7 +236,7 @@ function isTextCheck(obj){
 	var is = true;
 	obj.each(function(){
 		if($.trim($(this).text())==""){
-			alert("ÀÔ·ÂµÇÁö ¾ÊÀº Á¤º¸°¡ ÀÖ½À´Ï´Ù");
+			alert("ì…ë ¥ë˜ì§€ ì•Šì€ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤");
 			is= false;
 			return;
 		}
@@ -245,7 +245,7 @@ function isTextCheck(obj){
 }
 function inputNum(obj){
 	if(isFinite(obj.value)==false){
-		alert("¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ìˆ«ìë§Œ ì…ë ¥í•˜ì„¸ìš”");
 		obj.value="";
 		return false;
 	}

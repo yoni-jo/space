@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,17 +52,17 @@
 }
 
 .price:after {
-	content: " ¿ø"
+	content: " ì›"
 }
 </style>
-<title>¿¹¾à ¿Ï·á</title>
+<title>ì˜ˆì•½ ì™„ë£Œ</title>
 </head>
 <body>
 <div style="width: 100%; text-align: center;">
 	<p class="line"></p>
 
 	<div id="resTitle" class="view" style="background: #FE9A2E; font-weight: bold;">
-		<label>°áÁ¦ Á¤º¸</label>
+		<label>ê²°ì œ ì •ë³´</label>
 	</div>
 	<p class="line"></p>
 	
@@ -70,35 +70,35 @@
 	
 	<div id="resPayInfo" class="view" style="height: 150px;">
 		<div class="subView" style="width: 30%; line-height: 150px; border-right:2px solid #999999 ">
-		<label style="vertical-align: middle;">°áÁ¦Á¤º¸</label>
+		<label style="vertical-align: middle;">ê²°ì œì •ë³´</label>
 		</div>
 		<div class="subView" style="width: 60%; display: table; margin-left: 2em">
 		<div style="text-align: left; vertical-align: middle; display: table-cell; height: inherit;">
 			<c:if test="${TYPE eq 'none'}">
-			<label>ÀÔ±Ý °èÁÂ: ±¹¹Î ÀºÇà 123-456-7897</label>
+			<label>ìž…ê¸ˆ ê³„ì¢Œ: êµ­ë¯¼ ì€í–‰ 123-456-7897</label>
 			<p></p>
-			<label>¿¹±ÝÁÖ: °ø°£</label>
+			<label>ì˜ˆê¸ˆì£¼: ê³µê°„</label>
 			<p></p>
-			<label>ÀÔ±Ý±âÇÑ:${PAY_DATE} ±îÁö ÀÔ±ÝÇØÁÖ¼¼¿ä</label>
+			<label>ìž…ê¸ˆê¸°í•œ:${PAY_DATE} ê¹Œì§€ ìž…ê¸ˆí•´ì£¼ì„¸ìš”</label>
 			<p></p>
-			<label>°áÁ¦ ±Ý¾×: ${PRI}</label>
+			<label>ê²°ì œ ê¸ˆì•¡: ${PRI}</label>
 			</c:if>
 			<c:if test="${TYPE ne 'none'}">
 			<c:set var="number" value="${fn:split(TYPE,'/')}"/>
-			<label>»ç¿ë Ä«µå: ${number[0]}</label>
+			<label>ì‚¬ìš© ì¹´ë“œ: ${number[0]}</label>
 			<label id="num">${number[1]}</label>
 			<p></p>
-			<label class="price">°áÁ¦ ±Ý¾×: ${PRI}</label>
+			<label class="price">ê²°ì œ ê¸ˆì•¡: ${PRI}</label>
 			<p></p>
-			<label>ÀÌ¿ëÇØ ÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù</label>
+			<label>ì´ìš©í•´ ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤</label>
 			</c:if>
 		</div>
 		</div>
 	</div>
 	
 	<div>
-		<label id="goMain" class="btn" style="margin-right: 1em">¸ÞÀÎÀ¸·Î</label>
-		<label id="myResList" class="btn">³» ¿¹¾à È®ÀÎÇÏ±â</label> 
+		<label id="goMain" class="btn" style="margin-right: 1em">ë©”ì¸ìœ¼ë¡œ</label>
+		<label id="myResList" class="btn">ë‚´ ì˜ˆì•½ í™•ì¸í•˜ê¸°</label> 
 	</div>
 </div>
 
