@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <!DOCTYPE html>
@@ -10,15 +10,15 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script src="http://code.jquery.com/jquery-1.7.js"></script>
 
-<!--ÆùÆ®¼³Á¤  -->
+<!--í°íŠ¸ì„¤ì •  -->
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic|Noto+Sans|Noto+Sans+KR|Open+Sans&display=swap" rel="stylesheet">
 <title>welcome space</title>
 
 <style type="text/css">
-   /*font¼³Á¤  */
+   /*fontì„¤ì •  */
 
-   /* °øÅëÀû¿ë»çÇ× */
+   /* ê³µí†µì ìš©ì‚¬í•­ */
    *{margin:0;font-family: 'Jeju Gothic', sans-serif;font-family: 'Nanum Gothic', sans-serif;
 font-family: 'Open Sans', sans-serif;
 font-family: 'Lato', sans-serif;
@@ -38,7 +38,7 @@ font-family: 'Noto Sans KR', sans-serif;}
 
 </style>
 <script type="text/javascript">
-/* ¸Ş´º Åä±Û */
+/* ë©”ë‰´ í† ê¸€ */
 
 
 </script>
