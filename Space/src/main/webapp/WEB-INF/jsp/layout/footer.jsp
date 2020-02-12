@@ -14,10 +14,10 @@
 <div class="footer_contents">
 
 	<div class="footer_logo">
-		<a href="/testmain">로고</a>
+		<a href="/two/main">(주)공간</a>
 	</div>
 	<div class="company">
-		<p>(우)06531 서울특별시 서초구 신반포로49길 12 하늘정원빌딩 3층 쉐어잇 주식회사</p>
+		<p>서울 종로구 종로 78 미려빌딩 6층 이젠아카데미컴퓨터학원</p>
 	</div>
 	<div class="footer_menu">
 		<ul>
