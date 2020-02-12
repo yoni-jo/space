@@ -59,6 +59,12 @@
  	<put-attribute name="contents" value="/WEB-INF/jsp/main/spaceList.jsp"></put-attribute>
  
  </definition>
+ <!--메인 list화면 클릭시 상세페이지  -->
+ <definition name="spaceDetail" extends="mainlayout">
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/main/spaceDetail.jsp"></put-attribute>
+ 
+ </definition>
+ 
 <!--내공간관리 (등록하기) -->
 <definition name="form" extends="modifyform">
 	<put-attribute name="contents" value="/WEB-INF/jsp/mySpace/form.jsp"/>
