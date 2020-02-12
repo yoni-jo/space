@@ -39,10 +39,17 @@ public class SpaceDao extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectSpaceRes(Map<String,Object> map) throws Exception{
 		String type = (String)selectOne("space.selectResType",map);
-		if(type.equals("DAY")) 
-			return (List<Map<String,Object>>)selectList("space.selectResDay",map);
-		else 
-			return (List<Map<String,Object>>)selectList("space.selectResDate",map);
+		if(type.equals("DAY")) {
+			List<Map<String,Object>> list = (List<Map<String,Object>>)selectList("space.selectResDay",map);
+			list.get(0).put("TYPE","DAY");
+			return list;
+		}	
+		else {
+			List<Map<String,Object>> list = (List<Map<String,Object>>)selectList("space.selectResDate",map);
+			list.get(0).put("TYPE","DATE");
+			return list;
+		}
+			
 		
 	}
 	@SuppressWarnings("unchecked")

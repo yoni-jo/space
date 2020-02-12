@@ -45,7 +45,7 @@ if(session.getAttribute("USER_ID") != null){
 <input id="spaceId" type="hidden" value="${DETAIL.SPACE_ID}">
 <input id="res_type" type="hidden" value="${DETAIL.SPACE_RES_TYPE}">
 <c:if test="${!empty RES_LIST}">
-	<c:if test="${DETAIL.SPACE_RES_TYPE.equals('DATE')}">
+	<c:if test="${DETAIL.SPACE_RES_TYPE=='DATE'}">
 		<c:forEach var="list" items="${RES_LIST}">
 			<div class="resDiv">			
 			<input class="res_date" type="hidden" value="${list.SDATE}">
@@ -53,12 +53,11 @@ if(session.getAttribute("USER_ID") != null){
 			</div>
 		</c:forEach>
 	</c:if>
-	<c:if test="${DETAIL.SPACE_RES_TYPE.equals('DAY') }">
-	<c:set var="map" value="${RES_LIST.get(0)}"></c:set>
-	<c:forEach var="key" items="${map.keySet()}">
+	<c:if test="${DETAIL.SPACE_RES_TYPE=='DAY' }">
+	<c:forEach var="map" items="${map}">
 		<div class="resDiv">
-		<input class="res_date" type="hidden" value="${key}">
-		<input class="res_pri" type="hidden" value="${map.get(key)}">
+		<input class="res_date" type="hidden" value="${map.key}">
+		<input class="res_pri" type="hidden" value="${map.value}">
 		</div>
 	</c:forEach>
 	</c:if>

@@ -101,10 +101,6 @@ public class SpaceController {
 			Set<String> sKey = temp.keySet();
 			log.debug("==========================DETAIL LIST=====================================");
 			for (String s : sKey) {
-				/*
-				 * log.debug(s + " >>> " + temp.get(s) +
-				 * "---------------------------------------");
-				 */
 				if(s.equals("SPACE_TAG")) mav.addObject("TAG",divisionString("#",(String)temp.get(s)));
 				else if(s.equals("SPACE_OPT")) mav.addObject("OPT",divisionString("/",(String)temp.get(s)));
 				else if(s.equals("SPACE_USE")) mav.addObject("USE",divisionString("/",(String)temp.get(s)));
@@ -115,6 +111,9 @@ public class SpaceController {
 		}
 		List<Map<String, Object>> list = (List<Map<String, Object>>) spaceMap.get("RES_LIST");
 		List<String> compList = spaceService.selectCompResDate(map.getMap());
+		if(list.get(0).get("TYPE").equals("DAY")) {
+			mav.addObject("map", list.get(0));
+		}
 		mav.addObject("RES_LIST",list);
 		mav.addObject("COMP_LIST", compList);
 		return mav;
