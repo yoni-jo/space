@@ -20,7 +20,10 @@
 	
 	 $(document).on('click','.mypagebar',function(){
 		
-		$('.mypagehide>li').slideToggle();
+		$('.mypagehide>li').slideToggle('hover',function(){
+			
+			$(this).css({"color":"purple"})
+		});
 
 	});
 
@@ -41,8 +44,8 @@
 .mypagehide li a:hover span{font-weight: bold;width: 100%}
 
 /* 마우스오버이벤트 */
-.myhover {background:gray; opacity:50%;transition:all 0.2s ease-in;}
-
+.myhover>a {background:#41dfd0;transition:all 0.2s ease-in;color:white}
+.myhover{background:#41dfd0; color:white;transition:all 0.2s ease-in;}
 
 </style>
 			

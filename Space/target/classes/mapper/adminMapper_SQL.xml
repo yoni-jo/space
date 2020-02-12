@@ -38,6 +38,7 @@
 	
 	<!-- 예약목록리스트 -->
 	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/>	
 		<![CDATA[
 			SELECT 
 				ROW_NUMBER()OVER(ORDER BY SPACE_ID DESC) RNUM,
@@ -62,35 +63,42 @@
 				ON R.RES_SPACE_ID = SPACE_ID
 			)RST
 		]]>
+		<include refid="search.member" />
+	<include refid="common.pagingPost"/>
 	</select>
 	
 	<!-- 등록된공간리스트 -->
 	<select id="selectspaceList" parameterType="hashMap" resultType="hashMap">
-<![CDATA[ 
-	SELECT 
-		S.SPACE_ID, 
-		S.SPACE_TITLE, 
-		S.SPACE_USE, 
-		S.SPACE_POS, 
-		S.SPACE_PRI, 
-		S.SPACE_IMG, 
-		S.SPACE_HOST,
-		U.USER_NAME,
-		U.USER_PHONE, 
-		U.USER_EMAIL 
-	FROM
-		SPACE_LIST S, 
-		USER_LIST U 
-	WHERE 
-		SPACE_HOLD = 'N' AND SPACE_DEL_GB = 'N'
-    ORDER BY SPACE_ID DESC
-]]>
-</select>
+	<include refid="common.pagingPre"/>	
+		<![CDATA[ 
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY S.SPACE_ID DESC) RNUM, 
+				S.SPACE_ID, 
+				S.SPACE_TITLE, 
+				S.SPACE_USE, 
+				S.SPACE_POS, 
+				S.SPACE_PRI, 
+				S.SPACE_IMG, 
+				S.SPACE_HOST,
+				U.USER_NAME,
+				U.USER_PHONE, 
+				U.USER_EMAIL 
+			FROM
+				SPACE_LIST S, 
+				USER_LIST U 
+			WHERE 
+				SPACE_HOLD = 'N' AND SPACE_DEL_GB = 'N'
+   		 ORDER BY SPACE_ID DESC
+		]]>
+		<include refid="common.pagingPost"/>
+	</select>
 
 <!-- 공간신청리스트 -->
 <select id="selectreqList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>	
 	<![CDATA[
 		SELECT 
+		ROW_NUMBER() OVER (ORDER BY APPLY_NUM DESC) RNUM,
 			APPLY_NUM, 
 			APPLY_MODIFY,
 			APPLY_IMG,
@@ -111,6 +119,8 @@
 			APPLY_ID=USER_ID
 		ORDER BY APPLY_NUM DESC
 	]]>
+	<include refid="search.member" />
+	<include refid="common.pagingPost"/>
 </select>
 	
 	<!-- 공지사항 관련 -->

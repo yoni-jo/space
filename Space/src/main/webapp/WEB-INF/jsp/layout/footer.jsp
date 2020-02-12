@@ -3,7 +3,7 @@
 	pageEncoding="EUC-KR"%>
 <style type="text/css" >
 
-.footer_contents {text-align:center;margin-bottom:10px; font-size: 12px;}
+.footer_contents {background-color:#80808017; text-align:center;margin-bottom:10px; font-size: 12px;}
 .footer_menu {text-align: center;}
 .footer_menu>ul{display: flex; width: 35%; margin: 0 auto; padding-left:0}
 .footer_menu>ul>li {float: left;width:calc(100%/4);}
