@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session = "true" %>
 <% 
@@ -37,8 +37,8 @@ if(session.getAttribute("USER_ID") != null){
 			<input id="userId" type="hidden" value="${USER_ID}">
 		</c:if>
 		<div style="display: inline-block; align-self: center; margin-top:10px">
-		<input type="text" id="searchTitle" placeholder="°Ë»ö¾î ÀÔ·Â" style="width: 400px;">
-		<button id="searchBtn" style="font-size: 22px;" >°Ë»ö</button>
+		<input type="text" id="searchTitle" placeholder="ê²€ìƒ‰ì–´ ì…ë ¥" style="width: 400px;">
+		<button id="searchBtn" style="font-size: 22px;" >ê²€ìƒ‰</button>
 		</div>
 		<p>
 		<div class="option">
@@ -49,28 +49,28 @@ if(session.getAttribute("USER_ID") != null){
 				<col width="85%">
 			</colgroup>
 			<tr>
-				<th class="optitle" >¸ñÀû </th>
+				<th class="optitle" >ëª©ì  </th>
 				<td>
 					<div class="opt">
-						<a href="#" name="all">ÀüÃ¼º¸±â</a> <a href="#">½ºÆ©µğ¿À</a> <a href="#">Àü½ÃÈ¸</a> <a
-							href="#">ÄÜ¼­Æ®</a> <a href="#">ÆÄÆ¼·ë</a> <a href="#">¼¼¹Ì³ª½Ç</a>
+						<a href="#" name="all">ì „ì²´ë³´ê¸°</a> <a href="#">ìŠ¤íŠœë””ì˜¤</a> <a href="#">ì „ì‹œíšŒ</a> <a
+							href="#">ì½˜ì„œíŠ¸</a> <a href="#">íŒŒí‹°ë£¸</a> <a href="#">ì„¸ë¯¸ë‚˜ì‹¤</a>
 					<input type="hidden" class="opt_val" id="use" value="${USE}">
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<th class="optitle">Áö¿ª</th>
+				<th class="optitle">ì§€ì—­</th>
 				<td>
 					<div class="opt">
-							<a href="#" name="all">ÀüÃ¼º¸±â</a> <a href="#">¼­¿ï</a> <a
-							href="#">°æ±âµµ</a> <a href="#">ÀÎÃµ</a> <a href="#">ÃæÃ»µµ</a> <a
-							href="#">°æ»óµµ</a>
+							<a href="#" name="all">ì „ì²´ë³´ê¸°</a> <a href="#">ì„œìš¸</a> <a
+							href="#">ê²½ê¸°ë„</a> <a href="#">ì¸ì²œ</a> <a href="#">ì¶©ì²­ë„</a> <a
+							href="#">ê²½ìƒë„</a>
 							<input type="hidden" class="opt_val" id="pos" value="${POS}">
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<th class="optitle">±â°£</th>
+				<th class="optitle">ê¸°ê°„</th>
 				<td>
 					<div class="opt_date">
 						<input type="text" id="startDate" readonly="readonly" value="${START_DATE}">
@@ -79,10 +79,10 @@ if(session.getAttribute("USER_ID") != null){
 				</td>
 			</tr>
 			<tr>
-				<th class="optitle">¸éÀû(§³)</th>
+				<th class="optitle">ë©´ì (ã¡)</th>
 				<td>
 					<div class="opt">
-						<a href="#" name="all">ÀüÃ¼º¸±â</a> <a href="#">30</a> <a href="#">100</a> <a
+						<a href="#" name="all">ì „ì²´ë³´ê¸°</a> <a href="#">30</a> <a href="#">100</a> <a
 							href="#">200</a> <a href="#">500</a>
 							<input type="hidden" class="opt_val" id="size" value="${SIZE}">
 					</div>
@@ -92,9 +92,9 @@ if(session.getAttribute("USER_ID") != null){
 		</div>
 		<div style="width: 700px; display: inline-block ">
 		<form id="radioForm" style="text-align: right;"> 
-			<input type="radio" name="SEARCH_TYPE" value="read">ÀÎ±â¼ø
-			<input type="radio" name="SEARCH_TYPE" value="new" checked="checked">ÃÖ½Å¼ø
-			<input type="radio" name="SEARCH_TYPE" value="pri">°¡°İ³·Àº¼ø
+			<input type="radio" name="SEARCH_TYPE" value="read">ì¸ê¸°ìˆœ
+			<input type="radio" name="SEARCH_TYPE" value="new" checked="checked">ìµœì‹ ìˆœ
+			<input type="radio" name="SEARCH_TYPE" value="pri">ê°€ê²©ë‚®ì€ìˆœ
 		</form>
 		</div>
 		<p>
@@ -107,7 +107,7 @@ if(session.getAttribute("USER_ID") != null){
 			</colgroup>
 				<c:if test="${empty SPACE_LIST}">
 				<%session.setAttribute("USER_ID", "admin"); %>
-					°Ë»öµÈ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù.
+					ê²€ìƒ‰ëœ ë¦¬ìŠ¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.
 				</c:if>
 				<c:forEach var="space" items="${SPACE_LIST}" varStatus="st">
 					<c:set var="thumbnail" value="${fn:split(space.SPACE_IMG,',')[0]}"></c:set>
@@ -128,10 +128,10 @@ if(session.getAttribute("USER_ID") != null){
 									${space.SPACE_PRI}
 								</div>
 								<div class="favBtn" style="float:left; width: 20%">
-								<%-- <c:set var="favImage" value="¡Ù"/>
+								<%-- <c:set var="favImage" value="â˜†"/>
 								<c:forEach var="favID" items="${FAVORI_LIST}">
 									<c:if test="${space.SPACE_ID eq favID}">
-										<c:set var="favImage" value="¡Ú"/>
+										<c:set var="favImage" value="â˜…"/>
 									</c:if>
 								</c:forEach>
 								${favImage} --%>
@@ -243,7 +243,7 @@ if(session.getAttribute("USER_ID") != null){
 			comSubmit.submit(); 
 		}
 		function fn_updateFavSpace(data) {
-			$(".favBtn").html("¡Ù");
+			$(".favBtn").html("â˜†");
 			var info;
 			var list;
 			if(data == null){
@@ -255,7 +255,7 @@ if(session.getAttribute("USER_ID") != null){
 				list=data.favList;
 				list.forEach(function(item,index,arr){
 				info = $(".spaceInfo").find("input[value="+item+"]");
-				info.closest("div").find(".favBtn").html("¡Ú");
+				info.closest("div").find(".favBtn").html("â˜…");
 			});
 			}
 		}

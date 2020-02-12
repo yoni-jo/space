@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@ include file="/WEB-INF/common/fullcalendar-header.jspf" %>
 <%@ include file="/WEB-INF/common/defualt-header.jspf" %>
 <meta charset="EUC-KR">
-<title>³» °ø°£ ¿¹¾à »óÈ²</title>
+<title>ë‚´ ê³µê°„ ì˜ˆì•½ ìƒí™©</title>
 <style>
 	.line{margin-bottom: 40px}
 	.subline{margin:5px 0 5px 0; border: 0.5px solid #000000;}
@@ -14,7 +14,7 @@
 	.subView{float: left;display: table; vertical-align: middle; min-height: 150px;width: 100% }
 	.textView.active{display: inherit;}
 	.textView{display:none;}
-	.price:after{content: " ¿ø"}
+	.price:after{content: " ì›"}
 	.cellView{text-align: left; vertical-align: middle; display: table-cell; width: 60%}
 	.imageView{margin:auto;  max-width: 95%;max-height:150px; cursor:pointer;
 				display: table-cell;vertical-align: middle;}
@@ -48,7 +48,7 @@
 	<p class="line"></p>
 
 	<div id="resTitle" class="view" style="width: 700px; background: #FE9A2E; font-weight: bold;">
-		<label id="resTitle">³» °ø°£ ¿¹¾à »óÈ²</label>
+		<label id="resTitle">ë‚´ ê³µê°„ ì˜ˆì•½ ìƒí™©</label>
 	</div>
 	<p class='line'></p>
 	
@@ -78,13 +78,13 @@
 				events: event,
 				columnHeaderText: function(date) {
 						switch (date.getDay()){
-						case 0: return 'ÀÏ';
-						case 1: return '¿ù';
-						case 2: return 'È­';
-						case 3: return '¼ö';
-						case 4: return '¸ñ';
-						case 5: return '±İ';
-						case 6: return 'Åä';
+						case 0: return 'ì¼';
+						case 1: return 'ì›”';
+						case 2: return 'í™”';
+						case 3: return 'ìˆ˜';
+						case 4: return 'ëª©';
+						case 5: return 'ê¸ˆ';
+						case 6: return 'í† ';
 						}
 				},
 				selectable:true,
@@ -104,9 +104,9 @@
 				},
 				locale : 'ko',
 				titleFormat: {month: 'short', year: 'numeric'},
-				monthNames: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'] ,
-				monthNamesShort: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'],
-				buttonText: {today: '¿À´Ã', month: '¿ù', week: 'ÁÖ', day: 'ÀÏ' , prev : 'ÀÌÀü', next:'´ÙÀ½'}
+				monthNames: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'] ,
+				monthNamesShort: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'],
+				buttonText: {today: 'ì˜¤ëŠ˜', month: 'ì›”', week: 'ì£¼', day: 'ì¼' , prev : 'ì´ì „', next:'ë‹¤ìŒ'}
 			});
 
 			calendar.render();
@@ -118,7 +118,7 @@
 					form.action = "<c:url value='/res/resPay'/>";
 					form.submit();
 				}else{
-					alert("¿¹¾à È®ÀÎ ÈÄ Å¬¸¯ÇØÁÖ¼¼¿ä");
+					alert("ì˜ˆì•½ í™•ì¸ í›„ í´ë¦­í•´ì£¼ì„¸ìš”");
 				}
 			});
 		});
@@ -128,7 +128,7 @@
 		var imageStr;
 		if($(data.list).length<=0){
 			var str ="<dl>"+
-					"<dd colspan = '4'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù</dd>"+
+					"<dd colspan = '4'>ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤</dd>"+
 					"</dl>";
 			body.append(str);
 		}else{
@@ -144,16 +144,16 @@
 			"<img class='imageView' src='<c:url value='/image/"+imageStr[0]+"'/>'/>"+
 			"<input type='hidden' name='SPACE_ID' value='"+value.SPACE_ID+"'>"+
 			"<div class='cellView' style='font-size: 11px;'>"+
-				"<label>¿¹¾à Á¤º¸</label>"+
+				"<label>ì˜ˆì•½ ì •ë³´</label>"+
 				"<p class='subline'></p>"+
-				"½ÅÃ»ÀÏ :<label class='inText'>"+date+"</label><br>"+
-				"°ø°£¸í :<label class='inText'>"+value.SPACE_TITLE+"</label><br>"+
+				"ì‹ ì²­ì¼ :<label class='inText'>"+date+"</label><br>"+
+				"ê³µê°„ëª… :<label class='inText'>"+value.SPACE_TITLE+"</label><br>"+
 				"<p class='subline'></p>"+
-				"<label>¿¹¾àÀÚ Á¤º¸</label>"+
+				"<label>ì˜ˆì•½ì ì •ë³´</label>"+
 				"<p class='subline'></p>"+
-				"ÀÌ¸§ :<label class='inText'>"+value.RES_NAME+"</label><br>"+
-				"¿¬¶ôÃ³ :<label class='inText'>"+value.USER_PHONE+"</label><br>"+
-				"ÀÌ¸ŞÀÏ :<label class='inText'>"+value.RES_EMAIL+"</label><br>"+
+				"ì´ë¦„ :<label class='inText'>"+value.RES_NAME+"</label><br>"+
+				"ì—°ë½ì²˜ :<label class='inText'>"+value.USER_PHONE+"</label><br>"+
+				"ì´ë©”ì¼ :<label class='inText'>"+value.RES_EMAIL+"</label><br>"+
 			"</div></div></div>"+
 			"<p></p>";
 			

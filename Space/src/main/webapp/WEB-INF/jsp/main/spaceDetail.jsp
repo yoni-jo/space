@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <% 
 String userId;
 session.setAttribute("USER_ID", "admin");
@@ -26,15 +26,14 @@ if(session.getAttribute("USER_ID") != null){
 	.caption{text-align: left;}
 	
 	#option > label > input{margin-left: 20px}
-	.fc-sat > .fc-day-number { color:#0000FF; }     /* Åä¿äÀÏ */
+	.fc-sat > .fc-day-number { color:#0000FF; }     /* í† ìš”ì¼ */
 	.fc-sun > .fc-day-number { color:#FF0000; }
 	.fc-title { font-size: 10px; text-align: center;}
-	.fc-title:after {content: "¿ø";}
+	.fc-title:after {content: "ì›";}
 	.fc-allow-mouse-resize{cursor: pointer;}
-	#resultPri:before{content: "°áÀç ±İ¾× : "}
-	#resultPri:after {content: "¿ø"}
+	#resultPri:before{content: "ê²°ì¬ ê¸ˆì•¡ : "}
+	#resultPri:after {content: "ì›"}
 </style>
-<meta charset="EUC-KR">
 <title>${DETAIL.SPACE_TITLE}</title>
 </head>
 <body>
@@ -81,9 +80,9 @@ if(session.getAttribute("USER_ID") != null){
 			
 			<div id="topInfoView">
 				<br><label>${DETAIL.SPACE_TITLE}</label><br>
-				<label>Æò±Õ°¡ ${DETAIL.SPACE_PRI}</label><br>
+				<label>í‰ê· ê°€ ${DETAIL.SPACE_PRI}</label><br>
 				<p></p>
-				<label>ÀÓ´ëÀÎ Á¤º¸</label><br>
+				<label>ì„ëŒ€ì¸ ì •ë³´</label><br>
 				<label>ID : ${DETAIL.SPACE_HOST}</label><br>
 				<c:set var="tagList" value="${fn:split(DETAIL.SPACE_TAG,'#')}"/>
 				<c:forEach var="tag" items="${tagList}" >
@@ -100,7 +99,7 @@ if(session.getAttribute("USER_ID") != null){
 			<p class="line"></p>
 			<div id="resCalendarBtn" style="width: 100%; height: 100%;">
 				<label id="resultPri">0</label>
-				<label id="calBtn" style="width : inherit; display:inline-block; background: blue;">¹öÆ°</label> 
+				<label id="calBtn" style="width : inherit; display:inline-block; background: blue;">ë²„íŠ¼</label> 
 			</div>
 		</div>
 		
@@ -111,19 +110,19 @@ if(session.getAttribute("USER_ID") != null){
 					style="height: 100%; background-color: silver; padding: 10px; margin-top: 50px">
 					<div class="item">
 						<img src="<c:url value='/image/area.png'/>"
-							style="max-width: 60%;" /> <br> <label style="">¸éÀû<br>${DETAIL.SPACE_SIZE}§³</label>
+							style="max-width: 60%;" /> <br> <label style="">ë©´ì <br>${DETAIL.SPACE_SIZE}ã¡</label>
 					</div>
 					<div class="item">
 						<img src="<c:url value='/image/person.png'/>"
-							style="max-width: 60%;" /> <br> <label style="">¼ö¿ëÀÎ¿ø<br>${DETAIL.SPACE_PERSON}¸í</label>
+							style="max-width: 60%;" /> <br> <label style="">ìˆ˜ìš©ì¸ì›<br>${DETAIL.SPACE_PERSON}ëª…</label>
 					</div>
 					<div class="item">
 						<img src="<c:url value='/image/chair.png'/>"
-							style="max-width: 60%;" /> <br> <label style="">ÁÂ¼®<br>${DETAIL.SPACE_SEAT}¼®</label>
+							style="max-width: 60%;" /> <br> <label style="">ì¢Œì„<br>${DETAIL.SPACE_SEAT}ì„</label>
 					</div>
 					<div class="item">
 						<img src="<c:url value='/image/car.png'/>" style="max-width: 60%;" />
-						<br> <label style="">ÁÖÂ÷°ø°£<br>${DETAIL.SPACE_PARKING}´ë</label>
+						<br> <label style="">ì£¼ì°¨ê³µê°„<br>${DETAIL.SPACE_PARKING}ëŒ€</label>
 					</div>
 				</div>
 
@@ -132,7 +131,7 @@ if(session.getAttribute("USER_ID") != null){
 				<div id="locationView" style="width: 100%; text-align: left">
 					<div id="viewTitle" style="width: 100%;">
 						<img src="<c:url value='/image/gps.png'/>"
-							style="width: 40px; height: 40px" /> <label class="subTitle">À§Ä¡</label>
+							style="width: 40px; height: 40px" /> <label class="subTitle">ìœ„ì¹˜</label>
 					</div>
 					<p></p>
 					<div id="map" style="width: inherit; height: 400px; z-index: 0"></div>
@@ -148,25 +147,25 @@ if(session.getAttribute("USER_ID") != null){
 						<input class="optItem" type="hidden" value="${item}">
 					</c:forEach>
 					<div id="optTitle">
-						<label class="subTitle">¼¼ºÎ¿É¼ÇÁ¤º¸</label>
+						<label class="subTitle">ì„¸ë¶€ì˜µì…˜ì •ë³´</label>
 					</div>
 					<p class="subline"></p>
 					<div id="option">
-						<label><input type="checkbox">¹«´ë</label> <label><input
-							type="checkbox">·Îºñ</label> <label><input type="checkbox">´ë±â½Ç</label>
-						<label><input type="checkbox">Á¶¸í</label> <label><input
-							type="checkbox">±³Å¹</label> <label><input type="checkbox">Å×ÀÌºí</label>
+						<label><input type="checkbox">ë¬´ëŒ€</label> <label><input
+							type="checkbox">ë¡œë¹„</label> <label><input type="checkbox">ëŒ€ê¸°ì‹¤</label>
+						<label><input type="checkbox">ì¡°ëª…</label> <label><input
+							type="checkbox">êµíƒ</label> <label><input type="checkbox">í…Œì´ë¸”</label>
 						<p class="subline"></p>
-						<label><input type="checkbox">ºöÇÁ·ÎÁ§ÅÍ</label> <label><input
-							type="checkbox">À¯¼±¸¶ÀÌÅ©</label> <label><input
-							type="checkbox">¹«¼±¸¶ÀÌÅ©</label> <label><input
-							type="checkbox">½ºÇÇÄ¿</label> <label><input type="checkbox">Ã¥°É»ó</label>
+						<label><input type="checkbox">ë¹”í”„ë¡œì í„°</label> <label><input
+							type="checkbox">ìœ ì„ ë§ˆì´í¬</label> <label><input
+							type="checkbox">ë¬´ì„ ë§ˆì´í¬</label> <label><input
+							type="checkbox">ìŠ¤í”¼ì»¤</label> <label><input type="checkbox">ì±…ê±¸ìƒ</label>
 						<p class="subline"></p>
 						<label><input type="checkbox">PC</label> <label><input
 							type="checkbox">TV</label> <label><input type="checkbox">Wi-Fi</label>
-						<label><input type="checkbox">³Ã³­¹æ±â</label> <label><input
-							type="checkbox">ÁÖÂ÷°ø°£</label> <label><input
-							type="checkbox">½Â°­±â</label>
+						<label><input type="checkbox">ëƒ‰ë‚œë°©ê¸°</label> <label><input
+							type="checkbox">ì£¼ì°¨ê³µê°„</label> <label><input
+							type="checkbox">ìŠ¹ê°•ê¸°</label>
 					</div>
 				</div>
 
@@ -176,22 +175,22 @@ if(session.getAttribute("USER_ID") != null){
 					<div class="tapMenu">
 						<ul class="tabs">
 							<li class="tab-link current" data-tab="QNA_LIST">Q&A</li>
-							<li class="tab-link" data-tab="REPLY_LIST">ÈÄ±â</li>
+							<li class="tab-link" data-tab="REPLY_LIST">í›„ê¸°</li>
 						</ul>
 						<div id="listView" class="tabView">
 							<div id="listTitle" class="listTitle">
 								<ul>
-									<li class="col_ans">´äº¯</li>
-									<li class="col_title">Á¦¸ñ</li>
-									<li class="col_writer">ÀÛ¼ºÀÚ</li>
-									<li class="col_writeDate">ÀÛ¼ºÀÏ</li>
+									<li class="col_ans">ë‹µë³€</li>
+									<li class="col_title">ì œëª©</li>
+									<li class="col_writer">ì‘ì„±ì</li>
+									<li class="col_writeDate">ì‘ì„±ì¼</li>
 								</ul>
 							</div>
 							<div id="QNA_LIST" class="tab-content current"></div>
 							<div id="REPLY_LIST" class="tab-content"></div>
 							<div style="text-align: right;">
 							<c:if test="${!empty USER_ID}">
-								<label id="writeBtn" class="writeBtn" for="open-pop">Áú¹® ÀÛ¼º</label>
+								<label id="writeBtn" class="writeBtn" for="open-pop">ì§ˆë¬¸ ì‘ì„±</label>
 							</c:if>
 							</div>
 							<div id="pageNum"></div>
@@ -211,30 +210,30 @@ if(session.getAttribute("USER_ID") != null){
 					<label class="modal_bg" for="open-pop"></label>
 					<div class="modal_inner">
 						<label class="modal_close" for="open-pop"></label>
-						<h2 id="write" class="popup_title">Áú¹® ÀÛ¼º</h2>
+						<h2 id="write" class="popup_title">ì§ˆë¬¸ ì‘ì„±</h2>
 						<p class="popup_content" style="text-align: left;"></p>
-							<div id="divPopTitle"><label>Á¦¸ñ </label><br>
+							<div id="divPopTitle"><label>ì œëª© </label><br>
 							<input type="text" id="popTitle" class="title txt"></div>
 							
 							<p class="subline"></p>
 							
 							<div id="divPopCnt">
-							<label>³»¿ë </label><br>
+							<label>ë‚´ìš© </label><br>
 							<textarea id="popCnt" rows="2" cols="10" class="content txt"></textarea>
 							</div>
 							
 							<p class="subline"></p>
 							
 							<div id="divPopCmt">
-							<label>´äº¯ ³»¿ë</label><br>
+							<label>ë‹µë³€ ë‚´ìš©</label><br>
 							<textarea id="popCmt" rows="2" cols="10" class="content txt"></textarea>
 							</div>
 							
 							<p class="subline"></p>
 							
 							<div id="divPopBtn">
-							<label id="sendBtn" class="writeBtn" style="bottom: 2em;">È®ÀÎ</label>
-							<label id="tempBtn" style="bottom: 2em; right: 2em;float: right;">ºñ¹Ğ±Û
+							<label id="sendBtn" class="writeBtn" style="bottom: 2em;">í™•ì¸</label>
+							<label id="tempBtn" style="bottom: 2em; right: 2em;float: right;">ë¹„ë°€ê¸€
 							<input type="checkbox" name="hiddenPost"></label>
 							</div>
 					</div>
@@ -245,7 +244,7 @@ if(session.getAttribute("USER_ID") != null){
 
 
 			<div id="guide_Caption" class="caption">
-			<label>ÁÖÀÇ »çÇ×</label>
+			<label>ì£¼ì˜ ì‚¬í•­</label>
 			<ul>
 				<li></li>
 			</ul>
@@ -257,7 +256,7 @@ if(session.getAttribute("USER_ID") != null){
 			</ul>
 		</div>
 		<div id="refund_Caption" class="caption">
-			<label>È¯ºÒ ±ÔÁ¤</label>
+			<label>í™˜ë¶ˆ ê·œì •</label>
 			<ul>
 				<li></li>
 			</ul>
@@ -351,7 +350,7 @@ if(session.getAttribute("USER_ID") != null){
 		body.empty();
 		if(total == 0){
 			var str ="<ul>"+
-						"<li colspan = '4'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù</td>"+
+						"<li colspan = '4'>ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤</td>"+
 					"</ul>";
 			$("#pageNum").empty();
 			body.append(str);
@@ -386,7 +385,7 @@ if(session.getAttribute("USER_ID") != null){
 							"<li class='col_ans'>"+value.QNA_ANS+"</li>"+
 							"<li class='col_title'>";
 							if(value.QNA_SCR == 'Y'){
-								str+="<label>"+value.QNA_TITLE+"[ºñ¹Ğ±Û]</label>"
+								str+="<label>"+value.QNA_TITLE+"[ë¹„ë°€ê¸€]</label>"
 								str+="<input type='hidden' name='QNA_CNT' value=''>"+
 								
 								"<input type='hidden' name='QNA_ANS' value=''>"+
@@ -417,7 +416,7 @@ if(session.getAttribute("USER_ID") != null){
 							}
 						}
 						str+="</li></ul>"+
-						"<ul><li>ÀÛ¼ºÀÏ : "+date+"</li></ul></div>"+
+						"<ul><li>ì‘ì„±ì¼ : "+date+"</li></ul></div>"+
 						"<div class='last_child'></div>";
 				}
 			});
@@ -432,12 +431,12 @@ if(session.getAttribute("USER_ID") != null){
 				var cmt = $("#divPopCmt > textarea");
 				
 				$("#divPopCmt").css("display","");
-				$(".popup_title").text("Áú¹®");
+				$(".popup_title").text("ì§ˆë¬¸");
 				
 				title.val($(this).text());
 				cnt.val(obj.find("input[name=QNA_CNT]").val());
 				if(obj.find("input[name=QNA_ANS]").val() == 'N'){
-					cmt.val("´äº¯µÇÁö ¾ÊÀº ±ÛÀÔ´Ï´Ù");
+					cmt.val("ë‹µë³€ë˜ì§€ ì•Šì€ ê¸€ì…ë‹ˆë‹¤");
 				}else{
 					cmt.val(obj.find("input[name=QNA_CMT]").val());
 				}
@@ -464,9 +463,9 @@ if(session.getAttribute("USER_ID") != null){
 		var date = new Date(time);
 	    var year = date.getFullYear();              //yyyy
 	    var month = (1 + date.getMonth());          //M
-	    month = month >= 10 ? month : '0' + month;  //month µÎÀÚ¸®·Î ÀúÀå
+	    month = month >= 10 ? month : '0' + month;  //month ë‘ìë¦¬ë¡œ ì €ì¥
 	    var day = date.getDate();                   //d
-	    day = day >= 10 ? day : '0' + day;          //day µÎÀÚ¸®·Î ÀúÀå
+	    day = day >= 10 ? day : '0' + day;          //day ë‘ìë¦¬ë¡œ ì €ì¥
 	    return  year + '-' + month + '-' + day;
 	}
 	</script>
@@ -535,13 +534,13 @@ if(session.getAttribute("USER_ID") != null){
 				events: event,
 				columnHeaderText: function(date) {
 						switch (date.getDay()){
-						case 0: return 'ÀÏ';
-						case 1: return '¿ù';
-						case 2: return 'È­';
-						case 3: return '¼ö';
-						case 4: return '¸ñ';
-						case 5: return '±İ';
-						case 6: return 'Åä';
+						case 0: return 'ì¼';
+						case 1: return 'ì›”';
+						case 2: return 'í™”';
+						case 3: return 'ìˆ˜';
+						case 4: return 'ëª©';
+						case 5: return 'ê¸ˆ';
+						case 6: return 'í† ';
 						}
 				},
 				eventRender: function(info) {
@@ -589,9 +588,9 @@ if(session.getAttribute("USER_ID") != null){
 				},
 				locale : 'ko',
 				titleFormat: {month: 'short', year: 'numeric'},
-				monthNames: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'] ,
-				monthNamesShort: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'],
-				buttonText: {today: '¿À´Ã', month: '¿ù', week: 'ÁÖ', day: 'ÀÏ' , prev : 'ÀÌÀü', next:'´ÙÀ½'}
+				monthNames: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'] ,
+				monthNamesShort: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'],
+				buttonText: {today: 'ì˜¤ëŠ˜', month: 'ì›”', week: 'ì£¼', day: 'ì¼' , prev : 'ì´ì „', next:'ë‹¤ìŒ'}
 			});
 
 			calendar.render();
@@ -603,7 +602,7 @@ if(session.getAttribute("USER_ID") != null){
 					form.action = "<c:url value='/res/resPay'/>";
 					form.submit();
 				}else{
-					alert("¿¹¾à È®ÀÎ ÈÄ Å¬¸¯ÇØÁÖ¼¼¿ä");
+					alert("ì˜ˆì•½ í™•ì¸ í›„ í´ë¦­í•´ì£¼ì„¸ìš”");
 				}
 			});
 		});

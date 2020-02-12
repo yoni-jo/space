@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <style>
 
 #findMemform{width:648px; margin:0 auto;text-align:center;margin-bottom:100px}
@@ -22,17 +22,17 @@
 </script>
 	<form action="#">
 		<div id="findMemform">
-			<h1>���̵�/��й�ȣã��</h1>
+			<h1>아이디/비밀번호찾기</h1>
 			<ul class="findidtable">
-				<li><input type="text" name="USER_ID" id="USER_ID" placeholder="���̵�">
+				<li><input type="text" name="USER_ID" id="USER_ID" placeholder="아이디">
 				</li>
-				<li><input type="email" name="USER" id="email" placeholder="�̸����ּ�">
+				<li><input type="email" name="USER" id="email" placeholder="이메일주소">
 				</li>
 				
-			<h6>���Խ� ����� �̸��� �ּҸ� �Է����ּ���</h6>
+			<h6>가입시 사용한 이메일 주소를 입력해주세요</h6>
 				<li>
 				
-					<button type="submit" id="submit">ã��</button>
+					<button type="submit" id="submit">찾기</button>
 
 				</li>
 
@@ -42,7 +42,7 @@
 			<p>
 			
 			
-				���� ȸ���� �ƴϽŰ���? <a href="/two/join/joinForm">ȸ�������ϱ�</a>
+				아직 회원이 아니신가요? <a href="/two/join/joinForm">회원가입하기</a>
 
 			</p>
 		</div>

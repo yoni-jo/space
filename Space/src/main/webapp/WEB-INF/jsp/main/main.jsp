@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr"
-pageEncoding="euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page session = "true" %>
 <% 
 String userId;
@@ -14,7 +14,7 @@ if(session.getAttribute("USER_ID") != null){
 <style>
 	.infoImage:hover{cursor: pointer; outline: black;}
 	.favBtn:hover{cursor: pointer; outline: black;}
-	/*¼±ÅÃÃ¢  */
+	/*ì„ íƒì°½  */
 	#t{margin-left:calc(50% - 250px);margin-top:30px;border-radius: 10px;background-color:#bdbdbd1c}
 
 select {
@@ -34,22 +34,22 @@ input{height: 30px;border:0}
 <tr>
 <td>
 <div style="float:left;  width: 50%;">
-<label style="font-weight: bold; ">¸ñÀû</label><br>
+<label style="font-weight: bold; ">ëª©ì </label><br>
 <select id="use" name="purpose" style="width: 80%">
-<option value="Àü½ÃÈ¸">Àü½ÃÈ¸</option>
-<option value="½ºÆ©µğ¿À">½ºÆ©µğ¿À</option>
-<option value="¼¼¹Ì³ª½Ç">¼¼¹Ì³ª½Ç</option>
-<option value="ÄÜ¼­Æ®">ÄÜ¼­Æ®</option>
-<option value="ÆÄÆ¼·ë">ÆÄÆ¼·ë</option>
-<option value="±âÅ¸">±âÅ¸</option>
+<option value="ì „ì‹œíšŒ">ì „ì‹œíšŒ</option>
+<option value="ìŠ¤íŠœë””ì˜¤">ìŠ¤íŠœë””ì˜¤</option>
+<option value="ì„¸ë¯¸ë‚˜ì‹¤">ì„¸ë¯¸ë‚˜ì‹¤</option>
+<option value="ì½˜ì„œíŠ¸">ì½˜ì„œíŠ¸</option>
+<option value="íŒŒí‹°ë£¸">íŒŒí‹°ë£¸</option>
+<option value="ê¸°íƒ€">ê¸°íƒ€</option>
 </select>
 </div>
 
 <div style="float:left;   width: 50%;">
-<label style="font-weight: bold;">Áö¿ª</label><br>
+<label style="font-weight: bold;">ì§€ì—­</label><br>
 <select id="pos" name="area" style="width: 80%">
-<option value="¼­¿ï">¼­¿ï</option>
-<option value="°æ±âµµ">°æ±âµµ</option>
+<option value="ì„œìš¸">ì„œìš¸</option>
+<option value="ê²½ê¸°ë„">ê²½ê¸°ë„</option>
 </select>
 </div>
 </td>
@@ -58,7 +58,7 @@ input{height: 30px;border:0}
 <td>
 
 <div id="maincontent" style="width: 50%; float:left;">
-<label style="font-weight: bold;">±â°£</label><br>
+<label style="font-weight: bold;">ê¸°ê°„</label><br>
 <input type="text" id="startDate" 
 readonly="readonly" value="${START_DATE}" size="10">
 <input type="text" id="endDate" 
@@ -66,14 +66,14 @@ readonly="readonly" value="${END_DATE}" size="10">
 </div>
 
 <div style="float:left;   width: 50% ;">	
-<label style="font-weight: bold;">¸éÀû</label><br>
+<label style="font-weight: bold;">ë©´ì </label><br>
 <select id="size" name="land" style="width: 80%">
-<option value="50">~50m©÷</option>
-<option value="100">~100m©÷</option>
-<option value="150">~150m©÷</option>
-<option value="200">~200m©÷</option>
-<option value="250">~250m©÷</option>
-<option value="300">~300m©÷</option>
+<option value="50">~50mÂ²</option>
+<option value="100">~100mÂ²</option>
+<option value="150">~150mÂ²</option>
+<option value="200">~200mÂ²</option>
+<option value="250">~250mÂ²</option>
+<option value="300">~300mÂ²</option>
 </select>
 </div>
 </td>
@@ -82,8 +82,8 @@ readonly="readonly" value="${END_DATE}" size="10">
 <td colspan="2">
 <div style="text-align:center; width: 100%">
 <div style="display: inline-block; align-self: center">
-<input id="searchTitle" type="text" placeholder="#¼­¿ï Àü½ÃÀå, #¿ë»ê Àü½ÃÈ¸" style="width: 400px; height: 20px">
-<button id="searchBtn" style="font-size: 15px;" >°Ë»ö</button>
+<input id="searchTitle" type="text" placeholder="#ì„œìš¸ ì „ì‹œì¥, #ìš©ì‚° ì „ì‹œíšŒ" style="width: 400px; height: 20px">
+<button id="searchBtn" style="font-size: 15px;" >ê²€ìƒ‰</button>
 </div>
 </div>
 
@@ -92,9 +92,9 @@ readonly="readonly" value="${END_DATE}" size="10">
 </table>
 		<div style="width: 700px; display: inline-block;">
 			<form id="radioForm" style="text-align: right;">
-				<input type="radio" name="SEARCH_TYPE" value="read">ÀÎ±â¼ø <input
-					type="radio" name="SEARCH_TYPE" value="new" checked="checked">ÃÖ½Å¼ø
-				<input type="radio" name="SEARCH_TYPE" value="pri">°¡°İ³·Àº¼ø
+				<input type="radio" name="SEARCH_TYPE" value="read">ì¸ê¸°ìˆœ <input
+					type="radio" name="SEARCH_TYPE" value="new" checked="checked">ìµœì‹ ìˆœ
+				<input type="radio" name="SEARCH_TYPE" value="pri">ê°€ê²©ë‚®ì€ìˆœ
 			</form>
 		</div>
 		<p>
@@ -106,7 +106,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 				<col width="35%">
 			</colgroup>
 			<c:if test="${empty SPACE_LIST}">
-					°Ë»öµÈ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù.
+					ê²€ìƒ‰ëœ ë¦¬ìŠ¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.
 				</c:if>
 				<c:forEach var="space" items="${SPACE_LIST}" varStatus="st">
 					<c:set var="thumbnail" value="${fn:split(space.SPACE_IMG,',')[0]}"></c:set>
@@ -127,10 +127,10 @@ readonly="readonly" value="${END_DATE}" size="10">
 									${space.SPACE_PRI}
 								</div>
 								<div class="favBtn" style="float:left; width: 20%">
-								<%-- <c:set var="favImage" value="¡Ù"/>
+								<%-- <c:set var="favImage" value="â˜†"/>
 								<c:forEach var="favID" items="${FAVORI_LIST}">
 									<c:if test="${space.SPACE_ID eq favID}">
-										<c:set var="favImage" value="¡Ú"/>
+										<c:set var="favImage" value="â˜…"/>
 									</c:if>
 								</c:forEach>
 								${favImage} --%>
@@ -156,7 +156,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 		fn_updateFavSpace();
 		fn_setradioButton('${SEARCH_TYPE}');
 		$("#searchBtn").on("click",function(e){
-			console.log("È®ÀÎ");
+			console.log("í™•ì¸");
 			e.preventDefault();
 			fn_searchSpaceList($(this));
 		});
@@ -217,7 +217,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 			comSubmit.submit(); 
 		}
 		function fn_updateFavSpace(data) {
-			$(".favBtn").html("¡Ù");
+			$(".favBtn").html("â˜†");
 			var info;
 			var list;
 			if(data == null){
@@ -229,7 +229,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 				list=data.favList;
 				list.forEach(function(item,index,arr){
 				info = $(".spaceInfo").find("input[value="+item+"]");
-				info.closest("div").find(".favBtn").html("¡Ú");
+				info.closest("div").find(".favBtn").html("â˜…");
 			});
 			}
 		}

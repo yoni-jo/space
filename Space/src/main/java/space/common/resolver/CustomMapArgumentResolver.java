@@ -23,6 +23,8 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 		CommandMap commandMap = new CommandMap();
 		log.debug("=============================CommandMap Data========================");
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
+		log.info("Request-CharacterEncoding : "+request.getCharacterEncoding());
+		request.setCharacterEncoding("utf-8");
 		Enumeration<?> enumeration = request.getParameterNames();
 		
 		
