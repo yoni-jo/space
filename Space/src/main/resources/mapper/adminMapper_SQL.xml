@@ -38,6 +38,7 @@
 	
 	<!-- 예약목록리스트 -->
 	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/>	
 		<![CDATA[
 			SELECT 
 				ROW_NUMBER()OVER(ORDER BY SPACE_ID DESC) RNUM,
@@ -62,6 +63,8 @@
 				ON R.RES_SPACE_ID = SPACE_ID
 			)RST
 		]]>
+		<include refid="search.member" />
+	<include refid="common.pagingPost"/>
 	</select>
 	
 	<!-- 등록된공간리스트 -->
@@ -92,8 +95,10 @@
 
 <!-- 공간신청리스트 -->
 <select id="selectreqList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>	
 	<![CDATA[
 		SELECT 
+		ROW_NUMBER() OVER (ORDER BY APPLY_NUM DESC) RNUM,
 			APPLY_NUM, 
 			APPLY_MODIFY,
 			APPLY_IMG,
@@ -114,6 +119,8 @@
 			APPLY_ID=USER_ID
 		ORDER BY APPLY_NUM DESC
 	]]>
+	<include refid="search.member" />
+	<include refid="common.pagingPost"/>
 </select>
 	
 	<!-- 공지사항 관련 -->
