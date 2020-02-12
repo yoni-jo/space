@@ -2,29 +2,38 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%session.setAttribute("joinCode", ""); %>
-<!DOCTYPE html>
 
-<head><title>회원가입</title>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
 <style>
-.board_list,th,td { margin: 0 auto;border:1px solid ;}
+.board_list{border-radius: 10px;background-color:#ffd014 ;margin-top:50px}
+
+.board_list,th,td { margin: 0 auto;}
 .board_list,tr{height:50px}
+.board_list td>input{border:0; width: 80%; height: 40px; }
+
+.board_list td> button{width: 18%; background-color: #FF5722; height:40px;border:0 ;vertical-align: bottom; color :white}
+
 .board_list tfoot {text-align: center;}
 .signUp_agree {text-align: center;}
 .signUp_agree_textarea {text-align: center;}
 .signUp_agree_textarea textarea {resize: none;}
 
+.signUp_agree_checkbox{}
+
+#signUpBtn{width: 100%}
+
+#agree_checkbox{width: auto}
 </style>  
-</head>
+
 
 <form id="frm">
  <table class="board_list">
-  <caption>회원가입</caption>
+  <h1>회원가입</h1>
   <tbody>
    <tr>
        <th scope="row">아이디</th>
           <td><input type="text" id="user_id" name="user_id" class="wdp_90">
-             <a href="#" id="user_id_checkBtn" class="btn">중복확인</a></td>
+             <button href="#" id="user_id_checkBtn" class="btn">중복확인</button></td>
    </tr>
    <tr>
       <th>비밀번호</th>
@@ -74,7 +83,7 @@
   <tfoot>
    <tr>
     <td colspan="3">
-     <a href="#" class="btn" id="signUpBtn">회원가입</a>
+     <button href="#" class="btn" id="signUpBtn">회원가입</button>
     </td>
    </tr>
   </tfoot>
