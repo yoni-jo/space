@@ -49,7 +49,7 @@ if(session.getAttribute("USER_ID")!=null){
 .hide{border:5px solid #ffd01;position: fixed;top:calc(10%);left: calc(100% - 380px);display: none;padding: 0;border-radius: 10px;border:5px solid; border-color:#ffd014;}
 .hide>li{background-color:white; cursor:pointer; height:50px;display:flex; align-items: center;position: relative;}
 .hide>li>a{display:block;width: 100%; text-align: center;line-height: 50px;}
-.hide>li>a:hover{transition:all 0.3s ease-in;background-color: gray;background-color:#9c27b0d6;color:white;border-bottom:10px solid #ffaa28}
+.hide>li>a:hover{transition:all 0.3s ease-in;background-color: gray;background-color:#41dfd0;color:white;border-bottom:10px solid #ffaa28}
 .hide>li:last-child a:hover{border-bottom:5px solid #ffaa28}
  /*메뉴 삼색바 디자인  */
  #x{display: inline-block;width: 100%;text-align: center;padding-left: 50%}
