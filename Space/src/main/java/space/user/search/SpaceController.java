@@ -27,7 +27,7 @@ public class SpaceController {
 	
 	@Resource
 	private SpaceService spaceService;
-	
+	//메인페이지
 	@RequestMapping("/main")
 	private ModelAndView selectSpaceList(CommandMap map, HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView("main");
@@ -92,7 +92,7 @@ public class SpaceController {
 	
 	@RequestMapping("/space/detailSpace")
 	private ModelAndView selectDetailSpace(CommandMap map) throws Exception{
-		ModelAndView mav = new ModelAndView("main/spaceDetail");
+		ModelAndView mav = new ModelAndView("spaceDetail");
 		Map<String,Object> spaceMap = spaceService.selectDetailSpace(map.getMap());
 		
 		if (spaceMap.get("DETAIL") != null) {
