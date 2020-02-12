@@ -56,7 +56,7 @@
 						<li><a href="">내가 찜한 공간</a></li>
 						<li><a href="">1:1문의</a></li>
 						<li><a href="/two/member/MemberModifyForm">개인정보 변경</a></li>
-						<li><a href="">-</a></li>
+						
 						<li class="mypagebar">내 공간 관리
 			<ul class="mypagehide">
 				<li><a href="/two/space/Form">내 공간 등록하기</a></li>
