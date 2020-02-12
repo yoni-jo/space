@@ -64,6 +64,7 @@
  	<put-attribute name="contents" value="/WEB-INF/jsp/main/spaceDetail.jsp"></put-attribute>
  
  </definition>
+ <!--Mypage부분  -->
  
 <!--내공간관리 (등록하기) -->
 <definition name="form" extends="modifyform">
@@ -82,6 +83,10 @@
 <!-- 내가 예약한 공간 -->
 <definition name="myResList" extends="modifyform">
 	<put-attribute name="contents" value="/WEB-INF/jsp/res/myResList.jsp"/>
+</definition>
+<!--내가 찜한공간  -->
+<definition name="myFav" extends="modifyform">
+	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/myFav.jsp"/>
 </definition>
 
 </tiles-definitions>

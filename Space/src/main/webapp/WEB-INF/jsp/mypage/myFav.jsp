@@ -6,9 +6,9 @@
 String userId;
 if(session.getAttribute("USER_ID") != null){
 	userId = (String)session.getAttribute("USER_ID");
-	//request.setAttribute("USER_ID", userId);
+	request.setAttribute("USER_ID", userId);
 	//request.setAttribute("USER_ID", "admin");	
-	session.setAttribute("USER_ID", "admin");
+	//session.setAttribute("USER_ID", "admin");
 }
 
 %>

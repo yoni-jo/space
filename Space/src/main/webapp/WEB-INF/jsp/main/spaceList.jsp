@@ -36,7 +36,7 @@ if(session.getAttribute("USER_ID") != null){
 		<c:if test="${!empty USER_ID}">
 			<input id="userId" type="hidden" value="${USER_ID}">
 		</c:if>
-		<div style="display: inline-block; align-self: center; margin-top:10px">
+		<div style=" align-self: center; margin-top:10px">
 		<input type="text" id="searchTitle" placeholder="검색어 입력" style="width: 400px;">
 		<button id="searchBtn" style="font-size: 22px;" >검색</button>
 		</div>

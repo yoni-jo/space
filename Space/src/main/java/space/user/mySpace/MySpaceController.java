@@ -27,7 +27,7 @@ public class MySpaceController {
 		
 		@RequestMapping(value="/mypage/myFavList")
 		public ModelAndView favSpaceList(CommandMap commandMap,HttpSession session) throws Exception{
-			ModelAndView mv=new ModelAndView("/mypage/myFav");
+			ModelAndView mv=new ModelAndView("myFav");
 			commandMap.put("USER_ID", "admin");
 			
 			List<Map<String,Object>> list = mySpaceService.selectFavList(commandMap.getMap());
