@@ -159,14 +159,14 @@
 					+ "</div>" 
 					+ "<div class='box2' align='left' style='height:120px;' >" 
 					+ "<a href = 'pensionDetail.do?idx=" + value.SPACE_TITLE + "><b style = 'font-size:16px; color:black;'>"  
-					+ value.SPACE_TITLE + "/"  
+					+ "&nbsp;&nbsp;&nbsp;&nbsp;" + value.SPACE_TITLE + "/"  
 					+ "</b></a>"  
 					+ "<sapn class ='user' ><input type='hidden' id='SPACE_ID' value='value.SPACE_ID'>"  
 					+ value.SPACE_HOST + "/" + value.USER_NAME + "/" + value.USER_PHONE + "/" + value.USER_EMAIL 
 					+ "<br/><br/>"  
-					+	"공간특징 : " + value.SPACE_USE +"<br>" 
-					+	"주소 : " + value.SPACE_POS + "<br>"  
-					+	"가격 : " + value.SPACE_PRI 
+					+	"&nbsp;&nbsp;&nbsp;&nbsp;공간특징 : " + value.SPACE_USE +"<br>" 
+					+	"&nbsp;&nbsp;&nbsp;&nbsp;주소 : " + value.SPACE_POS + "<br>"  
+					+	"&nbsp;&nbsp;&nbsp;&nbsp;가격 : " + value.SPACE_PRI 
 					+ "</span>"   
 					+ "<br/><br/>"  
 					+ "</div>"  
@@ -232,14 +232,14 @@
 					+ "</div>" 
 					+ "<div class='box2' align='left' style='height:120px;' >" 
 					+ "<a href = 'pensionDetail.do?idx=" + value.SPACE_TITLE + "><b style = 'font-size:16px; color:black;'>"  
-					+ value.SPACE_TITLE + "/"  
+					+ "&nbsp;&nbsp;&nbsp;&nbsp;" + value.SPACE_TITLE + "/"  
 					+ "</b></a>"  
 					+ "<sapn class ='user' >"  
 					+ value.SPACE_HOST + "/" + value.USER_NAME + "/" + value.USER_PHONE + "/" + value.USER_EMAIL 
 					+ "<br/><br/>"  
-					+	"공간특징 : " + value.SPACE_USE +"<br>" 
-					+	"주소 : " + value.SPACE_POS + "<br>"  
-					+	"가격 : " + value.SPACE_PRI 
+					+	"&nbsp;&nbsp;&nbsp;&nbsp;공간특징 : " + value.SPACE_USE +"<br>" 
+					+	"&nbsp;&nbsp;&nbsp;&nbsp;주소 : " + value.SPACE_POS + "<br>"  
+					+	"&nbsp;&nbsp;&nbsp;&nbsp;가격 : " + value.SPACE_PRI 
 					+ "</span>"   
 					+ "<br/><br/>"  
 					+ "</div>"  
@@ -255,8 +255,6 @@
 		}
 		
 	};
-	
-	
 
 </script>
 

@@ -51,7 +51,7 @@
    </tr>
    <tr>
     <th scope="row">휴대폰 번호</th>
-    <td><input type="text" id="user_phone" name="user_phone" class="wdp_90"></td>
+    <td><input type="text" id="user_phone" name="user_phone" class="wdp_90" maxlength="15"></td>
    </tr>
    
       <th scope="row">이메일</th>

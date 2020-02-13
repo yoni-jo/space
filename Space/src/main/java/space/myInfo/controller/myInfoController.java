@@ -9,16 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
 import space.common.logger.LoggerAspect;
-import space.common.logger.LoggerInterceptor;
 import space.myInfo.service.myInfoService;
-import space.myInfo.service.myInfoServiceImpl;
 
 @Controller
 public class myInfoController {
@@ -77,8 +74,10 @@ public class myInfoController {
 	}
 	
 	@RequestMapping("mypage/MyqnaWrite") // 글쓰고 리스트로 보내기
-	public ModelAndView MyqnaWrite(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/myInfo/QNAList");
+
+	public ModelAndView MyqnaWrite(CommandMap commandMap,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/mypage/Myqnalist");
+		commandMap.put("USER_ID", session.getAttribute("USER_ID"));
 		myInfoService.insertUserAdQNAWrite(commandMap.getMap());
 		return mv;
 		
