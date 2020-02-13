@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+    pageEncoding="euc-kr"%>
+<%request.setCharacterEncoding("euc-kr"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,7 @@
 		width: 100%;text-align: left;cursor: pointer;}
 	.textView.active{display: inherit;}
 	.textView{display:none;}
-	.price:after{content: " ì›"}
+	.price:after{content: " ¿ø"}
 	.cellView{text-align: left; vertical-align: middle; display: table-cell; width: 75%}
 	.imageView{margin:auto;  max-width: 95%;max-height:80px;
 				display: table-cell;vertical-align: middle;}
@@ -46,27 +48,25 @@
 	a:hover{font-weight: bold;}
 	
 </style>
-
-<meta charset="EUC-KR">
-<title>ë‚´ ê³µê°„ ê´€ë¦¬</title>
+<title>³» °ø°£ °ü¸®</title>
 </head>
 <body>
 <div style="width: 100%; text-align: center;">
 	<p class="line"></p>
 
 	<div id="resTitle" class="view" style="width: 700px; background: #FE9A2E; font-weight: bold;">
-		<label id="resTitle">ë‚´ ê³µê°„ ê´€ë¦¬</label>
+		<label id="resTitle">³» °ø°£ °ü¸®</label>
 	</div>
 	<p class='line'></p>
 	
 	<div id="resTitle" class="view" style="width: 700px; background: #FBD46A; font-weight: bold;">
-		<label id="resTitle">ë‚´ ê³µê°„ ë‚´ì—­</label>
+		<label id="resTitle">³» °ø°£ ³»¿ª</label>
 	</div>
 	<p></p>
 	<div style="width: 700px;text-align: right; font-size: 11px;display: inline-block;">
 		<form>
-			<input id="COMP" type="radio" name="TYPE" value="COMP" checked><label for="COMP">ë“±ë¡ ì™„ë£Œ ê³µê°„ ë³´ê¸°</label>
-			<input id="WAIT" type="radio" name="TYPE" value="WAIT" ><label for="WAIT">ë“±ë¡ ëŒ€ê¸° ê³µê°„ ë³´ê¸°</label>
+			<input id="COMP" type="radio" name="TYPE" value="COMP" checked><label for="COMP">µî·Ï ¿Ï·á °ø°£ º¸±â</label>
+			<input id="WAIT" type="radio" name="TYPE" value="WAIT" ><label for="WAIT">µî·Ï ´ë±â °ø°£ º¸±â</label>
 		</form>
 	</div>
 	
@@ -81,10 +81,10 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">ê³µê°„ëª…</th>
-				<th scope="col">ë“±ë¡ë‚´ìš©</th>
-				<th scope="col">ì§„í–‰ìƒí™©</th>
-				<th scope="col">ê³µê°„ê´€ë¦¬</th>
+				<th scope="col">°ø°£¸í</th>
+				<th scope="col">µî·Ï³»¿ë</th>
+				<th scope="col">ÁøÇà»óÈ²</th>
+				<th scope="col">°ø°£°ü¸®</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -104,8 +104,8 @@
 	<p></p>
 	<div style="width: 700px;text-align: right; font-size: 11px;display: inline-block;">
 	<form>
-		<input id="QnACOMP" type="radio" name="QnATYPE" value="QnACOMP" checked><label for="QnACOMP">ë‹µë³€ ì™„ë£Œ ë³´ê¸°</label>
-		<input id="QnAWAIT" type="radio" name="QnATYPE" value="QnAWAIT"><label for="QnAWAIT">ë‹µë³€ ëŒ€ê¸° ë³´ê¸°</label>
+		<input id="QnACOMP" type="radio" name="QnATYPE" value="QnACOMP" checked><label for="QnACOMP">´äº¯ ¿Ï·á º¸±â</label>
+		<input id="QnAWAIT" type="radio" name="QnATYPE" value="QnAWAIT"><label for="QnAWAIT">´äº¯ ´ë±â º¸±â</label>
 	</form>
 	</div>
 	<br>
@@ -118,10 +118,10 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">ê³µê°„ëª…</th>
-				<th scope="col">ë“±ë¡ë‚´ìš©</th>
-				<th scope="col">ì§„í–‰ìƒí™©</th>
-				<th scope="col">ê´€ë¦¬</th>
+				<th scope="col">°ø°£¸í</th>
+				<th scope="col">µî·Ï³»¿ë</th>
+				<th scope="col">ÁøÇà»óÈ²</th>
+				<th scope="col">°ü¸®</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -135,7 +135,7 @@
 	<p class="line"></p>
 	
 	<div id="resTitle" class="view" style="width: 700px; background: #FBD46A; font-weight: bold;">
-		<label id="resTitle">ì´ìš© í›„ê¸°</label>
+		<label id="resTitle">ÀÌ¿ë ÈÄ±â</label>
 	</div>
 	<p></p>
 	<table id="REPLY_LIST_TABLE" border="1">
@@ -146,9 +146,9 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">ê³µê°„ëª…</th>
-				<th scope="col">ì œëª©</th>
-				<th scope="col">ê´€ë¦¬</th>
+				<th scope="col">°ø°£¸í</th>
+				<th scope="col">Á¦¸ñ</th>
+				<th scope="col">°ü¸®</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -158,39 +158,39 @@
 	<div id="REPLY_LIST_NUM"></div>
 	<input type="hidden" id="REPLY_LIST_INDEX" name="REPLY_LIST_INDEX" />
 	
-	<!-- ============================ë ˆì´ì–´íŒì—…============================= -->
+	<!-- ============================·¹ÀÌ¾îÆË¾÷============================= -->
 	<input class="modal-state" id="open-pop" type="checkbox" />
 	<div class="modal">
 		<label class="modal_bg" for="open-pop"></label>
 		<div class="modal_inner">
 			<input name="number" type="hidden" value="">
 			<label class="modal_close" for="open-pop"></label>
-			<h2 id="write" class="popup_title">ì§ˆë¬¸ ì‘ì„±</h2>
+			<h2 id="write" class="popup_title">Áú¹® ÀÛ¼º</h2>
 			<p class="popup_content" style="text-align: left;"></p>
-			<div id="divPopTitle"><label>ì œëª© </label><br>
+			<div id="divPopTitle"><label>Á¦¸ñ </label><br>
 				<input type="text" id="popTitle" class="title txt" readonly="readonly">
 			</div>
 							
 			<p class="subline"></p>
 							
 			<div id="divPopCnt">
-				<label>ë‚´ìš© </label><br>
+				<label>³»¿ë </label><br>
 				<textarea id="popCnt" rows="2" cols="10" class="content txt" readonly="readonly"></textarea>
 			</div>
 							
 			<p class="subline"></p>
 							
 			<div id="divPopCmt">
-				<label>ë‹µë³€ ë‚´ìš©</label><br>
+				<label>´äº¯ ³»¿ë</label><br>
 				<textarea id="popCmt" rows="2" cols="10" class="content txt"></textarea>
 			</div>
 			<div id="divImage" style="text-align: center; display: none">
-				<label>ì²¨ë¶€ ì´ë¯¸ì§€</label><br>
+				<label>Ã·ºÎ ÀÌ¹ÌÁö</label><br>
 			</div>				
 			<p class="subline"></p>
 							
 			<div id="divPopBtn">
-				<label id="sendBtn" class="writeBtn" style="bottom: 2em;display: none;">ì‘ì„±</label>
+				<label id="sendBtn" class="writeBtn" style="bottom: 2em;display: none;">ÀÛ¼º</label>
 			</div>
 		</div>
 	</div>
@@ -229,7 +229,7 @@ $(document).ready(function(){
 			com.addParam("QNA_CMT",$("#popCmt").val());
 			com.submit();
 		}else{
-			alert("ë‹µë³€ì„ ë‹¬ì•„ì£¼ì„¸ìš”");
+			alert("´äº¯À» ´Ş¾ÆÁÖ¼¼¿ä");
 		}
 	});
 	
@@ -237,7 +237,7 @@ $(document).ready(function(){
 
 $(window).bind("pageshow", function (event) {
 	if (event.originalEvent.persisted) {
-		console.log('BFCaheë¡œë¶€í„° ë³µì›ë¨');
+		console.log('BFCahe·ÎºÎÅÍ º¹¿øµÊ');
 		$("#QnACOMP").attr("checked",true);
 		$("#COMP").attr("checked",true);
 		selectSpaceList(1);
@@ -245,7 +245,7 @@ $(window).bind("pageshow", function (event) {
 		selectReplyList(1);
 		
 	}else{
-		console.log('ìƒˆë¡œ ì—´ë¦° í˜ì´ì§€');
+		console.log('»õ·Î ¿­¸° ÆäÀÌÁö');
 		$("#QnACOMP").attr("checked",true);
 		$("#COMP").attr("checked",true);
 		selectSpaceList(1);
@@ -274,7 +274,7 @@ function selectRegiListCallback(data){
 	var params;
 	if($(data.list).length<=0){
 		var str ="<tr>"+
-				"<td colspan = '4'>ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤</td>"+
+				"<td colspan = '4'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù</td>"+
 				"</tr>";
 		body.append(str);
 	}else{
@@ -310,26 +310,26 @@ function selectRegiListCallback(data){
 				"<div class='subView'>"+
 					"<img class='imageView' src='<c:url value='/image/"+imageStr[0]+"'/>'/>"+
 					"<div class='cellView'>"+
-						"ë©´ì : "+value.APPLY_SIZE+"ã¡<br>"+
-						"ê°€ê²©: "+value.APPLY_PRI+"ì›<br>"+
+						"¸éÀû: "+value.APPLY_SIZE+"§³<br>"+
+						"°¡°İ: "+value.APPLY_PRI+"¿ø<br>"+
 					"</div>"+
 				"</div>"+
 			"</td>"+
-			"<td>ë“±ë¡ ëŒ€ê¸°ì¤‘</td>"+
-			"<td class='controlView'><a href='#'>ìˆ˜ì •</a>&nbsp;&nbsp;&nbsp;"+
-			"<a class='deleteSpace' href='#'>ì‚­ì œ</a></td>"+
+			"<td>µî·Ï ´ë±âÁß</td>"+
+			"<td class='controlView'><a href='#'>¼öÁ¤</a>&nbsp;&nbsp;&nbsp;"+
+			"<a class='deleteSpace' href='#'>»èÁ¦</a></td>"+
 			"</tr>";
 			});
 		}else{
-		var Regitype="ë“±ë¡ì™„ë£Œ";
-		var holdpro = "ë³´ë¥˜";
+		var Regitype="µî·Ï¿Ï·á";
+		var holdpro = "º¸·ù";
 		$.each(data.list, function(key,value){
 		if(value.SPACE_HOLD=='Y'){
-			Regitype="ë³´ë¥˜ìƒíƒœ";
-			holdpro="ë³´ë¥˜ì·¨ì†Œ";
+			Regitype="º¸·ù»óÅÂ";
+			holdpro="º¸·ùÃë¼Ò";
 		}else{
-			Regitype="ë“±ë¡ì™„ë£Œ";
-			holdpro = "ë³´ë¥˜";
+			Regitype="µî·Ï¿Ï·á";
+			holdpro = "º¸·ù";
 		}
 			 
 		imageStr = (value.SPACE_IMG+"").split(",");
@@ -340,16 +340,16 @@ function selectRegiListCallback(data){
 				"<div class='subView'>"+
 					"<img class='imageView' src='<c:url value='/image/"+imageStr[0]+"'/>'/>"+
 					"<div class='cellView'>"+
-						"ë©´ì : "+value.SPACE_SIZE+"ã¡<br>"+
-						"ê°€ê²©: "+value.SPACE_PRI+"ì›<br>"+
+						"¸éÀû: "+value.SPACE_SIZE+"§³<br>"+
+						"°¡°İ: "+value.SPACE_PRI+"¿ø<br>"+
 					"</div>"+
 				"</div>"+
 			"</td>"+
 			"<td>"+Regitype+"</td>"+
-			"<td class='controlView'><a href='#'>ìˆ˜ì •</a>&nbsp;&nbsp;&nbsp;"+
+			"<td class='controlView'><a href='#'>¼öÁ¤</a>&nbsp;&nbsp;&nbsp;"+
 			"<a class='holdSpace' href='#'>"+holdpro+"</a>"+
 			"<input type='hidden' name='HOLD' value='"+value.SPACE_HOLD+"'>&nbsp;&nbsp;&nbsp;"+
-			"<a class='deleteSpace' href='#'>ì‚­ì œ</a></td>"+
+			"<a class='deleteSpace' href='#'>»èÁ¦</a></td>"+
 		"</tr>";
 		
 		});
@@ -364,7 +364,7 @@ function selectRegiListCallback(data){
 			com.submit();
 		});
 		$(".deleteSpace").click(function(){
-			if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")==true){
+			if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")==true){
 				com = new ComSubmit();
 				com.setUrl("<c:url value='/mySpace/deleteSpace'/>");
 				com.addParam("TYPE",type);
@@ -373,7 +373,7 @@ function selectRegiListCallback(data){
 			}
 		});
 		$(".holdSpace").click(function(){
-			if(confirm($(this).text()+"í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")==true){
+			if(confirm($(this).text()+"ÇÏ½Ã°Ú½À´Ï±î?")==true){
 				com = new ComSubmit();
 				com.setUrl("<c:url value='/mySpace/holdSpace'/>");
 				com.addParam("HOLD",$(this).parent().find("input[name='HOLD']").val());
@@ -406,7 +406,7 @@ function selectQnAListCallback(data){
 	var params;
 	if($(data.list).length<=0){
 		var str ="<tr>"+
-				"<td colspan = '4'>ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤</td>"+
+				"<td colspan = '4'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù</td>"+
 				"</tr>";
 		body.append(str);
 	}else{
@@ -439,15 +439,15 @@ function selectQnAListCallback(data){
 			"<a class='titleQnALink' href='#'>"+value.SPACE_TITLE+"</a></td>"+
 			"<td>"+
 				"<div class='otherView' name='qna'>"+
-					"&nbsp;&nbsp;&nbsp;ì œëª© : "+value.QNA_TITLE+"<br>"+
+					"&nbsp;&nbsp;&nbsp;Á¦¸ñ : "+value.QNA_TITLE+"<br>"+
 					"<input name='QNA_TITLE' type='hidden' value='"+value.QNA_TITLE+"'>"+
 					"<input name='QNA_CNT' type='hidden' value='"+value.QNA_CNT+"'>"+
 					"<input name='QNA_CMT' type='hidden' value=''>"+
 				"</div>"+
 			"</td>"+
-			"<td>ë‹µë³€ ëŒ€ê¸°ì¤‘</td>"+
-			"<td><a class='writeQnA' href='#'>ë‹µë³€</a>&nbsp;&nbsp;&nbsp;"+
-			"<a class='deleteQnA' href='#'>ì‚­ì œ</a><input name='QNA_NUM' type='hidden' value='"+value.QNA_NUM+"'></td>"+
+			"<td>´äº¯ ´ë±âÁß</td>"+
+			"<td><a class='writeQnA' href='#'>´äº¯</a>&nbsp;&nbsp;&nbsp;"+
+			"<a class='deleteQnA' href='#'>»èÁ¦</a><input name='QNA_NUM' type='hidden' value='"+value.QNA_NUM+"'></td>"+
 			"</tr>";
 			});
 		}else{
@@ -457,14 +457,14 @@ function selectQnAListCallback(data){
 			"<a class='titleQnALink' href='#'>"+value.SPACE_TITLE+"</a></td>"+
 			"<td>"+
 				"<div class='otherView' name='qna'>"+
-					"&nbsp;&nbsp;&nbsp;ì œëª© : "+value.QNA_TITLE+"<br>"+
+					"&nbsp;&nbsp;&nbsp;Á¦¸ñ : "+value.QNA_TITLE+"<br>"+
 					"<input name='QNA_TITLE' type='hidden' value='"+value.QNA_TITLE+"'>"+
 					"<input name='QNA_CNT' type='hidden' value='"+value.QNA_CNT+"'>"+
 					"<input name='QNA_CMT' type='hidden' value='"+value.QNA_CMT+"'>"+
 				"</div>"+
 			"</td>"+
-			"<td>ë‹µë³€ ì™„ë£Œ</td>"+
-			"<td><a class='deleteQnA' href='#'>ì‚­ì œ</a><input name='QNA_NUM' type='hidden' value='"+value.QNA_NUM+"'></td>"+
+			"<td>´äº¯ ¿Ï·á</td>"+
+			"<td><a class='deleteQnA' href='#'>»èÁ¦</a><input name='QNA_NUM' type='hidden' value='"+value.QNA_NUM+"'></td>"+
 			"</tr>";
 		});
 		}
@@ -514,12 +514,12 @@ function selectQnAListCallback(data){
 			$(".modal_inner > input[name=number]").val(num);
 		});
 		$(".deleteQnA").click(function(){
-			if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")==true){
+			if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")==true){
 				var num=$(this).parent().find("input[name='QNA_NUM']").val();
 				var com = new ComSubmit();
 				com.setUrl("<c:url value='/mySpace/deleteQnA'/>");
 				com.addParam("QNA_NUM",num);
-				alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤");
+				alert("»èÁ¦µÇ¾ú½À´Ï´Ù");
 				com.submit();
 			}
 		});
@@ -543,7 +543,7 @@ function selectReplyListCallback(data){
 	var params;
 	if($(data.list).length<=0){
 		var str ="<tr>"+
-				"<td colspan = '3'>ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤</td>"+
+				"<td colspan = '3'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù</td>"+
 				"</tr>";
 		body.append(str);
 	}else{
@@ -564,7 +564,7 @@ function selectReplyListCallback(data){
 			"<a class='titleReplyLink' href='#'>"+value.SPACE_TITLE+"</a></td>"+
 			"<td>"+
 				"<div class='otherView' name='reply'>"+
-					"&nbsp;&nbsp;&nbsp;ì œëª© : "+value.REPLY_TITLE+"<br>"+
+					"&nbsp;&nbsp;&nbsp;Á¦¸ñ : "+value.REPLY_TITLE+"<br>"+
 					"<input name='REPLY_TITLE' type='hidden' value='"+value.REPLY_TITLE+"'>"+
 					"<input name='REPLY_CNT' type='hidden' value='"+value.REPLY_CNT+"'>"+
 					"<input name='USER_ID' type='hidden' value='"+value.USER_ID+"'>";
@@ -575,7 +575,7 @@ function selectReplyListCallback(data){
 					}
 				str+="</div>"+
 			"</td>"+
-			"<td><a class='deleteReply' href='#'>ì‚­ì œ</a><input name='REPLY_NUM' type='hidden' value='"+value.REPLY_NUM+"'></td>"+
+			"<td><a class='deleteReply' href='#'>»èÁ¦</a><input name='REPLY_NUM' type='hidden' value='"+value.REPLY_NUM+"'></td>"+
 			"</tr>";
 		});
 		
@@ -593,27 +593,27 @@ function selectReplyListCallback(data){
 			var userId = $(this).find("input[name=USER_ID]").val();
 			
 			$("#open-pop").attr("checked",true);
-			$(".popup_title").text(title+"ê¸€ì— ë‹¬ë¦° "+userId+"ë‹˜ì˜ í›„ê¸°");
+			$(".popup_title").text(title+"±Û¿¡ ´Ş¸° "+userId+"´ÔÀÇ ÈÄ±â");
 			$("#popTitle").val($(this).find("input[name=REPLY_TITLE]").val());
 			$("#popCnt").val($(this).find("input[name=REPLY_CNT]").val());
 			$("#divPopCmt").css("display","none");
 			$("#divImage").css("display","");
 			
 			$("#divImage").empty();
-			$("#divImage").append("<label>ì²¨ë¶€ ì´ë¯¸ì§€</label><br>");
+			$("#divImage").append("<label>Ã·ºÎ ÀÌ¹ÌÁö</label><br>");
 			
 			$(this).parents("tr").find("input[name=imageUrl]").each(function(index,item){
-				$("#divImage").append("<img class='imgView' src='<c:url value='/image/"+imageStr[index]+"'/>'/><br>");
+				$("#divImage").append("<img class='imgView' src='<c:url value='"+$(item).val()+"'/>'/><br>");
 			});
 			
 		});
 		$(".deleteReply").click(function(){
-			if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")==true){
+			if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")==true){
 				var num=$(this).parent().find("input[name='REPLY_NUM']").val();
 				var com = new ComSubmit();
 				com.setUrl("<c:url value='/mySpace/deleteReply'/>");
 				com.addParam("REPLY_NUM",num);
-				alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤");
+				alert("»èÁ¦µÇ¾ú½À´Ï´Ù");
 				com.submit();
 			}
 		});
