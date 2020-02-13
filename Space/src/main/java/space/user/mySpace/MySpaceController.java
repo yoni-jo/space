@@ -79,9 +79,9 @@ public class MySpaceController {
 		mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping("/mySpace/SpaceForm")
+	@RequestMapping("/mySpace/spaceForm")
 	public ModelAndView SpaceForm(CommandMap map) {
-		ModelAndView mv = new ModelAndView("mySpace/spaceForm");
+		ModelAndView mv = new ModelAndView("spaceForm");
 		
 		return mv;
 	}
@@ -180,7 +180,7 @@ public class MySpaceController {
 
 	@RequestMapping("/mySpace/SpaceControl")
 	public ModelAndView mySpaceControlView(CommandMap map) {
-		ModelAndView mav = new ModelAndView("mySpace/controlList");
+		ModelAndView mav = new ModelAndView("controlList");
 		
 		return mav;
 	}

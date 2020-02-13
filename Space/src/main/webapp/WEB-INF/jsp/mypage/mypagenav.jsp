@@ -58,8 +58,8 @@
 						
 						<li class="mypagebar">내 공간 관리
 			<ul class="mypagehide">
-				<li><a href="/two/space/Form">내 공간 등록하기</a></li>
-				<li><a href="/two/space/Myspace_list">내 공간 관리하기</a></li>
+				<li><a href="/two/mySpace/spaceForm">내 공간 등록하기</a></li>
+				<li><a href="/two/mySpace/SpaceControl">내 공간 관리하기</a></li>
 				<li><a href="/two/mySpace/ResPage">내 공간 예약상황</a></li>
 			</ul>
 		</li>
