@@ -112,7 +112,36 @@ public class MySpaceServiceImpl implements MySpaceService{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public Map<String,Object> modifySpaceBoard(Map<String, Object> map) {//02-11¼öÁ¤
+		String type=(String)map.get("TYPE");
+		if(type.equals("COMP")) {
+			return mySpaceDao.modifySpaceBoard(map);
+		}else if(type.equals("WAIT")) {
+			return mySpaceDao.modifyApplyBoard(map);
+		}
+		
+		return mySpaceDao.modifySpaceBoard(map);
+	}
+	public List<Map<String,Object>> getResDate(Map<String,Object> map){
+		return mySpaceDao.getResDate(map);
+	}
+	public Map<String,Object> getResDay(Map<String,Object> map){
+		return mySpaceDao.getResDay(map);
+	}
+	
+	public void applyModifySpaceBoard(Map<String,Object> map) {
+		mySpaceDao.updateApplyinfo(map);
 
+	}
+	@Override
+	public void applySpaceBoard(Map<String, Object> map) {
+		mySpaceDao.updateApplyinfo(map);
+	}
+	@Override
+	public String selectSpaceId(Map<String, Object> map) {
+		return mySpaceDao.selectSpaceId(map);
+	}
 	@Override
 	public List<Map<String, Object>> selectResDateList(Map<String, Object> map) {
 		return mySpaceDao.selectResDate(map);
@@ -136,37 +165,4 @@ public class MySpaceServiceImpl implements MySpaceService{
 	public void deleteReply(Map<String, Object> map) {
 		mySpaceDao.deleteReply(map);
 	}
-
-	
-	
-	
-	
-	
-/*
-	@Override
-	public Map<String, Object> selectSpaceList(Map<String, Object> map) throws Exception {
-		Map<String,Object> tempMap = new HashMap<String, Object>();
-		List<String> favList;
-		List<Map<String,Object>> list = spaceDao.selectSpaceList();
-		
-		if (map.get("USER_ID") != null) {
-			favList = spaceDao.selectFavoriList(map);
-		}else favList = Collections.emptyList();
-
-		tempMap.put("LIKE_LIST", favList);
-		tempMap.put("SPACE_LIST", list);
-		
-		return tempMap;
-	}
-
-
-	@Override
-	public List<String> updateFavSpace(Map<String, Object> map) throws Exception {
-		spaceDao.updateFovoriSpace(map);
-		List<String> list = spaceDao.selectFavoriList(map);
-		return list;
-	}
-	
-	
-*/
 }

@@ -36,14 +36,14 @@ LIKE_LIST L
 ON 
 S.SPACE_ID = L.SPACE_ID 
 WHERE
-USER_ID = #{USER_ID};
+USER_ID = #{USER_ID}
 ]]>
 </select>
 
 <!-- 찜목록 삭제 --> 
-<delete id="" parameterType="hashmap">
+<delete id="deleteFav" parameterType="hashmap">
 <![CDATA[ 
-	DELETE FROM LIKE_LIST WHERE SPACE_ID = #{space_id} 
+	DELETE FROM LIKE_LIST WHERE SPACE_ID = #{SPACE_ID} 
 ]]>
 </delete>
 

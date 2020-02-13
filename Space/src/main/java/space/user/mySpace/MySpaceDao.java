@@ -99,6 +99,50 @@ public class MySpaceDao extends AbstractDAO{
 	public List<Map<String,Object>> selectApplySpaceList(Map<String,Object> map){
 		return (List<Map<String, Object>>) selectPagingList("mySpace.selectMyApplyList", map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> modifySpaceBoard(Map<String,Object> map){
+		return (Map<String,Object>) selectOne("mySpace.selectSpaceBoard",map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> modifyApplyBoard(Map<String,Object> map){
+		return (Map<String,Object>) selectOne("mySpace.selectApplyBorad",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> getResDate(Map<String,Object> map){
+		return (List<Map<String,Object>>)selectList("space.selectResDate",map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> getResDay(Map<String,Object> map){
+		return (Map<String,Object>)selectOne("space.selectResDay",map);
+	}
+	public String selectApplyBoard(Map<String,Object> map) {
+		return (String) selectOne("mySpace.selectApplyBoard",map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void updateApplyinfo(Map<String,Object> map) {
+		update("mySpace.updateModifyApplyInfo",map);
+		if(map.get("APPLY_RES_TYPE").equals("DAY")) {
+			update("mySpace.updateResDayInfo",map);
+		}else {
+			List<Map<String, String>> dateList;
+			dateList = (List<Map<String, String>>) map.get("APPLY_DATE_LIST");
+			
+			delete("mySpace.deleteResDate",map);
+			
+			for(Map<String, String> m : dateList) {
+				m.put("SPACE_ID", (String) map.get("APPLY_NUM"));
+				update("mySpace.updateResDate",m);
+			}
+			
+		}
+		
+	}
+	public String selectSpaceId(Map<String,Object> map) {
+		return (String)selectOne("mySpace.getSpaceID",map);
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectQnACompList(Map<String,Object> map){
 		return (List<Map<String, Object>>) selectPagingList("mySpace.spaceQNACompList", map);

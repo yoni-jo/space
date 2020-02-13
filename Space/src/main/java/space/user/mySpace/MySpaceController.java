@@ -75,6 +75,106 @@ public class MySpaceController {
 		return mv;
 	}
 	
+
+	@RequestMapping("/mySpace/SpaceForm")
+	public ModelAndView SpaceForm(CommandMap map) {
+		ModelAndView mv = new ModelAndView("mySpace/spaceForm");
+		
+		return mv;
+	}
+	@RequestMapping("/mySpace/SpaceFormSend")
+	public ModelAndView SpaceFormSend(HttpServletRequest request, CommandMap map,HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("mySpace/testView");
+		
+		String userId = (String) session.getAttribute("USER_ID");
+		String spaceId = (String)mySpaceService.selectSpaceId(map.getMap());
+		String pri;
+		String nowFile;
+		map.put("USER_ID", userId);
+		map.put("APPLY_NUM", spaceId);
+
+		if (map.get("PRIVAL_LIST").equals("dateRequest")) {
+			List<Map<String, String>> dateList = setTransformDate((String[]) map.get("DATE_LIST"));
+			pri = dateList.get(0).get("RST");
+			map.put("APPLY_DATE_LIST", dateList);
+		} else {
+			Map<String, String> dayMap = setTransformDay((String) map.get("PRIVAL_LIST"));
+			pri = dayMap.get("RST");
+			map.put("APPLY_DAY_LIST", dayMap);
+		}
+
+		map.put("APPLY_PRI", pri);
+
+		nowFile=uploadImage(request,(String) map.get("APPLY_NUM"));
+		map.put("APPLY_IMG",nowFile);
+
+		mySpaceService.applySpaceBoard(map.getMap());
+
+		return mv;
+	}
+	@RequestMapping("/mySpace/modifySpaceForm")
+	public ModelAndView modifySpaceForm(CommandMap map) {
+		ModelAndView mv = new ModelAndView("mySpace/modifySpaceForm");
+		
+		String modify; 
+		if(map.get("TYPE").equals("COMP")) modify="Y";
+		else modify="N";
+		
+		Map<String,Object> temp = mySpaceService.modifySpaceBoard(map.getMap());
+		mv.addObject("list",temp);
+		mv.addObject("modifyMode",modify);
+		return mv;
+	}
+	@RequestMapping("/mySpace/getResData")
+	public ModelAndView getResData(CommandMap map) {
+		ModelAndView mv = new ModelAndView("jsonView");
+		String type=(String)map.get("TYPE");
+		Object temp=null;
+		
+		if(type.equals("DATE")) {
+			temp=mySpaceService.getResDate(map.getMap());
+		}else if(type.equals("DAY")) {
+			temp=mySpaceService.getResDay(map.getMap());
+		}
+		
+		mv.addObject("resData",temp);
+		return mv;
+	}
+	@RequestMapping("/mySpace/modifyFormSend")
+	public ModelAndView applyModifySpace(HttpServletRequest request, CommandMap map, HttpSession session)throws Exception {
+		ModelAndView mv = new ModelAndView("mySpace/testView");
+
+		String userId = (String) session.getAttribute("USER_ID");
+		String pri;
+		String oldFile = (String)map.get("OLD_IMG");
+		String nowFile;
+		map.put("USER_ID", userId);
+
+		if (map.get("PRIVAL_LIST").equals("dateRequest")) {
+			List<Map<String, String>> dateList = setTransformDate((String[]) map.get("DATE_LIST"));
+			pri = dateList.get(0).get("RST");
+			map.put("APPLY_DATE_LIST", dateList);
+		} else {
+			Map<String, String> dayMap = setTransformDay((String) map.get("PRIVAL_LIST"));
+			pri = dayMap.get("RST");
+			map.put("APPLY_DAY_LIST", dayMap);
+		}
+
+		map.put("APPLY_PRI", pri);
+
+		deleteImage((String) map.get("APPLY_NUM"),(String) map.get("DEL_IMG"));
+		nowFile=uploadImage(request,(String) map.get("APPLY_NUM"));
+		if(oldFile!=null) {
+			if(nowFile.equals("")) nowFile = oldFile;
+			else nowFile = oldFile+","+nowFile;
+		}
+		map.put("APPLY_IMG",nowFile);
+
+		mySpaceService.applyModifySpaceBoard(map.getMap());
+
+		return mv;
+	}
+
 	@RequestMapping("/mySpace/SpaceControl")
 	public ModelAndView mySpaceControlView(CommandMap map) {
 		ModelAndView mav = new ModelAndView("mySpace/controlList");
@@ -179,6 +279,7 @@ public class MySpaceController {
 		return mv;
 	}
 	
+
 	private List<Map<String,Object>> textReplace(List<Map<String,Object>> list,String type) {
 		String temp;
 		
@@ -196,17 +297,103 @@ public class MySpaceController {
 		return list;
 		
 	}
-//내공간등록하기
-	@RequestMapping(value="/space/Form")
-	public ModelAndView myspacelist(CommandMap map) {
-		ModelAndView mv = new ModelAndView("form");
-		
-		return mv;
+	private List<Map<String, String>> setTransformDate(String[] strArr) {
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		Map<String, String> tempMap;
+		String[] temp;
+		int resultPri=0;
+		for (String s : strArr) {
+			temp = s.split("/");
+			tempMap = new HashMap<String, String>();
+			tempMap.put("DATE", temp[0]);
+			tempMap.put("PRI", temp[1]);
+			resultPri+=Integer.valueOf(tempMap.get("PRI"));
+			list.add(tempMap);
+		}
+		list.get(0).put("RST", String.valueOf(Math.round(resultPri/strArr.length)));
+		return list;
 	}
-	@RequestMapping(value="/space/Myspace_list")
-	public ModelAndView myspacelist2(CommandMap map) {
-		ModelAndView mv = new ModelAndView("mypage_list");
+	private Map<String,String> setTransformDay(String dayStr){
+		Map<String, String> tempMap = new HashMap<String,String>();
+		int resultPri = 0;
+		int count=0;
+		String [] sArr = dayStr.split(",");
+		for(int i=0;i<sArr.length;i++) {
+			switch(i) {
+			case 0:
+				tempMap.put("MON", sArr[i]);
+				break;
+			case 1:
+				tempMap.put("TUE", sArr[i]);
+				break;
+			case 2:
+				tempMap.put("WED", sArr[i]);
+				break;
+			case 3:
+				tempMap.put("THU", sArr[i]);
+				break;
+			case 4:
+				tempMap.put("FRI", sArr[i]);
+				break;
+			case 5:
+				tempMap.put("SAT", sArr[i]);
+				break;
+			case 6:
+				tempMap.put("SUN", sArr[i]);
+				break;
+			}
+			if(Integer.valueOf(sArr[i])>0) count++;
+			resultPri+=Integer.valueOf(sArr[i]);
+		}
 		
-		return mv;
+		tempMap.put("RST", String.valueOf(Math.round(resultPri/count)));
+		log.info("RST : "+resultPri/count);
+		return tempMap;
+	}
+	private void deleteImage(String id,String delName)throws Exception{
+		if(delName == null) return;
+		String[] str = delName.split(",");
+		for(String fileName : str) {
+			File target = new File(path,id+"_"+fileName);
+			target.delete();
+		}
+	}
+	private String uploadImage(HttpServletRequest request,String id) throws Exception {
+		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
+		String savedName = null;
+		String allSaveName="";
+		Iterator<String> iter = multiRequest.getFileNames();
+		log.debug("files :"+ multiRequest.getFileNames());
+		MultipartFile files=null;
+		while(iter.hasNext()) {
+			files = multiRequest.getFile(iter.next());
+			if(files.isEmpty()==false) {
+				savedName = id+"_"+files.getOriginalFilename();			
+		        File target = new File(path, savedName);
+		        if(target.exists()) {
+		        	String temp = savedName.substring(savedName.lastIndexOf("."));
+		        	savedName = savedName.substring(0,savedName.lastIndexOf("."));
+		        	while(true) {
+		        		if(!target.exists()) {
+		        			savedName=target.getName();
+		        			break;
+		        		}
+		        		target = new File(path, savedName+new Random().nextInt(9999)+temp);
+		        	}
+		        }
+		        FileCopyUtils.copy(files.getBytes(),target);
+		        
+		        allSaveName+=savedName;
+		        if(iter.hasNext()) {
+		        	allSaveName+=",";
+		        }
+			}else {
+				if(allSaveName.lastIndexOf(",")>0) {
+					allSaveName = allSaveName.substring(0,allSaveName.lastIndexOf(","));
+				}
+			}
+		}
+		log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>file upload"+allSaveName);
+		return allSaveName;
 	}
 }
