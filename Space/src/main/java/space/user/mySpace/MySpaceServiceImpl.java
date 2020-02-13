@@ -106,12 +106,6 @@ public class MySpaceServiceImpl implements MySpaceService{
 	public void holdSpaceBoard(Map<String, Object> map) {
 		mySpaceDao.holdSpaceBoard(map);
 	}
-
-	@Override
-	public void modifySpaceBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		
-	}
 	@Override
 	public Map<String,Object> modifySpaceBoard(Map<String, Object> map) {//02-11¼öÁ¤
 		String type=(String)map.get("TYPE");

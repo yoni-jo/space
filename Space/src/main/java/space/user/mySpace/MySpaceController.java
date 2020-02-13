@@ -1,16 +1,24 @@
 package space.user.mySpace;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
@@ -24,6 +32,9 @@ public class MySpaceController {
 		
 		@Resource(name = "mySpaceService")
 		private MySpaceService mySpaceService;
+		
+		@Resource(name="uploadPath")
+		String path;
 		
 		@RequestMapping(value="/mypage/myFavList")
 		public ModelAndView favSpaceList(CommandMap commandMap,HttpSession session) throws Exception{
@@ -68,14 +79,6 @@ public class MySpaceController {
 		mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping("/mySpace/modifySpaceForm")
-	public ModelAndView modifySpaceForm(CommandMap map) {
-		ModelAndView mv = new ModelAndView("mySpace/modifySpaceForm");
-		
-		return mv;
-	}
-	
-
 	@RequestMapping("/mySpace/SpaceForm")
 	public ModelAndView SpaceForm(CommandMap map) {
 		ModelAndView mv = new ModelAndView("mySpace/spaceForm");

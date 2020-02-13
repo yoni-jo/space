@@ -15,7 +15,6 @@ interface MySpaceService {
 	void applyModifySpaceBoard(Map<String,Object> map);//02-11수정
 	void applySpaceBoard(Map<String,Object> map);// 수정
 	String selectSpaceId(Map<String,Object> map);//수정
-	void modifySpaceBoard(Map<String,Object> map);
 	void deleteQNAComment(Map<String,Object> map);
 	void spaceQNAComment(Map<String,Object> map);
 	void deleteReply(Map<String,Object> map);
