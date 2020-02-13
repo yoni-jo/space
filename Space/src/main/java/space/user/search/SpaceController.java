@@ -91,8 +91,16 @@ public class SpaceController {
 	}
 	
 	@RequestMapping("/space/detailSpace")
-	private ModelAndView selectDetailSpace(CommandMap map) throws Exception{
-		ModelAndView mav = new ModelAndView("spaceDetail");
+	private ModelAndView selectDetailSpace(CommandMap map,HttpSession session) throws Exception{
+		log.debug("세션확인:"+session.getAttribute("USER_ID"));
+		ModelAndView mav = new ModelAndView();
+		if (session.getAttribute("USER_ID")==null) {
+			mav.setViewName("spaceDetail");
+			
+		}else {
+			mav.setViewName("spaceDetails");
+			
+		}
 		Map<String,Object> spaceMap = spaceService.selectDetailSpace(map.getMap());
 		
 		if (spaceMap.get("DETAIL") != null) {
