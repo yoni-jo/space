@@ -11,4 +11,7 @@ public interface AdminSpaceService {
 	
 	void deleteSpace(Map<String, Object> map) throws Exception;
 	
+	void returnSpace(Map<String, Object> map) throws Exception;
+	
+	void waitSpace(Map<String, Object> map) throws Exception;
 }

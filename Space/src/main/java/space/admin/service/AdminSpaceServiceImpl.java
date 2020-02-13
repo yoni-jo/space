@@ -33,4 +33,14 @@ import space.admin.dao.AdminSpaceDAO;
 		public void deleteSpace(Map<String, Object> map) throws Exception{
 			adminSpaceDAO.deleteSpace(map);
 		}
+		
+		@Override
+		public void returnSpace(Map<String, Object> map) throws Exception{
+			adminSpaceDAO.returnSpace(map);
+		}
+		
+		@Override
+		public void waitSpace(Map<String, Object> map) throws Exception{
+			adminSpaceDAO.waitSpace(map);
+		}
 	}

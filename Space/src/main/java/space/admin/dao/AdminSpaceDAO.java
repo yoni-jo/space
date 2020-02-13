@@ -23,4 +23,12 @@ public class AdminSpaceDAO extends AbstractDAO{
 	public void deleteSpace(Map<String, Object> map) throws Exception{
 		delete("admin.deleteSpace", map);
 	}
+	
+	public void returnSpace(Map<String, Object> map) throws Exception{
+		update("admin.returnSpace", map);
+	}
+	
+	public void waitSpace(Map<String, Object> map) throws Exception{
+		update("admin.waitSpace", map);
+	}
 }

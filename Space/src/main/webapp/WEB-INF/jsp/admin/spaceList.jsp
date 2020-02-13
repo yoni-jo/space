@@ -88,6 +88,30 @@
         	fn_waitspaceList(1);
         }
 	}
+	function fn_returnSpace(count){
+		var comSubmit = new ComSubmit();
+		var count = count;
+		if(confirm("해당 글을 등록된 공간 페이지로 이동 시키겠습니까?") == true){
+			alert("등록된 공간 페이지로 이동 되었습니다.");
+			comSubmit.setUrl("<c:url value='/admin/returnSpace' />");
+			comSubmit.addParam("SPACE_ID", count);
+			comSubmit.submit();
+		}else{
+			return;
+		}
+	}
+	function fn_waitSpace(count){
+		var comSubmit = new ComSubmit();
+		var count = count;
+		if(confirm("해당글을 보류 페이지로 이동 시키겠습니까?") == true){
+			alert("보류 페이지로 이동 되었습니다.");
+			comSubmit.setUrl("<c:url value='/admin/waitSpace' />");
+			comSubmit.addParam("SPACE_ID", count);
+			comSubmit.submit();
+		}else{
+			return;
+		}
+	}
 	
 	function fn_spaceList(pageNo){
 		var comAjax = new ComAjax();
@@ -149,7 +173,7 @@
 					+ "<div class='box3' style='height:120px;'>" + "<br/>"  
 					+ "<input type='button' name='delete' onClick='fn_deleteSpace(" + value.SPACE_ID + ")' value='삭제' style='width:70px;height25px'>" 
 					+ "<br><br>" 
-					+ "<input type='button' name='wait' value='보류' style='width:70px;height:25px'>" 
+					+ "<input type='button' name='wait' onClick='fn_waitSpace(" + value.SPACE_ID + ")' value='보류' style='width:70px;height:25px'>" 
 					+ "</div>" 
 					+ "</div><span style='line-height:20%;'><br/></span>"
 					
@@ -222,16 +246,17 @@
 					+ "<div class='box3' style='height:120px;'>" + "<br/>"  
 					+ "<input type='button' name='delete' onClick='fn_deleteSpace(" + value.SPACE_ID + ")' value='삭제' style='width:70px;height25px'>" 
 					+ "<br><br>" 
-					+ "<input type='button' name='wait' value='보류' style='width:70px;height:25px'>" 
+					+ "<input type='button' name='return' onClick='fn_returnSpace(" + value.SPACE_ID + ")' value='등록공간 이동' style='height:25px'>" 
 					+ "</div>" 
 					+ "</div><span style='line-height:20%;'><br/></span>"
 					
 			});
 			body.append(str);
-			
 		}
 		
 	};
+	
+	
 
 </script>
 

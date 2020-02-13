@@ -71,5 +71,23 @@ public class adminSpaceController {
 		return mv;
 	}
 	
+	@RequestMapping(value="admin/returnSpace")
+	public ModelAndView ReturnSpace(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/spaceList");
+		
+		adminSpaceService.returnSpace(commandMap.getMap());
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="admin/waitSpace")
+	public ModelAndView WaitSpace(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/spaceList");
+		
+		adminSpaceService.waitSpace(commandMap.getMap());
+		
+		return mv;
+	}
+	
 	
 }

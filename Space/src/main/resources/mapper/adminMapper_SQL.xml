@@ -121,10 +121,23 @@
 	<!-- 등록된 공간 삭제하기 -->
 	<delete id="deleteSpace" parameterType="hashmap">
 		<![CDATA[ 
-			DELETE FROM SPACE_LIST WHERE SPACE_ID = #{SPACE_ID}	
+			UPDATE SPACE_LIST SET SPACE_DEL_GB = 'Y' WHERE SPACE_ID = #{SPACE_ID}	
 		]]>
 	</delete>
 	
+	<!-- 보류된 공간의 게시글을 등록된 공간으로 이동하기 -->
+	<update id="returnSpace" parameterType="hashmap">
+		<![CDATA[
+			UPDATE SPACE_LIST SET SPACE_HOLD = 'N' WHERE SPACE_ID = ${SPACE_ID}
+		]]>	
+	</update>
+	
+	<!-- 등록된 공간의 게시글을 보류된 공간으로 이동하기 -->
+	<update id="waitSpace" parameterType="hashmap">
+		<![CDATA[
+			UPDATE SPACE_LIST SET SPACE_HOLD = 'Y' WHERE SPACE_ID = ${SPACE_ID}
+		]]>
+	</update>
 	
 	
 
