@@ -106,5 +106,14 @@
 <definition name="myQnaWrite" extends="modifyform">
 	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/myQnaWrite.jsp"/>
 </definition>
+<!-- 공지사항 -->
+
+<definition name="noticeList" extends="mainlayout">
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/etc/noticeList.jsp"></put-attribute> 
+ </definition> 
+ 
+  <definition name="noticeDetail" extends="mainlayout">
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/etc/noticeDetail.jsp"></put-attribute> 
+ </definition>
 
 </tiles-definitions>

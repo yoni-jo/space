@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% 
 String userId;
 if(session.getAttribute("USER_ID") != null){
 	userId = (String)session.getAttribute("USER_ID");
 	request.setAttribute("USER_ID", userId);
 }
 %>
-<!DOCTYPE html>
-<html>
-<head>
+
 <%@ include file="/WEB-INF/common/fullcalendar-header.jspf" %>
 <%@ include file="/WEB-INF/common/kakaomap-header.jspf" %>
 
@@ -33,7 +32,7 @@ if(session.getAttribute("USER_ID") != null){
 	#resultPri:after {content: "원"}
 </style>
 <title>${DETAIL.SPACE_TITLE}</title>
-</head>
+
 <body>
 <%@ include file="/WEB-INF/common/include-body.jspf" %>
 <c:if test="${!empty USER_ID}">
@@ -678,5 +677,3 @@ if(session.getAttribute("USER_ID") != null){
     	/* info.el.style.borderColor = '#e6d500'; */
 	}
 	</script>
-</body>
-</html>
