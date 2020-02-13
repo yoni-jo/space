@@ -10,7 +10,9 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	<mvc:resources location="file:///C:/test/" mapping="/image/**"/>
+	<mvc:resources mapping="/image/**" location="/resources/"/>
+
+	
 	<context:component-scan base-package="space" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>

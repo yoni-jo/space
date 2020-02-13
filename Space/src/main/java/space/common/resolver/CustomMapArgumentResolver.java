@@ -20,7 +20,7 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 		// TODO Auto-generated method stub
-		CommandMap commandMap = new CommandMap();
+		CommandMap commandMap = new CommandMap(); 
 		log.debug("=============================CommandMap Data========================");
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 		log.info("Request-CharacterEncoding : "+request.getCharacterEncoding());
@@ -34,7 +34,7 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 			key = (String) enumeration.nextElement();
 			values = request.getParameterValues(key);
 			if(values !=null) {
-				log.debug(">>>>>>>>>>>>> "+key+" : "+values[0]);
+				log.debug(">>>>>>>>>>>>> "+key+" - "+values[0]);
 				commandMap.put(key, (values.length > 1) ? values:values[0]);
 			}
 		}
