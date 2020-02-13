@@ -69,13 +69,13 @@ $(document).ready(function(){
 
 function fn_Myqnalist(){
 	var comSubmit = new ComSubmit();
-	comSubmit.setUrl("<c:url value='/mypage/Myqnalist' />");
+	comSubmit.setUrl("<c:url value='/myInfo/QNAList' />");
 	comSubmit.submit();
 }
 
 function fn_Myqnawrite(){
 	var comSubmit = new ComSubmit("frm");
-	comSubmit.setUrl("<c:url value='/mypage/MyqnaWrite' />");
+	comSubmit.setUrl("<c:url value='/myInfo/QNAList' />");
 	comSubmit.submit();
 }
 </script>

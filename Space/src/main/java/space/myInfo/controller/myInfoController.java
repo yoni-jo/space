@@ -40,15 +40,15 @@ public class myInfoController {
 	return mv;
 	
    }
-	@RequestMapping(value="/myInfo/QNAList",method = RequestMethod.POST)
-	public ModelAndView MyqnalistRe(CommandMap commandMap,HttpSession session) throws Exception{
-	
+	@RequestMapping(value="/myInfo/QNAList",method = RequestMethod.POST) // 글쓰고 리스트로 보내기
+
+	public ModelAndView MyqnaWrite(CommandMap commandMap,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("QNAList");
+		commandMap.put("USER_ID", session.getAttribute("USER_ID"));
+		myInfoService.insertUserAdQNAWrite(commandMap.getMap());
+		return mv;
 		
-	ModelAndView mv = new ModelAndView("QNAList");
-		
-	return mv;
-	
-   }
+	}
 	@RequestMapping("mypage/selectqnalist")
 	public ModelAndView selectqnalist(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -73,15 +73,7 @@ public class myInfoController {
 	
 	}
 	
-	@RequestMapping("mypage/MyqnaWrite") // 글쓰고 리스트로 보내기
 
-	public ModelAndView MyqnaWrite(CommandMap commandMap,HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/mypage/Myqnalist");
-		commandMap.put("USER_ID", session.getAttribute("USER_ID"));
-		myInfoService.insertUserAdQNAWrite(commandMap.getMap());
-		return mv;
-		
-	}
 	
 	@RequestMapping("mypage/Myqnadetail")
 	public ModelAndView Myqnadetail(CommandMap commandMap) throws Exception{
