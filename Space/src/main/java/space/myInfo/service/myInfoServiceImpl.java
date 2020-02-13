@@ -8,12 +8,13 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import space.common.logger.LoggerAspect;
 import space.myInfo.DAO.MyInfoDAO;
 
 @Service("myInfoService")
 public class myInfoServiceImpl implements myInfoService{
 
-	Logger log = Logger.getLogger(this.getClass());
+	Logger log = Logger.getLogger(LoggerAspect.class);
 	
 	@Resource(name="myInfoDAO")
 	private MyInfoDAO myInfoDAO;
@@ -44,6 +45,7 @@ public class myInfoServiceImpl implements myInfoService{
 	@Override
 	public void deleteQNA(Map<String, Object> map) throws Exception{
 		myInfoDAO.deleteQNA(map);
-	}	
+	}
+	
 }
 

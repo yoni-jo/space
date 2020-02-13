@@ -107,10 +107,10 @@ $(document).ready(function(){
 	changeNumber();
 	
 	$("#goMain").click(function(){
-		location.href="<c:url value='/space/SpaceList'/>";
+		location.href="<c:url value='/main'/>";
 	});
 	$("#myResList").click(function(){
-		location.href="<c:url value='/myspace/resList'/>";
+		location.href="<c:url value='/res/resInfo'/>";
 	});
 	
 });

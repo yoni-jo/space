@@ -23,4 +23,18 @@ import space.admin.dao.AdminReqDAO;
 		
 			return adminReqDAO.selectreqList(map);
 		}
-	}
+		@Override
+		public void insertreqList(Map<String, Object> map) throws Exception{
+			adminReqDAO.insertreqList(map);
+		}
+		
+		@Override
+		public void deletereqList(Map<String, Object> map) throws Exception{
+			adminReqDAO.deletereqList(map);
+		}
+		
+		@Override
+		public void deletereq(Map<String, Object> map) throws Exception{
+			adminReqDAO.deletereq(map);
+		}
+	} 

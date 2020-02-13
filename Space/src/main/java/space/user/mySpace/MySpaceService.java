@@ -3,7 +3,7 @@ package space.user.mySpace;
 import java.util.List;
 import java.util.Map;
 
-interface MySpaceService {
+public interface MySpaceService {
 	List<Map<String,Object>> selectMySpaceList(Map<String,Object> map);
 	List<Map<String,Object>> selectMyQnAList(Map<String,Object> map);
 	List<Map<String,Object>> selectMyReplyList(Map<String,Object> map);

@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
 
-
 @Controller
 @SessionAttributes
 public class MySpaceController {
@@ -87,10 +86,10 @@ public class MySpaceController {
 	}
 	@RequestMapping("/mySpace/SpaceFormSend")
 	public ModelAndView SpaceFormSend(HttpServletRequest request, CommandMap map,HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("mySpace/testView");
+		ModelAndView mv = new ModelAndView("redirect:/mySpace/SpaceControl");
 		
 		String userId = (String) session.getAttribute("USER_ID");
-		String spaceId = (String)mySpaceService.selectSpaceId(map.getMap());
+		String spaceId = mySpaceService.selectSpaceId(map.getMap());
 		String pri;
 		String nowFile;
 		map.put("USER_ID", userId);
@@ -145,7 +144,7 @@ public class MySpaceController {
 	}
 	@RequestMapping("/mySpace/modifyFormSend")
 	public ModelAndView applyModifySpace(HttpServletRequest request, CommandMap map, HttpSession session)throws Exception {
-		ModelAndView mv = new ModelAndView("mySpace/testView");
+		ModelAndView mv = new ModelAndView("redirect:/mySpace/SpaceControl");
 
 		String userId = (String) session.getAttribute("USER_ID");
 		String pri;
@@ -365,14 +364,15 @@ public class MySpaceController {
 		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
 		String savedName = null;
 		String allSaveName="";
+		String imagePath = request.getSession().getServletContext().getRealPath("")+"\\resources\\";
 		Iterator<String> iter = multiRequest.getFileNames();
-		log.debug("files :"+ multiRequest.getFileNames());
+		log.debug("imagePath :"+ imagePath);
 		MultipartFile files=null;
 		while(iter.hasNext()) {
 			files = multiRequest.getFile(iter.next());
 			if(files.isEmpty()==false) {
 				savedName = id+"_"+files.getOriginalFilename();			
-		        File target = new File(path, savedName);
+		        File target = new File(imagePath, savedName);
 		        if(target.exists()) {
 		        	String temp = savedName.substring(savedName.lastIndexOf("."));
 		        	savedName = savedName.substring(0,savedName.lastIndexOf("."));
@@ -381,7 +381,7 @@ public class MySpaceController {
 		        			savedName=target.getName();
 		        			break;
 		        		}
-		        		target = new File(path, savedName+new Random().nextInt(9999)+temp);
+		        		target = new File(imagePath, savedName+new Random().nextInt(9999)+temp);
 		        	}
 		        }
 		        FileCopyUtils.copy(files.getBytes(),target);

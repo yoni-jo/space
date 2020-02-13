@@ -14,4 +14,5 @@ public interface myInfoService {
     void updateAdQNA(Map<String, Object> map) throws Exception;
 	
     void deleteQNA(Map<String, Object> map) throws Exception;
+    
 }

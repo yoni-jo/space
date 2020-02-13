@@ -2,7 +2,6 @@
     pageEncoding="utf-8"%>
 <% 
 String userId;
-session.setAttribute("USER_ID", "admin");
 if(session.getAttribute("USER_ID") != null){
 	userId = (String)session.getAttribute("USER_ID");
 	request.setAttribute("USER_ID", userId);

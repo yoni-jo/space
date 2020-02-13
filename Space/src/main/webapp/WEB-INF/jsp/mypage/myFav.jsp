@@ -137,8 +137,8 @@ if(session.getAttribute("USER_ID") != null){
 		}		
 		function fn_openSpaceDetail(obj) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/main/spaceDetail'/>");
-			comSubmit.addParam("SPACE_ID", obj.parent().find("#spaceID").val());
+			comSubmit.setUrl("<c:url value='/space/detailSpace'/>");
+			comSubmit.addParam("SPACE_ID", obj.parent().find("input[name=SPACE_ID]").val());
 			comSubmit.submit(); 
 		}
 		});
