@@ -30,8 +30,6 @@ Logger log = Logger.getLogger(this.getClass());
 	@Resource
 	private ReserveService reserveService;
 	
-	@Resource(name="uploadPath")
-	String path;
 	//결제화면
 	@RequestMapping("/res/resPay")
 	private ModelAndView getPayInfo(CommandMap map,HttpSession session) throws Exception{
@@ -129,6 +127,7 @@ Logger log = Logger.getLogger(this.getClass());
 		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
 		String savedName = null;
 		String allSaveName="";
+		String path = request.getSession().getServletContext().getRealPath("")+"\\resources\\";
 		Iterator<String> iter = multiRequest.getFileNames();
 		log.debug("files :"+ multiRequest.getFileNames());
 		MultipartFile files=null;

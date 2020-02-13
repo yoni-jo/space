@@ -238,7 +238,7 @@ public class MySpaceController {
 		
 		return mv;
 	}
-	@RequestMapping("/mySpace/QnAcomment")
+	@RequestMapping(value = "/mySpace/QnAcomment",produces = "application/text; charset=utf8")
 	public ModelAndView insertQnAcomment(CommandMap map) {
 		ModelAndView mv = new ModelAndView("redirect:/mySpace/SpaceControl");
 		

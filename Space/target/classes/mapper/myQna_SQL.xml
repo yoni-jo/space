@@ -27,18 +27,21 @@ SYSDATE
 </insert>
 
 <select id="selectUserAdQNAList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/>
 <![CDATA[
 SELECT 
+ROW_NUMBER() OVER (ORDER BY ADQNA_NUM DESC) RNUM,
 ADQNA_NUM,
 ADQNA_TITLE,
 ADQNA_CNT,
 ADQNA_CMT,
 ADQNA_ANS,
-ADQNA_DATE 
+TO_CHAR(ADQNA_DATE, 'YYYY-MM-DD') AS ADQNA_DATE   
 FROM 
 ADMIN_QNA_LIST     
 ORDER BY ADQNA_NUM DESC  
 ]]>
+<include refid="common.pagingPost"/>
 </select>
 
 <select id="selectAdminQNADetail" resultType="hashmap" parameterType="hashmap">
@@ -50,7 +53,7 @@ ADQNA_TITLE,
 ADQNA_CNT,
 ADQNA_CMT,
 ADQNA_ANS,
-ADQNA_DATE 
+ADQNA_DATE  
 FROM 
 ADMIN_QNA_LIST
 WHERE 

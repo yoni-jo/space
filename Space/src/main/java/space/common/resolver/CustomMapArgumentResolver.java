@@ -24,7 +24,12 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 		log.debug("=============================CommandMap Data========================");
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 		log.info("Request-CharacterEncoding : "+request.getCharacterEncoding());
-		request.setCharacterEncoding("utf-8");
+		String reqEncoding= request.getSession().getAttribute("encoding")+"";
+		if(reqEncoding.equals("EUC-KR")) {
+			request.setCharacterEncoding("EUC-KR");
+		}else {
+			request.setCharacterEncoding("utf-8");
+		}
 		Enumeration<?> enumeration = request.getParameterNames();
 		
 		
