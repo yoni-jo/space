@@ -16,7 +16,7 @@ h5 {margin-top: 10px;}
 button {width: 100%;height: 50px;background-color: #ffd014;	display: block;	border: none;margin-top: 10px;font-size: 20px;}
 </style>
 
-<script>
+<script type="text/javascript">
 function fwdcheck() {
 	if($("#user_password").val()==""){
 		alert("비밀번호를 입력해주세요");
