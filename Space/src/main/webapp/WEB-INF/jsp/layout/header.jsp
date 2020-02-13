@@ -120,7 +120,7 @@ $(document).on('click','.bar',function(){
                             <li><a href="/two/res/resInfo">예약공간보기</a></li>
                             <li><a href="/two/mypage/myFavList">찜한공간보기</a></li>
                             <li><a href="/two/space/Myspace_list">내가등록한 공간보기</a></li>
-                            <li><a href="#">공지사항</a></li>
+                            <li><a href="/two/etc/noticeList">공지사항</a></li>
                            
                         </ul> 
                 </li>
