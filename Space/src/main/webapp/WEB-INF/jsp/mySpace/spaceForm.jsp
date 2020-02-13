@@ -63,7 +63,6 @@ p .filetype .file-btn{margin-left: 8px}
 <style>
 .line{margin-bottom: 30px}
 .view {
-	display: inline-block;
 	border: 2px solid #000000;
 	padding: 5px;
 	width: 500px;
@@ -103,7 +102,7 @@ input[type=number] {text-align: right;}
 	<div style="width: 100%; text-align: center;">
 		
 		<div id="formTitle" class="view"
-			style="width: 700px; background: #FE9A2E; font-weight: bold;">
+			style="width: 700px; background: #FE9A2E; font-weight: bold;margin-left:calc(50% - 350px)">
 			<label>내 공간 등록</label>
 		</div>
 		<p></p>
