@@ -12,11 +12,11 @@ public class MyInfoDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectUserAdQNAList(Map<String, Object> map) throws Exception{
-	  return (List<Map<String, Object>>)selectList("myqna.selectUserAdQNAList", map);
+	  return (List<Map<String, Object>>)selectPagingList("myqna.selectUserAdQNAList", map);
 		
 	}
 	
-	
+
 	public void insertUserAdQNAWrite(Map<String, Object> map) throws Exception{
 		insert("myqna.insertUserAdQNAWrite", map);
 	}

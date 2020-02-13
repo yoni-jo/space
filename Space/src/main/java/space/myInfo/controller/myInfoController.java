@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
+import space.common.logger.LoggerAspect;
+import space.common.logger.LoggerInterceptor;
 import space.myInfo.service.myInfoService;
 import space.myInfo.service.myInfoServiceImpl;
 
 @Controller
 public class myInfoController {
 
-	Logger log = Logger.getLogger(this.getClass());
+	Logger log = Logger.getLogger(LoggerAspect.class);
 	
 	@Resource(name="myInfoService")
-	private myInfoServiceImpl myInfoService;
+	private myInfoService myInfoService;
 	
 	@RequestMapping("mypage/Mymenu")
 	public ModelAndView Mymenu(CommandMap commandMap, HttpServletRequest request) throws Exception{
@@ -33,15 +35,29 @@ public class myInfoController {
 	}
 
 	@RequestMapping("mypage/Myqnalist")
-	public ModelAndView Myqnalist(Map<String, Object> commandMap) throws Exception{
+	public ModelAndView Myqnalist(CommandMap commandMap) throws Exception{
 	ModelAndView mv = new ModelAndView("mypage/myQnaList");
-	List<Map<String, Object>> list = myInfoService.selectUserAdQNAList(commandMap);
-	mv.addObject("list", list);
-	
+		
 	return mv;
 	
    }
 	
+	@RequestMapping("mypage/selectqnalist")
+	public ModelAndView selectqnalist(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		List<Map<String, Object>> list = myInfoService.selectUserAdQNAList(commandMap.getMap());
+		mv.addObject("list", list);
+		if(list.size() > 0) {
+			mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		}
+		
+		else {
+		mv.addObject("TOTAL", 0);	
+		}
+		
+		return mv;
+}
 	@RequestMapping("mypage/Myqnawrite") // ±Û¾²±â Æû ¶ç¿ì±â
 	public ModelAndView Myqnawrite(CommandMap commandMap) throws Exception{
 	ModelAndView mv = new ModelAndView("mypage/myQnaWrite");
