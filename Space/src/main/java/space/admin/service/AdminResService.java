@@ -7,4 +7,6 @@ public interface AdminResService {
 	
 	List<Map<String, Object>> selectAdminResList (Map<String, Object> map) throws Exception;
 
+	void deleteResList(Map<String, Object> map) throws Exception;
+
 }

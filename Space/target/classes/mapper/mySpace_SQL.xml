@@ -115,51 +115,178 @@ WHERE
 </update> -->
 
 <!-- ==================================공간 신청 글 예약(날짜)삭제  		[ 등록글 수정글 공통 부분 ] -->
-<!-- <update id="deleteResDate" parameterType="hashmap">
+<select id="getSpaceID" parameterType="hashmap" resultType="string">
+<![CDATA[
+SELECT SPACE_ID_SEQ.NEXTVAL AS SAPCE_ID FROM DUAL
+
+]]>
+</select>
+<select id="selectSpaceBoard" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT * FROM SPACE_LIST WHERE SPACE_ID = ${SPACE_ID}
+]]>
+</select>
+
+<select id="selectApplyBoard" parameterType="hashmap" resultType="string">
+<![CDATA[
+	SELECT APPLY_NUM FROM SPACE_APPLY_LIST WHERE APPLY_NUM = ${APPLY_NUM}
+]]>
+</select>
+<update id="updateModifyApplyInfo" parameterType="hashmap">
+<![CDATA[
+MERGE INTO SPACE_APPLY_LIST
+USING DUAL
+   ON (APPLY_NUM = #{APPLY_NUM})
+WHEN MATCHED THEN
+    UPDATE SET
+    APPLY_TITLE = #{APPLY_TITLE},
+  	APPLY_DETAIL = #{APPLY_DETAIL},
+  	APPLY_USE  = #{APPLY_USE},
+  	APPLY_IMG = #{APPLY_IMG},
+    APPLY_POS  = #{APPLY_POS},
+  	APPLY_PRI = #{APPLY_PRI},	 
+    APPLY_SIZE = #{APPLY_SIZE},
+    APPLY_OPT = #{APPLY_OPT},
+    ]]>
+    <if test="APPLY_TAG != null">
+    APPLY_TAG = #{APPLY_TAG},
+    </if>
+    <![CDATA[
+    APPLY_SEAT = #{APPLY_SEAT},
+    APPLY_PARKING = #{APPLY_PARKING},
+    APPLY_PERSON = #{APPLY_PERSON},
+    APPLY_HORIZON = #{APPLY_HORIZON},
+    APPLY_VERTICAL = #{APPLY_VERTICAL},
+    APPLY_HEIGHT = #{APPLY_HEIGHT},
+    APPLY_RES_TYPE = #{APPLY_RES_TYPE}
+WHEN NOT MATCHED THEN
+    INSERT(
+	APPLY_NUM,
+	APPLY_TITLE,
+	APPLY_DETAIL,
+	APPLY_USE,
+	APPLY_IMG,
+	APPLY_POS,
+	APPLY_PRI,
+	APPLY_SIZE,
+	APPLY_TAG,
+	APPLY_OPT,
+	APPLY_ID,
+	APPLY_MODIFY,
+	APPLY_PERSON,
+	APPLY_HORIZON,
+	APPLY_VERTICAL,
+	APPLY_HEIGHT,
+	APPLY_RES_TYPE,
+	APPLY_SEAT,
+	APPLY_PARKING
+	)
+VALUES(
+	#{APPLY_NUM},
+	#{APPLY_TITLE},
+	#{APPLY_DETAIL},
+	#{APPLY_USE},
+	#{APPLY_IMG},
+	#{APPLY_POS},
+	#{APPLY_PRI},
+	#{APPLY_SIZE},
+	]]>
+	<if test="APPLY_TAG != null">
+    #{APPLY_TAG},
+    </if>
+    <if test="APPLY_TAG == null">
+    '',
+    </if>
+    <![CDATA[
+	#{APPLY_OPT},
+	#{USER_ID},
+	#{APPLY_MODIFY},
+	#{APPLY_PERSON},
+	#{APPLY_HORIZON},
+	#{APPLY_VERTICAL},
+	#{APPLY_HEIGHT},
+	#{APPLY_RES_TYPE},
+	#{APPLY_SEAT},
+	#{APPLY_PARKING}
+	)
+]]>
+</update>
+
+<!-- 공간등록 예약목록 (요일 TYPE == "DAY") -->
+<update id="updateResDayInfo" parameterType="hashmap">
+<![CDATA[
+MERGE INTO ARES_DAY
+USING DUAL
+   ON (SPACE_ID = #{APPLY_NUM})
+WHEN MATCHED THEN
+    UPDATE SET
+		A_MON = #{APPLY_DAY_LIST.MON},
+		A_TUE = #{APPLY_DAY_LIST.TUE},
+		A_WED = #{APPLY_DAY_LIST.WED},
+		A_THU = #{APPLY_DAY_LIST.THU},
+		A_FRI = #{APPLY_DAY_LIST.FRI},
+		A_SAT = #{APPLY_DAY_LIST.SAT},
+		A_SUN = #{APPLY_DAY_LIST.SUN}
+    
+WHEN NOT MATCHED THEN
+    INSERT(
+	SPACE_ID,
+	A_MON,
+	A_TUE,
+	A_WED,
+	A_THU,
+	A_FRI,
+	A_SAT,
+	A_SUN
+	)
+VALUES(
+	#{APPLY_NUM},
+	#{APPLY_DAY_LIST.MON},
+	#{APPLY_DAY_LIST.TUE},
+	#{APPLY_DAY_LIST.WED},
+	#{APPLY_DAY_LIST.THU},
+	#{APPLY_DAY_LIST.FRI},
+	#{APPLY_DAY_LIST.SAT},
+	#{APPLY_DAY_LIST.SUN}
+	)
+
+]]>
+</update>
+
+
+<!-- 공간등록 예약목록 (날짜 TYPE=="DATE") -->
+<update id="updateResDate" parameterType="hashmap">
+<![CDATA[
+MERGE INTO ARES_DATE
+USING DUAL
+   ON (SPACE_ID = #{SPACE_ID} AND A_DATE = #{DATE})
+WHEN MATCHED THEN
+    UPDATE SET
+    A_PRI = #{PRI}
+WHEN NOT MATCHED THEN
+INSERT(
+	SPACE_ID,
+	A_DATE,
+	A_PRI
+	)
+VALUES(
+	#{SPACE_ID},
+	#{DATE},
+	#{PRI}
+	)
+
+]]>
+</update>
+<!-- ==========================================공간 신청 글 예약(날짜)삭제 -->
+<update id="deleteResDate" parameterType="hashmap">
 	<![CDATA[
 		DELETE
 		FROM 
-			SRES_DATE 
+			ARES_DATE 
 		WHERE 
-			SPACE_ID = #{SPACE_ID}
+			SPACE_ID = #{APPLY_NUM}
 	]]>
 </update>
- <update id="deleteFav" parameterType="hashmap">
- <![CDATA[
-		DELETE
-		FROM 
-			LIKE_LIST 
-		WHERE 
-			SPACE_ID = #{SPACE_ID}
-	]]>
- </update>
-  <update id="deleteResList" parameterType="hashmap">
- <![CDATA[
-		DELETE
-		FROM 
-			RES_LIST 
-		WHERE 
-			RES_SPACE_ID = #{SPACE_ID}
-	]]>
- </update>
-   <update id="deleteReplyList" parameterType="hashmap">
- <![CDATA[
-		DELETE
-		FROM 
-			RES_LIST 
-		WHERE 
-			RES_SPACE_ID = #{SPACE_ID}
-	]]>
- </update>
-   <update id="deleteQnAList" parameterType="hashmap">
- <![CDATA[
-		DELETE
-		FROM 
-			RES_LIST 
-		WHERE 
-			RES_SPACE_ID = #{SPACE_ID}
-	]]>
- </update> -->
 
 	<select id="selectMyApplyList" parameterType="hashmap"
 		resultType="hashmap">

@@ -22,4 +22,10 @@ import space.admin.dao.AdminResDAO;
 		
 			return adminResDAO.selectAdminResList(map);
 		}
+		
+
+		@Override
+		public void deleteResList(Map<String, Object> map) throws Exception{
+			adminResDAO.deleteResList(map);
+		}
 	}

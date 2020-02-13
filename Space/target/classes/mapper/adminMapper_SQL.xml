@@ -64,6 +64,13 @@
 		]]>
 	</select>
 	
+	<!-- 예약목록삭제 -->
+	<delete id="deleteResList" parameterType="hashmap">
+		<![CDATA[ 
+			DELETE FROM RES_LIST WHERE RES_NUM = #{RES_NUM} 
+		]]>
+	</delete>
+	
 	<!-- 등록된공간리스트 -->
 	<select id="selectspaceList" parameterType="hashMap" resultType="hashMap">
 	<include refid="common.pagingPre"/>	
@@ -121,10 +128,23 @@
 	<!-- 등록된 공간 삭제하기 -->
 	<delete id="deleteSpace" parameterType="hashmap">
 		<![CDATA[ 
-			DELETE FROM SPACE_LIST WHERE SPACE_ID = #{SPACE_ID}	
+			UPDATE SPACE_LIST SET SPACE_DEL_GB = 'Y' WHERE SPACE_ID = #{SPACE_ID}	
 		]]>
 	</delete>
 	
+	<!-- 보류된 공간의 게시글을 등록된 공간으로 이동하기 -->
+	<update id="returnSpace" parameterType="hashmap">
+		<![CDATA[
+			UPDATE SPACE_LIST SET SPACE_HOLD = 'N' WHERE SPACE_ID = ${SPACE_ID}
+		]]>	
+	</update>
+	
+	<!-- 등록된 공간의 게시글을 보류된 공간으로 이동하기 -->
+	<update id="waitSpace" parameterType="hashmap">
+		<![CDATA[
+			UPDATE SPACE_LIST SET SPACE_HOLD = 'Y' WHERE SPACE_ID = ${SPACE_ID}
+		]]>
+	</update>
 	
 	
 
@@ -153,6 +173,73 @@
 		ORDER BY APPLY_NUM DESC
 	]]>
 </select>
+
+<insert id="insertreqList" parameterType="hashMap">
+		<![CDATA[ 
+			INSERT INTO 
+			SPACE_LIST ( 
+				SPACE_ID,
+				SPACE_TITLE,
+				SPACE_DETAIL,
+				SPACE_USE,
+				SPACE_IMG,
+				SPACE_POS,
+				SPACE_PRI,
+				SPACE_SIZE,
+				SPACE_FlOOR,
+				SPACE_OPT,
+				SPACE_TAG,
+				SPACE_HOST,
+				SPACE_CMT_COUNT,
+				SPACE_READ,
+				SPACE_DEL_GB,
+				SPACE_SPACE_HOLD,
+				SPACE_SEAT,
+				SPACE_PARKING,
+				SPACE_PERSON,
+				SPACE_HORIZON,
+				SPACE_VERTICAL,
+				SPACE_HEIGHT,
+				SPACE_RES_TYPE 
+			) VALUES (
+				#{APPLY_NUM},
+				#{APPLY_TITLE},
+				#{APPLY_DETAIL},
+				#{APPLY_USE},
+				#{APPLY_IMG},
+				#{APPLY_POS},
+				#{APPLY_PRI},
+				#{APPLY_SIZE},
+				#{APPLY_OPT},
+				#{APPLY_TAG},
+				#{APPLY_ID},
+				0,
+				0,
+				'N',
+				'N',
+				#{APPLY_SEAT},
+				#{APPLY_PARKING},
+				#{APPLY_PERSON},
+				#{APPLY_HORIZON},
+				#{APPLY_VERTICAL},
+				#{APPLY_HEIGHT},
+				#{APPLY_RES_TYPE} 
+				) 
+			]]>
+	</insert>
+	<!-- 공간신청 게시글 삭제 -->
+	<delete id="deletereqList" parameterType="hashmap">
+		<![CDATA[ 
+			DELETE FROM space_apply_list WHERE APPLY_NUM = #{APPLY_NUM} 	
+		]]>
+	</delete>
+	
+	<!-- 공간신청 승인후 글삭제 -->
+	<delete id="deletereq" parameterType="hashmap">
+		<![CDATA[ 
+			DELETE FROM space_apply_list WHERE APPLY_NUM = #{APPLY_NUM} 	
+		]]>
+	</delete>
 	
 	<!-- 공지사항 관련 -->
 	<!-- 공지사항 리스트 -->
