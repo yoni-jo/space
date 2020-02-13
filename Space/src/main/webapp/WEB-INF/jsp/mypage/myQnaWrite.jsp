@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
-<meta charset="EUC-KR">
-<title>1:1문의 글쓰기</title>
-</head>
-<body>
 
+
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
+
+<title>1:1문의 글쓰기</title>
+
+<style>
+#frm{width: 100%; margin-left:calc(50% - 350px); }
+
+</style>
+
+
+<form id="frm">
 <table border="2px" width="700px" height="30px" align="center" style="border-collapse: collapse;">
 <th>1 : 1 문의</th>
 </table>
-
-<form id="frm">
 <table class="qna_view">
 <select name="qnaOpt" style="padding: .3em; ">
 <option value="">문의유형을 선택하세요.</option>
@@ -77,6 +79,3 @@ function fn_Myqnawrite(){
 	comSubmit.submit();
 }
 </script>
-
-</body>
-</html>

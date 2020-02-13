@@ -94,4 +94,17 @@
 <definition name="myFav" extends="modifyform">
 	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/myFav.jsp"/>
 </definition>
+
+
+<!-- QNA부분 -->
+
+<!-- QNA 첫화면 -->
+<definition name="QNAList" extends="modifyform">
+	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/myQnaList.jsp"/>
+</definition>
+<!--QNA 글쓰기  -->
+<definition name="myQnaWrite" extends="modifyform">
+	<put-attribute name="contents" value="/WEB-INF/jsp/mypage/myQnaWrite.jsp"/>
+</definition>
+
 </tiles-definitions>

@@ -5,11 +5,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import space.common.common.CommandMap;
@@ -34,14 +36,22 @@ public class myInfoController {
 			
 	}
 
-	@RequestMapping("mypage/Myqnalist")
+	@RequestMapping(value="/myInfo/QNAList",method = RequestMethod.GET)
 	public ModelAndView Myqnalist(CommandMap commandMap) throws Exception{
-	ModelAndView mv = new ModelAndView("mypage/myQnaList");
+	ModelAndView mv = new ModelAndView("QNAList");
 		
 	return mv;
 	
    }
+	@RequestMapping(value="/myInfo/QNAList",method = RequestMethod.POST)
+	public ModelAndView MyqnalistRe(CommandMap commandMap,HttpSession session) throws Exception{
 	
+		
+	ModelAndView mv = new ModelAndView("QNAList");
+		
+	return mv;
+	
+   }
 	@RequestMapping("mypage/selectqnalist")
 	public ModelAndView selectqnalist(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -58,9 +68,9 @@ public class myInfoController {
 		
 		return mv;
 }
-	@RequestMapping("mypage/Myqnawrite") // 글쓰기 폼 띄우기
+	@RequestMapping("/mypage/Myqnawrite") // 글쓰기 폼 띄우기
 	public ModelAndView Myqnawrite(CommandMap commandMap) throws Exception{
-	ModelAndView mv = new ModelAndView("mypage/myQnaWrite");
+	ModelAndView mv = new ModelAndView("myQnaWrite");
 	
 	return mv;
 	
@@ -68,7 +78,7 @@ public class myInfoController {
 	
 	@RequestMapping("mypage/MyqnaWrite") // 글쓰고 리스트로 보내기
 	public ModelAndView MyqnaWrite(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/mypage/Myqnalist");
+		ModelAndView mv = new ModelAndView("redirect:/myInfo/QNAList");
 		myInfoService.insertUserAdQNAWrite(commandMap.getMap());
 		return mv;
 		

@@ -53,7 +53,7 @@
 						<li><a href="/two/res/resInfo">내가 예약한 공간</a></li>
 
 						<li><a href="/two/mypage/myFavList">내가 찜한 공간</a></li>
-						<li><a href="">1:1문의</a></li>
+						<li><a href="/two/myInfo/QNAList">1:1문의</a></li>
 						<li><a href="/two/member/MemberModifyForm">개인정보 변경</a></li>
 						
 						<li class="mypagebar">내 공간 관리

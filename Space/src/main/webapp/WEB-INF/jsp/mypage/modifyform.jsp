@@ -24,7 +24,7 @@ font-family: 'Lato', sans-serif;
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Noto Sans KR', sans-serif;}
 
-   html,body{height: 100%;}
+   html,body{height: 100%;overflow-x:hidden}
    h1{padding-top: 30px;text-align: center}
    li{list-style: none;cursor: pointer;text-align: center;}
    a{text-decoration: none;color:black}
