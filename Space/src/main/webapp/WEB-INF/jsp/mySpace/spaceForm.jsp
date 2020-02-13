@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/common/defualt-header.jspf" %>
-<meta charset="utf-8">
 <title>공간 입력 폼</title>
 <style>
 .filetype {

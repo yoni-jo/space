@@ -88,7 +88,7 @@ public class MySpaceController {
 	}
 	@RequestMapping("/mySpace/SpaceFormSend")
 	public ModelAndView SpaceFormSend(HttpServletRequest request, CommandMap map,HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("mySpace/testView");
+		ModelAndView mv = new ModelAndView("redirect:/mySpace/SpaceControl");
 		
 		String userId = (String) session.getAttribute("USER_ID");
 		String spaceId = mySpaceService.selectSpaceId(map.getMap());
@@ -146,7 +146,7 @@ public class MySpaceController {
 	}
 	@RequestMapping("/mySpace/modifyFormSend")
 	public ModelAndView applyModifySpace(HttpServletRequest request, CommandMap map, HttpSession session)throws Exception {
-		ModelAndView mv = new ModelAndView("mySpace/testView");
+		ModelAndView mv = new ModelAndView("redirect:/mySpace/SpaceControl");
 
 		String userId = (String) session.getAttribute("USER_ID");
 		String pri;
@@ -366,9 +366,9 @@ public class MySpaceController {
 		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
 		String savedName = null;
 		String allSaveName="";
-		String imagePath = request.getSession().getServletContext().getRealPath("")+"/resources/";
+		String imagePath = request.getSession().getServletContext().getRealPath("")+"\\resources\\";
 		Iterator<String> iter = multiRequest.getFileNames();
-		log.debug("files :"+ multiRequest.getFileNames());
+		log.debug("imagePath :"+ imagePath);
 		MultipartFile files=null;
 		while(iter.hasNext()) {
 			files = multiRequest.getFile(iter.next());
