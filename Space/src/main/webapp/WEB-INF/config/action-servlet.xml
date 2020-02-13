@@ -37,10 +37,14 @@
 			<mvc:mapping path="/mySpace/*"/>
 			<mvc:mapping path="/space/*"/>
 			<mvc:mapping path="/res/*"/>
+			<mvc:exclude-mapping path="/space/writeQnA"/>
+			<mvc:exclude-mapping path="/space/SearchList"/>
 			<bean id="EUCInterceptor" class="space.common.common.EncodingInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/*"/>
+			<mvc:mapping path="/space/writeQnA"/>
+			<mvc:mapping path="/space/SearchList"/>
 			<bean id="UTFInterceptor" class="space.common.common.UTFencodeInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
