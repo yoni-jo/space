@@ -12,6 +12,6 @@ public class AdminReqDAO extends AbstractDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectreqList(Map<String, Object> map) throws Exception{
-		return (List<Map<String, Object>>)selectPagingList("admin.selectreqList", map);
+		return (List<Map<String, Object>>)selectList("admin.selectreqList", map);
 	}
 }

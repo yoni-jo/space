@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -7,125 +7,123 @@
 
 <html>
 <head>
-<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <style type="text/css">
-	div{
-	padding : 1%;
-	}
-	.leftdiv{float : left;}
-	.middlediv{float : left;} 
-	.rightdiv{float : left;}  
-#PAGE_NAVI{	float: right;
-    margin-top: 40px;
-    margin-right: 50%}
+	a:link { color: #414958; }
+	a:visited { color: #4E5869; }
+	a:hover, a:active, a:focus { text-decoration: none; }
+	
+	.content{position:absolute; left:50%; top:50%;}
+	.box1 {float:left;width:250px;}
+	.box2 {float:left;width:45%;} 
+	.box3 {float:left;width:35%;}
+	  
 </style>
 <meta charset="EUC-KR">
-<title>¿¹¾à°ü¸®</title>
-   </head> 
-<%@ include file="/WEB-INF/common/include-body.jspf" %>
-	
-<div>      
-  
-</div> 
-<div>
-<body>
-<center><h2>°ø°£ ½ÅÃ» °ü¸®</h2></center>
-<center>
-<div class=main style="width: 900px;">
- 
-	</center> 
-	
-			
- 
+<title>ì˜ˆì•½ê´€ë¦¬</title>
+
+
 <script type="text/javascript"> 
-$(document).ready(function(){
-	
-	fn_reqList(1);
-	 
-}); 
- 
-/* °Ë»öÄ­¿¡¼­ ¿£ÅÍÅ° ´©¸£¸é ½ÇÇà */
-function enterkey() { 
-    if (window.event.keyCode == 13) {
-    	fn_reqList(1);
-    }
+function memberList(){
+	location.href="memberList"
+}
+function reqList(){
+	location.href="reqList"
+}46260204194303
+function spaceList(){
+	location.href="spaceList"
+}
+function memberResList(){
+	location.href="memberResList"
+}
+function QNAList(){
+	location.href="QNAList"
+}
+function noticeList(){
+	location.href="noticeList"
 }
 
-function fn_reqList(pageNo){
-	var comAjax = new ComAjax();
-	comAjax.setUrl("<c:url value='/admin/selectreqList' />");
-	comAjax.setCallback("fn_reqListCallback");
-	comAjax.addParam("PAGE_INDEX", pageNo);
-	comAjax.addParam("PAGE_ROW", 10);
-	comAjax.addParam("searchOption", $("#searchOption > option:selected").val());
-	comAjax.addParam("keyword", $("input[name='keyword']").val());
-	 
-	comAjax.ajax();
-}
-
-function fn_reqListCallback(data){
-	var total = data.TOTAL;
-	var body = $(".main");
-	body.empty(); 
-	if(total == 0){
-		var str = "<tr><td colspan='4'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.</td></tr>"; 
-		body.append(str);
-	}else{
-		var params = {
-			divId : "PAGE_NAVI",
-			pageIndex : "PAGE_INDEX",
-			totalCount : total,
-			eventName : "fn_reqList",
-			recordCount : 10
-		};
-		gfn_renderPaging(params);
-		var str = "";
-		$.each(data.list, function(key, value){
-			console.log("check");
-			str += ""
-			+ "<div style='width: 900px;'>" 
-			+ "<div class='leftdiv'"+ "'style= width : 100px'>" + "<img src = " + value.APPLY_IMG + "style = 'width:200px; heigth:120px;'>" +"</div>"
-			+ "<div class='middlediv' style='width:600px; display: inline-block;'>"
-			+ "<a href = 'pensionDetail.do?idx='" + value.APPLY_TITLE + ">"
-			+ "<b style='font-size:16px; color:black;'>" + value.APPLY_TITLE + "&nbsp;&nbsp;</b></a>";
-			if(value.APPLY_MODIFY == "N"){
-				str+="<span style='color:red'><strong>(½Å±Ô)</strong></span>";
-			}else{
-				str+="<span style='color:blue'><strong>(¼öÁ¤)</strong></span>";
-			}
-			str += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class = 'user'>" + "<span></span>" 
-			+ value.USER_ID + "/" + value.USER_NAME + "/" + value.USER_PHONE + "/" + value.USER_EMAIL + "<br/>"
-			+ "<sapn class='space'>" + "<span></span>" + "°ø°£ Æ¯Â¡ : "
-			+ value.APPLY_USE + "<br>"
-			+ "<sapn class='address'>" + "<span></span>" + "ÁÖ¼Ò : "
-			+ value.APPLY_POS + "<br>"
-			+ "<sapn class='space'>" + "<span></span>" + "°¡°İ : "
-			+ value.APPLY_PRI + "¿ø<br></span>" 
-			+ "</div>"
-			+ "<div class='rightdiv' style='width:200px;display: inline-block;'>"
-			+ "<input type='button' name='commit' value='½ÂÀÎ' style='width:50pt;height:20pt'>"
-			+ "<input type='button' name='delete' value='»èÁ¦' style='width:50pt;height:20pt'>" + "<br><br><br><br><br>"
-			+ "</div>" + "</div>" + "<p></p>" + "";
-		}); 
-		body.append(str);
-		$("a[name='title']").on("click", function(e){
-			e.preventDefault();
-			fn_noticeDetail($(this));
-		});
-	}  
-} 
 </script>
- </div>
- 
- </div>
- 
 
+   </head>
+
+<body>
+
+
+<div class="main">
+	<h1 align="center">ê´€ë¦¬ì í™”ë©´</h1>
+<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
+<tr>
+<td align="center"><a href="javascript:memberList()">íšŒì› ëª©ë¡</td>
+<td align="center"><a href="javascript:reqList()">ê³µê°„ ì‹ ì²­ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:spaceList()">ë“±ë¡ëœ ê³µê°„ ê´€ë¦¬ê²Œì‹œíŒ</td>
+<td align="center"><a href="javascript:memberResList()">ì˜ˆì•½ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:QNAList()">1:1ë¬¸ì˜ ê²Œì‹œíŒ</td>
+<td align="center"><a href="javascript:noticeList()">ê³µì§€ì‚¬í•­ ê´€ë¦¬</td>
+</tr>
+</table>
+<br/>
+<br/><br/>
+
+<div class="container">
+		<div class = "col-md-3"></div>
+	
+		<div class="page-header">
+			<h2><b>ê³µê°„ ì‹ ì²­ ê´€ë¦¬ê²Œì‹œíŒ</b><br/></h2><hr/><br/>
+		</div>
+			<c:choose>  
+				<c:when test = "${fn:length(list) > 0}"> 
+					<c:forEach var = "row" items = "${list}">
+						
+						<div class="box1">  
+							<img src = "${row.APPLY_IMG}" style = "width:200px; height:120px;" onerror = "this.src='http://placehold.it/200x120';">
+						</div>
+						<div class="box2" style = "line-height:140%; ">  
+							<a href = "pensionDetail.do?idx=${row.APPLY_TITLE}"><b style = "font-size:16px; color:black;">${row.APPLY_TITLE}</b></a> 
+							<c:if test = "${row.APPLY_MODIFY == 'N' }">
+								<span style="color:red"><strong>(ì‹ ê·œ)</strong></span>
+								</c:if> 
+								<c:if test = "${row.APPLY_MODIFY == 'Y' }">
+								<span style="color:blue"><strong>(ìˆ˜ì •)</strong></span>
+								</c:if>
+								 
+							<sapn class ="user">
+								<span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${row.USER_ID} / ${row.USER_NAME} / ${row.USER_PHONE} / ${row.USER_EMAIL}
+							
+							<br><br/>
+							<span class = "space"> 
+								<span></span>ê³µê°„íŠ¹ì§• : ${row.APPLY_USE}<br>
+							<span class = "address">
+								<span></span>ì£¼ì†Œ : ${row.APPLY_POS}<br>
+							<span class = "price"> 
+								<span></span> ê°€ê²© : ${row.APPLY_PRI}
+							</span>
+					
+								<br/><br/> 
+							</div>
+							<div class="box3" style = "line-height:140%; ">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="button" name="commit" value="ìŠ¹ì¸" style="width:50pt;height:20pt">
+							<br><br> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" name="delete" value="ì‚­ì œ" style="width:50pt;height:20pt">
+							<br><br/><br/><br> 
+							</div>
+							<br/><br/><br>
+						</div>
+						 
+					</c:forEach> 
+				</c:when> 
+			
+				<c:otherwise>
+					ì˜ˆì•½ëœ ê³µê°„ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+				</c:otherwise>
+			</c:choose>
+			
+	</div>
+	<br/>
+   <br/>
+   <br/>
 </body>
-</div> <br>
-<center> 
-	<div id="PAGE_NAVI" style="bottom: 0"></div> 
-	<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-</center>
-
-
 </html>

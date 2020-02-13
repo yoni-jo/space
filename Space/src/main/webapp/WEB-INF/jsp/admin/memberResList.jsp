@@ -1,6 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -8,115 +7,114 @@
 
 <html>
 <head>
-<%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <style type="text/css">
-	div{
-	padding : 1%;
-	}
-	.leftdiv{float : left;}
-	.middlediv{float : left;} 
-	.rightdiv{float : left;}  
-#PAGE_NAVI{	float: right;
-    margin-top: 40px;
-    margin-right: 50%}
+	a:link { color: #414958; }
+	a:visited { color: #4E5869; }
+	a:hover, a:active, a:focus { text-decoration: none; }
+	
+	.content{position:absolute; left:50%; top:50%;}
+	.box1 {float:left;width:250px;}
+	.box2 {float:left;width:55%;} 
+	.box3 {float:left;width:25%;} 
+	  
 </style>
-<meta charset="EUC-KR"> 
-<title>¿¹¾à°ü¸®</title>
-   </head> 
-<%@ include file="/WEB-INF/common/include-body.jspf" %>
-	
-<div>      
-  
-</div> 
-<div>
-<body>
-<center><h2>¿¹¾à °ü¸®</h2></center>
-<center>
-<div class="main">
+<meta charset="EUC-KR">
+<title>ì˜ˆì•½ê´€ë¦¬</title>
+
+
 <script type="text/javascript"> 
-$(document).ready(function(){
-	
-	fn_resList(1);
-	 
-}); 
- 
-/* °Ë»öÄ­¿¡¼­ ¿£ÅÍÅ° ´©¸£¸é ½ÇÇà */
-function enterkey() { 
-    if (window.event.keyCode == 13) {
-    	fn_resList(1);
-    }
+function memberList(){
+	location.href="memberList"
+}
+function reqList(){
+	location.href="reqList"
+}46260204194303
+function spaceList(){
+	location.href="spaceList"
+}
+function memberResList(){
+	location.href="memberResList"
+}
+function QNAList(){
+	location.href="QNAList"
+}
+function noticeList(){
+	location.href="noticeList"
 }
 
-function fn_resList(pageNo){
-	var comAjax = new ComAjax();
-	comAjax.setUrl("<c:url value='/admin/selectAdminResList' />");
-	comAjax.setCallback("fn_resListCallback");
-	comAjax.addParam("PAGE_INDEX", pageNo);
-	comAjax.addParam("PAGE_ROW", 10);
-	comAjax.addParam("searchOption", $("#searchOption > option:selected").val());
-	comAjax.addParam("keyword", $("input[name='keyword']").val());
-	 
-	comAjax.ajax();
-}
-
-function fn_resListCallback(data){
-	var total = data.TOTAL;
-	var body = $(".main");
-	body.empty(); 
-	if(total == 0){
-		var str = "<tr><td colspan='4'>Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.</td></tr>"; 
-		body.append(str);
-	}else{
-		var params = {
-			divId : "PAGE_NAVI",
-			pageIndex : "PAGE_INDEX",
-			totalCount : total,
-			eventName : "fn_resList",
-			recordCount : 10
-		}; 
-		gfn_renderPaging(params);
-		var str = "";
-		$.each(data.list, function(key, value){
-			console.log("check");
-			str += "" +
-				"<div style='width: 900px;'>" 
-				+ "<div class='leftdiv'"+ "'style= width : 100px'>" + "<img src = " + value.SPACE_IMG + "style = 'width:200px; heigth:120px;'>" +"</div>"
-				+ "<div class='middlediv' style='width:600px; display: inline-block;'>"
-				+ "<a href = 'pensionDetail.do?idx='" + value.SPACE_TITLE + ">"
-				+ "<b style='font-size:16px; color:black;'>" + value.SPACE_TITLE + "</b></a><br>"
-				+ "<sapn class='space'>" + "<span></span>" + "°ø°£ Æ¯Â¡ : "
-				+ value.SPACE_USE + "<br>"
-				+ "<sapn class='address'>" + "<span></span>" + "ÁÖ¼Ò : "
-				+ value.SPACE_POS + "<br>"
-				+ "<sapn class='space'>" + "<span></span>" + "¿¹¾àÀÏ½Ã : "
-				+ value.RES_APPLY_DATE + "<br></span>" 
-				+ "<sapn class='space'>" + "<span></span>" + "°¡°İ : "
-				+ value.SPACE_PRI + "¿ø<br></span>" 
-				+ "</div>"
-				+ "<div class='rightdiv' style='width:200px;display: inline-block;'>"
-				+ "¿¹¾àÀÚ : " + value.RES_NAME + "<br>"
-				+ value.USER_ID + "/" + value.RES_NAME + "<br>"
-				+ "ÀÌ¸ŞÀÏ : " + value.RES_EMAIL + "<br><br>"
-				+ "<input type='button' name='commit' value='¿¹¾àÃë¼Ò' style='width:50pt;height:20pt'>"
-				+ "</div>" + "</div>" + "<p></p>" + "" +"<br><br>";
-		}); 
-		body.append(str);
-		$("a[name='title']").on("click", function(e){
-			e.preventDefault();
-			fn_noticeDetail($(this));
-		});
-	}  
-} 
 </script>
-			
+
+   </head>
+
+<body>
+
+
+<div class="main">
+	<h1 align="center">ê´€ë¦¬ì í™”ë©´</h1>
+<table class="adminMain" border="1" align="center" width="900" height="40" bgcolor="#999999">
+<tr>
+<td align="center"><a href="javascript:memberList()">íšŒì› ëª©ë¡</td>
+<td align="center"><a href="javascript:reqList()">ê³µê°„ ì‹ ì²­ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:spaceList()">ë“±ë¡ëœ ê³µê°„ ê²Œì‹œíŒ</td>
+<td align="center"><a href="javascript:memberResList()">ì˜ˆì•½ ê´€ë¦¬</td>
+<td align="center"><a href="javascript:QNAList()">1:1ë¬¸ì˜ ê²Œì‹œíŒ</td>
+<td align="center"><a href="javascript:noticeList()">ê³µì§€ì‚¬í•­ ê´€ë¦¬</td>
+</tr>
+</table>
+<br/>
+<br/><br/>
+
+<div class="container">
+		<div class = "col-md-3"></div>
 	
-
+		<div class="page-header">
+			<h2><b>ê´€ë¦¬ì ì˜ˆì•½ê´€ë¦¬</b><br/></h2><hr/><br/>
+		</div>
+			<c:choose>  
+				<c:when test = "${fn:length(list) > 0}">
+					<c:forEach var = "row" items = "${list}">
+						<div class="box1"> 
+							<img src = "${row.SPACE_IMG}" style = "width:200px; height:120px;" onerror = "this.src='http://placehold.it/200x120';">
+						</div>
+						<div class="box2" style = "line-height:140%; "> 
+							<a href = "pensionDetail.do?idx=${row.SPACE_TITLE}"><b style = "font-size:16px; color:black;">${row.SPACE_TITLE}</b></a><br><br/>
+							<span class = "space">
+								<span></span>ê³µê°„íŠ¹ì§• : ${row.SPACE_USE} /
+							<span class = "address">
+								<span></span>ì£¼ì†Œ : ${row.SPACE_POS}<br>
+							<span class = "date">
+								<span></span> ì˜ˆì•½ì¼ì‹œ : ${row.RES_APPLY_DATE}<br>
+							</span>
+							<span class = "price"> 
+								<span></span> ê°€ê²© : ${row.SPACE_PRI}
+							</span>
+								<br/><br/> 
+							</div>
+							<div class="box3" style = "line-height:140%; ">
+							ì˜ˆì•½ì : ${row.RES_NAME}<br>
+							${row.USER_ID} / ${row.RES_NAME} <br>
+							ì „í™”ë²ˆí˜¸ : ${row.USER_PHONE}<br> 
+							ì´ë©”ì¼ : ${row.RES_EMAIL }<br><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" name="delete" value="ì˜ˆì•½ì·¨ì†Œ">
+							<br><br/><br/><br>
+							
+							</div>
+							<br/><br/><br>
+							
+						
+						</div>
+						
+					</c:forEach> 
+				</c:when> 
+				<c:otherwise>
+					ì˜ˆì•½ëœ ê³µê°„ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+				</c:otherwise>
+			</c:choose>
+	</div>
+	<br/>
+   <br/>
+   <br/>
 </body>
-</div> <br>
-<center> 
-	<div id="PAGE_NAVI" style="bottom: 0"></div> 
-	<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-</center>
-
-
 </html>
