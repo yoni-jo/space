@@ -47,7 +47,7 @@
   opacity: 0;
   height: 20px;
 }
-p .filetype .file-btn{margin-left: 4px}
+p .filetype .file-btn{margin-left: 8px}
 .filetype .file-btn {
   display: inline-block;
   background-color: #cdd3d4;
@@ -63,7 +63,6 @@ p .filetype .file-btn{margin-left: 4px}
 <style>
 .line{margin-bottom: 30px}
 .view {
-	display: inline-block;
 	border: 2px solid #000000;
 	padding: 5px;
 	width: 500px;
@@ -99,13 +98,11 @@ input[type=number] {text-align: right;}
 </style>
 </head>
 <body>
-	<input type="hidden" id="spaceId" value="${list.SPACE_ID}">
-	<input type="hidden" id="resType" value="${list.SPACE_RES_TYPE}">
-	<input type="hidden" id="modifyMode" value="${modifyMode}">
+	<input type="hidden" id="resType" value="DAY">
 	<div style="width: 100%; text-align: center;">
 		
 		<div id="formTitle" class="view"
-			style="width: 700px; background: #FE9A2E; font-weight: bold;">
+			style="width: 700px; background: #FE9A2E; font-weight: bold;margin-left:calc(50% - 350px)">
 			<label>내 공간 등록</label>
 		</div>
 		<p></p>
@@ -118,7 +115,6 @@ input[type=number] {text-align: right;}
 				<b>공간의 용도·목적<font color=red>*</font></b>
 			</div>
 			<div class="inputContent">
-				<input type="hidden" id="import_use" value="${list.SPACE_USE}">
 				<label><input type="checkbox" name="USE"/>스튜디오</label>
 				<label><input type="checkbox" name="USE"/>세미나실</label>
 				<label><input type="checkbox" name="USE"/>스터디룸</label>
@@ -134,7 +130,6 @@ input[type=number] {text-align: right;}
 				<b>보유 시설·설비<font color=red>*</font></b>
 			</div>
 			<div class="inputContent">
-				<input type="hidden" id="import_opt" value="${list.SPACE_OPT}">
 				<label><input type="checkbox" name="OPT"/>빔프로젝터</label>
 				<label><input type="checkbox" name="OPT"/>TV</label>
 				<label><input type="checkbox" name="OPT"/>PC</label>
@@ -158,7 +153,7 @@ input[type=number] {text-align: right;}
 				<b>공간 명<font color=red>*</font></b>
 			</div>
 			<div class="inputContent">
-				<input id="TITLE" class="essential" type="text" value="${list.SPACE_TITLE}" style="width: 90%;">
+				<input id="TITLE" class="essential" type="text" value="" style="width: 90%;">
 			</div>
 		</div>
 		<br>
@@ -167,7 +162,7 @@ input[type=number] {text-align: right;}
 				<b>면적<font color=red>*</font></b>
 			</div>
 			<div class="inputContent">
-				<label style="width: 5em"><input type="number" class="essential" id="SIZE" style="width: 5em" onkeyup="changeAcreage(this)" value="${list.SPACE_SIZE}">㎡&nbsp;&nbsp;</label>
+				<label style="width: 5em"><input type="number" class="essential" id="SIZE" style="width: 5em" onkeyup="changeAcreage(this)" value="0">㎡&nbsp;&nbsp;</label>
 				<label style="width: 5em"><input type="number" id="pyung" style="width: 5em" readonly="readonly" >평</label>
 			</div>
 		</div>
@@ -177,7 +172,7 @@ input[type=number] {text-align: right;}
 				<b>수용인원<font color=red>*</font></b>
 			</div>
 			<div class="inputContent">
-				<label style="width: 5em"><input type="number" class="essential" id="PERSON" value="${list.SPACE_PERSON}" style="width: 5em">명</label>
+				<label style="width: 5em"><input type="number" class="essential" id="PERSON" value="0" style="width: 5em">명</label>
 			</div>
 		</div>
 		<br>
@@ -187,11 +182,11 @@ input[type=number] {text-align: right;}
 			</div>
 			<div class="inputContent">
 				<label style="width: 5em;margin-right: 1em;">가로
-					<input type="number" id="HORIZON" value="${list.SPACE_HORIZON}" style="width: 5em">m</label>
+					<input type="number" id="HORIZON" value="0" style="width: 5em">m</label>
 				<label style="width: 5em;margin-right: 1em;">세로
-					<input type="number" id="VERTICAL" value="${list.SPACE_VERTICAL}" style="width: 5em">m</label>
+					<input type="number" id="VERTICAL" value="0" style="width: 5em">m</label>
 				<label style="width: 5em;margin-right: 1em;">높이
-					<input type="number" id="HEIGHT" value="${list.SPACE_HEIGHT}" style="width: 5em">m</label>
+					<input type="number" id="HEIGHT" value="0" style="width: 5em">m</label>
 			</div>
 		</div>
 		<br>
@@ -260,8 +255,6 @@ input[type=number] {text-align: right;}
 				</div>
 			</div>
 		</div>
-		<c:set var="roadAddr" value="${fn:split(list.SPACE_POS,'/')[0]}"/>
-		<c:set var="detailAddr" value="${fn:split(list.SPACE_POS,'/')[1]}"/>
 		<p class="line"></p>
 		<div class="subView">
 			<div class="inputTitle"><b>주소<font color=red>*</font></b></div>
@@ -279,7 +272,6 @@ input[type=number] {text-align: right;}
 		<div id="delFileDiv"></div>
 		
 		<form id="frm" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="imgList" value="${list.SPACE_IMG}">
 		<p class="line"></p>
 		<div class="subView">
 			<div class="inputTitle"><b>이미지 등록<font color=red>*</font></b></div>
@@ -288,7 +280,7 @@ input[type=number] {text-align: right;}
   				<span class="filetype">
             		<span class="file-text"></span>
   					<span class="file-btn">찾아보기</span>
-  					<span class="file-select"><input type="file" class="input-file" size="3" accept="image/*" onchange="uploadChange(this);"></span>
+  					<span class="file-select"><input type="file" name='file' class="input-file" size="3" accept="image/*" onchange="uploadChange(this);"></span>
   					<span class="file-btn" onclick="onAddFile()">추가</span>
   				</span>
   				</div>
@@ -339,7 +331,7 @@ input[type=number] {text-align: right;}
 		</div>
 		<p class="join-agreement">
 			<input type="checkbox" name="agree" id="agree1" value="1" title="이용약관동의 체크" />위의 
-			<span class="blue-txt">이용약관</span>에 동의합니다.
+			<label for="agree1" class="blue-txt">이용약관에 동의합니다.</label>
 		</p>
 		<p class="line"></p>
 		<div class="subView">
@@ -354,30 +346,36 @@ input[type=number] {text-align: right;}
 var fileCount = 1;
 	$(document).ready(function(){
 		setDatepicker($(".dateValue"));
-		setting();
 		
 		$("#registBtn").click(function(){
+			if(isNull_Input()) return false;
 			var useBox=isNull_UseBox();
+			if(gfn_isNull(useBox)) return false;
 			var optBox=isNull_OptBox();
+			if(gfn_isNull(optBox)) return false;
 			var priVal=isNull_PriValue();
+			if(gfn_isNull(priVal)) return false;
+			if(!($(agree1).attr("checked")=='checked')){alert("약관의 동의를 해주세요"); return false;}
+			if(isNull_file()) return false;
 			
-			if(isNull_Input()||gfn_isNull(useBox)||gfn_isNull(optBox)||gfn_isNull(priVal)||!($(agree1).attr("checked")=='checked')){
+			
+			
+			if(isNull_file()||isNull_Input()||gfn_isNull(useBox)||gfn_isNull(optBox)||gfn_isNull(priVal)||!($(agree1).attr("checked")=='checked')){
 				if(!($(agree1).attr("checked")=='checked')) alert("약관에 동의해주세요");
 				console.log("agree1:checked/"+($(agree1).attr("checked")=='checked'));
 				console.log("isNull_Input/"+isNull_Input());
 				console.log("isNull_UseBox/"+gfn_isNull(useBox));
 				console.log("isNull_OptBox/"+gfn_isNull(optBox));
 				console.log("isNull_PriValue/"+gfn_isNull(priVal));
+				console.log("isNull_file/"+isNull_file());
 			}else{
 				com = new ComSubmit("frm");
-				com.setUrl("<c:url value='/mySpace/modifyFormSend'/>");
+				com.setUrl("<c:url value='/mySpace/SpaceFormSend'/>");
 				
-				com.addParam("APPLY_NUM",$("#spaceId").val());//
 				com.addParam("APPLY_TITLE",$("#TITLE").val());//
-				com.addParam("APPLY_DETAIL",$("#DETAIL").text());//공백 검사X
+				com.addParam("APPLY_DETAIL",($("#DETAIL").text()=="" ? "설명없음" :$("#DETAIL").text()));//공백 검사X
 				com.addParam("APPLY_USE",useBox);//isNull_UseBox()
-				com.addParam("OLD_IMG",getOldFileName());
-				com.addParam("APPLY_POS",$("#sample4_roadAddress").val()+" "+$("#sample4_detailAddress").val());//
+				com.addParam("APPLY_POS",$("#sample4_roadAddress").val()+"/"+$("#sample4_detailAddress").val());//
 				com.addParam("PRIVAL_LIST",priVal);//isNull_PriValue() dateRequest일시 date 처리
 				com.addParam("APPLY_SIZE",$("#SIZE").val());//
 				com.addParam("APPLY_OPT",optBox);//isNull_OptBox()
@@ -389,8 +387,7 @@ var fileCount = 1;
 				com.addParam("APPLY_HEIGHT",$("#HEIGHT").val());//공백 검사X
 				com.addParam("APPLY_TAG",tagRequest())//공백 검사X
 				com.addParam("APPLY_RES_TYPE",$("#resType").val());//modifyMode
-				com.addParam("APPLY_MODIFY",$("#modifyMode").val());
-				com.addParam("DEL_IMG",delFileRequest());
+				com.addParam("APPLY_MODIFY","N");
 				
 				com.submit();
 			
@@ -442,7 +439,7 @@ var fileCount = 1;
 		var str="<p><span class='filetype'>"+
 		"<span class='file-text'></span>"+
 			"<span class='file-btn'>찾아보기</span>"+
-			"<span class='file-select'><input type='file' name='"+fileCount+"' class='input-file' name='IMAGE_FILE'"+
+			"<span class='file-select'><input type='file' name='file"+fileCount+"' class='input-file' name='IMAGE_FILE'"+
 			"accept='image/*' size='3' onchange='uploadChange(this);''></span>"+
 			"<span class='file-btn' onclick='deleteFile(this)'>삭제</span>"+
 		"</span></p>";
@@ -481,12 +478,6 @@ var fileCount = 1;
 	}
 	function deleteFile(view){
 		var parent = $(view).parents("p");
-		
-		if($(view).parents(".filetype").find(".oldfile").length>0){
-			  oldfile = $(view).parents(".filetype").find(".oldfile");
-			  $("#delFileDiv").append(oldfile);
-		}
-		
 		$(parent).remove();
 	}
 	function changeAcreage(obj){
@@ -494,138 +485,6 @@ var fileCount = 1;
 		num=num*0.3025;
 		num=Math.round(num*100)/100;
 		$("#pyung").val(num);
-	}
-	function setting(){
-		setUse();
-		setOpt();
-		setResPri();
-		setImageFile();
-		setHashTag();
-		changeAcreage($("#SIZE"));
-	}
-	function setHashTag(){
-		var tagStr = $("#tagList").val().split("#");
-		$.each(tagStr,function(index,item){
-			$(".tagTextView").append("<label onclick='delTag(this)'>"+item+"</label>");
-		});
-	}
-	function setImageFile(){
-		var str="";
-		$(".fileUploadView").empty();
-		var imgStr = $("#imgList").val().split(',');
-		
-		$.each(imgStr,function(index,item){
-			item = item.substr(item.indexOf('_')+1);
-			console.log(item);
-			if($(".fileUploadView").find(".filetype").length==0){
-				str="<span class='filetype'>"+
-						"<input type='hidden' class='oldfile' value='"+item+"'>"+
-	    				"<span class='file-text'>"+item+"</span>"+
-						"<span class='file-btn'>찾아보기</span>"+
-						"<span class='file-select'><input type='file' name='"+fileCount+"' class='input-file' size='3'"+
-						"accept='image/*' onchange='uploadChange(this)'></span>"+
-						"<span class='file-btn' onclick='onAddFile()'>추가</span>"+
-					"</span>";
-			}else{
-				str="<p><span class='filetype'>"+
-						"<input type='hidden' class='oldfile' value='"+item+"'>"+
-						"<span class='file-text'>"+item+"</span>"+
-						"<span class='file-btn'>찾아보기</span>"+
-						"<span class='file-select'><input type='file' name='"+fileCount+"' class='input-file' name='IMAGE_FILE'"+
-						"accept='image/*' size='3' onchange='uploadChange(this);''></span>"+
-						"<span class='file-btn' onclick='deleteFile(this)'>삭제</span>"+
-					"</span></p>";
-			}
-			$(".fileUploadView").append(str);
-			fileCount++;
-		});
-		
-	}
-	function setUse(){
-		var useStr = $("#import_use").val();
-		var str = useStr.split('/');
-		str.forEach(function(item,index,arr){
-			$("label:contains("+item+") > input[type=checkbox]").attr("checked",true);
-		});
-	}
-	function setResPri(){
-		var com = new ComAjax();
-		com.setUrl("<c:url value='/mySpace/getResData'/>");
-		com.addParam("TYPE",$("#resType").val());
-		com.addParam("SPACE_ID",$("#spaceId").val());
-		com.setCallback("ResDataCallback");
-		com.ajax();
-	}
-	function setOpt(){
-		var optStr = $("#import_opt").val();
-		var str = optStr.split('/');
-		var temp;
-		str.forEach(function(item,index,arr){
-			if(item.indexOf("기타")==0){
-				temp = item.substr(2);
-				$("#otherInput").val(temp);
-				$("label:contains(기타) > input[name=USE]").attr("checked",true);
-			}
-			if(item.indexOf("냉난방기")==0){
-				$("input[name=AIRCON][value=possible]").attr("checked",true);
-			}
-			$("label:contains("+item+") > input[type=checkbox]").attr("checked",true);
-		});
-	}
-	
-	
-	function ResDataCallback(data){
-		var type=$("#resType").val();
-		
-		if(type == "DAY"){
-			if(isResDayCheck(data.resData)){
-				$("input[name=WEEK_PRI]").val(data.resData.MON);
-				$("input[name=END_PRI]").val(data.resData.SAT);
-			}else{
-				$.each(data.resData,function(index,item){
-					$("input[name="+index+"]").val(item);
-				});
-				$("#priBtn").attr("checked",true);
-			}
-		}else if(type == "DATE"){
-			var list = data.resData;
-			var body = $("#dateListView");
-			body.empty();
-			var str = "";
-			var date = new Date();
-			var dateValue;
-			$.each(list,function(index,item){
-				if($(".dateList").length==0){
-					str="<div class='dateList'>"+
-						"<input type='text' class='dateValue'>"+
-						"<input type='number' class='datePri' value='"+item.PRI+"'>원"+
-						"<label class='btn' onclick='addDateInput()'>날짜 추가</label>"+
-					"</div>";
-				}else{
-					str="<div class='dateList'><p></p>"+
-					"<input type='text' class='dateValue'>"+
-					"<input type='number' class='datePri' value='"+item.PRI+"'>원"+
-					"<label class='deleteBtn btn'>삭제</label><br></div>";
-				}
-				body.append(str);
-				
-				$(".deleteBtn").click(function(){
-					$(this).parent().remove(); 
-				});
-				dateValue=$(body).find(".dateList:nth-last-child(1) > .dateValue");
-				setDatepicker(dateValue,new Date(item.SDATE));
-				
-			});
-			
-			$("#priBtn").attr("checked",true);
-			$(".priTypeBtn").removeClass("select");
-			$(".priTypeBtn:contains(날짜별)").addClass("select");
-			$("#dayListView").css("display","none");
-			$("#dateListView").css("display","");
-			
-		}else{
-			console.log("ResDataCallback ERROR");
-		}
 	}
 	function isResDayCheck(data){
 		var temp;
@@ -647,15 +506,23 @@ var fileCount = 1;
 	}
 	function uploadChange(file) {
 		  var el = $(file).parents(".filetype").find(".file-text");
-		  var oldfile;
-		  
-		  if($(file).parents(".filetype").find(".oldfile").length>0){
-			  oldfile = $(file).parents(".filetype").find(".oldfile");
-			  $("#delFileDiv").append(oldfile);
-		  }
 		  var fileValue = file.value.split("\\");
 		  var fileName = fileValue[fileValue.length-1];
 		  $(el).text(fileName);
+	}
+	function isNull_file(){
+		var isFile = true;
+		
+		$(".input-file").each(function(index,item){
+			console.log(index + " : " +$(item).val());
+			if($(item).val()!=""){
+				isFile = false;
+				$(item).focus();
+				return false;
+			}
+		});
+		if(isFile) alert("최소 1개의 이미지가 필요합니다");
+		return isFile;
 	}
 	function isNull_Input(){
 		var isRst = false;
@@ -663,13 +530,16 @@ var fileCount = 1;
 		$(".essential").get().forEach(function(item,index,arr){
 			value=$(item).val();
 			if(value =='0'||$.trim(value)==""){
+				$(item).focus();
 				isRst = true;
+				return false;
 			}
 		});
 		if($.trim($("#HORIZON").val())=="") $("#HORIZON").val("0");
 		if($.trim($("#VERTICAL").val())=="") $("#VERTICAL").val("0");
 		if($.trim($("#HEIGHT").val())=="") $("#HEIGHT").val("0");
 		
+		if(isRst) alert("입력되지 않은 정보가 있습니다");
 		return isRst;
 	}
 	function isNull_UseBox(){
@@ -681,6 +551,7 @@ var fileCount = 1;
 			if($(item).text()=="기타") text+=$("#otherInput").val();
 			
 		});
+		if(text=="") alert("용도/목적을 체크해주세요");
 		return $.trim(text);
 	}
 	function isNull_OptBox(){
@@ -691,6 +562,7 @@ var fileCount = 1;
 			text += $(item).text();
 		});
 		if($("input[name=AIRCON]:checked").val()=="possible" && text!="") text+="/냉난방기";
+		if(text=="") alert("보유한 시설 및 설비를 체크해주세요");
 		return $.trim(text);
 	}
 	function isNull_PriValue(){
@@ -744,6 +616,10 @@ var fileCount = 1;
 					else priStr+=","+week;
 				}
 			}
+			$(".priTypeBtn").removeClass("select");
+			$("label:contains(요일별)").addClass("select");
+			$("#dayListView").css("display","");
+			$("#dateListView").css("display","none");
 			$("#resType").val("DAY");
 		}
 		return priStr;
@@ -763,14 +639,6 @@ var fileCount = 1;
 			tagName+=$(item).text();
 		});
 		return tagName;
-	}
-	function getOldFileName(){
-		var str="";
-		$(".filetype > .oldfile").each(function(index,item){
-			if(index!=0) str+=",";
-			str+=$(item).val();
-		});
-		return str;
 	}
 </script>
 

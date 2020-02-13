@@ -67,11 +67,11 @@
  <!--Mypage부분  -->
  
 <!--내공간관리 (등록하기) -->
-<definition name="form" extends="modifyform">
-	<put-attribute name="contents" value="/WEB-INF/jsp/mySpace/form.jsp"/>
+<definition name="spaceForm" extends="modifyform">
+	<put-attribute name="contents" value="/WEB-INF/jsp/mySpace/spaceForm.jsp"/>
 </definition>
 <!--내 공간관리(관리하기)-->
-<definition name="mypage_list" extends="modifyform">
+<definition name="controlList" extends="modifyform">
 	<put-attribute name="contents" value="/WEB-INF/jsp/mySpace/controlList.jsp"/>
 </definition>
 

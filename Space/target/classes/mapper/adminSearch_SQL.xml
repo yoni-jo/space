@@ -63,6 +63,30 @@
 		</choose>
 	
 	</sql>
+	
+	<sql id="space">
+	
+		<choose>
+			<when test="searchOption == 'SPACE_TITLE'">
+				AND SPACE_TITLE LIKE '%${keyword}%' 
+			</when>
+			<when test="searchOption == 'SPACE_HOST'">
+				AND SPACE_HOST LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'USER_NAME'">
+				AND USER_NAME LIKE '%${keyword}%'         
+			</when>
+			<when test="searchOption == 'ALL'">
+				AND (SPACE_TITLE || SPACE_HOST || USER_NAME) LIKE '%${keyword}%' 
+			</when>	
+			<otherwise>
+			</otherwise>
+		</choose>
+	
+	</sql>
+	
+	
+	
 
 </mapper>
 

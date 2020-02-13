@@ -53,7 +53,7 @@ if(session.getAttribute("USER_ID") != null){
 				<td>
 					<div class="opt">
 						<a href="#" name="all">전체보기</a> <a href="#">스튜디오</a> <a href="#">전시회</a> <a
-							href="#">콘서트</a> <a href="#">파티룸</a> <a href="#">세미나실</a>
+							href="#">콘서트</a> <a href="#">파티홀</a> <a href="#">세미나실</a> <a href="#">스터디룸</a>
 					<input type="hidden" class="opt_val" id="use" value="${USE}">
 					</div>
 				</td>
@@ -82,8 +82,8 @@ if(session.getAttribute("USER_ID") != null){
 				<th class="optitle">면적(㎡)</th>
 				<td>
 					<div class="opt">
-						<a href="#" name="all">전체보기</a> <a href="#">30</a> <a href="#">100</a> <a
-							href="#">200</a> <a href="#">500</a>
+						<a href="#" name="all">전체보기</a> <a href="#" class='50'>50</a> <a href="#">100</a> <a
+							href="#" class='150'>150</a> <a href="#">200</a> <a href="#" class='250'>250</a> <a href="#">300</a>
 							<input type="hidden" class="opt_val" id="size" value="${SIZE}">
 					</div>
 				</td>
@@ -212,7 +212,11 @@ if(session.getAttribute("USER_ID") != null){
 					if(!gfn_isNull($(item).val())){
 					var temp = opt.find("a:contains('"+$(item).val()+"')");
 					if( temp != null){
-						temp.css('font-weight', 'bold');
+						if($(temp).length > 1){
+							temp = opt.find("a:[class="+$(item).val()+"]");
+						}
+							temp.css('font-weight', 'bold');
+						
 					}
 					}
 				});

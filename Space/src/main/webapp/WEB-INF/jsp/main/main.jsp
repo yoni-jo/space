@@ -109,19 +109,23 @@ readonly="readonly" value="${END_DATE}" size="10">
 					검색된 리스트가 없습니다.
 				</c:if>
 				<c:forEach var="space" items="${SPACE_LIST}" varStatus="st">
-					<c:set var="thumbnail" value="${fn:split(space.SPACE_IMG,',')[0]}"></c:set>
+					
 					<c:if test="${st.index % 3 == 0 }">
 						<tr valign="top" style="width: inherit">
 					</c:if>
 					<td>
 						<div id="info" class="spaceInfo" style="width: inherit;">
 							<dl>
-								<img class="infoImage" src="<c:url value='/image/${thumbnail}'/>" style="max-width: 270px;">
+								<dd>
 								<input type="hidden" id="spaceID" value="${space.SPACE_ID}">
+								<c:set var="thumbnail" value="${fn:split(space.SPACE_IMG,',')[0]}"></c:set>
+								<img class="infoImage" src="<c:url value='/image/${thumbnail}'/>" style="max-width: 270px;height: 210px">
+								</dd>
+								
 							</dl>
 							<dl>
+								<dd>
 								<div style="float:left; width: 80%; text-align:left;">
-									${space.SPACE_ID}<br>
 									${space.SPACE_TITLE}<br>
 									${space.SPACE_USE} <br>	 ${space.SPACE_POS }<br>
 									${space.SPACE_PRI}
@@ -135,6 +139,7 @@ readonly="readonly" value="${END_DATE}" size="10">
 								</c:forEach>
 								${favImage} --%>
 								</div>
+								</dd>
 							</dl>
 						</div>
 					</td>

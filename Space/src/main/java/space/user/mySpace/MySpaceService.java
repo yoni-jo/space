@@ -9,7 +9,12 @@ interface MySpaceService {
 	List<Map<String,Object>> selectMyReplyList(Map<String,Object> map);
 	int deleteSpaceBoard(Map<String,Object> map);
 	void holdSpaceBoard(Map<String,Object> map);
-	void modifySpaceBoard(Map<String,Object> map);
+	Map<String,Object> modifySpaceBoard(Map<String,Object> map); //02-11 수정
+	List<Map<String,Object>> getResDate(Map<String,Object> map);//02-11 수정
+	Map<String,Object> getResDay(Map<String,Object> map);//02-11 수정
+	void applyModifySpaceBoard(Map<String,Object> map);//02-11수정
+	void applySpaceBoard(Map<String,Object> map);// 수정
+	String selectSpaceId(Map<String,Object> map);//수정
 	void deleteQNAComment(Map<String,Object> map);
 	void spaceQNAComment(Map<String,Object> map);
 	void deleteReply(Map<String,Object> map);

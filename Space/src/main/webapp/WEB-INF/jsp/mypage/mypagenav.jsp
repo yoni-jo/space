@@ -4,10 +4,10 @@
     
 <script type="text/javascript">
 	$(document).ready(function() {
-
+/* 메뉴에 마우스 올렸을 시 색깔변하게   */
 		$('#mypagemenu>ul>li').hover(function() {
 
-			$(this).addClass('myhover');
+			$(this).toggleClass('myhover');
 
 		}, function() {
 			$(this).removeClass('myhover');
@@ -17,7 +17,7 @@
 		
 		
 	});
-	
+	/* 내공간관리 클릭할시 숨겨진 메뉴 보이게 하기 */
 	 $(document).on('click','.mypagebar',function(){
 		
 		$('.mypagehide>li').slideToggle('hover',function(){
@@ -26,7 +26,6 @@
 		});
 
 	});
-
 </script>
 <style type="text/css">
 /* 메뉴바 */
@@ -53,14 +52,14 @@
 					<ul>
 						<li><a href="/two/res/resInfo">내가 예약한 공간</a></li>
 
-						<li><a href="">내가 찜한 공간</a></li>
+						<li><a href="/two/mypage/myFavList">내가 찜한 공간</a></li>
 						<li><a href="">1:1문의</a></li>
 						<li><a href="/two/member/MemberModifyForm">개인정보 변경</a></li>
 						
 						<li class="mypagebar">내 공간 관리
 			<ul class="mypagehide">
-				<li><a href="/two/space/Form">내 공간 등록하기</a></li>
-				<li><a href="/two/space/Myspace_list">내 공간 관리하기</a></li>
+				<li><a href="/two/mySpace/spaceForm">내 공간 등록하기</a></li>
+				<li><a href="/two/mySpace/SpaceControl">내 공간 관리하기</a></li>
 				<li><a href="/two/mySpace/ResPage">내 공간 예약상황</a></li>
 			</ul>
 		</li>
