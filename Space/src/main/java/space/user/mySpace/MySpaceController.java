@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,7 +91,7 @@ public class MySpaceController {
 		ModelAndView mv = new ModelAndView("mySpace/testView");
 		
 		String userId = (String) session.getAttribute("USER_ID");
-		String spaceId = (String)mySpaceService.selectSpaceId(map.getMap());
+		String spaceId = mySpaceService.selectSpaceId(map.getMap());
 		String pri;
 		String nowFile;
 		map.put("USER_ID", userId);
@@ -365,6 +366,7 @@ public class MySpaceController {
 		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
 		String savedName = null;
 		String allSaveName="";
+		String imagePath = request.getSession().getServletContext().getRealPath("")+"/resources/";
 		Iterator<String> iter = multiRequest.getFileNames();
 		log.debug("files :"+ multiRequest.getFileNames());
 		MultipartFile files=null;
@@ -372,7 +374,7 @@ public class MySpaceController {
 			files = multiRequest.getFile(iter.next());
 			if(files.isEmpty()==false) {
 				savedName = id+"_"+files.getOriginalFilename();			
-		        File target = new File(path, savedName);
+		        File target = new File(imagePath, savedName);
 		        if(target.exists()) {
 		        	String temp = savedName.substring(savedName.lastIndexOf("."));
 		        	savedName = savedName.substring(0,savedName.lastIndexOf("."));
@@ -381,7 +383,7 @@ public class MySpaceController {
 		        			savedName=target.getName();
 		        			break;
 		        		}
-		        		target = new File(path, savedName+new Random().nextInt(9999)+temp);
+		        		target = new File(imagePath, savedName+new Random().nextInt(9999)+temp);
 		        	}
 		        }
 		        FileCopyUtils.copy(files.getBytes(),target);
