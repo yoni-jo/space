@@ -316,7 +316,7 @@ function selectRegiListCallback(data){
 				"</div>"+
 			"</td>"+
 			"<td>등록 대기중</td>"+
-			"<td class='controlView'><a href='#'>수정</a>&nbsp;&nbsp;&nbsp;"+
+			"<td class='controlView'>"+//<a href='#'>수정</a>&nbsp;&nbsp;&nbsp;"+
 			"<a class='deleteSpace' href='#'>삭제</a></td>"+
 			"</tr>";
 			});

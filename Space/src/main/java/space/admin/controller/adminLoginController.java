@@ -40,17 +40,15 @@ public class adminLoginController {
     public ModelAndView LoginCheck(CommandMap commandMap, HttpSession session) throws Exception{
         ModelAndView mv = new ModelAndView();
         String id = (String) commandMap.get("USER_ID");
-        log.debug(commandMap.get("USER_ID"));
-        log.debug(commandMap.get("USER_PASSWORD"));
+        
         Map<String, Object> login = adminLoginService.selectUserInfo(commandMap.getMap());
         
         if(login == null) {
-            session.setAttribute("USER_ID",login.get("USER_ID") );
-            session.setAttribute("ADMIN",true );
             mv.setViewName("admin/LoginForm");
         }else {
-            
-            mv.setViewName("admin/adminMain");
+        	session.setAttribute("USER_ID",login.get("USER_ID") );
+            session.setAttribute("ADMIN","ADMIN" );
+            mv.setViewName("redirect:/admin/adminMain");
         }
         
         
