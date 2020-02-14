@@ -51,7 +51,7 @@
  </definition>
  <!--아이디/비밀번호찾기-->
  <definition name="findIdPwd" extends="mainlayout">
- 	<put-attribute name="contents" value="/WEB-INF/jsp/findIdPwd.jsp"></put-attribute>
+ 	<put-attribute name="contents" value="/WEB-INF/jsp/login/findIdPwd.jsp"></put-attribute>
  
  </definition>
 <!--메인 list화면에서 검색버튼 눌렀을때 보여지는 화면  -->
