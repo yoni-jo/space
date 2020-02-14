@@ -582,8 +582,10 @@ var fileCount = 1;
 				$("input[name=WEEK_PRI]").val(data.resData.MON);
 				$("input[name=END_PRI]").val(data.resData.SAT);
 			}else{
+				var i = 0;
 				$.each(data.resData,function(index,item){
-					$("input[name="+index+"]").val(item);
+					$("input[name=day"+i+"]").val(item);
+					i++;
 				});
 				$("#priBtn").attr("checked",true);
 			}

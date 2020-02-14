@@ -70,8 +70,8 @@ if(session.getAttribute("USER_ID") != null){
 	
 		<div id="spaceInfo" style="width: 50%;height: 100%; float: left;text-align: left">
 			<c:set var="image" value="${fn:split(DETAIL.SPACE_IMG,',')[0]}"/>
-			<div id="spaceImageView" style="max-width: inherit; height:300px;text-align: center">
-				<img src="<c:url value='/image/${image}'/>" style="height: inherit;"/>
+			<div id="spaceImageView" style="min-width: 200px; height:250px;text-align: center">
+				<img src="<c:url value='/image/${image}'/>" style="height: 250px;"/>
 			</div>
 			
 			<p class="line"></p>
