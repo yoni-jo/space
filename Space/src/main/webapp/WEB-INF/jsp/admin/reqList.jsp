@@ -9,12 +9,6 @@
 <head>
 <%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <style type="text/css">
-	div{
-	padding : 1%;
-	}
-	.leftdiv{float : left;}
-	.middlediv{float : left;} 
-	.rightdiv{float : left;}  
 #PAGE_NAVI{	float: right;
     margin-top: 40px;
     margin-right: 50%}
@@ -32,10 +26,22 @@
 <%@ include file="/WEB-INF/common/include-body.jspf" %>
 <center><h2>공간 신청 관리</h2></center>
 <center>
-<div class=main style="width: 900px;">
- 
-	</center> 
-	
+<div style="width: 900px;">
+<div class="main" style="width:900px;">
+	 <div class="tbody">
+			
+			
+	</div>
+</div>
+   <br/>
+   </div>
+   </center>
+   <div>
+		<center>
+			<div id="PAGE_NAVI"></div>
+			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+		</center>
+  <div>
 			
  
 <script type="text/javascript"> 
@@ -45,8 +51,8 @@ $(document).ready(function(){
 }); 
 
 function fn_deletereqList(){
-	if(confirm("보류하시겠습니까?") == true){
-		alert("보류되었습니다.");
+	if(confirm("삭제 하시겠습니까?") == true){
+		alert("삭제 되었습니다.");
 	var comSubmit = new ComSubmit();
 	comSubmit.setUrl("<c:url value='/admin/deletereqList' />");
 	comSubmit.submit();
@@ -76,7 +82,7 @@ function fn_reqList(pageNo){
 
 function fn_reqListCallback(data){
 	var total = data.TOTAL;
-	var body = $(".main");
+	var body = $(".main > .tbody");
 	body.empty(); 
 	if(total == 0){
 		var str = "<tr><td colspan='4'>조회된 결과가 없습니다.</td></tr>"; 
@@ -94,9 +100,9 @@ function fn_reqListCallback(data){
 		$.each(data.list, function(key, value){
 			console.log("check");
 			str += ""
-			+ "<div style='width: 900px;'>" 
-			+ "<div class='leftdiv'"+ "'style= width : 100px'>" + "<img src = " + value.APPLY_IMG + "style = 'width:200px; heigth:120px;'>" +"</div>"
-			+ "<div class='middlediv' style='width:600px; display: inline-block;'>"
+			+ "<div class='spacebox'>" 
+			+ "<div class='box1' style='height:120px;'>" + "<img src = " + value.APPLY_IMG + "style = 'width:200px; heigth:120px;'>" +"</div>"
+			+ "<div class='box2' align='left' style='height:120px;'>"
 			+ "<a href = 'pensionDetail.do?idx='" + value.APPLY_TITLE + ">"
 			+ "<b style='font-size:16px; color:black;'>" + value.APPLY_TITLE + "&nbsp;&nbsp;</b></a>";
 			if(value.APPLY_MODIFY == "N"){
@@ -111,12 +117,13 @@ function fn_reqListCallback(data){
 			+ "<sapn class='address'>" + "<span></span>" + "주소 : "
 			+ value.APPLY_POS + "<br>"
 			+ "<sapn class='space'>" + "<span></span>" + "가격 : "
-			+ value.APPLY_PRI + "원<br></span>" 
-			+ "</div>"
-			+ "<div class='rightdiv' style='width:200px;display: inline-block;'><input type='hidden' name='spaceID' value='"+value.APPLY_NUM+"'>"
-			+ "<input type='button' class='commit' name='commit' value='승인' style='width:50pt;height:20pt'>" + "<br><br>"
-			+ "<input type='button' class='delete' name='delete' value='삭제' style='width:50pt;height:20pt'>" + "<br><br><br><br><br>"
-			+ "</div>" + "</div>" + "<p></p>" + "";
+			+ value.APPLY_PRI + "원</span>" 
+			+ "</div>" 
+			+ "<div class='box3' style='height:120px;'><input type='hidden' name='spaceID' value='"+value.APPLY_NUM+"'>"
+			+ "<br/><input type='button' class='commit' name='commit' value='승인' style='width:50pt;height:20pt'>" + "<br><br>"
+			+ "<input type='button' class='delete' name='delete' value='삭제' style='width:50pt;height:20pt'>" 
+			+ "</div>" 
+			+ "</div><span style='line-height:20%;'><br/></span>"
 		}); 
 		body.append(str);
 		$("a[name='title']").on("click", function(e){
@@ -144,17 +151,6 @@ function fn_reqListCallback(data){
 	}  
 } 
 </script>
- </div>
- 
- </div>
- 
 
 </body>
-</div> <br>
-<center> 
-	<div id="PAGE_NAVI" style="bottom: 0"></div> 
-	<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-</center>
-
-
 </html>
