@@ -50,7 +50,8 @@ public class loginController {
 		String db = LoginDAO.findMember(commandMap.getMap());
 		// 로그인 실패
 		if (db == null) {
-			mv.setViewName("loginForm");
+			mv.addObject("MESSAGE","잘못된 정보입니다 다시 입력 하세요");
+			mv.setViewName("alert/alertPage");
 
 			// 로그인 성공
 		} else {

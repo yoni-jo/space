@@ -58,6 +58,11 @@ if(session.getAttribute("USER_ID") != null){
 	</c:forEach>
 	</c:if>
 </c:if>
+<c:if test="${!empty COMP_LIST}">
+	<c:forEach var="resDate" items="${COMP_LIST}">
+		<input name="compRes" type="hidden" value="${resDate}">
+	</c:forEach>
+</c:if>
 
 <form id="activeRes" method="post"></form>
 
@@ -557,7 +562,7 @@ if(session.getAttribute("USER_ID") != null){
 				    	$(info.el).addClass('ACTIVE');
 					}
 			    },
-				eventClick: function(info) {
+			    eventClick: function(info) {
 					var className = info.el.className;
 					
 					var date = new Date(info.event.start);
@@ -657,7 +662,8 @@ if(session.getAttribute("USER_ID") != null){
 		return false;
 	}
 	function compResCheck(time){
-		if($("input[value*='"+time+"'][name='compRes']").length>0){
+		var date=getFormatDate(time); 
+		if($("input[value*='"+date+"'][name='compRes']").length>0){
 			return false;
 		}
 		return true;
