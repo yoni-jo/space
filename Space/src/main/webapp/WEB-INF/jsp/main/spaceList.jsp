@@ -106,7 +106,6 @@ if(session.getAttribute("USER_ID") != null){
 				<col width="35%">
 			</colgroup>
 				<c:if test="${empty SPACE_LIST}">
-				<%session.setAttribute("USER_ID", "admin"); %>
 					검색된 리스트가 없습니다.
 				</c:if>
 				<c:forEach var="space" items="${SPACE_LIST}" varStatus="st">

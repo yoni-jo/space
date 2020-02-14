@@ -174,10 +174,15 @@
 	]]>
 </select>
 
-<insert id="insertreqList" parameterType="hashMap">
-		<![CDATA[ 
-				USING (SELECT * FROM SPACE_APPLY_LIST WHERE APPLY_NUM = #{APPLY_NUM}) a
-   			ON (SPACE_ID = #{APPLY_NUM})
+<select id="selectApplyResType" parameterType="hashmap" resultType="string">
+SELECT APPLY_RES_TYPE FROM SPACE_APPLY_LIST WHERE APPLY_NUM = #{SPACE_ID}
+</select>
+
+<update id="insertreqList" parameterType="hashmap">
+<![CDATA[ 
+		MERGE INTO SPACE_LIST
+			USING (SELECT * FROM SPACE_APPLY_LIST WHERE APPLY_NUM = #{SPACE_ID}) a
+   			ON (SPACE_ID = #{SPACE_ID})
 			WHEN MATCHED THEN
     			UPDATE SET 
 	        		SPACE_TITLE = a.APPLY_TITLE,
@@ -187,7 +192,6 @@
 			        SPACE_POS = a.APPLY_POS,
 			        SPACE_PRI = a.APPLY_PRI,
 			        SPACE_SIZE = a.APPLY_SIZE,
-			        SPACE_FlOOR = a.APPLY_FlOOR,
 			        SPACE_OPT = a.APPLY_OPT,
 			        SPACE_TAG = a.APPLY_TAG,
 			        SPACE_HOST = a.APPLY_ID,
@@ -197,7 +201,7 @@
 			        SPACE_HORIZON = a.APPLY_HORIZON,
 			        SPACE_VERTICAL = a.APPLY_VERTICAL,
 			        SPACE_HEIGHT = a.APPLY_HEIGHT,
-			        SPACE_RES_TYPE = a.APPLY_RES_TYPE} 
+			        SPACE_RES_TYPE = a.APPLY_RES_TYPE
 		    
 			WHEN NOT MATCHED THEN
 		    	INSERT(
@@ -209,7 +213,6 @@
 					SPACE_POS,
 					SPACE_PRI,
 					SPACE_SIZE,
-					SPACE_FlOOR,
 					SPACE_OPT,
 					SPACE_TAG,
 					SPACE_HOST,
@@ -223,7 +226,7 @@
 					SPACE_HORIZON,
 					SPACE_VERTICAL,
 					SPACE_HEIGHT,
-					SPACE_RES_TYPE 
+					SPACE_RES_TYPE )
 				VALUES(
 					a.APPLY_NUM,
 					a.APPLY_TITLE,
@@ -233,7 +236,6 @@
 					a.APPLY_POS,
 					a.APPLY_PRI,
 					a.APPLY_SIZE,
-					a.APPLY_FlOOR,
 					a.APPLY_OPT,
 					a.APPLY_TAG,
 					a.APPLY_ID,
@@ -247,23 +249,73 @@
 					a.APPLY_HORIZON,
 					a.APPLY_VERTICAL,
 					a.APPLY_HEIGHT,
-					a.APPLY_RES_TYPE,
+					a.APPLY_RES_TYPE
 				)
 			]]>
-	</insert>
-	<!-- 공간신청 게시글 삭제 -->
-	<delete id="deletereqList" parameterType="hashmap">
-		<![CDATA[ 
-			DELETE FROM space_apply_list WHERE APPLY_NUM = #{APPLY_NUM} 	
-		]]>
-	</delete>
-	
-	<!-- 공간신청 승인후 글삭제 -->
-	<delete id="deletereq" parameterType="hashmap">
-		<![CDATA[ 
-			DELETE FROM space_apply_list WHERE APPLY_NUM = #{APPLY_NUM} 	
-		]]>
-	</delete>
+</update>
+<update id="putResDateInfo" parameterType="hashmap">
+MERGE INTO SRES_DATE s
+	USING (SELECT * FROM ARES_DATE WHERE SPACE_ID = #{SPACE_ID}) a
+   	ON (s.SPACE_ID = #{SPACE_ID} AND s.SRES_DATE = a.A_DATE)
+	WHEN MATCHED THEN
+    	UPDATE SET 
+    SRES_PRI = a.A_PRI
+	WHEN NOT MATCHED THEN
+		INSERT(
+			s.SPACE_ID,
+			s.SRES_DATE,
+			SRES_PRI
+		) 
+		VALUES(
+		a.SPACE_ID,
+		a.A_DATE,
+		a.A_PRI
+		)
+</update>
+<update id="putResDayInfo" parameterType="hashmap">
+MERGE INTO SRES_DAY s
+	USING (SELECT * FROM ARES_DAY WHERE SPACE_ID = #{SPACE_ID}) a
+   	ON (s.SPACE_ID = #{SPACE_ID})
+	WHEN MATCHED THEN
+    	UPDATE SET 
+    		SRES_MON=a.A_MON,
+			SRES_TUE=a.A_TUE,
+			SRES_WED=a.A_WED,
+			SRES_THU=a.A_THU,
+			SRES_FRI=a.A_FRI,
+			SRES_SAT=a.A_SAT,
+			SRES_SUN=a.A_SUN
+	WHEN NOT MATCHED THEN
+		INSERT(
+			s.SPACE_ID,
+			SRES_MON,
+			SRES_TUE,
+			SRES_WED,
+			SRES_THU,
+			SRES_FRI,
+			SRES_SAT,
+			SRES_SUN
+		) 
+		VALUES(
+			a.SPACE_ID,
+			a.A_MON,
+			a.A_TUE,
+			a.A_WED,
+			a.A_THU,
+			a.A_FRI,
+			a.A_SAT,
+			a.A_SUN
+		)
+</update>
+<delete id="deleteApplyBoard" parameterType="hashmap">
+	DELETE FROM SPACE_APPLY_LIST WHERE APPLY_NUM = #{SPACE_ID}
+</delete>
+<delete id="deleteApplyResDate" parameterType="hashmap">
+	DELETE FROM ARES_DATE WHERE SPACE_ID = #{SPACE_ID}
+</delete>
+<delete id="deleteApplyResDay" parameterType="hashmap">
+	DELETE FROM ARES_DAY WHERE SPACE_ID = #{SPACE_ID}
+</delete>
 	
 	<!-- 공지사항 관련 -->
 	<!-- 공지사항 리스트 -->

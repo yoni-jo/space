@@ -16,7 +16,16 @@ public class AdminReqDAO extends AbstractDAO{
 	}
 	
 	public void insertreqList(Map<String, Object> map) throws Exception{
-		insert("admin.insertreqList", map);
+		String type = (String)selectOne("admin.selectApplyResType",map);
+		update("admin.insertreqList",map);
+		if(type.equals("DAY")) {
+			update("admin.putResDayInfo",map);
+			delete("admin.deleteApplyResDay",map);
+		}else {
+			update("admin.putResDateInfo",map);
+			delete("admin.deleteApplyResDate",map);
+		}
+		delete("admin.deleteApplyBoard",map);
 	}
 	
 	public void deletereqList(Map<String, Object> map) throws Exception{

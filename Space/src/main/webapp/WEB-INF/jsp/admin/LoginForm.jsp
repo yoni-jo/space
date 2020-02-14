@@ -6,14 +6,14 @@ pageEncoding="utf-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관리자 로그인 페이지</title>
 <!-- include file -->
-
+<%@ include file="/WEB-INF/common/defualt-header.jspf" %>
 
 </head>
 <body>
 <center>
 <h2>관리자 로그인</h2>
 </center>
-<form action="/space/admin/LoginCheck" name="form1" method="post" >
+<form action="<c:url value='/admin/LoginCheck'/>" name="form1" method="post" >
 <table border="3" width="400px" align="center">
 <tr>
 <td>ID</td>

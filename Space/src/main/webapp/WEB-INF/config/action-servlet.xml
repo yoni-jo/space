@@ -35,6 +35,15 @@
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/mySpace/*"/>
+			<mvc:mapping path="/mypage/*"/>
+			<mvc:mapping path="/res/*"/>
+			<mvc:mapping path="/admin/*"/>
+			<mvc:exclude-mapping path="/admin/AdminLogin"/>
+			<mvc:exclude-mapping path="/admin/LoginCheck"/>
+			<bean id="LoginInterceptor" class="space.common.common.LogingInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/mySpace/*"/>
 			<mvc:mapping path="/space/*"/>
 			<mvc:mapping path="/res/*"/>
 			<mvc:exclude-mapping path="/space/writeQnA"/>

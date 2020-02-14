@@ -46,7 +46,7 @@ public class adminReqController {
 	
 	@RequestMapping(value="admin/insertreqList")
 	public ModelAndView insertreqList(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/admin/insertreqList");
+		ModelAndView mv = new ModelAndView("redirect:/admin/reqList");
 		
 		adminReqService.insertreqList(commandMap.getMap());
 
