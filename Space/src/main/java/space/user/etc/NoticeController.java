@@ -49,7 +49,7 @@ public class NoticeController {
 	@RequestMapping(value="/etc/noticeDetail")
 	public ModelAndView AdminNoticeDetail(CommandMap commandMap) 
 		throws Exception{
-		ModelAndView mv = new ModelAndView("/etc/noticeDetail");
+		ModelAndView mv = new ModelAndView("noticeDetail");
 		
 		Map<String, Object> map = noticeService.selectNoticeDetail(commandMap.getMap());
 		mv.addObject("map", map);

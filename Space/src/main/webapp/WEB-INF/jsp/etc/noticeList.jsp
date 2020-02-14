@@ -1,13 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+
 <%@ include file="/WEB-INF/common/calendar-header.jspf" %>
-<title>공지 사항</title>
-</head>
-<body>
-	<center><h2>공지사항</h2></center>
+
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	#PAGE_NAVI{text-align: center;margin-top:10%}
+	.notice_list{border-bottom:1px solid black ;border-collapse: collapse;}
+	.notice_list th{border-bottom:1px solid black;}
+	.notice_list tr{height: 50px}
+	.notice_list tr td{border-bottom:1px solid black;}
+	
+	
+</style>
+<form id="notice">
+<h2>공지사항</h2>
 		<table name="noticeList" class="notice_list" align="center" width="800">
+			
+	
 			<colgroup>
 				<col width="8%"/>
 				<col width="57%"/>
@@ -27,12 +37,12 @@
 			</tbody>
 		</table>
 		
-		<center>
-			<div id="PAGE_NAVI"></div>
-			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-		</center>
 		
-		<form  id="search" align="right" style="padding-right:23%" method="post" >
+			<div id="PAGE_NAVI">
+			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+	</div>
+		
+		<div  id="search" align="right" method="post" >
             <select id="searchOption" size="1">
                 <option id="NTC_TITLE" value="NTC_TITLE" selected="selected">제  목</option>
                 <option id="NTC_CONTENT" value="NTC_CONTENT" >내  용</option>
@@ -48,10 +58,10 @@
 				 the user agent should accept Enter in that field as a request to submit the form. -->
                  <input type="button" value="검 색" onClick="fn_noticeList(1)">
                 
-   		</form>    
+   		</div>    
 
 		<br/>
-
+</form>
 		<%@ include file="/WEB-INF/common/include-body.jspf" %>		
 		<script type="text/javascript">
 		
@@ -127,5 +137,4 @@
 				}
 			} 
 		</script>
-</body>
-</html>
+

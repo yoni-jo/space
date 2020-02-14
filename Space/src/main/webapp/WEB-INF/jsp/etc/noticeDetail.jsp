@@ -4,12 +4,17 @@
 <head>
 <%@ include file="/WEB-INF/common/calendar-header.jspf" %>
 <style>
-	.optitle{font-size: 20px}
-	.opt>a{font-size: 15px; color: black; margin-right: 10px; margin-left: 10px; text-decoration: none;}
-	.option{text-align: left;}
-	.opt>a:hover{font-weight: bold;}
-	.infoImage:hover{cursor: pointer; outline: black;}
-	.favBtn:hover{cursor: pointer; outline: black;}
+  #frm{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	#backbutton{text-align: center;margin-top:10%}
+	.notice_detail{border-bottom:1px solid black ;border-collapse: collapse;}
+	.notice_detail th{border-bottom:1px solid black;}
+	.notice_detail tr{height: 50px}
+	.notice_detail tr td{border-bottom:1px solid black;}
+	
+	#backbutton>button{width: 100px; height: 30px;border: 0;background-color:#d8d1d1; }
+	#backbutton>button:hover {
+	color:white;border:1px solid gray;
+}
 </style>
 <meta charset="UTF-8">
 <title>관리자 공지사항 상세보기</title>
@@ -42,16 +47,16 @@
 		</tbody>
 		<tbody>
 			<tr>
-				<p><td colspan="4" height="200" style="padding-left:50px;">${fn:replace(map.NTC_CONTENT, cn, br)}</td></p>
+				<p><td colspan="4" height="200">${fn:replace(map.NTC_CONTENT, cn, br)}</td></p>
 			</tr>
 		</tbody>
 	</table>
-	</form>
-	<br/>
-	<center>
-	<a href="#this" class="btn" id="list">목록으로</a>
-	</center>
 	
+	<br/>
+	<div id="backbutton">
+	<button href="#this" class="btn" id="list">목록으로</button>
+</div>
+	</form>
 	<%@ include file="/WEB-INF/common/include-body.jspf" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
