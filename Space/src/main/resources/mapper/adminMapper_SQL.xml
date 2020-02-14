@@ -36,6 +36,12 @@
 	<include refid="common.pagingPost"/>	
 	</select>
 	
+	<update id="deleteMember" parameterType="hashmap">
+		<![CDATA[
+			UPDATE USER_LIST SET USER_VISIBLE = 'Y' WHERE USER_ID = #{USER_ID}
+		]]>
+	</update>
+	
 	<!-- 예약목록리스트 -->
 	<select id="selectAdminResList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
