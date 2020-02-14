@@ -71,6 +71,19 @@ function enterkey() {
     }
 }
 
+function fn_deleteMember(count){
+	var comSubmit = new ComSubmit();
+	var cnt = count+"";
+	if(confirm("해당 유저를 정말 탈퇴시키겠습니까?") == true){
+	alert("해당 유저를 탈퇴 시켰습니다.");
+	comSubmit.setUrl("<c:url value='/admin/deleteMember' />");
+	comSubmit.addParam("USER_ID", cnt);
+	comSubmit.submit();
+	}else{
+		return;
+	}
+}
+
 function fn_memberList(pageNo){
 	var comAjax = new ComAjax();
 	comAjax.setUrl("<c:url value='/admin/selectmemberList' />");
@@ -101,12 +114,13 @@ function fn_memberListCallback(data){
 		gfn_renderPaging(params);
 		var str = "";
 		$.each(data.list, function(key, value){
-			str += "<tr>" + "<td>" + "<a href='#this' name='title'>" 
-			+ value.USER_ID + "</a>" + "</td>" + "<td>" 
+			str += "<tr>" + "<td>" 
+			+ value.USER_ID  + "</td>" + "<td>" 
 		    + value.USER_NAME + "</td>" + "<td>"
 			+  value.USER_PHONE  
 			+ "</td>" + "<td>" + value.USER_EMAIL + "</td>" + "<td>" 
-			+ value.USER_DATE + "</td>" + "</tr>";
+			+ value.USER_DATE + "&nbsp;&nbsp;&nbsp;<input type='button' name='delete' onClick=fn_deleteMember('" + value.USER_ID + "') value='탈퇴'>" 
+			+ "</td>" + "</tr>";
 		}); 
 		body.append(str);
 		$("a[name='title']").on("click", function(e){

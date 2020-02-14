@@ -9,11 +9,7 @@
 <head>
 <%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <link rel="icon" type="image/png" href="http://example.com/myicon.png">
-<style type="text/css">
-	a:link { color: #414958; }
-	a:visited { color: #4E5869; }
-	a:hover, a:active, a:focus { text-decoration: none; }
-</style>
+
 <title>등록된 공간 게시판</title>
 </head>
 
@@ -64,6 +60,14 @@
   		});
   		
 	});
+	
+	function fn_detailSapce(count){
+		var comSubmit = new ComSubmit();
+		var count = count;
+		comSubmit.setUrl("<c:url value='/space/detailSpace' />");
+		comSubmit.addParam("SPACE_ID", count);
+		comSubmit.submit();
+	}
 	
 	function fn_deleteSpace(count){
 		if(confirm("등록된 공간을 정말 삭제하시겠습니까?") == true){
@@ -155,18 +159,17 @@
 			   		+ "</form></div><p>";
 			$.each(data.list, function(key, value){
 				str += "<div class='spacebox'><div class='box1' style='height:120px;'>"
-					+ "<img src=" + value.SPACE_IMG + "style = 'height:120px;'>" 
+					+ "<a name='detail' onClick='fn_detailSapce(" + value.SPACE_ID + ")' style='cursor:pointer'>" 
+					+ "<img src=" + value.SPACE_IMG + "style = 'height:120px;'></a>" 
 					+ "</div>" 
 					+ "<div class='box2' align='left' style='height:120px;' >" 
-					+ "<a href = 'pensionDetail.do?idx=" + value.SPACE_TITLE + "><b style = 'font-size:16px; color:black;'>"  
-					+ "&nbsp;&nbsp;&nbsp;&nbsp;" + value.SPACE_TITLE + "/"  
-					+ "</b></a>"  
-					+ "<sapn class ='user' ><input type='hidden' id='SPACE_ID' value='value.SPACE_ID'>"  
+					+ "&nbsp;&nbsp;&nbsp;" + value.SPACE_TITLE + "/"  
+					+ "<sapn class ='user' >"  
 					+ value.SPACE_HOST + "/" + value.USER_NAME + "/" + value.USER_PHONE + "/" + value.USER_EMAIL 
 					+ "<br/><br/>"  
-					+	"&nbsp;&nbsp;&nbsp;&nbsp;공간특징 : " + value.SPACE_USE +"<br>" 
-					+	"&nbsp;&nbsp;&nbsp;&nbsp;주소 : " + value.SPACE_POS + "<br>"  
-					+	"&nbsp;&nbsp;&nbsp;&nbsp;가격 : " + value.SPACE_PRI 
+					+	"&nbsp;&nbsp;&nbsp;공간특징 : " + value.SPACE_USE +"<br>" 
+					+	"&nbsp;&nbsp;&nbsp;주소 : " + value.SPACE_POS + "<br>"  
+					+	"&nbsp;&nbsp;&nbsp;가격 : " + value.SPACE_PRI 
 					+ "</span>"   
 					+ "<br/><br/>"  
 					+ "</div>"  
@@ -228,18 +231,17 @@
 		   		+ "</form></div><p>";
 			$.each(data.list, function(key, value){
 				str += "<div class='spacebox'><div class='box1' style='height:120px;'>"
-					+ "<img src=" + value.SPACE_IMG + "style = 'height:120px;'>" 
+					+ "<a name='detail' onClick='fn_detailSapce(" + value.SPACE_ID + ")' style='cursor:pointer'>" 
+					+ "<img src=" + value.SPACE_IMG + "style = 'height:120px;'></a>"
 					+ "</div>" 
 					+ "<div class='box2' align='left' style='height:120px;' >" 
-					+ "<a href = 'pensionDetail.do?idx=" + value.SPACE_TITLE + "><b style = 'font-size:16px; color:black;'>"  
-					+ "&nbsp;&nbsp;&nbsp;&nbsp;" + value.SPACE_TITLE + "/"  
-					+ "</b></a>"  
+					+ "&nbsp;&nbsp;&nbsp;" + value.SPACE_TITLE + "/"  
 					+ "<sapn class ='user' >"  
 					+ value.SPACE_HOST + "/" + value.USER_NAME + "/" + value.USER_PHONE + "/" + value.USER_EMAIL 
 					+ "<br/><br/>"  
-					+	"&nbsp;&nbsp;&nbsp;&nbsp;공간특징 : " + value.SPACE_USE +"<br>" 
-					+	"&nbsp;&nbsp;&nbsp;&nbsp;주소 : " + value.SPACE_POS + "<br>"  
-					+	"&nbsp;&nbsp;&nbsp;&nbsp;가격 : " + value.SPACE_PRI 
+					+	"&nbsp;&nbsp;&nbsp;공간특징 : " + value.SPACE_USE +"<br>" 
+					+	"&nbsp;&nbsp;&nbsp;주소 : " + value.SPACE_POS + "<br>"  
+					+	"&nbsp;&nbsp;&nbsp;가격 : " + value.SPACE_PRI 
 					+ "</span>"   
 					+ "<br/><br/>"  
 					+ "</div>"  
