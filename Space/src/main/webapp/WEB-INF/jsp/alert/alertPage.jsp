@@ -8,11 +8,20 @@
 </head>
 <body>
 <input id="msg" type="hidden" value="${MESSAGE}">
-
+<input id="nextView" type="hidden" value="${NEXT_VIEW}">
+ 
 <script>
 $(document).ready(function(){
 	alert($("#msg").val());
-	history.go(-1);
+	if($("#nextView").val()!=""){
+		var view = $('#nextView').val();
+		console.log("nextView : "+view);
+		location.href="<c:url value='"+view+"'/>";
+	}else{
+		history.go(-1);
+	}
+	
+	
 })
 </script>
 </body>

@@ -42,16 +42,15 @@ public class adminLoginController {
         String id = (String) commandMap.get("USER_ID");
         log.debug(commandMap.get("USER_ID"));
         log.debug(commandMap.get("USER_PASSWORD"));
-        Map<String, Object> Login = adminLoginService.selectUserInfo(commandMap.getMap());
+        Map<String, Object> login = adminLoginService.selectUserInfo(commandMap.getMap());
         
-        if(Login == null) {
-            
+        if(login == null) {
+            session.setAttribute("USER_ID",login.get("USER_ID") );
+            session.setAttribute("ADMIN",true );
             mv.setViewName("admin/LoginForm");
-            
         }else {
             
             mv.setViewName("admin/adminMain");
-        
         }
         
         

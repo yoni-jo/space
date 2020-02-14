@@ -36,8 +36,8 @@ input{height: 30px;border:0}
 <div style="float:left;  width: 50%;">
 <label style="font-weight: bold; ">목적</label><br>
 <select id="use" name="purpose" style="width: 80%">
-<option value="전시회">전시회</option>
 <option value="스튜디오">스튜디오</option>
+<option value="전시회">전시회</option>
 <option value="세미나실">세미나실</option>
 <option value="콘서트">콘서트</option>
 <option value="파티룸">파티룸</option>
@@ -50,6 +50,9 @@ input{height: 30px;border:0}
 <select id="pos" name="area" style="width: 80%">
 <option value="서울">서울</option>
 <option value="경기도">경기도</option>
+<option value="인천">인천</option>
+<option value="충청도">충청도</option>
+<option value="경상도">경상도</option>
 </select>
 </div>
 </td>

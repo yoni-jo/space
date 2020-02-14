@@ -22,13 +22,14 @@
 <meta charset="EUC-KR">
 <title>예약관리</title>
    </head> 
-<%@ include file="/WEB-INF/common/include-body.jspf" %>
+
 	
 <div>      
   
 </div> 
 <div>
 <body>
+<%@ include file="/WEB-INF/common/include-body.jspf" %>
 <center><h2>공간 신청 관리</h2></center>
 <center>
 <div class=main style="width: 900px;">
@@ -41,29 +42,7 @@
 $(document).ready(function(){
 	
 	fn_reqList(1);
-	
-	$(".commit").on("click", function(e){ 
-		e.preventDefault();
-		fn_insertreqList();
-		fn_deletereq();
-	});
-	
-	$(".delete").on("click", function(e){ 
-		e.preventDefault();
-		fn_deletereqList();
-	});
 }); 
- 
-function fn_insertreqList(){
-	if(confirm("승인하시겠습니까?") == true){
-		alert("승인되었습니다.");
-	var comSubmit = new ComSubmit();
-	comSubmit.setUrl("<c:url value='/admin/insertreqList' />");
-	comSubmit.submit();
-	}else{
-		return;
-	}
-}
 
 function fn_deletereqList(){
 	if(confirm("보류하시겠습니까?") == true){
@@ -74,14 +53,6 @@ function fn_deletereqList(){
 	}else{
 		return;
 	}
-}
-
-function fn_deletereq(){
-	var comSubmit = new ComSubmit();
-	comSubmit.setUrl("<c:url value='/admin/deletereq' />");
-	comSubmit.submit();
-		return;
-	
 }
 
 /* 검색칸에서 엔터키 누르면 실행 */
@@ -142,9 +113,9 @@ function fn_reqListCallback(data){
 			+ "<sapn class='space'>" + "<span></span>" + "가격 : "
 			+ value.APPLY_PRI + "원<br></span>" 
 			+ "</div>"
-			+ "<div class='rightdiv' style='width:200px;display: inline-block;'>"
-			+ "<input type='button' class='commit' name='commit' id='commit' value='승인' style='width:50pt;height:20pt'>" + "<br><br>"
-			+ "<input type='button' class='delete' name='delete' id='delete' value='삭제' style='width:50pt;height:20pt'>" + "<br><br><br><br><br>"
+			+ "<div class='rightdiv' style='width:200px;display: inline-block;'><input type='hidden' name='spaceID' value='"+value.APPLY_NUM+"'>"
+			+ "<input type='button' class='commit' name='commit' value='승인' style='width:50pt;height:20pt'>" + "<br><br>"
+			+ "<input type='button' class='delete' name='delete' value='삭제' style='width:50pt;height:20pt'>" + "<br><br><br><br><br>"
 			+ "</div>" + "</div>" + "<p></p>" + "";
 		}); 
 		body.append(str);
@@ -152,7 +123,24 @@ function fn_reqListCallback(data){
 			e.preventDefault();
 			fn_noticeDetail($(this));
 			
-		}); 
+		});
+		$(".commit").on("click", function(e){ 
+			e.preventDefault();
+			if(confirm("승인하시겠습니까?") == true){
+				alert("승인되었습니다.");
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/admin/insertreqList'/>");
+				comSubmit.addParam("SPACE_ID",$(this).parent().find("input[name='spaceID']").val());
+				comSubmit.submit();
+			}else{
+				alert("취소되었습니다.");
+			}
+		});
+		
+		$(".delete").on("click", function(e){ 
+			e.preventDefault();
+			fn_deletereqList();
+		});
 	}  
 } 
 </script>

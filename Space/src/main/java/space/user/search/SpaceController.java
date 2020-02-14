@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -185,9 +186,18 @@ public class SpaceController {
 		return mav;
 	}
 	
-	@RequestMapping("/dd")
-	public String test() {
-		return "index";
+	@RequestMapping("/space/alertPage")
+	public ModelAndView test(CommandMap map,HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("alert/alertPage");
+		
+		if(request.getAttribute("nextView")!=null) {
+			mav.addObject("NEXT_VIEW",request.getAttribute("nextView"));
+		}
+		
+		mav.addObject("MESSAGE",request.getAttribute("msg"));
+		log.info(request.getAttribute("msg"));
+		
+		return mav;
 	}
 	
 	

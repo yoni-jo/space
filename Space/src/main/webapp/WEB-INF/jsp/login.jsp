@@ -54,4 +54,4 @@
 			</p>
 		</div>
 	</form>
-	<label>${alert} <%=session.getAttribute("USER_ID") %></label>
+	<label><%=session.getAttribute("USER_ID") %></label>

@@ -20,9 +20,10 @@ function admin_login(){
 		alert("비밀번호를 입력해 주세요.");
 	}else {
 		var comSubmit = new ComSubmit("adminLogin");
-		comSubmit.setUrl("<c:url value='admin/LoginTry' />");
+		comSubmit.setUrl("<c:url value='/admin/LoginCheck' />");
 		comSubmit.submit();
 	}
 }
+</script>
 </head>
 </html>
