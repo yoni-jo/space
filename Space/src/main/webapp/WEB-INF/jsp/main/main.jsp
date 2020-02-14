@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page session = "true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <% 
 String userId;
 if(session.getAttribute("USER_ID") != null){
@@ -129,9 +130,11 @@ readonly="readonly" value="${END_DATE}" size="10">
 							<dl>
 								<dd>
 								<div style="float:left; width: 80%; text-align:left;">
+								<c:set var="spacePos" value="${fn:split(space.SPACE_POS,'/')}"/>
 									${space.SPACE_TITLE}<br>
-									${space.SPACE_USE} <br>	 ${space.SPACE_POS }<br>
-									${space.SPACE_PRI}
+									${space.SPACE_USE} <br>	<label>${spacePos[0]} ${spacePos[1]}</label><br>
+									평균가 : <fmt:formatNumber value="${space.SPACE_PRI}" pattern="#,###"/>원
+									
 								</div>
 								<div class="favBtn" style="float:left; width: 20%">
 								<%-- <c:set var="favImage" value="☆"/>
@@ -229,9 +232,9 @@ readonly="readonly" value="${END_DATE}" size="10">
 			var info;
 			var list;
 			if(data == null){
-				/* if(${!empty FAVORI_LIST}){
+				 if(${!empty FAVORI_LIST}){
 					data = {favList : ${FAVORI_LIST}};
-				} */
+				}
 			}
 			if(data != null && !gfn_isNull($("#userId").val())){
 				list=data.favList;

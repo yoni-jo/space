@@ -19,6 +19,7 @@
 	.textView{display:none;}
 	.price:after{content: " 원"}
 	input{font-size: 11px; height: 1em}
+	.infoText{font-size: 11px; height: 1em}
 	
 </style>
 
@@ -46,7 +47,8 @@
 			<div id="infoText" class="subView" style="margin-left:20px; display: table;  vertical-align: middle;">
 				<div style="text-align: left; vertical-align: middle; display: table-cell;">
 				<c:set var="time" value="${fn:split(RES_TIME,'-')}"/>
-				<label>${SPACE_INFO.SPACE_TITLE}(${SPACE_INFO.SPACE_POS})</label>
+				<c:set var="spacePos" value="${fn:split(SPACE_INFO.SPACE_POS,'/')}"/>
+				<label>${SPACE_INFO.SPACE_TITLE}(${spacePos[0]} ${spacePos[1]})</label>
 				<p></p>
 				<label id="resDate">${time[0]}년 ${time[1]}월 ${time[2]}일</label>
 				<p></p>

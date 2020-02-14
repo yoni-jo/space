@@ -155,7 +155,7 @@
 			   		+ "</form></div><p>";
 			$.each(data.list, function(key, value){
 				str += "<div class='spacebox'><div class='box1' style='height:120px;'>"
-					+ "<img src=" + value.SPACE_IMG + "style = 'height:120px;'>" 
+					+ "<img src=<c:url value='/image/"+value.SPACE_IMG+"'/> style = 'height:120px;'>" 
 					+ "</div>" 
 					+ "<div class='box2' align='left' style='height:120px;' >" 
 					+ "<a href = 'pensionDetail.do?idx=" + value.SPACE_TITLE + "><b style = 'font-size:16px; color:black;'>"  

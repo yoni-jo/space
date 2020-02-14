@@ -94,7 +94,9 @@ function fn_resListCallback(data){
 		}; 
 		gfn_renderPaging(params);
 		var str = "";
+		var date;
 		$.each(data.list, function(key, value){
+			date = new Date(value.RES_APPLY_DATE);
 			console.log("check");
 			str += "" +
 				"<div style='width: 900px;'>" 
@@ -107,7 +109,7 @@ function fn_resListCallback(data){
 				+ "<sapn class='address'>" + "<span></span>" + "주소 : "
 				+ value.SPACE_POS + "<br>"
 				+ "<sapn class='space'>" + "<span></span>" + "예약일시 : "
-				+ value.RES_APPLY_DATE + "<br></span>" 
+				+ date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+ "<br></span>" 
 				+ "<sapn class='space'>" + "<span></span>" + "가격 : "
 				+ value.SPACE_PRI + "원<br></span>" 
 				+ "</div>"

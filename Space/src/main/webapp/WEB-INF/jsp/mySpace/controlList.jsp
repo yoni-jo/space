@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr"
-    pageEncoding="euc-kr"%>
-<%request.setCharacterEncoding("euc-kr"); 
-%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +46,8 @@
 	a:hover{font-weight: bold;}
 	
 </style>
+
+<meta charset="EUC-KR">
 <title>내 공간 관리</title>
 </head>
 <body>
@@ -316,7 +316,7 @@ function selectRegiListCallback(data){
 				"</div>"+
 			"</td>"+
 			"<td>등록 대기중</td>"+
-			"<td class='controlView'>"+//<a href='#'>수정</a>&nbsp;&nbsp;&nbsp;"+
+			"<td ><a class='modifySpace' href='#'>수정</a>&nbsp;&nbsp;&nbsp;"+
 			"<a class='deleteSpace' href='#'>삭제</a></td>"+
 			"</tr>";
 			});
@@ -346,7 +346,7 @@ function selectRegiListCallback(data){
 				"</div>"+
 			"</td>"+
 			"<td>"+Regitype+"</td>"+
-			"<td class='controlView'><a href='#'>수정</a>&nbsp;&nbsp;&nbsp;"+
+			"<td><a class='modifySpace' href='#'>수정</a>&nbsp;&nbsp;&nbsp;"+
 			"<a class='holdSpace' href='#'>"+holdpro+"</a>"+
 			"<input type='hidden' name='HOLD' value='"+value.SPACE_HOLD+"'>&nbsp;&nbsp;&nbsp;"+
 			"<a class='deleteSpace' href='#'>삭제</a></td>"+
@@ -380,7 +380,17 @@ function selectRegiListCallback(data){
 				com.addParam("SPACE_ID",$(this).parents("tr").find("input[name=S_ID]").val());
 				com.submit();
 			}
-		})
+		});
+		$(".modifySpace").click(function(){
+			if(confirm("수정하시겠습니까?")==true){
+			var type = $("input[name=TYPE]:checked").val();
+				com = new ComSubmit();
+				com.setUrl("<c:url value='/mySpace/modifySpaceForm'/>");
+				com.addParam("TYPE",type);
+				com.addParam("SPACE_ID",$(this).parents("tr").find("input[name=S_ID]").val());
+				com.submit();
+			}	
+		});
 	}
 	
 	
@@ -603,7 +613,7 @@ function selectReplyListCallback(data){
 			$("#divImage").append("<label>첨부 이미지</label><br>");
 			
 			$(this).parents("tr").find("input[name=imageUrl]").each(function(index,item){
-				$("#divImage").append("<img class='imgView' src='<c:url value='"+$(item).val()+"'/>'/><br>");
+				$("#divImage").append("<img class='imgView' src='<c:url value='/image/"+imageStr[index]+"'/>'/><br>");
 			});
 			
 		});

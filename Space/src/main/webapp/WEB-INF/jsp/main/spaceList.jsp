@@ -121,9 +121,11 @@ if(session.getAttribute("USER_ID") != null){
 							</dl>
 							<dl>
 								<div style="float:left; width: 80%; text-align:left;">
+								<c:set var="spacePos" value="${fn:split(space.SPACE_POS,'/')}"/>
 									${space.SPACE_TITLE}<br>
-									${space.SPACE_USE} <br>	 ${space.SPACE_POS }<br>
-									${space.SPACE_PRI}
+									${space.SPACE_USE} <br><label>${spacePos[0]} ${spacePos[1]}</label><br>
+									Æò±Õ°¡ : <fmt:formatNumber value="${space.SPACE_PRI}" pattern="#,###"/>¿ø
+									
 								</div>
 								<div class="favBtn" style="float:left; width: 20%">
 								<%-- <c:set var="favImage" value="¡Ù"/>

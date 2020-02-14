@@ -95,7 +95,7 @@
 			/* 페이징 관련 */
 			 function fn_noticeList(pageNo){
 				var comAjax = new ComAjax();
-				comAjax.setUrl("<c:url value='/admin/selectnoticeList' />");
+				comAjax.setUrl("<c:url value='/etc/selectnoticeList' />");
 				comAjax.setCallback("fn_noticeListCallback");
 				comAjax.addParam("PAGE_INDEX", pageNo);
 				comAjax.addParam("PAGE_ROW", 10);
