@@ -45,4 +45,13 @@ public class adminMemberController {
 		return mv;
 	}
 	
+	@RequestMapping(value="admin/deleteMember")
+	public ModelAndView deleteMember(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/memberList");
+		
+		adminMemberService.deleteMember(commandMap.getMap());
+		
+		return mv;
+	}
+	
 }

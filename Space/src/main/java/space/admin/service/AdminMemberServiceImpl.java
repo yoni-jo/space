@@ -23,4 +23,9 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		// TODO Auto-generated method stub
 		return adminMemberDAO.selectMemberList(map);
 	}
+	
+	@Override
+	public void deleteMember(Map<String, Object> map) throws Exception{
+		adminMemberDAO.deleteMember(map);
+	}
 }

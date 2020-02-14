@@ -83,7 +83,7 @@ public class loginController {
   // 아이디 비번찾기 페이지
 	@RequestMapping(value = "/login/findIdPwd")
 	public ModelAndView findIdPwd(CommandMap commandMap) throws Exception {
-		ModelAndView mav = new ModelAndView("login/findIdPwd");
+		ModelAndView mav = new ModelAndView("findIdPwd");
 		
 		if(commandMap.get("resultMsg")!=null) {
 			mav.addObject("resultMsg",commandMap.get("resultMsg"));

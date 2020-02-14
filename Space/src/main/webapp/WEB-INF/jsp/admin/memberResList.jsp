@@ -10,12 +10,7 @@
 <head>
 <%@ include file="/WEB-INF/common/include-adminHeader.jspf" %>
 <style type="text/css">
-	div{
-	padding : 1%;
-	}
-	.leftdiv{float : left;}
-	.middlediv{float : left;} 
-	.rightdiv{float : left;}  
+	
 #PAGE_NAVI{	float: right;
     margin-top: 40px;
     margin-right: 50%}
@@ -32,7 +27,7 @@
 <body>
 <center><h2>예약 관리</h2></center>
 <center>
-<div class="main">
+<div class="main" width="900px">
 <script type="text/javascript"> 
 
 
@@ -99,11 +94,11 @@ function fn_resListCallback(data){
 			date = new Date(value.RES_APPLY_DATE);
 			console.log("check");
 			str += "" +
-				"<div style='width: 900px;'>" 
-				+ "<div class='leftdiv'"+ "'style= width : 100px'>" + "<img src = " + value.SPACE_IMG + "style = 'width:200px; heigth:120px;'>" +"</div>"
-				+ "<div class='middlediv' style='width:600px; display: inline-block;'>"
+				"<div class='spacebox' style='width:900px;'>" 
+				+ "<div class='box1' style='height:120px;'>" + "<img src = " + value.SPACE_IMG + "style = 'width:200px; heigth:120px;'>" +"</div>"
+				+ "<div class='box2' align='left' style='height:120px;'>"
 				+ "<a href = 'pensionDetail.do?idx='" + value.SPACE_TITLE + ">"
-				+ "<b style='font-size:16px; color:black;'>" + value.SPACE_TITLE + "</b></a><br><br>"
+				+ "<b style='font-size:16px; color:black;'>" + value.SPACE_TITLE + "</b></a><br>"
 				+ "<sapn class='space'>" + "<span></span>" + "공간 특징 : "
 				+ value.SPACE_USE + "<br>"
 				+ "<sapn class='address'>" + "<span></span>" + "주소 : "
@@ -113,12 +108,13 @@ function fn_resListCallback(data){
 				+ "<sapn class='space'>" + "<span></span>" + "가격 : "
 				+ value.SPACE_PRI + "원<br></span>" 
 				+ "</div>"
-				+ "<div class='rightdiv' style='width:200px;display: inline-block;'>"
+				+ "<div class='box3' style='height:120px;'>"
 				+ "예약자 : " + value.RES_NAME + "<br>"
 				+ value.USER_ID + "/" + value.RES_NAME + "<br>"
-				+ "이메일 : " + value.RES_EMAIL + "<br><br><br><br>"
-				+ "<input type='button' class='commit' name='commit' id='commit' value='예약취소' style='width:50pt;height:20pt'>"
-				+ "</div>" + "</div>" + "<p></p>" + "" +"<br><br>";
+				+ "이메일 : " + value.RES_EMAIL + "<br>"
+				+ "<br/><input type='button' class='commit' name='commit' id='commit' value='예약취소' style='width:50pt;height:20pt'>"
+				+ "</div>" 
+				+ "</div><span style='line-height:20%;'><br/></span>"
 		}); 
 		body.append(str);
 		$("a[name='title']").on("click", function(e){

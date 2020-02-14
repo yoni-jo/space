@@ -8,14 +8,13 @@
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
 <style>
 #findMemform{width:648px; margin:0 auto;text-align:center;margin-bottom:100px}
-.findidtable{padding-top: 50px;padding-left: 0;}
-.findidtable>li{list-style: none;text-align: center;}
-.findidtable>li>a{float:right;}
-.findidtable>li>p{padding-right: 0;}
- .findidtable>li>input{width: 100%;height: 50px; border:1px solid #e0e0e0;margin-bottom:20px} 
+
+.findpwd{width: 500px;text-align: center;   margin-left: calc(50% - 250px);}
+.findpwd>dd>input {width:100%; height: 50px;} 
+ 
  h6{font-color:#65656;}
  p>a{color:blue} 
- button{cursor:pointer; width:100%; height: 50px;background-color:#ffd014; display: block; border:none;margin-top: 10px;font-size: 20px;}
+.findpwd>dd>button{cursor:pointer;width:100%; height: 50px;background-color:#ffd014; display: block; border:none;margin-top: 10px;font-size: 20px;}
 </style>
 </head>
 <body>
