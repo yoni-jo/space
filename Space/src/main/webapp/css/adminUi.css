@@ -9,8 +9,8 @@ h2 {font-family:궁서;color:#800080;}
 /*공지사항 리스트*/
 .notice_list {border-top:2px solid #252525;border-bottom:1px groove #ccc;border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px; }
 .notice_list thead th {border-bottom:1px solid #ccc;padding:12px 0 13px 0;color:#3b3a3a;vertical-align:middle;color:#red}
-.notice_list tbody td {border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle;}
-.notice_list tbody tr {border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
+.notice_list tbody td {border-top:1px solid black;padding:10px 0;text-align:center;vertical-align:middle;}
+.notice_list tbody tr {border-top:1px solid black;padding:10px 0;text-align:center;vertical-align:middle}
 .notice_list tbody td.title {text-align:left; padding-left:20px}
 .notice_list tbody td a {display:inline-block}
 #search input[name="keyword"] {font-size: 14px; height: 20px; width: 110px; border: 1px solid #1b5ac2; outline: none; background: #ffffff;}
@@ -20,8 +20,8 @@ h2 {font-family:궁서;color:#800080;}
 
 .QNA_list {border-top:2px solid #252525;border-bottom:1px groove #ccc;border-right-width:2px solid #252525;border-left-width:2px solid #252525;border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;}
 .QNA_list thead th {border-bottom:1px solid #ccc;padding:12px 0 13px 0;color:#3b3a3a;vertical-align:middle;color:#red}
-.QNA_list tbody td {border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
-.QNA_list tbody tr {border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
+.QNA_list tbody td {border-top:1px solid black;padding:10px 0;text-align:center;vertical-align:middle}
+.QNA_list tbody tr {border-top:1px solid black;padding:10px 0;text-align:center;vertical-align:middle}
 .QNA_list tbody td.title {text-align:left; padding-left:20px}
 .QNA_list tbody td a {display:inline-block}
 
@@ -68,18 +68,18 @@ h2 {font-family:궁서;color:#800080;}
 .QNA_CommentList tbody td {text-align:left; padding-left:20px}
 .QNA_CommentList tbody td a {display:inline-block}
 
-.user_list {border-top:2px solid #252525;border-bottom:1px groove #ccc;border-left:1px groove;border-right:1px groove; }
+.user_list {border-top:2px solid #252525;border-bottom:2px groove #ccc;border-left:2px groove;border-right:2px groove; }
 .user_list thead th {border-bottom:1px solid #ccc;padding:12px 0 13px 0;color:#3b3a3a;vertical-align:middle;color:#red}
-.user_list tbody td {border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle;}
-.user_list tbody tr {border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
-.user_list tbody tr:nth-child(even) {background:#d3d3d3;}
+.user_list tbody td {border-top:1px solid black;padding:10px 0;text-align:center;vertical-align:middle;}
+.user_list tbody tr {border-top:1px solid black;padding:10px 0;text-align:center;vertical-align:middle}
+/* .user_list tbody tr:nth-child(even) {background:#d3d3d3;} */
 .user_list tbody td.title {text-align:left; padding-left:20px}
 .user_list tbody td a {display:inline-block}
 
-.spacebox {border:2px solid #999999;border-radius: 0px 10px 10px 0px / 0px 10px 10px 0px;}
+.spacebox {border:2px solid #999999;border-radius: 0px 10px 10px 0px / 0px 10px 10px 0px; background:skyblue; background-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;}
 .box1 {float:left;width:200px;border-right:2px solid #999999;}
 .box2 {float:left;width:500px;}
-.box3 {border-left:2px solid #999999;display:inline-block;width:192px;border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px;}
+.box3 {border-left:2px solid #999999;display:inline-block;width:192px;border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px; }
 
 .pad_5 {padding: 5px;}
 
