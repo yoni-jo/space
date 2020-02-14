@@ -20,7 +20,7 @@
 	/* 내공간관리 클릭할시 숨겨진 메뉴 보이게 하기 */
 	 $(document).on('click','.mypagebar',function(){
 		
-		$('.mypagehide>li').slideToggle('hover',function(){
+		$('.mypagehide>li').slideDown('hover',function(){
 			
 			$(this).css({"color":"purple"})
 		});
