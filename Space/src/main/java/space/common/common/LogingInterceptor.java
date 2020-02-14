@@ -23,7 +23,9 @@ public class LogingInterceptor extends HandlerInterceptorAdapter{
 			return false;
 		}
 		if(request.getRequestURL().toString().contains("/admin/")) {
+			log.info("request.getSession().getAttribute(\"ADMIN\") : "+request.getSession().getAttribute("ADMIN"));
 			if(request.getSession().getAttribute("ADMIN")==null) {
+				
 				request.setAttribute("msg", "관리자 권환이 필요합니다");
 				request.setAttribute("nextView", request.getContextPath()+"/admin/AdminLogin");
 				ds = request.getRequestDispatcher("/space/alertPage");

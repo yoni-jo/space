@@ -64,7 +64,8 @@ if(session.getAttribute("USER_ID") != null){
 <div style="width:100%; height: 100%; display: inline-block; text-align: center">
 <div style="width:800px; height: 100%; display: inline-block;">
 	<div id="mainTitle" style="text-align: left"><h1>${DETAIL.SPACE_TITLE}</h1></div>	
-	<div id="posTitle" style="margin-bottom: 50px;text-align: left"><span id="pos">${DETAIL.SPACE_POS}</span></div>
+	<c:set var="posStr" value="${fn:split(DETAIL.SPACE_POS,'/')}"/>
+	<div id="posTitle" style="margin-bottom: 50px;text-align: left"><span id="pos">${posStr[0]}</span><span id="pos2">${posStr[1]}</span></div>
 	<div id="topView" style="width: inherit;">
 	
 		<div id="spaceInfo" style="width: 50%;height: 100%; float: left;text-align: left">
@@ -512,7 +513,7 @@ if(session.getAttribute("USER_ID") != null){
 		        });
 		    }
 		};
-		places.keywordSearch($("#pos").html(), callback);
+		places.keywordSearch($("#pos").text(), callback);
 	</script>
 	
 	<!-- ===================================fullCalendar -->
