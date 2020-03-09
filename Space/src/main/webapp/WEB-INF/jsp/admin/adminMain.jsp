@@ -39,6 +39,9 @@ function QNAList(){
 function noticeList(){
 	location.href="noticeList"
 }
+function logout(){
+	location.href="LogOut"
+}
 </script>
 <head>
 <title>관리자 메인 헤더</title>
