@@ -60,7 +60,7 @@ SET]]>
 <![CDATA[
 	UPDATE USER_LIST 
 	SET 
-	USER_VISIBLE='Y'
+	USER_DEL='Y'
 	WHERE USER_ID=#{USER_ID}
  ]]>
 </update>
