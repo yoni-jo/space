@@ -30,7 +30,7 @@
 			FROM 
 			    USER_LIST 
 			WHERE 
-				USER_VISIBLE='N'    
+				USER_DEL='N'    
 		]]>
 	<include refid="search.member" />
 	<include refid="common.pagingPost"/>	
@@ -38,7 +38,7 @@
 	
 	<update id="deleteMember" parameterType="hashmap">
 		<![CDATA[
-			UPDATE USER_LIST SET USER_VISIBLE = 'Y' WHERE USER_ID = #{USER_ID}
+			UPDATE USER_LIST SET USER_DEL = 'Y' WHERE USER_ID = #{USER_ID}
 		]]>
 	</update>
 	
@@ -423,7 +423,7 @@ MERGE INTO SRES_DAY s
 				ADQNA_NUM,  
 				ADQNA_TITLE, 
 				TO_CHAR(ADQNA_DATE, 'YYYY-MM-DD HH24:MI') AS ADQNA_DATE,   
-				QA_ANS 
+				ADQNA_ANS 
 			FROM 
 				ADMIN_QNA_LIST 
 		]]>
@@ -446,7 +446,7 @@ MERGE INTO SRES_DAY s
 				L.ADQNA_NUM, 
 				L.ADQNA_TITLE, 
 				L.ADQNA_CNT, 
-				L.QA_ANS, 
+				L.ADQNA_ANS, 
 				L.ADQNA_DATE 
 			FROM 
 				ADMIN_QNA_COMMENTS C, ADMIN_QNA_LIST L  
@@ -467,12 +467,12 @@ MERGE INTO SRES_DAY s
 	<insert id="insertComment" parameterType="hashMap" >
 		<![CDATA[ 
 			INSERT INTO 
-				ADMIN_QNA_COMMENTS ( 
+				ADMIN_QNA_COMMENTS( 
 				USER_ID, 
                 ADQNA_NUM, 
 				CMT_NUM, 
 				CMT_CMT, 
-				CMT_DATE
+				CMT_DATE 
 			) VALUES (
 				'admin', 
                 #{ADQNA_NUM}, 

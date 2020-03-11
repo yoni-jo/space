@@ -14,7 +14,7 @@ INSERT INTO USER_LIST(
         USER_EMAIL,
         USER_PHONE,
         USER_DATE,
-        USER_VISIBLE
+        USER_DEL 
 ) VALUES (
         #{user_id},
         #{user_password},

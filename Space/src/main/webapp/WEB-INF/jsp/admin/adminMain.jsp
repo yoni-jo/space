@@ -39,12 +39,16 @@ function QNAList(){
 function noticeList(){
 	location.href="noticeList"
 }
+function logout(){
+	location.href="LogOut"
+}
 </script>
 <head>
 <title>관리자 메인 헤더</title>
 </head>
 <body >
 <h1 align="center">관리자 화면</h1>
+<h5 align="right" style="padding-right:20%;"><a href="javascript:logout()" style="align:right; color:purple">로그 아웃</a></h5>
 <table class="adminMain" align="center" width="900" height="40" >
 <tbody>
 <tr>
