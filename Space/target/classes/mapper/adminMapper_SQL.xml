@@ -467,12 +467,12 @@ MERGE INTO SRES_DAY s
 	<insert id="insertComment" parameterType="hashMap" >
 		<![CDATA[ 
 			INSERT INTO 
-				ADMIN_QNA_COMMENTS ( 
+				ADMIN_QNA_COMMENTS( 
 				USER_ID, 
                 ADQNA_NUM, 
 				CMT_NUM, 
 				CMT_CMT, 
-				CMT_DATE
+				CMT_DATE 
 			) VALUES (
 				'admin', 
                 #{ADQNA_NUM}, 

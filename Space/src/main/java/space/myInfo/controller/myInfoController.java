@@ -107,7 +107,7 @@ public class myInfoController {
 	
 	@RequestMapping("mypage/Myqnadelete")
 	public ModelAndView Myqnadelete(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/mypage/Myqnalist");
+		ModelAndView mv = new ModelAndView("QNAList");
 		myInfoService.deleteQNA(commandMap.getMap());
 		
 		return mv;
