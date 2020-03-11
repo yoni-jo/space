@@ -12,5 +12,9 @@ public interface SpaceService {
 	List<Map<String,Object>> selectReplyList(Map<String,Object> map) throws Exception;
 	List<String> selectCompResDate(Map<String,Object> map) throws Exception;
 	void writeQnAPost(Map<String,Object> map) throws Exception;
-	void writeReplyPost(Map<String,Object> map) throws Exception;
+	void updateMsgRead(Map<String,Object> map) throws Exception;
+	void deleteMessage(Map<String,Object> map) throws Exception;
+	
+	int getNewMsgCount(String id) throws Exception;
+	List<Map<String,Object>> getMessageList(Map<String,Object> map) throws Exception;
 }

@@ -186,6 +186,53 @@ public class SpaceController {
 		return mav;
 	}
 	
+	@RequestMapping("space/getNewMsgCount")
+	public ModelAndView getNewMsgCount(CommandMap map,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		String userId = (String)session.getAttribute("USER_ID");
+		int count = spaceService.getNewMsgCount(userId);
+		
+		mv.addObject("count",count);
+		return mv;
+		
+	}
+	
+	@RequestMapping("space/getMessageList")
+	public ModelAndView getMessageList(CommandMap map,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		String userId = (String)session.getAttribute("USER_ID");
+		map.put("USER_ID", userId);
+		
+		List<Map<String,Object>> list = spaceService.getMessageList(map.getMap());
+		if(list.size()>0) mv.addObject("TOTAL",list.get(0).get("TOTAL_COUNT"));
+		else mv.addObject("TOTAL",0);
+		
+		mv.addObject("list",list);
+		return mv;
+		
+	}
+	
+	@RequestMapping("space/updateMsgRead")
+	public ModelAndView messageReadChange(CommandMap map) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		spaceService.updateMsgRead(map.getMap());
+		mv.addObject("ID",map.get("M_ID"));
+		return mv;
+		
+	}
+	
+	@RequestMapping("space/deleteMsg")
+	public ModelAndView deleteMessage(CommandMap map) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		spaceService.deleteMessage(map.getMap());
+		mv.addObject("ID",map.get("M_ID"));
+		return mv;
+		
+	}
+	
+	
 	@RequestMapping("/space/alertPage")
 	public ModelAndView test(CommandMap map,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("alert/alertPage");

@@ -62,7 +62,7 @@ Logger log = Logger.getLogger(this.getClass());
 		map.put("USER_ID", userId);
 		map.put("RES_APPLY_DATE", date);
 		reserveService.insertResInfo(map.getMap());
-		
+		reserveService.insertMessage(map.getMap());
 		mav.addObject("TYPE",map.get("RES_REQ"));
 		mav.addObject("PRI",map.get("RES_PRI"));
 		mav.addObject("PAY_DATE",nextDate());

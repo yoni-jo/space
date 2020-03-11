@@ -67,10 +67,10 @@
 		<div name="resInfo" style="height: 150px">
 			<fmt:formatDate var="date" value="${map.RES_APPLY_DATE}" pattern="yyyy-MM-dd"/>
 			<c:set var="image" value="${fn:split(map.SPACE_IMG,',')[0]}"/>
-			<div name="infoImage" class="subView">
-				<img src="<c:url value='/image/${image}'/>" style="height: inherit;"/>
+			<div name="infoImage" class="subView" style="width: 25%">
+				<img src="<c:url value='/image/${image}'/>" style="height: inherit; width:100%;"/>
 			</div>
-			<div name="infoText" class="subView" style="margin-left:20px; display: table;  vertical-align: middle;">
+			<div name="infoText" class="subView" style="margin-left:20px; display: table;  vertical-align: middle; width: 40%">
 				<div class="cellView">
 				<c:set var="time" value="${fn:split(date,'-')}"/>
 				<label class="tag">${map.SPACE_TITLE}</label><label>(${map.SPACE_POS})</label>

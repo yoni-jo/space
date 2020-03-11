@@ -167,8 +167,9 @@ public class MySpaceController {
 		deleteImage((String) map.get("APPLY_NUM"),(String) map.get("DEL_IMG"));
 		nowFile=uploadImage(request,(String) map.get("APPLY_NUM"));
 		if(oldFile!=null) {
-			if(nowFile.equals("")) nowFile = oldFile;
-			else nowFile = oldFile+","+nowFile;
+			String numStr = (String)map.get("APPLY_NUM");
+			if(nowFile.equals("")) nowFile = numStr+"_"+oldFile;
+			else nowFile = numStr+"_"+oldFile+","+nowFile;
 		}
 		map.put("APPLY_IMG",nowFile);
 

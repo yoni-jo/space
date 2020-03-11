@@ -10,4 +10,5 @@ public interface ReserveService {
 	List<Map<String,Object>> getResList(Map<String,Object> map);
 	void modifyResInfo(Map<String,Object> map);
 	void insertReply(Map<String,Object> map);
+	void insertMessage(Map<String,Object> map);
 }

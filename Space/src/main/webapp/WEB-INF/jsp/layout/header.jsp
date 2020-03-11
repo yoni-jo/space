@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="http://code.jquery.com/jquery-1.7.js"></script>
+<%@ include file="/WEB-INF/common/defualt-header.jspf" %>
 
 <%
 
-String id="";
+String id="방문고객";
 String log;
 
 if(session.getAttribute("USER_ID")!=null){
@@ -23,17 +22,24 @@ if(session.getAttribute("USER_ID")!=null){
     /* header */
     
     
-#top{width: 100%;height: 100%;height: 100px;}
+#top{width: 100%;height: 100%;height: 100px; min-width: 1100px}
 #menu{width: 70%;margin-left: 15%;}
 .logo{width: 10%;float:left;font-size: 20px;}
 .logo img{width: 130px;margin-top:10px;}
 .logo img:hover{transition:all 0.3s ease-in; max-width:160px }
-
+#msgBox{cursor:default; padding:10px; position:absolute; background: white; width: 150px;height: 300px; overflow-x:hidden;word-wrap:break-word;text-align: left;box-shadow: 0px 0px 5px 1px gray}
+.msgDiv{border-bottom: 1px solid gray;}
+.title{font-weight: bold;}
+.content{font-size: 11px;}
+.msgDate{font-size: 10px; font-weight: bold;}
+.newMsg{background: red; border-radius: 5px; font-size: 5px;min-width:inherit;color: white; float: right;}
+.msgBtn{cursor:pointer; font-size: 10px; font-weight: bold; float: right;margin-left: 5px;}
+.read{opacity: 0.5}
 /* width: 90px; margin-top:5px;   animation: rotate_image 10s linear infinite;
     transform-origin: 50% 50%;
  }
 
-@keyframes rotate_image{
+@keyframes rotate_image{ 
 	100% {
     	transform: rotate(360deg);
     }
@@ -42,9 +48,11 @@ if(session.getAttribute("USER_ID")!=null){
 
 
 .nav{talign-items: center;ext-align:center; margin:0px;float: right; position: relative;margin-top:20px}
-.nav>li{width:150px;height:50px;float:left;display:flex ;align-items:center;} 
+.nav>li:not(.msgBoxBtn){width:150px;height:50px;float:left;display:flex ;align-items:center;} 
 .nav>li>a{width: 100%;text-align: center;} 
 .nav>li>a:hover{transition:all 0.3s ease-in;border-left:8px solid #ffaa28; }
+
+.msgBoxBtn{width:30px;height:50px;float:left;display:flex ;align-items:center;} 
 
 
 /*메뉴 토글 */
@@ -94,7 +102,7 @@ $(document).on('click','.bar',function(){
                 <li><a href="/two/res/resInfo">예약확인</a></li>
                 
                 <!-- 로그인했을때 마이페이지버튼 나타나게하기 -->
-               <%if(id != ""){%> 
+               <%if(!id.equals("방문고객")){%> 
                		<li>
                 		<a href="/two/member/MemberModifyForm">마이페이지</a>
                		 </li>
@@ -102,13 +110,22 @@ $(document).on('click','.bar',function(){
                 <li class="log" >
                 
                 <!--로그인안했을경우  로그인버튼 -->
-                <%if(id == ""){%>
+                <%if(id.equals("방문고객")){%>
                 	<a href="/two/login/loginForm"><%=log%></a></li>
+               		
                 	
                 	
                 <!-- 로그인했을경우 로그아웃버튼으로 변경-->
                 <%}else{%>
                 	<a href="/two/login/logout" onclick="return logout();"><%=log%></a></li>
+                	<li class="msgBoxBtn">
+                		<input type="hidden" id="MSG_INDEX" value="0"/>
+                		<input type="hidden" id="MSG_ROW" value="5"/>
+                		<img id="button" src="/two/image/Message.png" style="width: 20px"/>
+                		<div id="newMsgDiv" style="min-width: 15px"></div>
+	                	<div id="msgBox" hidden="true">
+	                	</div>
+               		 </li>
                 	
                 <%} %>
                 	
@@ -118,15 +135,14 @@ $(document).on('click','.bar',function(){
                 <div class="bar2"></div>
                 <div class="bar3"></div></div>
                 	<ul class="hide">
-                            <li>${USER_ID}님<span></span> </li>
-                             <%if(id != ""){%> 
-                             <li><a href="/two/member/MemberModifyForm">개인정보변경</a></li> <%} %>
-                            <li><a href="/two/res/resInfo">예약공간보기</a></li>
-                            <li><a href="/two/mypage/myFavList">찜한공간보기</a></li>
-                            <li><a href="/two/mySpace/SpaceControl">내가등록한 공간보기</a></li>
-                            <li><a href="/two/etc/noticeList">공지사항</a></li>
-                           
-                        </ul> 
+                        <li><%=id %>님<span></span> </li>
+                        <%if(!id.equals("방문고객")){%> 
+                        <li><a href="/two/member/MemberModifyForm">개인정보변경</a></li> <%} %>
+                        <li><a href="/two/res/resInfo">예약공간보기</a></li>
+                        <li><a href="/two/mypage/myFavList">찜한공간보기</a></li>
+                        <li><a href="/two/mySpace/SpaceControl">내가등록한 공간보기</a></li>
+                        <li><a href="/two/etc/noticeList">공지사항</a></li>
+                    </ul> 
                 </li>
                 
             </ul>
@@ -134,3 +150,144 @@ $(document).on('click','.bar',function(){
         </div>
 
     </div>
+<script>
+$(document).ready(function(){
+	$("#msgBox").offset({top:$(".msgBoxBtn").outerHeight(true)});
+	console.log($(".msgBoxBtn").outerHeight(true));
+	
+	$("#button").click(function(){ 
+		if($(document).find(".Activity").length==0){
+			$(this).addClass("Activity");
+			$(this).attr("src","/two/image/Message_Active.png");
+			$("#msgBox").attr("hidden",false);
+			$("#MSG_INDEX").val(1);
+			getMessageList(0,0);
+		}else{
+			$(this).removeClass("Activity");
+			$(this).attr("src","/two/image/Message.png");
+			$("#msgBox").attr("hidden",true);
+			$("#msgBox").empty(); 
+		}
+	});
+	
+	$("#msgBox").on("mousewheel",function(e){
+		var index = $("#MSG_INDEX").val();
+		var wheel=e.originalEvent.wheelDelta;
+		if($("#msgBox").scrollTop()+$("#msgBox").innerHeight() >=$("#msgBox")[0].scrollHeight){
+			var row = $("#MSG_ROW").val();
+			var total = $("#MSG_TOTAL_COUNT").val();
+			if((index*row)<total){
+				$("#MSG_INDEX").val(Number(index)+1);
+				getMessageList(0,0);
+			}
+		}
+	});
+	
+	newMessageCheck();
+});
+function newMessageCheck(){
+	$.ajax({
+		url:"<c:url value='/space/getNewMsgCount'/>",
+		type:"POST",
+		data : null,
+		async : false,
+		success : function(data, status){
+			if (typeof (newMessageCount) == "function") {
+				newMessageCount(data);
+			} else {
+				eval(newMessageCount + "(data);");
+			}
+		}
+	});
+}
+function getMessageList(i, r){
+	var index;
+	var row;
+	
+	console.log("getMEssageList("+i+","+r+")");
+	if(Number(i)>0 && Number(r)>0){
+		index=i;
+		row=r;
+	}else{
+		index = $("#MSG_INDEX").val();
+		row = $("#MSG_ROW").val();
+	}
+	
+	var data = "PAGE_INDEX="+index+"&PAGE_ROW="+row;
+	$.ajax({
+		url:"<c:url value='/space/getMessageList'/>",
+		type:"POST",
+		data : data,
+		async : false,
+		success : function(data, status){
+			if (typeof (createMsgBox) == "function") {
+				createMsgBox(data);
+			} else {
+				eval(createMsgBox + "(data);");
+			}
+		}
+	});
+}
+function newMessageCount(data){
+	$("#newMsgDiv").empty();
+	if(data.count > 0){
+		$("#newMsgDiv").append("<label class='newMsg'>"+data.count+"</label>");
+	}
+}
+function createMsgBox(data){
+	var list = data.list;
+	var str = "";
+	var className;
+	list.forEach(function(item,index,arr){
+		if(item.READ_CHECK=='Y') className = 'msgDiv read';
+		else className = 'msgDiv';
+		var msgDate = $.datepicker.formatDate("yy.mm.dd",new Date(item.M_DATE));
+		
+		str+="<div class='"+className+"'><input type='hidden' name='M_ID' value='"+item.M_ID+"'/>"+
+		"<div><label class='title'>"+item.M_TITLE+"</label><label name='msgDel' class='msgBtn'>삭제</label><label name='msgOk' class='msgBtn'>확인</label></div><br>"+
+		"<label class='content'>"+item.M_CONTENT+"</label><br>"+
+		"<label class='msgDate'>"+msgDate+"</label><br>"+
+		"</div>";
+	});
+	
+	$("#msgBox").append(str);
+	
+	$("label[name='msgOk']").click(function(){
+		$.ajax({
+			url:"<c:url value='/space/updateMsgRead' />",
+			type:"POST",
+			data : "M_ID="+$(this).parents(".msgDiv").find("input[name=M_ID]").val(),
+			async:false,
+			success:function(data,status){
+				$("input[value='"+data.ID+"']").parents(".msgDiv").addClass("read");
+				newMessageCheck();
+			}
+		});
+	});
+	
+	$("label[name='msgDel']").click(function(){
+		
+		$.ajax({
+			url:"<c:url value='/space/deleteMsg' />",
+			type:"POST",
+			data : "M_ID="+$(this).parents(".msgDiv").find("input[name=M_ID]").val(),
+			async:false,
+			success:function(data,status){
+				var index = $("#MSG_INDEX").val();
+				var row = index * $("#MSG_ROW").val();
+				
+				$("input[value='"+data.ID+"']").parents(".msgDiv").addClass("read");
+				$("#msgBox").empty();
+				getMessageList(1,row);
+				newMessageCheck();
+			}
+		});
+	});
+	
+	if($("#MSG_TOTAL_COUNT").length > 0){
+		$("#MSG_TOTAL_COUNT").val(data.TOTAL);
+	}else{
+		$("body").append("<input type='hidden' id='MSG_TOTAL_COUNT' value='"+data.TOTAL+"'/>");
+	}
+}
+</script>

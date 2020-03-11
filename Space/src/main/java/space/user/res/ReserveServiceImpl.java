@@ -45,5 +45,18 @@ public class ReserveServiceImpl implements ReserveService{
 		reserveDao.insertReply(map);
 		
 	}
+	@Override
+	public void insertMessage(Map<String, Object> map) {
+		Map<String,Object> spaceMap = reserveDao.getSpaceInfo(map);
+		String userId = (String)spaceMap.get("SPACE_HOST");
+		String title = (String)spaceMap.get("SPACE_TITLE");
+		String content = "게시하신 ["+title + "] 에 대한 예약요청이 들어왔습니다.\n"
+				+ "내 공간 예약상황 페이지에서 확인 부탁드립니다.";
+		spaceMap.put("USER_ID", userId);
+		spaceMap.put("TITLE", "예약 요청이 들어왔습니다.");
+		spaceMap.put("CONTENT", content);
+		
+		reserveDao.insertMessage(spaceMap);
+	}
 	
 }

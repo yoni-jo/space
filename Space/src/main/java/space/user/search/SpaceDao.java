@@ -10,8 +10,8 @@ import space.common.dao.AbstractDAO;
 public class SpaceDao extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String,Object>> selectSpaceList(){
-		return (List<Map<String,Object>>)selectList("space.selectDefaultList");
+	public List<Map<String,Object>> selectSpaceList(Map<String,Object> map){
+		return (List<Map<String,Object>>)selectList("space.selectDefaultList",map);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -57,12 +57,22 @@ public class SpaceDao extends AbstractDAO{
 		return selectList("space.selectCompResDate",map);
 	}
 	public void updateFovoriSpace(Map<String,Object> map)throws Exception{
-		update("updateFavoriSpace",map);
+		update("space.updateFavoriSpace",map);
 	}
 	public void insertQnAPost(Map<String,Object> map)throws Exception{
-		insert("insertQnAWrite",map);
+		insert("space.insertQnAWrite",map);
 	}
-	public void insertReplyPost(Map<String,Object> map)throws Exception{
-		insert("insertQnAWrite",map);
+	public int selectNewMsgCount(String id) throws Exception{
+		return (Integer)selectOne("space.selectNewMsgCount",id);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectMessageList(Map<String,Object> map) throws Exception{
+		return (List<Map<String,Object>>)selectPagingList("space.selectMessage",map);
+	}
+	public void updateMsgRead(Map<String,Object> map) throws Exception{
+		update("space.updateMsgRead",map);
+	}
+	public void deleteMessage(Map<String,Object> map) throws Exception{
+		update("space.deleteMessage",map);
 	}
 }

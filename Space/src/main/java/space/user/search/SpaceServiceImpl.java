@@ -19,7 +19,7 @@ public class SpaceServiceImpl implements SpaceService{
 	public Map<String, Object> selectSpaceList(Map<String, Object> map) throws Exception{
 		Map<String,Object> tempMap = new HashMap<String, Object>();
 		List<String> favList;
-		List<Map<String,Object>> list = spaceDao.selectSpaceList();
+		List<Map<String,Object>> list = spaceDao.selectSpaceList(map);
 		
 		if (map.get("USER_ID") != null) {
 			favList = spaceDao.selectFavoriList(map);
@@ -74,12 +74,24 @@ public class SpaceServiceImpl implements SpaceService{
 		spaceDao.insertQnAPost(map);
 	}
 	@Override
-	public void writeReplyPost(Map<String, Object> map) throws Exception {
-		spaceDao.insertReplyPost(map);
-	}
-	@Override
 	public List<String> selectCompResDate(Map<String, Object> map) throws Exception {
 		return spaceDao.selectCompResDate(map);
+	}
+	@Override
+	public int getNewMsgCount(String id) throws Exception {
+		return spaceDao.selectNewMsgCount(id);
+	}
+	@Override
+	public List<Map<String, Object>> getMessageList(Map<String, Object> map) throws Exception {
+		return spaceDao.selectMessageList(map);
+	}
+	@Override
+	public void updateMsgRead(Map<String, Object> map) throws Exception {
+		spaceDao.updateMsgRead(map);
+	}
+	@Override
+	public void deleteMessage(Map<String, Object> map) throws Exception {
+		spaceDao.deleteMessage(map);
 	}
 	
 }

@@ -15,23 +15,24 @@ public class LogingInterceptor extends HandlerInterceptorAdapter{
 		log.info("request URL " + request.getRequestURL());
 		log.info(request.getRequestURL().toString().contains("/admin/"));
 		RequestDispatcher ds;
+		
 		if(request.getSession().getAttribute("USER_ID")==null) {
+			if(request.getRequestURL().toString().contains("/admin/")) {
+				log.info("request.getSession().getAttribute(\"ADMIN\") : "+request.getSession().getAttribute("ADMIN"));
+				if(request.getSession().getAttribute("ADMIN")==null) {
+					
+					request.setAttribute("msg", "관리자 권환이 필요합니다");
+					request.setAttribute("nextView", request.getContextPath()+"/admin/AdminLogin");
+					ds = request.getRequestDispatcher("/space/alertPage");
+					ds.forward(request, response);
+					return false;
+				}
+			}
 			request.setAttribute("msg", "로그인이 필요합니다");
 			request.setAttribute("nextView", request.getContextPath()+"/login/loginForm");
 			ds = request.getRequestDispatcher("/space/alertPage");
 			ds.forward(request, response);
 			return false;
-		}
-		if(request.getRequestURL().toString().contains("/admin/")) {
-			log.info("request.getSession().getAttribute(\"ADMIN\") : "+request.getSession().getAttribute("ADMIN"));
-			if(request.getSession().getAttribute("ADMIN")==null) {
-				
-				request.setAttribute("msg", "관리자 권환이 필요합니다");
-				request.setAttribute("nextView", request.getContextPath()+"/admin/AdminLogin");
-				ds = request.getRequestDispatcher("/space/alertPage");
-				ds.forward(request, response);
-				return false;
-			}
 		}
 		
 		

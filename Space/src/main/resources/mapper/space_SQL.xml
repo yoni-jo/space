@@ -8,14 +8,16 @@
 		ROW_NUMBER()OVER(
 ]]>
 <choose>
-	<when test="SEARCH_TYPE==null">
-		ORDER BY SPACE_ID DESC
-	</when>
-	<when test="SEARCH_TYPE.equals('read')">
+	<when test="SEARCH_TYPE != null">
+	<if test="SEARCH_TYPE.equals('read')">
 		ORDER BY SPACE_READ DESC
-	</when>
-	<when test="SEARCH_TYPE.equals('pri')">
-		ORDER BY SPACE_PRI
+	</if>
+	<if test="SEARCH_TYPE.equals('pri')">
+		ORDER BY SPACE_PRI 
+	</if>
+	<if test="SEARCH_TYPE.equals('new')">
+		ORDER BY SPACE_ID DESC
+	</if>
 	</when>
 	<otherwise>
 		ORDER BY SPACE_ID DESC
@@ -45,14 +47,16 @@
 SELECT ROW_NUMBER()OVER(
 ]]>
 <choose>
-	<when test="SEARCH_TYPE==null">
-		ORDER BY SPACE_ID DESC
-	</when>
-	<when test="SEARCH_TYPE.equals('read')">
+	<when test="SEARCH_TYPE != null">
+	<if test="SEARCH_TYPE.equals('read')">
 		ORDER BY SPACE_READ DESC
-	</when>
-	<when test="SEARCH_TYPE.equals('pri')">
-		ORDER BY SPACE_PRI DESC
+	</if>
+	<if test="SEARCH_TYPE.equals('pri')">
+		ORDER BY SPACE_PRI 
+	</if>
+	<if test="SEARCH_TYPE.equals('new')">
+		ORDER BY SPACE_ID DESC
+	</if>
 	</when>
 	<otherwise>
 		ORDER BY SPACE_ID DESC
@@ -296,4 +300,53 @@ AND
 	)
 	]]>
 </insert>
+
+<!-- 알림 메시지 -->
+<select id="selectNewMsgCount" parameterType="String" resultType="Integer">
+	<![CDATA[
+	SELECT
+		COUNT(*) COUNT
+	FROM 
+		MESSAGE_BOX
+	WHERE
+		USER_ID = #{USER_ID} AND READ_CHECK = 'N'
+	]]>
+</select>
+<select id="selectMessage" parameterType="HashMap" resultType="HashMap">
+	<include refid="common.pagingPre"></include>
+	<![CDATA[
+	SELECT
+		ROW_NUMBER() OVER(ORDER BY M_ID DESC)RNUM,
+		M_ID,
+		M_TITLE,
+		M_CONTENT,
+		TO_DATE(TO_CHAR(M_DATE,'YYYYMMDD'),'YYYY/MM/DD') as M_DATE,
+		READ_CHECK
+	FROM 
+		MESSAGE_BOX
+	WHERE
+		USER_ID = #{USER_ID}
+	]]>
+	<include refid="common.pagingPost"></include>
+</select>
+
+<update id="updateMsgRead" parameterType="hashmap">
+<![CDATA[
+	UPDATE 
+		MESSAGE_BOX 
+	SET 
+		READ_CHECK = 'Y'
+	WHERE 
+		M_ID = ${M_ID}
+]]>
+</update>
+
+<delete id="deleteMessage" parameterType="hashmap">
+<![CDATA[
+	DELETE FROM
+		MESSAGE_BOX 
+	WHERE 
+		M_ID = ${M_ID}
+]]>
+</delete>
 </mapper>

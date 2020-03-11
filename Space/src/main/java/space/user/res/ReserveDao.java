@@ -30,4 +30,7 @@ public class ReserveDao extends AbstractDAO{
 	public void insertReply(Map<String,Object> map) {
 		insert("res.insertReply", map);
 	}
+	public void insertMessage(Map<String,Object> map) {
+		insert("res.insertMessage",map);
+	}
 }

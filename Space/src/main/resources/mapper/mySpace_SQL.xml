@@ -104,7 +104,7 @@ WHERE
 </update>
 
 <!-- ==================================공간 신청 글 예약(요일) 삭제          [ 등록글 수정글 공통 부분 ] --> 
-<!-- <update id="deleteResDay" parameterType="hashmap">
+<update id="deleteResDay" parameterType="hashmap">
 	<![CDATA[
 		DELETE
 		FROM 
@@ -112,7 +112,7 @@ WHERE
 		WHERE
 			SPACE_ID = #{SPACE_ID}
 	]]>
-</update> -->
+</update>
 
 <!-- ==================================공간 신청 글 예약(날짜)삭제  		[ 등록글 수정글 공통 부분 ] -->
 <select id="getSpaceID" parameterType="hashmap" resultType="string">

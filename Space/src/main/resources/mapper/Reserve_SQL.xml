@@ -10,7 +10,8 @@ SELECT
 	SPACE_TITLE,
 	SPACE_SIZE,
 	SPACE_PERSON,
-	SPACE_POS
+	SPACE_POS,
+	SPACE_HOST
 FROM
 	SPACE_LIST
 WHERE SPACE_ID = #{SPACE_ID}
@@ -147,6 +148,29 @@ INSERT INTO
 		#{CONTENT},
 		'',
 		#{FILE_NAME},
+		SYSDATE,
+		'N'
+	)
+
+]]>
+	</insert>
+
+<insert id="insertMessage" parameterType="hashmap">
+<![CDATA[
+INSERT INTO
+	MESSAGE_BOX(
+		USER_ID,
+		M_ID,
+		M_TITLE,
+		M_CONTENT,
+		M_DATE,
+		READ_CHECK
+	)
+	VALUES(
+		#{USER_ID},
+		MSG_NUM_SEQ.NEXTVAL,
+		#{TITLE},
+		#{CONTENT},
 		SYSDATE,
 		'N'
 	)
