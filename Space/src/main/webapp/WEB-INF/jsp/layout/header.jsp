@@ -104,7 +104,7 @@ $(document).on('click','.bar',function(){
                 <!-- 로그인했을때 마이페이지버튼 나타나게하기 -->
                <%if(!id.equals("방문고객")){%> 
                		<li>
-                		<a href="/two/member/MemberModifyForm">마이페이지</a>
+                		<a id="myPageBtn" href="/two/member/MemberModifyForm">마이페이지</a>
                		 </li>
                <%} %>
                 <li class="log" >
@@ -152,6 +152,7 @@ $(document).on('click','.bar',function(){
     </div>
 <script>
 $(document).ready(function(){
+	if($("#myPageBtn").length>0){
 	$("#msgBox").offset({top:$(".msgBoxBtn").outerHeight(true)});
 	console.log($(".msgBoxBtn").outerHeight(true));
 	
@@ -184,6 +185,7 @@ $(document).ready(function(){
 	});
 	
 	newMessageCheck();
+	}
 });
 function newMessageCheck(){
 	$.ajax({
