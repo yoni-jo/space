@@ -27,7 +27,7 @@ SELECT
 	USER_PHONE
 FROM
 	USER_LIST
-WHERE USER_VISIBLE ='N'
+WHERE USER_DEL ='N'
 AND USER_ID = #{USER_ID}
 	
 ]]>
@@ -61,7 +61,7 @@ VALUES(
 	#{RES_APPLY_DATE},
 	'',
 	#{RES_REQ},
-	#{RES_PRI}
+	#{RES_PRI} 
 )
 ]]>
 </insert>
