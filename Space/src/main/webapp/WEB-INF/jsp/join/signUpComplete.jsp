@@ -9,7 +9,7 @@
 <body>
 <script>
 window.alert("${msg}");
-window.location.href="/two/main";
+window.location.href="/space/main";
 </script>
 </body>
 </html>

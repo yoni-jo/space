@@ -62,7 +62,7 @@ function outcheck() {
 
 
 </script>
-<form action="/two/member/memberModify" method="POST" onsubmit="return check();">
+<form action="/space/member/memberModify" method="POST" onsubmit="return check();">
 	<div id="memberchange">
 		<h1>회원정보변경</h1>
 
@@ -83,6 +83,6 @@ function outcheck() {
 			</li>
 
 		</ul>
-			<a class="out" href="/two/member/memberDelete" onclick="return outcheck();" id="delect">서비스 탈퇴하기</a>
+			<a class="out" href="/space/member/memberDelete" onclick="return outcheck();" id="delect">서비스 탈퇴하기</a>
 	</div>
 </form>

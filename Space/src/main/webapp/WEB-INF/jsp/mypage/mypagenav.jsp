@@ -50,17 +50,17 @@
 			
 				<nav id="mypagemenu">
 					<ul>
-						<li><a href="/two/res/resInfo">내가 예약한 공간</a></li>
+						<li><a href="/space/res/resInfo">내가 예약한 공간</a></li>
 
-						<li><a href="/two/mypage/myFavList">내가 찜한 공간</a></li>
-						<li><a href="/two/myInfo/QNAList">1:1문의</a></li>
-						<li><a href="/two/member/MemberModifyForm">개인정보 변경</a></li>
+						<li><a href="/space/mypage/myFavList">내가 찜한 공간</a></li>
+						<li><a href="/space/myInfo/QNAList">1:1문의</a></li>
+						<li><a href="/space/member/MemberModifyForm">개인정보 변경</a></li>
 						
 						<li class="mypagebar">내 공간 관리
 			<ul class="mypagehide">
-				<li><a href="/two/mySpace/spaceForm">내 공간 등록하기</a></li>
-				<li><a href="/two/mySpace/SpaceControl">내 공간 관리하기</a></li>
-				<li><a href="/two/mySpace/ResPage">내 공간 예약상황</a></li>
+				<li><a href="/space/mySpace/spaceForm">내 공간 등록하기</a></li>
+				<li><a href="/space/mySpace/SpaceControl">내 공간 관리하기</a></li>
+				<li><a href="/space/mySpace/ResPage">내 공간 예약상황</a></li>
 			</ul>
 		</li>
 					</ul>

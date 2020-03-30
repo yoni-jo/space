@@ -32,7 +32,7 @@ function fwdcheck() {
 </script>
 
 
-<form action="/two/member/MemberModifyForm" id=pwdcheckfrm onsubmit="return fwdcheck();" method="post">
+<form action="/space/member/MemberModifyForm" id=pwdcheckfrm onsubmit="return fwdcheck();" method="post">
 		<div id="mypageform">
 		
 			<h1>개인정보변경</h1>
