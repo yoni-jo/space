@@ -206,21 +206,22 @@ if(session.getAttribute("USER_ID") != null){
 		});
 	
 		function fn_setOptButton(){
-			$(".opt").each(function(){
+			$(".opt").each(function(){ 
 				var opt = $(this);
-				$(".opt_val").get().forEach(function(item,index,arr){
-					if(!gfn_isNull($(item).val())){
-					var temp = opt.find("a:contains('"+$(item).val()+"')");
+				var opt_val = $(opt).find(".opt_val");
+				//$(".opt_val").get().forEach(function(item,index,arr){
+				if(!gfn_isNull($(opt_val).val()) && $(opt_val).val()!=999999){
+					var temp = opt.find("a:contains('"+$(opt_val).val()+"')");
 					if( temp != null){
+						console.log($(temp).html() + " item1 : "+$(opt_val).val());
 						if($(temp).length > 1){
-							temp = opt.find("a:[class="+$(item).val()+"]");
+							temp = opt.find("a:[class="+$(opt_val).val()+"]");
 						}
-							temp.css('font-weight', 'bold');
-						
+						temp.css('font-weight', 'bold');
 					}
-					}
-				});
-			});
+			   }else{
+					opt.find("a[name='all']").css('font-weight', 'bold');
+				}});
 		}
 		function fn_setradioButton(type){
 			if(type !=null){

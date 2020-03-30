@@ -223,6 +223,16 @@ AND
 		SPACE_ID = #{SPACE_ID}
 	
 </select>
+
+	
+<select id="selectCompResDate" parameterType="hashmap" resultType="string">
+	SELECT
+		RES_APPLY_DATE 
+	FROM 
+		RES_LIST
+	WHERE
+		RES_SPACE_ID = #{SPACE_ID}
+</select>
 <select id="selectResDay" parameterType="hashmap" resultType="hashmap">
 	SELECT 
 		SRES_SUN AS SUN,
@@ -236,16 +246,6 @@ AND
 		SRES_DAY
 	WHERE
 		SPACE_ID = #{SPACE_ID}
-	
-</select>
-	
-<select id="selectCompResDate" parameterType="hashmap" resultType="string">
-	SELECT
-		RES_APPLY_DATE 
-	FROM 
-		RES_LIST
-	WHERE
-		RES_SPACE_ID = #{SPACE_ID}
 	
 </select>	
 
