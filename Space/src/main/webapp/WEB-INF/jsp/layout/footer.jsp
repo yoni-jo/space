@@ -14,7 +14,7 @@
 <div class="footer_contents">
 
 	<div class="footer_logo">
-		<a href="/two/main">(주)공간</a>
+		<a href="/space/main">(주)공간</a>
 	</div>
 	<div class="company">
 		<p>서울 종로구 종로 78 미려빌딩 6층 이젠아카데미컴퓨터학원</p>
