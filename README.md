@@ -12,7 +12,8 @@
 
 소비자 ->원하는 위치와 가격비교를 통해 편하게 공간을 대여
 
-
+<h1>프로젝트 이미지</h1>
+![공간main](https://user-images.githubusercontent.com/59083987/82202869-7dbfd480-993d-11ea-9287-cc5c34ff918c.jpg)
 
 
 
